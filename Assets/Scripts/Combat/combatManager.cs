@@ -27,6 +27,7 @@ public class combatManager : MonoBehaviour
 
     private opponentRandomizer opponentStats;
     private combatUI uiScript;
+    private cardEffect effectsScript;
      
 
     private void Awake()
@@ -39,7 +40,7 @@ public class combatManager : MonoBehaviour
         //setup
         opponentStats = GetComponent<opponentRandomizer>();
         uiScript = GetComponent<combatUI>();
-
+        effectsScript = GetComponent<cardEffect>();
 
         setStats();
         uiScript.setDefaultPositions();
@@ -165,6 +166,8 @@ public class combatManager : MonoBehaviour
     IEnumerator playCard(GameObject playedCard, card cardInfo)
     {
         //ACTIVE CARD EFFECT HERE
+        effectsScript.playCard(cardInfo, 1);
+
         yield return new WaitForSeconds(cardPlayedHoverDuration);
 
         uiScript.discardCard(playedCard);
