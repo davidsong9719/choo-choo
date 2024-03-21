@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class combatManager : MonoBehaviour
@@ -17,8 +16,7 @@ public class combatManager : MonoBehaviour
     [SerializeField] float speedIncrementSpeed;
     [SerializeField] float cardPlayedHoverDuration; //for card
     public int playerHandAmount;
-     
-
+    
     private int playerSpeed, playerAttack, playerMaxHealth, playerHealth;
     private int opponentSpeed, opponentAttack, opponentMaxHealth, opponentHealth;
 
@@ -44,6 +42,7 @@ public class combatManager : MonoBehaviour
 
         setStats();
         uiScript.setDefaultPositions();
+        uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
 
         drawPile = gameManager.instance.playerDeck;
         shuffleDrawPile();
@@ -179,5 +178,19 @@ public class combatManager : MonoBehaviour
     public void startPlayCard(GameObject playedCard, card cardInfo)
     {
         StartCoroutine(playCard(playedCard, cardInfo));
+    }
+
+    public void inflictDamage(int target, int amount)
+    {
+        if (target == 0) //targeting player
+        {
+            playerHealth -= opponentAttack + amount;
+        } else if (target == 1)
+        {
+            opponentHealth -= playerAttack + amount;
+        }
+
+        print("opponent health: " + opponentHealth + "/" + (float)opponentMaxHealth);
+        uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
     }
 }

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +10,7 @@ public class combatUI : MonoBehaviour
     [Header("Setup")]
     [SerializeField] RectTransform playerCircle; // speed display highlight
     [SerializeField] RectTransform opponentCircle; // ^
+    [SerializeField] Image playerHealthDisplay, opponentHealthDisplay;
 
     [SerializeField] List<GameObject> playerCardDisplays;
     [SerializeField] GameObject cardPrefab;
@@ -18,7 +18,7 @@ public class combatUI : MonoBehaviour
     [SerializeField] Transform cardParent;
     [SerializeField] RectTransform playCardBorder;
     [SerializeField] RectTransform drawDeckPosition, discardDeckPosition;
-
+    
 
     [Header("Settings")]
     [SerializeField] float speedCircleMoveAmount; // distance between the numbers on the speed displays
@@ -29,6 +29,12 @@ public class combatUI : MonoBehaviour
     {
         playerCircle.anchoredPosition = new Vector3(playerCircleDefaultPos.x + speedCircleMoveAmount * playerSpeedCounter, playerCircleDefaultPos.y, 0);
         opponentCircle.anchoredPosition = new Vector3(opponentCircleDefaultPos.x + speedCircleMoveAmount * opponentSpeedCounter, opponentCircleDefaultPos.y, 0);
+    }
+
+    public void updateHealthUI(float opponentHealthPercentage, float playerHealthPercentage)
+    {
+        playerHealthDisplay.fillAmount = playerHealthPercentage;
+        opponentHealthDisplay.fillAmount = opponentHealthPercentage;
     }
 
     public void setDefaultPositions()

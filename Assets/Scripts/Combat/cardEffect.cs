@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class cardEffect : MonoBehaviour
 {
+    private combatManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        manager = GetComponent<combatManager>();
     }
 
     // Update is called once per frame
@@ -18,25 +20,28 @@ public class cardEffect : MonoBehaviour
 
     public void playCard(card cardInfo, int target)
     {
-        if (target == 0) //targeting player
+        switch (cardInfo.type)
         {
-            
-        } else if (target == 1) //targets first enemy
-        {
-            switch (cardInfo.type)
-            {
-                case card.cardType.Attack:
-                    break;
+            case card.cardType.Attack:
+                manager.inflictDamage(target, cardInfo.cardStrength);
+                break;
 
-                case card.cardType.Defend:
-                    break;
+            case card.cardType.Defend:
+                break;
 
-                case card.cardType.Effect:
-                    break;
-            }
+            case card.cardType.Effect:
+                break;
         }
     }
 
+    private void defend(card cardInfo, int target)
+    {
 
+    }
+
+    private void effect(card cardInfo, int target)
+    {
+
+    }
 
 }
