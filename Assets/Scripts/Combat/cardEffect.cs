@@ -27,6 +27,7 @@ public class cardEffect : MonoBehaviour
                 break;
 
             case card.cardType.Defend:
+                manager.increaseDefense(target, cardInfo.cardStrength);
                 break;
 
             case card.cardType.Effect:

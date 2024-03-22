@@ -13,7 +13,7 @@ public class subwayManager : MonoBehaviour
 
     //combat
     [SerializeField] GameObject combatCanavas;
-    [SerializeField] GameObject combatManager;
+    [SerializeField] GameObject combatManagerObject;
 
     [Header("Public Access")]
     public GameObject player;
@@ -40,7 +40,9 @@ public class subwayManager : MonoBehaviour
         movementScript.enabled = false;
         targetScript.enabled = false;
 
-        combatManager.SetActive(true);
+
+        combatManagerObject.SetActive(true);
+        combatManager.instance.startCombat();
         combatCanavas.SetActive(true);
     }
 
@@ -51,7 +53,7 @@ public class subwayManager : MonoBehaviour
         movementScript.enabled = true;
         targetScript.enabled = true;
 
-        combatManager.SetActive(false);
+        combatManagerObject.SetActive(false);
         combatCanavas.SetActive(false);
     }
 

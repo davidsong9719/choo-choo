@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,15 +12,15 @@ public class combatUI : MonoBehaviour
     [SerializeField] RectTransform playerCircle; // speed display highlight
     [SerializeField] RectTransform opponentCircle; // ^
     [SerializeField] Image playerHealthDisplay, opponentHealthDisplay;
+    [SerializeField] TextMeshProUGUI playerDefenseDisplay, opponentDefenseDisplay;
 
-    [SerializeField] List<GameObject> playerCardDisplays;
+    public List<GameObject> playerCardDisplays;
     [SerializeField] GameObject cardPrefab;
     [SerializeField] List<RectTransform> cardPositions;
     [SerializeField] Transform cardParent;
     [SerializeField] RectTransform playCardBorder;
     [SerializeField] RectTransform drawDeckPosition, discardDeckPosition;
     
-
     [Header("Settings")]
     [SerializeField] float speedCircleMoveAmount; // distance between the numbers on the speed displays
 
@@ -35,6 +36,13 @@ public class combatUI : MonoBehaviour
     {
         playerHealthDisplay.fillAmount = playerHealthPercentage;
         opponentHealthDisplay.fillAmount = opponentHealthPercentage;
+    }
+
+    public void updateDefenseUI(int opponentDefense, int playerDefense)
+    {
+
+        opponentDefenseDisplay.text = opponentDefense.ToString();
+        playerDefenseDisplay.text = playerDefense.ToString();
     }
 
     public void setDefaultPositions()
@@ -126,7 +134,7 @@ public class combatUI : MonoBehaviour
             }
         }
     }
-
+     
     private void setCardTransform(int cardPositionIndex0, int cardPositionIndex1, int playerCardDisplayIndex, int sortingIndex)
     {
         RectTransform cardDisplayTransform = playerCardDisplays[playerCardDisplayIndex].GetComponent<RectTransform>();
@@ -177,7 +185,7 @@ public class combatUI : MonoBehaviour
 
     public void selectCard(GameObject selectedCard)
     {
-        playerCardDisplays.Remove(selectedCard);
+        //playerCardDisplays.Remove(selectedCard); 
         orderCards();
     }
 
@@ -188,15 +196,29 @@ public class combatUI : MonoBehaviour
 
         combatManager.instance.playerHand.Remove(cardScript.cardInfo);
         combatManager.instance.discardPile.Add(cardScript.cardInfo);
-        playerCardDisplays.Remove(discardedCard);
-
     }
     
     public void discardAllCards()
     {
-        while (playerCardDisplays.Count > 0)
+        for (int i = 0; i < playerCardDisplays.Count; i++ )
         {
-            discardCard(playerCardDisplays[0]);
+            if (playerCardDisplays[i].GetComponent<cardFeedback>().cardState == "discard")
+            {
+                continue; 
+            }
+
+            discardCard(playerCardDisplays[i]);
         }
     }
+
+    public void clearCards()
+    {
+        print(playerCardDisplays.Count);
+        while(playerCardDisplays.Count > 0)
+        {
+            Destroy(playerCardDisplays[0]);
+            playerCardDisplays.RemoveAt(0); 
+        }
+    }
+
 } 

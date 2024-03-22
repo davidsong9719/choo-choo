@@ -7,7 +7,7 @@ public class combatManager : MonoBehaviour
     public static combatManager instance { get; private set; }
 
     [Header("Public Access")]
-    public string state; //player-choose, player-effects, opponent-choose, opponent-effects, increment speed
+    public string state; //player-choose, player-effects, opponent-choose, opponent-effects, increment speed, player-retort, opponent-retort
     public List<card> drawPile;
     public List<card> discardPile;
     public List<card> playerHand;
@@ -17,11 +17,12 @@ public class combatManager : MonoBehaviour
     [SerializeField] float cardPlayedHoverDuration; //for card
     public int playerHandAmount;
     
-    private int playerSpeed, playerAttack, playerMaxHealth, playerHealth;
-    private int opponentSpeed, opponentAttack, opponentMaxHealth, opponentHealth;
+    private int playerSpeed, playerAttack, playerMaxHealth, playerHealth, playerDefense;
+    private int opponentSpeed, opponentAttack, opponentMaxHealth, opponentHealth, opponentDefense;
 
     private int playerSpeedCounter, opponentSpeedCounter;
     private string lastIncremented; //for keeping track of which counter to increment after a participant takes a turn
+    private string lastPlayed; //for keeping track of whos turn it was last
 
     private opponentRandomizer opponentStats;
     private combatUI uiScript;
@@ -31,20 +32,37 @@ public class combatManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        opponentStats = GetComponent<opponentRandomizer>();
+        uiScript = GetComponent<combatUI>();
+        effectsScript = GetComponent<cardEffect>();
+        uiScript.setDefaultPositions();
     }
+
 
     private void Start()
     {
         //setup
-        opponentStats = GetComponent<opponentRandomizer>();
-        uiScript = GetComponent<combatUI>();
-        effectsScript = GetComponent<cardEffect>();
 
+
+    }
+
+    public void startCombat()
+    {
         setStats();
-        uiScript.setDefaultPositions();
-        uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
 
-        drawPile = gameManager.instance.playerDeck;
+        uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
+        uiScript.updateSpeedUI(opponentSpeedCounter, playerSpeedCounter);
+        uiScript.updateDefenseUI(opponentDefense, playerDefense);
+
+        discardPile.Clear();
+        drawPile.Clear();
+        playerHand.Clear();
+
+        for (int i = 0; i  < gameManager.instance.playerDeck.Count; i++)
+        {
+            drawPile.Add(gameManager.instance.playerDeck[i]);
+        }
+
         shuffleDrawPile();
 
         lastIncremented = "opponent"; //starts on player turn
@@ -67,6 +85,9 @@ public class combatManager : MonoBehaviour
 
         playerHealth = gameManager.instance.playerHealth;
         opponentHealth = opponentMaxHealth;
+
+        playerSpeedCounter = 0;
+        opponentSpeedCounter = 0;
     }
 
     IEnumerator incrementSpeed()
@@ -76,8 +97,6 @@ public class combatManager : MonoBehaviour
 
         while (true)
         {
-
-
             //increment
             if (lastIncremented == "player")
             {
@@ -96,7 +115,7 @@ public class combatManager : MonoBehaviour
             if (opponentSpeedCounter == opponentSpeed)
             {
                 opponentSpeedCounter = 0;
-                state = "opponent-choose";
+                startOpponentTurn();
                 hasReachedTurn = true;
 
             } else if (playerSpeedCounter == playerSpeed)
@@ -117,11 +136,34 @@ public class combatManager : MonoBehaviour
         state = "player-choose";
         uiScript.hasSelectedCard = false;
 
+        if (lastPlayed == "opponent")
+        {
+            playerDefense = 0;
+            uiScript.updateDefenseUI(opponentDefense, playerDefense);
+        }
+
         for (int i = 0; i < playerHandAmount; i++)
         {
             drawCard();
         }
+        lastPlayed = "player";
+    }
 
+    private void startOpponentTurn()
+    {
+        state = "opponent-choose";
+        
+        if (lastPlayed == "player")
+        {
+            opponentDefense = 0;
+            uiScript.updateDefenseUI(opponentDefense, playerDefense);
+        }
+
+        inflictDamage(0, 10);
+
+        lastPlayed = "opponent";
+
+        endOpponentRound();
     }
 
     private void shuffleDrawPile()
@@ -135,8 +177,6 @@ public class combatManager : MonoBehaviour
             drawPile.RemoveAt(randomIndex);
         }
 
-
-
         drawPile = shuffledPile;
     }
 
@@ -144,35 +184,33 @@ public class combatManager : MonoBehaviour
     {
         playerHand.Add(drawPile[0]);
         uiScript.spawnCard(drawPile[0], false, Vector3.zero);
-
         drawPile.RemoveAt(0);
 
         if (drawPile.Count == 0)
         {
-            drawPile = discardPile;
-            discardPile.Clear();
+            print("shuffle discard to draw pile");
+
+            //move discardPile to drawPile
+            while (discardPile.Count > 0)
+            {
+                drawPile.Add(discardPile[0]);
+                discardPile.RemoveAt(0);
+            }
             shuffleDrawPile();
         }
     }
+
 
     private void endPlayerRound()
     {
         uiScript.discardAllCards();
         StartCoroutine(incrementSpeed());
+
     }
 
-
-    IEnumerator playCard(GameObject playedCard, card cardInfo)
+    private void endOpponentRound()
     {
-        //ACTIVE CARD EFFECT HERE
-        effectsScript.playCard(cardInfo, 1);
-
-        yield return new WaitForSeconds(cardPlayedHoverDuration);
-
-        uiScript.discardCard(playedCard);
-
-        yield return new WaitForSeconds(cardPlayedHoverDuration/4);
-        endPlayerRound();
+        StartCoroutine(incrementSpeed());
     }
 
     public void startPlayCard(GameObject playedCard, card cardInfo)
@@ -180,17 +218,108 @@ public class combatManager : MonoBehaviour
         StartCoroutine(playCard(playedCard, cardInfo));
     }
 
+    IEnumerator playCard(GameObject playedCard, card cardInfo)
+    {
+        //ACTIVE CARD EFFECT HERE
+        switch (cardInfo.type)
+        {
+            case card.cardType.Attack:
+                inflictDamage(1, cardInfo.cardStrength);
+                break;
+
+            case card.cardType.Defend:
+                increaseDefense(0, cardInfo.cardStrength);
+                break;
+
+            case card.cardType.Effect:
+                break;
+        }
+
+        yield return new WaitForSeconds(cardPlayedHoverDuration);
+
+        uiScript.discardCard(playedCard);
+
+        yield return new WaitForSeconds(cardPlayedHoverDuration/4);
+
+        if (!checkCombatEnd())
+        {
+            endPlayerRound();
+        } else
+        {
+            endCombat();
+        }
+        
+    }
+
     public void inflictDamage(int target, int amount)
     {
         if (target == 0) //targeting player
         {
-            playerHealth -= opponentAttack + amount;
-        } else if (target == 1)
+            playerDefense -= opponentAttack + amount;
+
+            if (playerDefense < 0)
+            {
+                playerHealth -= Mathf.Abs(playerDefense);
+                playerDefense = 0;
+            }
+        } else if (target == 1) //targeting opponent
         {
-            opponentHealth -= playerAttack + amount;
+            opponentDefense -= playerAttack + amount;
+
+            if (opponentDefense < 0)
+            {
+                opponentHealth -= Mathf.Abs(opponentDefense);
+                opponentDefense = 0;
+            }
         }
 
-        print("opponent health: " + opponentHealth + "/" + (float)opponentMaxHealth);
         uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
+        uiScript.updateDefenseUI(opponentDefense, playerDefense);
+
+        print("opponent health: " + opponentHealth + "/" + (float)opponentMaxHealth); // for debugging
+        print("player health: " + playerHealth + "/" + (float)playerMaxHealth);
+    }
+
+    public void increaseDefense(int target, int amount)
+    {
+        if (target == 0)
+        {
+            playerDefense += amount;
+        } else if (target == 1)
+        {
+            opponentDefense += amount;
+        }
+
+        uiScript.updateDefenseUI(opponentDefense, playerDefense);
+    }
+
+    private bool checkCombatEnd()
+    {
+        if (playerHealth <= 0)
+        {
+            state = "loss";
+            return true;
+        } else if (opponentHealth <= 0)
+        {
+            state = "victory";
+            return true;
+        }
+
+        return false;
+    }
+
+    private void endCombat()
+    {
+        if (state == "loss")
+        {
+
+        }
+
+        if (state == "victory")
+        {
+            uiScript.clearCards();
+            gameManager.instance.playerHealth = playerHealth;
+            subwayManager.instance.switchToMovement();
+        }
     }
 }

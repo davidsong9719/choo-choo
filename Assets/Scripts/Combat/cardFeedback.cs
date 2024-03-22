@@ -10,7 +10,7 @@ public class cardFeedback : MonoBehaviour
 
     [HideInInspector] public int sortingIndex;
     [HideInInspector] public combatUI uiController;
-    [HideInInspector] public string cardState; //selected, hand
+    [HideInInspector] public string cardState; //selected, hand, discard
     [HideInInspector] public card cardInfo;
     [HideInInspector] public RectTransform playBorder;
     [HideInInspector] public Vector2 targetPosition;
@@ -49,8 +49,9 @@ public class cardFeedback : MonoBehaviour
 
         if (cardState == "discard")
         {
-            if (Vector2.Distance( cardTransform.anchoredPosition, targetPosition) < 50f)
+            if (Vector2.Distance(cardTransform.anchoredPosition, targetPosition) < 50f)
             {
+                uiController.playerCardDisplays.Remove(gameObject);
                 Destroy(gameObject);
             }
         }
@@ -116,6 +117,7 @@ public class cardFeedback : MonoBehaviour
     private void returnCard() //to hand
     {
         uiController.hasSelectedCard = false;
+        uiController.playerCardDisplays.Remove(gameObject);
         uiController.spawnCard(cardInfo, true, cardTransform.anchoredPosition);
         Destroy(gameObject);
     }
