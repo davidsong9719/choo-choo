@@ -110,6 +110,7 @@ public class cardFeedback : MonoBehaviour
     private void selectCard()
     {
         cardState = "selected";
+        //print("select");
         cardTransform.rotation = Quaternion.identity;
         uiController.selectCard(gameObject);
     }
