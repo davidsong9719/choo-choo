@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class nodeManager : MonoBehaviour
 {
+    //limitations: the ends must not have multiple lines
+    //
+    //
+
+    public static nodeManager instance;
+
     [Header("Setup")]
     [SerializeField] List<mapNode> startingNodes;
-    private List<mapNode> allNodes = new List<mapNode>();
+    private List<mapNode> allNodes = new List<mapNode>(); //only one end of each line
 
-    private List<mapNode> playerStartingNodes = new List<mapNode>();
+    private List<mapNode> allStartingNodes = new List<mapNode>(); //both ends of each line
     private mapNode currentNode = null;
-    private string currentLine = ""; 
+    private string currentLine = "";
+    private int currentDirection;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -31,26 +43,34 @@ public class nodeManager : MonoBehaviour
             if (startingNodes[i].pilgrimLine) currentLine = "pilgrim";
             if (startingNodes[i].galliumLine) currentLine = "gallium";
 
-            playerStartingNodes.Add(startingNodes[i]);
+            allStartingNodes.Add(startingNodes[i]);
             connectNodes(currentLine, i);
         }
 
         //randomStart
-        currentNode = playerStartingNodes[Random.Range(0, playerStartingNodes.Count)];
-        currentNode.isSelected = true;
+        currentNode = allStartingNodes[Random.Range(0, allStartingNodes.Count)];
+        currentNode.toggleCurrent(true);
 
-        
+        if (currentNode.birdBeakLine) currentLine = "birdBeak";
+        if (currentNode.pilgrimLine) currentLine = "pilgrim";
+        if (currentNode.galliumLine) currentLine = "gallium";
 
-       
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (startingNodes.Contains(currentNode))
         {
-         //   currentNode.moveForward();
+            currentDirection = 1;
+        } else
+        {
+            currentDirection = 0;
         }
+        
     }
+
+
+
+    public void progressStation()
+    {
+        currentNode.moveNode(currentLine, currentDirection);
+    } 
 
     private void connectNodes(string line, int startingNodeIndex)
     {
@@ -65,7 +85,7 @@ public class nodeManager : MonoBehaviour
             nextNode = findClosestNode(currentNode, line);
             if (nextNode == null)
             {
-                playerStartingNodes.Add(currentNode);
+                allStartingNodes.Add(currentNode);
                 addNodeToConnectedList(currentNode, line, currentNode);
                 break;
             }
@@ -140,6 +160,8 @@ public class nodeManager : MonoBehaviour
                 break;
         }
     }
+
+
 
     
 }

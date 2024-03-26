@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class mapNode : MonoBehaviour
 {
     [HideInInspector] public Vector2 anchoredPosition;
-    [HideInInspector] public bool isSelected;
+    [HideInInspector] public bool isCurrent;
     public List<mapNode> pilgrimConnectedNodes, birdBeakConnectedNodes, galliumConnectedNodes;
 
     [Header("Settings")]
@@ -30,7 +30,7 @@ public class mapNode : MonoBehaviour
 
     private void Update()
     {
-        if (isSelected)
+        if (isCurrent)
         {
             highlightAnimation();
         }
@@ -40,12 +40,12 @@ public class mapNode : MonoBehaviour
     {
         if (animationDirection)
         {
-            highlightImage.color = Color.Lerp(Color.white, Color.black, animationCounter += Time.deltaTime*2f);
+            highlightImage.color = Color.Lerp(Color.white, Color.black, animationCounter += Time.unscaledDeltaTime*2f);
         }
 
         if (!animationDirection)
         {
-            highlightImage.color = Color.Lerp(Color.black, Color.white, animationCounter += Time.deltaTime*2f);
+            highlightImage.color = Color.Lerp(Color.black, Color.white, animationCounter += Time.unscaledDeltaTime * 2f);
         }
 
         if (animationCounter >= 2)
@@ -57,56 +57,47 @@ public class mapNode : MonoBehaviour
         
     }
 
-    public mapNode moveForward(string line)
+    public mapNode moveNode(string line, int direction)
     {
         mapNode newPosition = null;
 
         switch (line)
         {
             case "pilgrim":
-                newPosition = moveNodes(pilgrimConnectedNodes, 1);
+                newPosition = moveNodes(pilgrimConnectedNodes, direction);
                 break;
 
             case "birdBeak":
-                newPosition = moveNodes(birdBeakConnectedNodes, 1); 
+                newPosition = moveNodes(birdBeakConnectedNodes, direction); 
                 break;
 
             case "gallium":
-                newPosition = moveNodes(galliumConnectedNodes, 1);
+                newPosition = moveNodes(galliumConnectedNodes, direction);
                 break;
         }
 
-        return newPosition;
-    }
-
-    public mapNode moveBackward(string line)
-    {
-        mapNode newPosition = null;
-        
-        switch (line)
-        {
-            case "pilgrim":
-                newPosition = moveNodes(pilgrimConnectedNodes, 0);
-                break;
-
-            case "birdBeak":
-                newPosition = moveNodes(birdBeakConnectedNodes, 0);
-                break;
-
-            case "gallium":
-                newPosition = moveNodes(galliumConnectedNodes, 0);
-                break;
-        }
-
-        
         return newPosition;
     }
 
     private mapNode moveNodes(List<mapNode> lineNodes, int direction)
     {
-        isSelected = false;
-        lineNodes[direction].isSelected = true;
+        toggleCurrent(false);
+        lineNodes[direction].toggleCurrent(true);
 
         return lineNodes[direction];
+    }
+    public void toggleCurrent(bool isCurrentNode)
+    {
+        isCurrent = isCurrentNode;
+
+        if (isCurrent)
+        {
+            highlightImage.color = Color.black;
+        } else
+        {
+            highlightImage.color = Color.white;
+        }
+
+        animationCounter = 0;
     }
 }

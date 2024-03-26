@@ -81,6 +81,6 @@ public class targetNPC : MonoBehaviour
         if (interact.ReadValue<float>() == 0) return;
         if (target == null) return;
 
-        subwayManager.instance.switchToCombat();
+        subwayManager.instance.startCombat();
     }
 }
