@@ -19,6 +19,7 @@ public class subwayManager : MonoBehaviour
     [Header("Public Access")]
     public GameObject player;
     public string state;
+    public string previousState; //for opening
     public PlayerInputActions playerControls;
 
     private void Awake()
@@ -41,6 +42,17 @@ public class subwayManager : MonoBehaviour
         movementScript.enabled = false;
         targetScript.enabled = false;
 
+        combatManagerObject.SetActive(true);
+        combatCanavas.SetActive(true);
+    }
+
+    public void startCombat()
+    {
+        state = "combat";
+
+        movementScript.enabled = false;
+        targetScript.enabled = false;
+
 
         combatManagerObject.SetActive(true);
         combatManager.instance.startCombat();
@@ -57,5 +69,4 @@ public class subwayManager : MonoBehaviour
         combatManagerObject.SetActive(false);
         combatCanavas.SetActive(false);
     }
-
 }

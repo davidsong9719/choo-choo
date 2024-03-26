@@ -312,6 +312,13 @@ public class combatManager : MonoBehaviour
 
     private void endCombat()
     {
+
+        nodeManager.instance.progressStation();
+
+        uiScript.clearCards();
+        gameManager.instance.playerHealth = playerHealth;
+        subwayManager.instance.switchToMovement();
+
         if (state == "loss")
         {
 
@@ -319,9 +326,7 @@ public class combatManager : MonoBehaviour
 
         if (state == "victory")
         {
-            uiScript.clearCards();
-            gameManager.instance.playerHealth = playerHealth;
-            subwayManager.instance.switchToMovement();
+
         }
     }
 }
