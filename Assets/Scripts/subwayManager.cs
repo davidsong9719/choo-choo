@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class subwayManager : MonoBehaviour
 {
+
     public static subwayManager instance {get; private set;}
 
     [Header("Setup")]

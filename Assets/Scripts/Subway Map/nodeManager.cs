@@ -1,17 +1,28 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class nodeManager : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField] List<mapNode> startingNodes;
-    [SerializeField] List<mapNode> allNodes;
+    private List<mapNode> allNodes = new List<mapNode>();
+
+    private List<mapNode> playerStartingNodes = new List<mapNode>();
+    private mapNode currentNode = null;
+    private string currentLine = ""; 
 
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i <transform.childCount; i++)
+        {
+            mapNode currentNode = transform.GetChild(i).GetComponent<mapNode>();
+            allNodes.Add(currentNode);
+        }
+
+        
+
         for (int i = 0; i < startingNodes.Count; i++)
         {
             string currentLine = "";
@@ -20,10 +31,26 @@ public class nodeManager : MonoBehaviour
             if (startingNodes[i].pilgrimLine) currentLine = "pilgrim";
             if (startingNodes[i].galliumLine) currentLine = "gallium";
 
+            playerStartingNodes.Add(startingNodes[i]);
             connectNodes(currentLine, i);
         }
+
+        //randomStart
+        currentNode = playerStartingNodes[Random.Range(0, playerStartingNodes.Count)];
+        currentNode.isSelected = true;
+
+        
+
+       
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+         //   currentNode.moveForward();
+        }
+    }
 
     private void connectNodes(string line, int startingNodeIndex)
     {
@@ -38,6 +65,7 @@ public class nodeManager : MonoBehaviour
             nextNode = findClosestNode(currentNode, line);
             if (nextNode == null)
             {
+                playerStartingNodes.Add(currentNode);
                 addNodeToConnectedList(currentNode, line, currentNode);
                 break;
             }
