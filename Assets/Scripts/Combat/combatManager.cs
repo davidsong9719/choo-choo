@@ -27,7 +27,7 @@ public class combatManager : MonoBehaviour
     private opponentRandomizer opponentStats;
     private combatUI uiScript;
     private cardEffect effectsScript;
-     
+
 
     private void Awake()
     {
@@ -49,6 +49,7 @@ public class combatManager : MonoBehaviour
     public void startCombat()
     {
         setStats();
+        CombatDialogueManager.GetInstance().ClearAll();
 
         uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
         uiScript.updateSpeedUI(opponentSpeedCounter, playerSpeedCounter);
@@ -152,7 +153,7 @@ public class combatManager : MonoBehaviour
     private void startOpponentTurn()
     {
         state = "opponent-choose";
-        
+
         if (lastPlayed == "player")
         {
             opponentDefense = 0;
@@ -220,6 +221,7 @@ public class combatManager : MonoBehaviour
 
     IEnumerator playCard(GameObject playedCard, card cardInfo)
     {
+        CombatDialogueManager.GetInstance().EnterCombat("Player", cardInfo.type.ToString());
         //ACTIVE CARD EFFECT HERE
         switch (cardInfo.type)
         {
