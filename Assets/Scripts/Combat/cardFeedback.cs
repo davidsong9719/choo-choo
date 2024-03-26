@@ -111,8 +111,9 @@ public class cardFeedback : MonoBehaviour
     {
         cardState = "selected";
         //print("select");
-        cardTransform.rotation = Quaternion.identity;
         uiController.selectCard(gameObject);
+        cardTransform.rotation = Quaternion.identity;
+        transform.SetAsLastSibling();
     }
 
     private void returnCard() //to hand
