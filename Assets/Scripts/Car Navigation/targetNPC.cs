@@ -9,10 +9,11 @@ public class targetNPC : MonoBehaviour
     //
     //
 
-    public List<GameObject> npcList; //to hide in inspector after making npc generator script
+    //to hide in inspector after making npc generator script
     
     [Header("Setup")]
     [SerializeField] GameObject targetDisplay;
+    [SerializeField] npcManager npcManagerScript;
 
     [Header("Settings")]
     [SerializeField] float targetDistance;
@@ -41,6 +42,7 @@ public class targetNPC : MonoBehaviour
 
     private void findClosestNPC()
     {
+        List<GameObject> npcList = npcManagerScript.npcList;
         GameObject closestNPC = null;
         float closestDistance = 999999;
 
@@ -82,5 +84,7 @@ public class targetNPC : MonoBehaviour
         if (target == null) return;
 
         subwayManager.instance.startCombat();
+
+        npcManagerScript.removeFromList(target);
     }
 }

@@ -8,7 +8,8 @@ public class gameManager : MonoBehaviour
 
     [Header("Public Access")]
     public List<card> playerDeck;
-    public int playerMaxHealth, playerHealth, playerSpeed, playerAttack;
+    public int playerMaxHealth, playerHealth, playerSpeed, playerAttack, playerCash;
+
 
 
     private void Awake()

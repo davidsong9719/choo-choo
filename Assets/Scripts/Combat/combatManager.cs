@@ -12,6 +12,9 @@ public class combatManager : MonoBehaviour
     public List<card> discardPile;
     public List<card> playerHand;
 
+    [Header("Setup")]
+    [SerializeField] npcManager npcManagerScript;
+
     [Header("Settings")]
     [SerializeField] float speedIncrementSpeed;
     [SerializeField] float cardPlayedHoverDuration; //for card
@@ -67,6 +70,9 @@ public class combatManager : MonoBehaviour
         shuffleDrawPile();
 
         lastIncremented = "opponent"; //starts on player turn
+
+
+
 
         StartCoroutine(incrementSpeed());
     }
@@ -300,6 +306,7 @@ public class combatManager : MonoBehaviour
         if (playerHealth <= 0)
         {
             state = "loss";
+            playerHealth = 0;
             return true;
         } else if (opponentHealth <= 0)
         {
@@ -321,12 +328,12 @@ public class combatManager : MonoBehaviour
 
         if (state == "loss")
         {
-
+            npcManagerScript.removeAll();
         }
 
         if (state == "victory")
         {
-
+            //get to choose new card
         }
     }
 }

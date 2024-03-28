@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class mapButton : MonoBehaviour
 {
     [SerializeField] GameObject mapManager;
-    private bool mapVisible = false;
+    
     // Start is called before the first frame update
 
     private void Awake()
@@ -15,21 +16,8 @@ public class mapButton : MonoBehaviour
         mapManager.SetActive(true);
     }
 
-    void Start()
+    public void toggleMapVisibility(bool mapVisible)
     {
-        
-        toggleMapVisibility();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    public void toggleMapVisibility()
-    {
-        
-
         for (int i = 0; i < mapManager.transform.childCount; i++)
         {
             for (int j = 0; j < mapManager.transform.GetChild(i).childCount; j++)
@@ -52,9 +40,6 @@ public class mapButton : MonoBehaviour
 
             imageComponentI.enabled = mapVisible;
         }
-
-        Time.timeScale = Convert.ToInt32(!mapVisible);
-        mapVisible = !mapVisible;
     }
 
 }
