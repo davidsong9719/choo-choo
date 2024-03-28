@@ -19,11 +19,6 @@ public class nodeManager : MonoBehaviour
     private string currentLine = "";
     private int currentDirection;
 
-    private void Awake()
-    {
-        instance = this;
-    }
-
     // Start is called before the first frame update
     void Start()
     {
