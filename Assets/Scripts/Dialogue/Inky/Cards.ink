@@ -1,4 +1,4 @@
--> Player.Effect
+//-> Player.Effect
 ===Player===
 = Attack
 {shuffle:

@@ -28,6 +28,7 @@ public class combatManager : MonoBehaviour
     private combatUI uiScript;
     private cardEffect effectsScript;
 
+    private string[] opponentActions = new string[] { "Attack", "Effect", "Defend" };
 
     private void Awake()
     {
@@ -39,10 +40,9 @@ public class combatManager : MonoBehaviour
     }
 
 
-    private void Start()
+    public void Start()
     {
         //setup
-
 
     }
 
@@ -50,6 +50,7 @@ public class combatManager : MonoBehaviour
     {
         setStats();
         CombatDialogueManager.GetInstance().ClearAll();
+        DialogueManager.GetInstance().EnterDialogueMode();
 
         uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
         uiScript.updateSpeedUI(opponentSpeedCounter, playerSpeedCounter);
@@ -68,6 +69,11 @@ public class combatManager : MonoBehaviour
 
         lastIncremented = "opponent"; //starts on player turn
 
+        //StartCoroutine(incrementSpeed());
+    }
+
+    public void fight()
+    {
         StartCoroutine(incrementSpeed());
     }
 
@@ -159,6 +165,8 @@ public class combatManager : MonoBehaviour
             opponentDefense = 0;
             uiScript.updateDefenseUI(opponentDefense, playerDefense);
         }
+
+        CombatDialogueManager.GetInstance().EnterCombat("Opponent", opponentActions[Random.Range(0, opponentActions.Length)]);
 
         inflictDamage(0, 10);
 
