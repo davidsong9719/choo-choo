@@ -16,9 +16,12 @@ public class DialogueManager : MonoBehaviour
 
 
     [Header("Dialogue UI")]
-    [SerializeField] TextMeshProUGUI enemyTextBox;
-    [SerializeField] TextMeshProUGUI playerTextBox;
+    //[SerializeField] TextMeshProUGUI enemyTextBox;
+    //[SerializeField] TextMeshProUGUI playerTextBox;
     //public Animator portraitAnimator;
+
+    [SerializeField] GameObject[] textBoxes;
+    [SerializeField] TextMeshProUGUI[] textBoxesText = new TextMeshProUGUI[4];
 
     [Header("Globals Ink File")]
     [SerializeField] TextAsset inkFile;
@@ -67,6 +70,11 @@ public class DialogueManager : MonoBehaviour
         instance = this;
 
         dialogueVariables = new DialogueVariables(inkFile);
+
+        for (int i = 0; i < textBoxes.Length; i++)
+        {
+            textBoxesText[i] = textBoxes[i].GetComponentInChildren<TextMeshProUGUI>();
+        }
     }
 
     private void OnEnable() //Must be used for the new input system to work properly
@@ -119,8 +127,8 @@ public class DialogueManager : MonoBehaviour
     private void ExitDialogueMode()
     {
         dialogueIsPlaying = false;
-        enemyTextBox.text = "";
-        playerTextBox.text = "";
+        //enemyTextBox.text = "";
+        //playerTextBox.text = "";
 
         combatManager.instance.fight();
 
@@ -176,11 +184,26 @@ public class DialogueManager : MonoBehaviour
             //start coroutine to type one letter at a time
             if (character == "Player")
             {
-                displayLineCoroutine = StartCoroutine(DisplayLine(playerTextBox, nextLine));
+                for (int i = 0; i < textBoxes.Length; i++)
+                {
+                    if (textBoxesText[i].text == "")
+                    {
+                        StartCoroutine(DisplayLine(textBoxesText[i], nextLine));
+                        break;
+                    }
+                }
+                //displayLineCoroutine = StartCoroutine(DisplayLine(playerTextBox, nextLine));
             }
             else if (character == "Opponent")
             {
-                displayLineCoroutine = StartCoroutine(DisplayLine(enemyTextBox, nextLine));
+                for (int i = 0; i < textBoxes.Length; i++)
+                {
+                    if (textBoxesText[i].text == "")
+                    {
+                        StartCoroutine(DisplayLine(textBoxesText[i], nextLine));
+                        break;
+                    }
+                }
             }
             else
             {
@@ -196,6 +219,7 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator DisplayLine(TextMeshProUGUI textBox, string line)
     {
+        TextMovement.GetInstance().moveBoxes();
         //empty dialogue text
         //dialogueText.text = "";
         Debug.Log(line);

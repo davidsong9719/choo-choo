@@ -13,14 +13,16 @@ public class CombatDialogueManager : MonoBehaviour
     [SerializeField] string playerText;
     [SerializeField] string playerDefense;
 
-    [SerializeField] TextMeshProUGUI enemyTextBox;
-    [SerializeField] TextMeshProUGUI playerTextBox;
+    [SerializeField] GameObject[] textBoxes;
+    [SerializeField] TextMeshProUGUI[] textBoxesText = new TextMeshProUGUI[4];
+
+    [SerializeField] Sprite enemyBubble;
+    [SerializeField] Sprite playerBubble;
 
     [SerializeField] TextAsset inkFile;
 
     private Story currentStory;
     private DialogueVariables dialogueVariables;
-    private Coroutine displayLineCoroutine;
 
     private static CombatDialogueManager instance;
     private void Awake()
@@ -32,6 +34,11 @@ public class CombatDialogueManager : MonoBehaviour
         instance = this;
 
         dialogueVariables = new DialogueVariables(inkFile);
+
+        for(int i = 0; i < textBoxes.Length; i++)
+        {
+            textBoxesText[i] = textBoxes[i].GetComponentInChildren<TextMeshProUGUI>();
+        }
     }
     public static CombatDialogueManager GetInstance()
     {
@@ -40,25 +47,43 @@ public class CombatDialogueManager : MonoBehaviour
 
     public void EnterCombat(string character, string action)
     {
+        TextMovement.GetInstance().moveBoxes();
         currentStory = new Story(inkFile.text);
         if (action != "Defend")
         {
+            //TextMovement.GetInstance().moveBoxes();
             currentStory.ChoosePathString(character + "." + action);
             dialogueVariables.StartListening(currentStory);
             if (character == "Player")
             {
+                for (int i = 0; i < textBoxes.Length; i++)
+                {
+                    if (textBoxesText[i].text == "")
+                    {
+                        StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
+                        break;
+                    }
+                }
                 //playerTextBox.text = currentStory.Continue();
-                StartCoroutine(DisplayLine(playerTextBox, currentStory.Continue()));
-                playerDefense = "";
-                enemyTextBox.text = "";
+                //StartCoroutine(DisplayLine(playerTextBox, currentStory.Continue()));
+                //playerDefense = "";
+                //enemyTextBox.text = "";
                 enemyDefense = currentStory.Continue();
             }
             else if (character == "Opponent")
             {
                 //enemyTextBox.text = currentStory.Continue();
-                StartCoroutine(DisplayLine(enemyTextBox, currentStory.Continue()));
-                enemyDefense = "";
-                playerTextBox.text = "";
+                for (int i = 0; i < textBoxes.Length; i++)
+                {
+                    if (textBoxesText[i].text == "")
+                    {
+                        StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
+                        break;
+                    }
+                }
+                //StartCoroutine(DisplayLine(enemyTextBox, currentStory.Continue()));
+                //enemyDefense = "";
+                //playerTextBox.text = "";
                 playerDefense = currentStory.Continue();
             }
         }
@@ -66,15 +91,32 @@ public class CombatDialogueManager : MonoBehaviour
 
         else if (action == "Defend")
         {
+            //TextMovement.GetInstance().moveBoxes();
             if (character == "Player")
             {
                 //playerTextBox.text = playerDefense;
-                StartCoroutine(DisplayLine(playerTextBox, playerDefense));
+                //StartCoroutine(DisplayLine(playerTextBox, playerDefense));
+                for (int i = 0; i < textBoxes.Length; i++)
+                {
+                    if (textBoxesText[i].text == "")
+                    {
+                        StartCoroutine(DisplayLine(textBoxesText[i], playerDefense));
+                        break;
+                    }
+                }
             }
             else if (character == "Opponent")
             {
                 //enemyTextBox.text = enemyDefense;
-                StartCoroutine(DisplayLine(enemyTextBox, enemyDefense));
+                //StartCoroutine(DisplayLine(enemyTextBox, enemyDefense));
+                for (int i = 0; i < textBoxes.Length; i++)
+                {
+                    if (textBoxesText[i].text == "")
+                    {
+                        StartCoroutine(DisplayLine(textBoxesText[i], enemyDefense));
+                        break;
+                    }
+                }
             }
         }
     }
@@ -114,12 +156,12 @@ public class CombatDialogueManager : MonoBehaviour
 
     public void ClearAll()
     {
-        //dialogueVariables.StopListening(currentStory);
-        enemyTextBox.text = "";
-        playerTextBox.text = "";
-
-        enemyDefense = "";
-        playerDefense = "";
-
+        for (int i = 0; i < textBoxes.Length; i++)
+        {
+            if (textBoxesText[i].text != "")
+            {
+                textBoxesText[i].text = "";
+            }
+        }
     }
 }
