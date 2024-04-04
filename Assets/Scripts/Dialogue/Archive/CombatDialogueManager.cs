@@ -163,5 +163,7 @@ public class CombatDialogueManager : MonoBehaviour
                 textBoxesText[i].text = "";
             }
         }
+        enemyDefense = "";
+        playerDefense = "";
     }
 }

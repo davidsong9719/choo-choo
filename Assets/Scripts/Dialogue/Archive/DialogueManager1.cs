@@ -1,3 +1,4 @@
+//using Ink.Parsed;
 using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,46 +6,39 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using System.Runtime.CompilerServices;
+//using Ink.UnityIntegration;
 
-
-public class DialogueManager : MonoBehaviour
+public class DialogueManager1 : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] float typingSpeed = 0.04f;
 
 
-    [Header("UI")]
+    [Header("Dialogue UI")]
+    //[SerializeField] TextMeshProUGUI enemyTextBox;
+    //[SerializeField] TextMeshProUGUI playerTextBox;
     //public Animator portraitAnimator;
 
     [SerializeField] GameObject[] textBoxes;
     [SerializeField] TextMeshProUGUI[] textBoxesText = new TextMeshProUGUI[4];
-    [SerializeField] GameObject[] choices;
-    private TextMeshProUGUI[] choicesText;
-    [SerializeField] Sprite enemyBubble;
-    [SerializeField] Sprite playerBubble;
 
-    [Header("Ink Files")]
-    [SerializeField] TextAsset narrationDialogue;
-    [SerializeField] TextAsset combatDialogue;
+    [Header("Globals Ink File")]
     [SerializeField] TextAsset inkFile;
 
-    [Header("Dialogue")]
-    [SerializeField] string enemyText;
-    [SerializeField] string enemyDefense;
-
-    [SerializeField] string playerText;
-    [SerializeField] string playerDefense;
-
+    [Header("Choices UI")]
+    public GameObject[] choices;
+    private TextMeshProUGUI[] choicesText;
 
     private Story currentStory;
-    public bool narrationIsPlaying { get; private set; }
+    public bool dialogueIsPlaying { get; private set; }
 
     //check if player can move to the next line - prevent skipping
     private bool canContinueToNextLine = false;
 
     private Coroutine displayLineCoroutine;
 
-    private static DialogueManager instance;
+    private static DialogueManager1 instance;
 
     private string character;
 
@@ -60,7 +54,9 @@ public class DialogueManager : MonoBehaviour
 
     private DialogueVariables dialogueVariables;
 
-    private string nextLine;
+    public string nextLine;
+
+
 
 
     private void Awake()
@@ -73,14 +69,12 @@ public class DialogueManager : MonoBehaviour
         }
         instance = this;
 
+        dialogueVariables = new DialogueVariables(inkFile);
+
         for (int i = 0; i < textBoxes.Length; i++)
         {
             textBoxesText[i] = textBoxes[i].GetComponentInChildren<TextMeshProUGUI>();
         }
-
-        //set up whether we use the narration or combat scripts
-        inkFile = narrationDialogue;
-        dialogueVariables = new DialogueVariables(inkFile);
     }
 
     private void OnEnable() //Must be used for the new input system to work properly
@@ -92,9 +86,10 @@ public class DialogueManager : MonoBehaviour
     private void OnDisable() //Must be used for the new input system to work properly
     {
         submit.Disable();
+
     }
 
-    public static DialogueManager GetInstance()
+    public static DialogueManager1 GetInstance()
     {
         return instance;
     }
@@ -102,7 +97,7 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        narrationIsPlaying = false;
+        dialogueIsPlaying = false;
 
         //get all of the coices text
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -112,40 +107,35 @@ public class DialogueManager : MonoBehaviour
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
-
-        for (int i = 0; i < textBoxes.Length; i++)
-        {
-            textBoxesText[i] = textBoxes[i].GetComponentInChildren<TextMeshProUGUI>();
-        }
     }
 
 
-    public void EnterNarration()
+    public void EnterDialogueMode()
     {
         currentStory = new Story(inkFile.text);
-        narrationIsPlaying = true;
+        dialogueIsPlaying = true;
 
         dialogueVariables.StartListening(currentStory);
 
 
-        //if we change the portraits (we prolly wont but in case ig)
+        //reset back to default
         //portraitAnimator.Play("");
 
         ContinueStory();
     }
 
-    //Swap to combat
-    private void ExitNarration()
+    private void ExitDialogueMode()
     {
-        //
-        narrationIsPlaying = false;
-        inkFile = combatDialogue;
+        dialogueIsPlaying = false;
+        //enemyTextBox.text = "";
+        //playerTextBox.text = "";
 
-        dialogueVariables = new DialogueVariables(inkFile);
         combatManager.instance.fight();
+
+
     }
 
-
+    // Update is called once per frame
     void Update()
     {
 
@@ -155,7 +145,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         //return right away if dialogue isnt playing
-        if (!narrationIsPlaying)
+        if (!dialogueIsPlaying)
         {
             return;
         }
@@ -176,13 +166,13 @@ public class DialogueManager : MonoBehaviour
         submitPressed = false;
         if (currentStory.canContinue)
         {
-            TextMovement.GetInstance().moveBoxes();
             //prevent 2 coroutines from going at once
             if (displayLineCoroutine != null)
             {
                 StopCoroutine(displayLineCoroutine);
             }
             //set text for the current dialogue line
+            //dialogueText.text = currentStory.Continue();
             nextLine = currentStory.Continue();
 
             //display choices if there are any
@@ -194,7 +184,6 @@ public class DialogueManager : MonoBehaviour
             //start coroutine to type one letter at a time
             if (character == "Player")
             {
-                Debug.Log("player");
                 for (int i = 0; i < textBoxes.Length; i++)
                 {
                     if (textBoxesText[i].text == "")
@@ -207,7 +196,6 @@ public class DialogueManager : MonoBehaviour
             }
             else if (character == "Opponent")
             {
-                Debug.Log("enemy");
                 for (int i = 0; i < textBoxes.Length; i++)
                 {
                     if (textBoxesText[i].text == "")
@@ -225,13 +213,13 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            ExitNarration();
+            ExitDialogueMode();
         }
     }
 
     private IEnumerator DisplayLine(TextMeshProUGUI textBox, string line)
     {
-        //TextMovement.GetInstance().moveBoxes();
+        TextMovement.GetInstance().moveBoxes();
         //empty dialogue text
         //dialogueText.text = "";
         Debug.Log(line);
@@ -307,6 +295,19 @@ public class DialogueManager : MonoBehaviour
                     break;
             }
         }
+        //start coroutine to type one letter at a time
+        /*if (character == "Player")
+        {
+            displayLineCoroutine = StartCoroutine(DisplayLine(playerTextBox, currentStory.Continue()));
+        }
+        else if (character == "Opponent")
+        {
+            displayLineCoroutine = StartCoroutine(DisplayLine(enemyTextBox, currentStory.Continue()));
+        }
+        else
+        {
+            Debug.Log(character);
+        }*/
     }
 
     private void DisplayChoices()
@@ -355,98 +356,16 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-
-
-
-
-
-
-    public void EnterCombat(string character, string action)
+    public Ink.Runtime.Object GetVariableState(string variableName)
     {
-        TextMovement.GetInstance().moveBoxes();
-        currentStory = new Story(inkFile.text);
-        if (action != "Defend")
+        Ink.Runtime.Object variableValue = null;
+        dialogueVariables.variables.TryGetValue(variableName, out variableValue);
+        if (variableValue == null)
         {
-            //TextMovement.GetInstance().moveBoxes();
-            currentStory.ChoosePathString(character + "." + action);
-            dialogueVariables.StartListening(currentStory);
-            if (character == "Player")
-            {
-                for (int i = 0; i < textBoxes.Length; i++)
-                {
-                    if (textBoxesText[i].text == "")
-                    {
-                        StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
-                        break;
-                    }
-                }
-                playerDefense = "";
-                enemyDefense = currentStory.Continue();
-            }
-            else if (character == "Opponent")
-            {
-                for (int i = 0; i < textBoxes.Length; i++)
-                {
-                    if (textBoxesText[i].text == "")
-                    {
-                        StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
-                        break;
-                    }
-                }
-                enemyDefense = "";
-                playerDefense = currentStory.Continue();
-            }
+            Debug.LogWarning("Ink variables was found to be null: " + variableName);
         }
-
-
-        else if (action == "Defend")
-        {
-            if (character == "Player")
-            {
-                //playerTextBox.text = playerDefense;
-                //StartCoroutine(DisplayLine(playerTextBox, playerDefense));
-                for (int i = 0; i < textBoxes.Length; i++)
-                {
-                    if (textBoxesText[i].text == "")
-                    {
-                        StartCoroutine(DisplayLine(textBoxesText[i], playerDefense));
-                        break;
-                    }
-                }
-            }
-            else if (character == "Opponent")
-            {
-                //enemyTextBox.text = enemyDefense;
-                //StartCoroutine(DisplayLine(enemyTextBox, enemyDefense));
-                for (int i = 0; i < textBoxes.Length; i++)
-                {
-                    if (textBoxesText[i].text == "")
-                    {
-                        StartCoroutine(DisplayLine(textBoxesText[i], enemyDefense));
-                        break;
-                    }
-                }
-            }
-        }
+        return variableValue;
     }
 
-
-    public void ClearAll()
-    {
-        for (int i = 0; i < textBoxes.Length; i++)
-        {
-            if (textBoxesText[i].text != "")
-            {
-                textBoxesText[i].text = "";
-            }
-        }
-        enemyDefense = "";
-        playerDefense = "";
-
-
-        //return to regular dialogue
-        inkFile = narrationDialogue;
-        dialogueVariables = new DialogueVariables(inkFile);
-    }
 
 }

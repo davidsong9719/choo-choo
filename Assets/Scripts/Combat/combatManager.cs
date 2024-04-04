@@ -52,8 +52,9 @@ public class combatManager : MonoBehaviour
     public void startCombat()
     {
         setStats();
-        CombatDialogueManager.GetInstance().ClearAll();
-        DialogueManager.GetInstance().EnterDialogueMode();
+        DialogueManager.GetInstance().ClearAll();
+        TextMovement.GetInstance().ResetPos();
+        DialogueManager.GetInstance().EnterNarration();
 
         uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
         uiScript.updateSpeedUI(opponentSpeedCounter, playerSpeedCounter);
@@ -169,7 +170,7 @@ public class combatManager : MonoBehaviour
             uiScript.updateDefenseUI(opponentDefense, playerDefense);
         }
 
-        CombatDialogueManager.GetInstance().EnterCombat("Opponent", opponentActions[Random.Range(0, opponentActions.Length)]);
+        DialogueManager.GetInstance().EnterCombat("Opponent", opponentActions[Random.Range(0, opponentActions.Length)]);
 
         inflictDamage(0, 10);
 
@@ -232,7 +233,7 @@ public class combatManager : MonoBehaviour
 
     IEnumerator playCard(GameObject playedCard, card cardInfo)
     {
-        CombatDialogueManager.GetInstance().EnterCombat("Player", cardInfo.type.ToString());
+        DialogueManager.GetInstance().EnterCombat("Player", cardInfo.type.ToString());
         //ACTIVE CARD EFFECT HERE
         switch (cardInfo.type)
         {

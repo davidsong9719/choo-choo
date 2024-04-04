@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TextMovement : MonoBehaviour
 {
-    public Transform pos1, pos2, pos3, pos4;
+    [SerializeField] Transform[] positions;
     public int speed;
 
     [SerializeField] GameObject[] textBoxes;
@@ -33,28 +33,28 @@ public class TextMovement : MonoBehaviour
         for (int i = 0; i < textBoxes.Length; i++)
         {
             Debug.Log("moving " + textBoxes[i].name);
-            if (Vector2.Distance(textBoxes[i].transform.position, pos4.position) < .1f)
+            if (Vector2.Distance(textBoxes[i].transform.position, positions[3].position) < .1f)
             {
                 //swap target position
-                targetPos = pos3.position;
+                targetPos = positions[2].position;
             }
             //continue for all other positions
-            else if (Vector2.Distance(textBoxes[i].transform.position, pos3.position) < .1f)
+            else if (Vector2.Distance(textBoxes[i].transform.position, positions[2].position) < .1f)
             {
                 //swap target position
-                targetPos = pos2.position;
+                targetPos = positions[1].position;
             }
-            else if (Vector2.Distance(textBoxes[i].transform.position, pos2.position) < .1f)
+            else if (Vector2.Distance(textBoxes[i].transform.position, positions[1].position) < .1f)
             {
                 //swap target position
-                targetPos = pos1.position;
+                targetPos = positions[0].position;
             }
-            else if (Vector2.Distance(textBoxes[i].transform.position, pos1.position) < .1f)
+            else if (Vector2.Distance(textBoxes[i].transform.position, positions[0].position) < .1f)
             {
                 //swap target position
-                textBoxes[i].transform.position = pos4.position;
+                textBoxes[i].transform.position = positions[3].position;
                 textBoxes[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
-                targetPos = pos4.position;
+                targetPos = positions[3].position;
             }
             else
             {
@@ -71,6 +71,14 @@ public class TextMovement : MonoBehaviour
         {
             textbox.transform.position = Vector3.MoveTowards(textbox.transform.position, target, speed * Time.deltaTime);
             yield return null;
+        }
+    }
+
+    public void ResetPos()
+    {
+        for(int i = 0; i < textBoxes.Length; i++)
+        {
+            textBoxes[i].transform.position = positions[i].position;
         }
     }
 
