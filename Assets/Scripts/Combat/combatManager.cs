@@ -16,7 +16,7 @@ public class combatManager : MonoBehaviour
     [SerializeField] npcManager npcManagerScript;
 
     [Header("Settings")]
-    [SerializeField] float speedIncrementSpeed;
+    public float speedIncrementSpeed;
     [SerializeField] float cardPlayedHoverDuration; //for card
     public int playerHandAmount;
     
@@ -57,7 +57,7 @@ public class combatManager : MonoBehaviour
         DialogueManager.GetInstance().EnterNarration();
 
         uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
-        uiScript.updateSpeedUI(opponentSpeedCounter, playerSpeedCounter);
+        uiScript.updateSpeedUI((float)opponentSpeedCounter/(float)opponentSpeed, (float)playerSpeedCounter/(float)playerSpeed);
         uiScript.updateDefenseUI(opponentDefense, playerDefense);
 
         discardPile.Clear();
@@ -121,22 +121,26 @@ public class combatManager : MonoBehaviour
 
             }
 
+            uiScript.updateSpeedUI((float)opponentSpeedCounter / (float)opponentSpeed, (float)playerSpeedCounter / (float)playerSpeed);
+
             //has reached turn check
             bool hasReachedTurn = false;
             if (opponentSpeedCounter == opponentSpeed)
             {
+                yield return new WaitForSeconds(speedIncrementSpeed/2);
                 opponentSpeedCounter = 0;
                 startOpponentTurn();
                 hasReachedTurn = true;
 
             } else if (playerSpeedCounter == playerSpeed)
             {
+                yield return new WaitForSeconds(speedIncrementSpeed / 2);
                 playerSpeedCounter = 0;
                 startPlayerTurn();
                 hasReachedTurn = true;
             }
 
-            uiScript.updateSpeedUI(opponentSpeedCounter, playerSpeedCounter);
+            
             if (hasReachedTurn) break;
             yield return new WaitForSeconds(speedIncrementSpeed);
         }
