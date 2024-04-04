@@ -49,7 +49,7 @@ public class cardFeedback : MonoBehaviour
 
         if (cardState == "discard")
         {
-            if (Vector2.Distance(cardTransform.anchoredPosition, targetPosition) < 50f)
+            if (Vector2.Distance(cardTransform.localPosition, targetPosition) < 50f)
             {
                 uiController.playerCardDisplays.Remove(gameObject);
                 Destroy(gameObject);
@@ -85,7 +85,7 @@ public class cardFeedback : MonoBehaviour
 
         if (cardState == "selected")
         {
-            if (cardTransform.anchoredPosition.y > playBorder.anchoredPosition.y) //play
+            if (cardTransform.localPosition.y > playBorder.localPosition.y) //play
             {
                cardState = "freeze";
                combatManager.instance.startPlayCard(gameObject, cardInfo);
@@ -120,12 +120,12 @@ public class cardFeedback : MonoBehaviour
     {
         uiController.hasSelectedCard = false;
         uiController.playerCardDisplays.Remove(gameObject);
-        uiController.spawnCard(cardInfo, true, cardTransform.anchoredPosition);
+        uiController.spawnCard(cardInfo, true, cardTransform.localPosition);
         Destroy(gameObject);
     }
     public void moveToTargetPosition()
     {
-        cardTransform.anchoredPosition = Vector3.SmoothDamp(cardTransform.anchoredPosition, targetPosition, ref refVelocity, cardSpeed); 
+        cardTransform.localPosition = Vector3.SmoothDamp(cardTransform.localPosition, targetPosition, ref refVelocity, cardSpeed); 
     }
 
     public void discardCard(Vector3 discardDeckPosition)

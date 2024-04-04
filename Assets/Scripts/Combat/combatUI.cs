@@ -28,8 +28,8 @@ public class combatUI : MonoBehaviour
 
     public void updateSpeedUI(int opponentSpeedCounter, int playerSpeedCounter)
     {
-        playerCircle.anchoredPosition = new Vector3(playerCircleDefaultPos.x + speedCircleMoveAmount * playerSpeedCounter, playerCircleDefaultPos.y, 0);
-        opponentCircle.anchoredPosition = new Vector3(opponentCircleDefaultPos.x + speedCircleMoveAmount * opponentSpeedCounter, opponentCircleDefaultPos.y, 0);
+        playerCircle.anchoredPosition = new Vector3(playerCircleDefaultPos.x, playerCircleDefaultPos.y - speedCircleMoveAmount * playerSpeedCounter, 0);
+        opponentCircle.anchoredPosition = new Vector3(opponentCircleDefaultPos.x, opponentCircleDefaultPos.y - speedCircleMoveAmount * opponentSpeedCounter, 0);
     }
 
     public void updateHealthUI(float opponentHealthPercentage, float playerHealthPercentage)
@@ -64,10 +64,10 @@ public class combatUI : MonoBehaviour
         
         if (!hasSpawnPosition)
         {
-            cardScript.cardTransform.anchoredPosition = drawDeckPosition.anchoredPosition;
+            cardScript.cardTransform.localPosition = drawDeckPosition.localPosition;
         } else
         {
-            cardScript.cardTransform.anchoredPosition = spawnPosition;
+            cardScript.cardTransform.localPosition = spawnPosition;
         }
 
         playerCardDisplays.Add(newCard);
@@ -80,67 +80,76 @@ public class combatUI : MonoBehaviour
     {
         //place cards in hand depending on whether or not amount of cards in hand is even
 
-        //layout cards
-        if (playerCardDisplays.Count % 2 == 0) //even
+        List<GameObject> playerHandDisplays = new List<GameObject>();
+
+        for (int i = 0; i <playerCardDisplays.Count; i++)
         {
-            for (int i = 0; i < playerCardDisplays.Count; i++)
+            if (playerCardDisplays[i].GetComponent<cardFeedback>().cardState == "selected") continue;
+
+            playerHandDisplays.Add(playerCardDisplays[i]);
+        }
+
+        //layout cards
+        if (playerHandDisplays.Count % 2 == 0) //even
+        {
+            for (int i = 0; i < playerHandDisplays.Count; i++)
             {
                 switch (i)
                 {
                     case 0:
-                        setCardTransform(0, 1, i, 1);
+                        setCardTransform(0, 1, i, 1, playerHandDisplays);
                         break;
 
                     case 1:
-                        setCardTransform(1, 2, i, 2);
+                        setCardTransform(1, 2, i, 2, playerHandDisplays);
                         break;
 
                     case 2:
-                        setCardTransform(2, 3, i, 3);
+                        setCardTransform(2, 3, i, 3, playerHandDisplays);
                         break;
 
                     case 3:
-                        setCardTransform(3, 4, i, 4);
+                        setCardTransform(3, 4, i, 4, playerHandDisplays);
                         break;
 
                 }
             }
         } else //odd
         {
-            for (int i = 0; i < playerCardDisplays.Count; i++)
+            for (int i = 0; i < playerHandDisplays.Count; i++)
             {
                 switch (i)
                 {
                     case 0:
-                        setCardTransform(0, -1, i, 1);
+                        setCardTransform(0, -1, i, 1, playerHandDisplays);
                         break;
 
                     case 1:
-                        setCardTransform(1, -1, i, 2);
+                        setCardTransform(1, -1, i, 2, playerHandDisplays);
                         break;
 
                     case 2:
-                        setCardTransform(2, -1, i, 3);
+                        setCardTransform(2, -1, i, 3, playerHandDisplays);
                         break;
 
                     case 3:
-                        setCardTransform(3, -1, i, 4);
+                        setCardTransform(3, -1, i, 4, playerHandDisplays);
                         break;
 
                     case 4:
-                        setCardTransform(4, -1, i, 5);
+                        setCardTransform(4, -1, i, 5, playerHandDisplays);
                         break;
                 }
             }
         }
     }
      
-    private void setCardTransform(int cardPositionIndex0, int cardPositionIndex1, int playerCardDisplayIndex, int sortingIndex)
+    private void setCardTransform(int cardPositionIndex0, int cardPositionIndex1, int playerHandIndex, int sortingIndex, List<GameObject> playerHandDisplays)
     {
-        RectTransform cardDisplayTransform = playerCardDisplays[playerCardDisplayIndex].GetComponent<RectTransform>();
-        cardFeedback cardScript = playerCardDisplays[playerCardDisplayIndex].GetComponent<cardFeedback>();
+        RectTransform cardDisplayTransform = playerHandDisplays[playerHandIndex].GetComponent<RectTransform>();
+        cardFeedback cardScript = playerHandDisplays[playerHandIndex].GetComponent<cardFeedback>();
 
-        switch (playerCardDisplays.Count)
+        switch (playerHandDisplays.Count)
         {
             case 1:
                 cardPositionIndex0 += 2;
@@ -167,15 +176,14 @@ public class combatUI : MonoBehaviour
             cardPosition1 = cardPositions[cardPositionIndex1];
         }
         
-
-
         if (cardPositionIndex1 < 0) //odd
         {
-            cardScript.targetPosition = cardPosition0.anchoredPosition;
+            print("this odd");
+            cardScript.targetPosition = cardPosition0.localPosition;
             cardScript.setRotation(cardPosition0.rotation);
         } else //even
         {
-            cardScript.targetPosition = (cardPosition0.anchoredPosition + cardPosition1.anchoredPosition)/2;
+            cardScript.targetPosition = (cardPosition0.localPosition + cardPosition1.localPosition)/2;
             cardScript.setRotation(Quaternion.Lerp(cardPosition0.rotation, cardPosition1.rotation, 0.5f));
         }
 
@@ -192,7 +200,7 @@ public class combatUI : MonoBehaviour
     public void discardCard(GameObject discardedCard)
     {
         cardFeedback cardScript = discardedCard.GetComponent<cardFeedback>();
-        cardScript.discardCard(discardDeckPosition.anchoredPosition);
+        cardScript.discardCard(discardDeckPosition.localPosition);
 
         combatManager.instance.playerHand.Remove(cardScript.cardInfo);
         combatManager.instance.discardPile.Add(cardScript.cardInfo);
