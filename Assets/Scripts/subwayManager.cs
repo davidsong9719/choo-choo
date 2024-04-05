@@ -46,7 +46,7 @@ public class subwayManager : MonoBehaviour
         combatCanavas.SetActive(true);
     }
 
-    public void startCombat()
+    public void startCombat(opponentStats opponent)
     {
         state = "combat";
 
@@ -55,6 +55,7 @@ public class subwayManager : MonoBehaviour
 
         combatManagerObject.SetActive(true);
         combatCanavas.SetActive(true);
+        combatManager.instance.opponent = opponent;
         combatManager.instance.startCombat();
     }
 

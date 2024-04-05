@@ -702,6 +702,7 @@ GameObject:
   - component: {fileID: 88381363}
   - component: {fileID: 88381362}
   - component: {fileID: 88381361}
+  - component: {fileID: 88381365}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -797,6 +798,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &88381365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88381360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c619275f8fe288347889bc794ad35744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
 --- !u!1 &92396093
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +821,6 @@ GameObject:
   m_Component:
   - component: {fileID: 92396095}
   - component: {fileID: 92396094}
-  - component: {fileID: 92396096}
   - component: {fileID: 92396097}
   - component: {fileID: 92396098}
   m_Layer: 0
@@ -829,6 +842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c1b7e40e4a8bb428c5217a514d42a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  opponent: {fileID: 0}
   state: 
   drawPile: []
   discardPile: []
@@ -852,25 +866,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &92396096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92396093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e29da0bd178dcf43962245be867ea5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalStatPoints: 0
-  minHealth: 25
-  maxHealth: 30
-  minSpeed: 7
-  maxSpeed: 7
-  minAttack: 2
-  maxAttack: 8
 --- !u!114 &92396097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,6 +923,7 @@ GameObject:
   - component: {fileID: 99173041}
   - component: {fileID: 99173040}
   - component: {fileID: 99173039}
+  - component: {fileID: 99173043}
   m_Layer: 0
   m_Name: NPC (4)
   m_TagString: Untagged
@@ -1023,6 +1019,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &99173043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99173038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c619275f8fe288347889bc794ad35744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
 --- !u!1 &100260920
 GameObject:
   m_ObjectHideFlags: 0
@@ -4005,6 +4014,7 @@ GameObject:
   - component: {fileID: 556082268}
   - component: {fileID: 556082267}
   - component: {fileID: 556082266}
+  - component: {fileID: 556082270}
   m_Layer: 0
   m_Name: NPC (3)
   m_TagString: Untagged
@@ -4100,6 +4110,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &556082270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556082265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c619275f8fe288347889bc794ad35744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
 --- !u!1 &593322167
 GameObject:
   m_ObjectHideFlags: 0
@@ -4572,6 +4595,7 @@ GameObject:
   - component: {fileID: 704620218}
   - component: {fileID: 704620217}
   - component: {fileID: 704620216}
+  - component: {fileID: 704620220}
   m_Layer: 0
   m_Name: NPC (2)
   m_TagString: Untagged
@@ -4667,6 +4691,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &704620220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704620215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c619275f8fe288347889bc794ad35744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
 --- !u!1 &716735733
 GameObject:
   m_ObjectHideFlags: 0
@@ -10728,6 +10765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2018889518}
   - component: {fileID: 2018889519}
+  - component: {fileID: 2018889520}
   m_Layer: 0
   m_Name: NPC Manager
   m_TagString: Untagged
@@ -10768,6 +10806,125 @@ MonoBehaviour:
   - {fileID: 704620215}
   - {fileID: 556082265}
   - {fileID: 99173038}
+--- !u!114 &2018889520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018889516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e29da0bd178dcf43962245be867ea5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficultyLevel: 2
+  maxDifficulty: 3
+  maxVariation: 0.5
+  healthCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.00462994
+      outSlope: 0.00462994
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333334
+      outWeight: 0.7125
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.3071876
+      outSlope: 0.3071876
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.675
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 4.1184306
+      outSlope: 4.1184306
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.24166666
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 4.795476
+      outSlope: 4.795476
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.20833331
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  attackCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.0057265367
+      outSlope: -0.0057265367
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.65833336
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  defenseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  minHealth: 25
+  maxHealth: 120
+  minSpeed: 3
+  maxSpeed: 8
+  minAttack: 5
+  maxAttack: 20
+  minDefense: 1
+  maxDefense: 15
 --- !u!1 &2038434978
 GameObject:
   m_ObjectHideFlags: 0
@@ -11311,6 +11468,7 @@ GameObject:
   - component: {fileID: 2131046414}
   - component: {fileID: 2131046413}
   - component: {fileID: 2131046412}
+  - component: {fileID: 2131046416}
   m_Layer: 0
   m_Name: NPC (1)
   m_TagString: Untagged
@@ -11406,6 +11564,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2131046416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131046411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c619275f8fe288347889bc794ad35744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
 --- !u!1 &2134898397
 GameObject:
   m_ObjectHideFlags: 0

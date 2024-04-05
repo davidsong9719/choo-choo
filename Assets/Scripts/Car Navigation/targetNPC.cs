@@ -83,7 +83,7 @@ public class targetNPC : MonoBehaviour
         if (interact.ReadValue<float>() == 0) return;
         if (target == null) return;
 
-        subwayManager.instance.startCombat();
+        subwayManager.instance.startCombat(target.GetComponent<opponentInfo>().stats);
 
         npcManagerScript.removeFromList(target);
     }

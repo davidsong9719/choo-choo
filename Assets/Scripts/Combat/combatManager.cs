@@ -5,6 +5,7 @@ using UnityEngine;
 public class combatManager : MonoBehaviour
 {
     public static combatManager instance { get; private set; }
+    public opponentStats opponent;
 
     [Header("Public Access")]
     public string state; //player-choose, player-effects, opponent-choose, opponent-effects, increment speed, player-retort, opponent-retort
@@ -27,7 +28,6 @@ public class combatManager : MonoBehaviour
     private string lastIncremented; //for keeping track of which counter to increment after a participant takes a turn
     private string lastPlayed; //for keeping track of whos turn it was last
 
-    private opponentRandomizer opponentStats;
     private combatUI uiScript;
     private cardEffect effectsScript;
 
@@ -36,7 +36,6 @@ public class combatManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        opponentStats = GetComponent<opponentRandomizer>();
         uiScript = GetComponent<combatUI>();
         effectsScript = GetComponent<cardEffect>();
         uiScript.setDefaultPositions();
@@ -83,16 +82,14 @@ public class combatManager : MonoBehaviour
 
     private void setStats()
     {
-        opponentStats.generateStats();
-
         playerSpeed = gameManager.instance.playerSpeed;
-        opponentSpeed = opponentStats.opponentSpeed;
+        opponentSpeed = opponent.speed;
 
         playerAttack = gameManager.instance.playerAttack;
-        opponentSpeed = opponentStats.opponentSpeed;
+        opponentAttack = opponent.attack;
 
         playerMaxHealth = gameManager.instance.playerMaxHealth;
-        opponentMaxHealth = opponentStats.opponentMaxHealth;
+        opponentMaxHealth = opponent.health;
 
         playerHealth = gameManager.instance.playerHealth;
         opponentHealth = opponentMaxHealth;
