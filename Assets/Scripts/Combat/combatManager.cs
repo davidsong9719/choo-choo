@@ -5,33 +5,35 @@ using UnityEngine;
 public class combatManager : MonoBehaviour
 {
     public static combatManager instance { get; private set; }
-    public opponentStats opponent;
+    [HideInInspector] public opponentStats opponent;
+    [HideInInspector] public string state; //player-choose, player-effects, opponent-choose, opponent-effects, increment speed, player-retort, opponent-retort
+    [HideInInspector] public List<card> drawPile;
+    [HideInInspector] public List<card> discardPile;
+    [HideInInspector] public List<card> playerHand;
 
-    [Header("Public Access")]
-    public string state; //player-choose, player-effects, opponent-choose, opponent-effects, increment speed, player-retort, opponent-retort
-    public List<card> drawPile;
-    public List<card> discardPile;
-    public List<card> playerHand;
 
     [Header("Setup")]
     [SerializeField] npcManager npcManagerScript;
 
-    [Header("Settings")]
+    [Header("CombatSettings")]
     public float speedIncrementSpeed;
     [SerializeField] float cardPlayedHoverDuration; //for card
     public int playerHandAmount;
+
+    [Header("EnemySettings")]
+    [SerializeField] int opponentDeckSize;
     
     private int playerSpeed, playerAttack, playerMaxHealth, playerHealth, playerDefense;
     private int opponentSpeed, opponentAttack, opponentMaxHealth, opponentHealth, opponentDefense;
 
-    private int playerSpeedCounter, opponentSpeedCounter;
+    private int playerSpeedCounter, opponentSpeedCounter; 
     private string lastIncremented; //for keeping track of which counter to increment after a participant takes a turn
     private string lastPlayed; //for keeping track of whos turn it was last
 
     private combatUI uiScript;
     private cardEffect effectsScript;
 
-    private string[] opponentActions = new string[] { "Attack", "Effect", "Defend" };
+    private List<card> opponentCards = new List<card>();
 
     private void Awake()
     {
@@ -39,13 +41,6 @@ public class combatManager : MonoBehaviour
         uiScript = GetComponent<combatUI>();
         effectsScript = GetComponent<cardEffect>();
         uiScript.setDefaultPositions();
-    }
-
-
-    public void Start()
-    {
-        //setup
-
     }
 
     public void startCombat()
@@ -62,6 +57,8 @@ public class combatManager : MonoBehaviour
         discardPile.Clear();
         drawPile.Clear();
         playerHand.Clear();
+        opponentCards.Clear();
+        createOpponentDeck();
 
         for (int i = 0; i  < gameManager.instance.playerDeck.Count; i++)
         {
@@ -171,15 +168,46 @@ public class combatManager : MonoBehaviour
             uiScript.updateDefenseUI(opponentDefense, playerDefense);
         }
 
-        DialogueManager.GetInstance().EnterCombat("Opponent", opponentActions[Random.Range(0, opponentActions.Length)]);
-
-        inflictDamage(0, 10);
+        StartCoroutine(playOpponentCard());
 
         lastPlayed = "opponent";
 
-        endOpponentRound();
+
     }
 
+    IEnumerator playOpponentCard()
+    {
+        yield return new WaitForSeconds(cardPlayedHoverDuration*1.5f);
+        print(opponentCards.Count);
+        card currentCard = opponentCards[Random.Range(0, opponentCards.Count)]; // CHANGE AFTER ADDING RETORT
+        
+        DialogueManager.GetInstance().EnterCombat("Opponent", currentCard.type.ToString());
+
+        switch (currentCard.type)
+        {
+            case card.cardType.Attack:
+                inflictDamage(0, currentCard.cardStrength);
+                break;
+
+            case card.cardType.Defend:
+                increaseDefense(1, currentCard.cardStrength);
+                break;
+
+            case card.cardType.Effect:
+                break;
+        }
+
+        yield return new WaitForSeconds(cardPlayedHoverDuration/2);
+
+        if (!checkCombatEnd())
+        {
+            endOpponentRound();
+        }
+        else
+        {
+            endCombat();
+        }
+    }
     private void shuffleDrawPile()
     {
         List<card> shuffledPile = new List<card>();
@@ -290,9 +318,6 @@ public class combatManager : MonoBehaviour
 
         uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
         uiScript.updateDefenseUI(opponentDefense, playerDefense);
-
-        print("opponent health: " + opponentHealth + "/" + (float)opponentMaxHealth); // for debugging
-        print("player health: " + playerHealth + "/" + (float)playerMaxHealth);
     }
 
     public void increaseDefense(int target, int amount)
@@ -341,6 +366,44 @@ public class combatManager : MonoBehaviour
         if (state == "victory")
         {
             //get to choose new card
+        }
+    }
+
+    private void createOpponentDeck()
+    {
+        int effectAmount = Random.Range(0, 3);
+        float balancedAggression = opponent.aggression - 0.1f;
+        if (balancedAggression >= 0.6)
+        {
+            balancedAggression = 0.6f;
+        } else if (balancedAggression <= 0.2)
+        {
+            balancedAggression = 0.2f;
+        }
+        int attackAmount = Mathf.RoundToInt((opponentDeckSize-effectAmount)* balancedAggression);
+
+        int addedEffectAmount = 0;
+        int addedAttackAmount = 0;
+
+        for (int i = 0; i < opponentDeckSize; i++)
+        {
+            card newCard = ScriptableObject.CreateInstance<card>();
+            
+            if (addedEffectAmount < effectAmount) //effect
+            {
+                newCard.type = card.cardType.Effect;
+
+            } else if (addedAttackAmount < attackAmount) //attack
+            {
+                newCard.type = card.cardType.Attack;
+                newCard.cardStrength = Random.Range(opponent.attack - 2, opponent.attack + 3);
+            } else //defense
+            {
+                newCard.type = card.cardType.Defend;
+                newCard.cardStrength = Random.Range(opponent.defense - 2, opponent.defense + 3);
+            }
+
+            opponentCards.Add(newCard);
         }
     }
 }

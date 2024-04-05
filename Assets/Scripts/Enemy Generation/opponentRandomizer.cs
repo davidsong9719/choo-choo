@@ -21,6 +21,7 @@ public class opponentRandomizer : MonoBehaviour
         difficultyLevel = difficulty;
         opponentStats newStats = ScriptableObject.CreateInstance<opponentStats>();
 
+        newStats.aggression = Random.Range(difficulty - maxVariation, difficulty + maxVariation)/(maxDifficulty+maxVariation);
         newStats.health = chooseStat("health");
         newStats.attack = chooseStat("attack");
         newStats.defense = chooseStat("defense");

@@ -18,8 +18,6 @@ public class speedDisplays : MonoBehaviour
         targetY = Mathf.Lerp(defaultPosition.y, defaultPosition.y - meterHeight, speedPercentage);
         StopCoroutine(moveDisplay(combatManager.instance.speedIncrementSpeed/2, speedPercentage == 1));
         StartCoroutine(moveDisplay(combatManager.instance.speedIncrementSpeed/2, speedPercentage == 1));
-
-        print(gameObject.name + ": " + speedPercentage);
     }
 
     public void setDefaultInfo(float meterHeight)
