@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd5910ad9aae4844e8c1e6cff15a9fa3, type: 3}
-  m_Name: attack0
+  m_Name: attack
   m_EditorClassIdentifier: 
-  cardName: Explain
   image: {fileID: -4593328107226743945, guid: 29e66fc494a54644b94338a1860d1e1d, type: 3}
   type: 0
-  cardStrength: 0
+  cardStrength: 5

@@ -10,7 +10,7 @@ public class gameManager : MonoBehaviour
     public List<card> playerDeck;
     public int playerMaxHealth, playerHealth, playerSpeed, playerAttack, playerCash;
 
-
+    public card attack, defend;
 
     private void Awake()
     {

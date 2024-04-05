@@ -9,8 +9,8 @@ public class combatUI : MonoBehaviour
     [HideInInspector] public bool hasSelectedCard = false;
 
     [Header("Setup")]
-    [SerializeField] RectTransform playerCircle; // speed display highlight
-    [SerializeField] RectTransform opponentCircle; // ^
+    [SerializeField] speedDisplays playerSpeedDisplay;
+    [SerializeField] speedDisplays opponentSpeedDisplay;
     [SerializeField] Image playerHealthDisplay, opponentHealthDisplay;
     [SerializeField] TextMeshProUGUI playerDefenseDisplay, opponentDefenseDisplay;
 
@@ -22,14 +22,12 @@ public class combatUI : MonoBehaviour
     [SerializeField] RectTransform drawDeckPosition, discardDeckPosition;
     
     [Header("Settings")]
-    [SerializeField] float speedCircleMoveAmount; // distance between the numbers on the speed displays
+    [SerializeField] float speedMeterHeight; 
 
-    private Vector3 playerCircleDefaultPos, opponentCircleDefaultPos;
-
-    public void updateSpeedUI(int opponentSpeedCounter, int playerSpeedCounter)
+    public void updateSpeedUI(float opponentSpeedPercentage, float playerSpeedPercentage)
     {
-        playerCircle.anchoredPosition = new Vector3(playerCircleDefaultPos.x, playerCircleDefaultPos.y - speedCircleMoveAmount * playerSpeedCounter, 0);
-        opponentCircle.anchoredPosition = new Vector3(opponentCircleDefaultPos.x, opponentCircleDefaultPos.y - speedCircleMoveAmount * opponentSpeedCounter, 0);
+        playerSpeedDisplay.setTargetPosition(playerSpeedPercentage, speedMeterHeight);
+        opponentSpeedDisplay.setTargetPosition(opponentSpeedPercentage, speedMeterHeight);
     }
 
     public void updateHealthUI(float opponentHealthPercentage, float playerHealthPercentage)
@@ -47,8 +45,8 @@ public class combatUI : MonoBehaviour
 
     public void setDefaultPositions()
     {
-        playerCircleDefaultPos = playerCircle.anchoredPosition;
-        opponentCircleDefaultPos = opponentCircle.anchoredPosition;
+        playerSpeedDisplay.setDefaultInfo(speedMeterHeight);
+        opponentSpeedDisplay.setDefaultInfo(speedMeterHeight);
     }
 
     public void spawnCard(card cardInfo, bool hasSpawnPosition, Vector3 spawnPosition)
@@ -178,7 +176,6 @@ public class combatUI : MonoBehaviour
         
         if (cardPositionIndex1 < 0) //odd
         {
-            print("this odd");
             cardScript.targetPosition = cardPosition0.localPosition;
             cardScript.setRotation(cardPosition0.rotation);
         } else //even

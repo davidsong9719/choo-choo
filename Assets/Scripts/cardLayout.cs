@@ -21,18 +21,10 @@ public class cardLayout : MonoBehaviour
     [SerializeField] displayInfo displayContext;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         refreshDisplay();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void refreshDisplay()
     {
         List<Sprite> sprites = new List<Sprite>();

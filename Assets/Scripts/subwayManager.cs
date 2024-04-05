@@ -46,17 +46,17 @@ public class subwayManager : MonoBehaviour
         combatCanavas.SetActive(true);
     }
 
-    public void startCombat()
+    public void startCombat(opponentStats opponent)
     {
         state = "combat";
 
         movementScript.enabled = false;
         targetScript.enabled = false;
 
-
         combatManagerObject.SetActive(true);
-        combatManager.instance.startCombat();
         combatCanavas.SetActive(true);
+        combatManager.instance.opponent = opponent;
+        combatManager.instance.startCombat();
     }
 
     public void switchToMovement()
