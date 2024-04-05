@@ -1595,7 +1595,6 @@ GameObject:
   m_Component:
   - component: {fileID: 185944574}
   - component: {fileID: 185944573}
-  - component: {fileID: 185944572}
   - component: {fileID: 185944571}
   m_Layer: 0
   m_Name: Dialogue Manager
@@ -1616,46 +1615,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12d00e631e0a4334b83e802ddef02f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos1: {fileID: 324193810}
-  pos2: {fileID: 1540411092}
-  pos3: {fileID: 1850255051}
-  pos4: {fileID: 1359377545}
+  positions:
+  - {fileID: 324193810}
+  - {fileID: 1540411092}
+  - {fileID: 1850255051}
+  - {fileID: 1359377545}
   speed: 200
   textBoxes:
   - {fileID: 994420272}
   - {fileID: 100260920}
   - {fileID: 35345332}
   - {fileID: 1523047625}
---- !u!114 &185944572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185944570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec4d918d5cee75e40817933b5e025e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typingSpeed: 0.04
-  enemyText: 
-  enemyDefense: 
-  playerText: 
-  playerDefense: 
-  textBoxes:
-  - {fileID: 994420272}
-  - {fileID: 100260920}
-  - {fileID: 35345332}
-  - {fileID: 1523047625}
-  textBoxesText:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemyBubble: {fileID: 0}
-  playerBubble: {fileID: 0}
-  inkFile: {fileID: 4900000, guid: 5466807bfde93c443b4377974cc00de2, type: 3}
 --- !u!114 &185944573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1679,10 +1649,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  inkFile: {fileID: 4900000, guid: 47b733764d9b58041a0c5b362b297728, type: 3}
   choices:
   - {fileID: 170658971}
-  nextLine: 
+  enemyBubble: {fileID: 0}
+  playerBubble: {fileID: 0}
+  narrationDialogue: {fileID: 4900000, guid: 47b733764d9b58041a0c5b362b297728, type: 3}
+  combatDialogue: {fileID: 4900000, guid: 5466807bfde93c443b4377974cc00de2, type: 3}
+  inkFile: {fileID: 4900000, guid: 47b733764d9b58041a0c5b362b297728, type: 3}
+  enemyText: 
+  enemyDefense: 
+  playerText: 
+  playerDefense: 
 --- !u!4 &185944574
 Transform:
   m_ObjectHideFlags: 0
@@ -2785,17 +2762,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
   - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
   - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
+  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
+  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
+  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
+  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
+  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
+  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
   - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
   - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
   - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
-  - {fileID: 11400000, guid: 2aa9a843d98a2174d950de7bcd10300c, type: 2}
-  - {fileID: 11400000, guid: 2aa9a843d98a2174d950de7bcd10300c, type: 2}
-  - {fileID: 11400000, guid: 2aa9a843d98a2174d950de7bcd10300c, type: 2}
-  - {fileID: 11400000, guid: 2aa9a843d98a2174d950de7bcd10300c, type: 2}
-  - {fileID: 11400000, guid: 2aa9a843d98a2174d950de7bcd10300c, type: 2}
-  - {fileID: 11400000, guid: 2aa9a843d98a2174d950de7bcd10300c, type: 2}
-  - {fileID: 11400000, guid: 2aa9a843d98a2174d950de7bcd10300c, type: 2}
-  - {fileID: 11400000, guid: 2aa9a843d98a2174d950de7bcd10300c, type: 2}
+  - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
+  - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
   playerMaxHealth: 20
   playerHealth: 20
   playerSpeed: 3
