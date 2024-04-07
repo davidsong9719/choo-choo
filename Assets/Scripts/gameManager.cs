@@ -17,6 +17,7 @@ public class gameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            cardGenerator.instance = GetComponent<cardGenerator>();
             DontDestroyOnLoad(gameObject);
         }
         else

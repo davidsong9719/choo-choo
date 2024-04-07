@@ -9,4 +9,5 @@ public class opponentStats : ScriptableObject
     public int defense;
     public int attack;
     public float aggression;
+    public float difficulty;
 }

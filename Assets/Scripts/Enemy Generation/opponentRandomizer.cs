@@ -21,7 +21,8 @@ public class opponentRandomizer : MonoBehaviour
         difficultyLevel = difficulty;
         opponentStats newStats = ScriptableObject.CreateInstance<opponentStats>();
 
-        newStats.aggression = Random.Range(difficulty - maxVariation, difficulty + maxVariation)/(maxDifficulty+maxVariation);
+        newStats.difficulty = Random.Range(difficulty - maxVariation, difficulty + maxVariation);
+        newStats.aggression = newStats.difficulty/(maxDifficulty+maxVariation);
         newStats.health = chooseStat("health");
         newStats.attack = chooseStat("attack");
         newStats.defense = chooseStat("defense");
@@ -29,7 +30,6 @@ public class opponentRandomizer : MonoBehaviour
         float speed = Mathf.Lerp(minSpeed, maxSpeed, speedCurve.Evaluate(Random.Range(0f, 1f)));
         newStats.speed = Mathf.RoundToInt(speed);
 
-        print("health = " + newStats.health + "\nattack = " + newStats.attack + "\ndefense = " + newStats.defense + "\nspeed = " + newStats.speed);
         return newStats;
 
     }

@@ -19,6 +19,7 @@ public class combatManager : MonoBehaviour
     public float speedIncrementSpeed;
     [SerializeField] float cardPlayedHoverDuration; //for card
     public int playerHandAmount;
+    [SerializeField] int victoryCardAmount;
 
     [Header("EnemySettings")]
     [SerializeField] int opponentDeckSize;
@@ -365,6 +366,10 @@ public class combatManager : MonoBehaviour
 
         if (state == "victory")
         {
+            for (int i = 0; i < victoryCardAmount; i++)
+            {
+                cardGenerator.instance.generateNewCard(opponent.aggression);
+            }
             //get to choose new card
         }
     }
