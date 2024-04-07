@@ -15,7 +15,7 @@ public class combatUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI playerDefenseDisplay, opponentDefenseDisplay;
 
     public List<GameObject> playerCardDisplays;
-    [SerializeField] GameObject cardPrefab;
+    [SerializeField] GameObject attackCardPrefab, defendCardPrefab, effectCardPrefab;
     [SerializeField] List<RectTransform> cardPositions;
     [SerializeField] Transform cardParent;
     [SerializeField] RectTransform playCardBorder;
@@ -51,8 +51,35 @@ public class combatUI : MonoBehaviour
 
     public void spawnCard(card cardInfo, bool hasSpawnPosition, Vector3 spawnPosition)
     {
-        GameObject newCard = Instantiate(cardPrefab, cardParent);
-        newCard.GetComponent<Image>().sprite = cardInfo.image;
+        GameObject newCard = null;
+        switch(cardInfo.type)
+        {
+            case card.cardType.Attack:
+                newCard = Instantiate(attackCardPrefab, cardParent);
+                break;
+
+            case card.cardType.Defend:
+                newCard = Instantiate(defendCardPrefab, cardParent);
+                break;
+
+            case card.cardType.Effect:
+                newCard = Instantiate(effectCardPrefab, cardParent);
+                break;
+
+            default:
+                Debug.LogWarning("Invalid Card Type!!!");
+                return;
+
+        }
+
+        if (cardInfo.type == card.cardType.Defend || cardInfo.type == card.cardType.Attack)
+        {
+            TextMeshProUGUI cardDescription = newCard.transform.Find("Description").GetComponent<TextMeshProUGUI>();
+            cardDescription.text = cardDescription.text.Replace("#", cardInfo.cardStrength.ToString());
+
+        }
+            
+        //newCard.GetComponent<Image>().sprite = cardInfo.image;
         
         cardFeedback cardScript = newCard.GetComponent<cardFeedback>();
         cardScript.uiController = this;
