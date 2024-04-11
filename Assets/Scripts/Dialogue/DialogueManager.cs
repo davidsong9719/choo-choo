@@ -248,12 +248,12 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in line.ToCharArray())
         {
 
-            if (submitPressed)
+            /*if (submitPressed)
             {
                 submitPressed = false;
-                textBox.maxVisibleCharacters = line.Length;
+                //textBox.maxVisibleCharacters = line.Length;
                 break;
-            }
+            }*/
 
             //check for text tag, dont show (wait for characters) if <>
             textBox.maxVisibleCharacters++;
@@ -263,7 +263,10 @@ public class DialogueManager : MonoBehaviour
 
         //display choices if there are any
         DisplayChoices();
-        canContinueToNextLine = true;
+        if (textBox.maxVisibleCharacters == line.Length)
+        {
+            canContinueToNextLine = true;
+        } 
     }
 
     private void HideChoices()
