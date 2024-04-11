@@ -176,53 +176,56 @@ public class DialogueManager : MonoBehaviour
         submitPressed = false;
         if (currentStory.canContinue && canContinueToNextLine == true)
         {
-            canContinueToNextLine = false;
-            TextMovement.GetInstance().moveBoxes();
-            //prevent 2 coroutines from going at once
-            //if (displayLineCoroutine != null)
-            //{
-                //StopCoroutine(displayLineCoroutine);
-            //}
-            //set text for the current dialogue line
-            nextLine = currentStory.Continue();
-
-            //display choices if there are any
-            //DisplayChoices();
-            //handle tags
-            HandleTags(currentStory.currentTags);
-            
-
-            //start coroutine to type one letter at a time
-            if (character == "Player")
+            if (TextMovement.GetInstance().inPlace == true)
             {
-                Debug.Log("player");
-                for (int i = 0; i < textBoxes.Length; i++)
+                canContinueToNextLine = false;
+                TextMovement.GetInstance().moveBoxes();
+                //prevent 2 coroutines from going at once
+                /*if (displayLineCoroutine != null)
                 {
-                    if (textBoxesText[i].text == "")
+                    StopCoroutine(displayLineCoroutine);
+                }*/
+                //set text for the current dialogue line
+                nextLine = currentStory.Continue();
+
+                //display choices if there are any
+                //DisplayChoices();
+                //handle tags
+                HandleTags(currentStory.currentTags);
+
+
+                //start coroutine to type one letter at a time
+                if (character == "Player")
+                {
+                    Debug.Log("player");
+                    for (int i = 0; i < textBoxes.Length; i++)
                     {
-                        StartCoroutine(DisplayLine(textBoxesText[i], nextLine));
-                        break;
+                        if (textBoxesText[i].text == "")
+                        {
+                            StartCoroutine(DisplayLine(textBoxesText[i], nextLine));
+                            break;
+                        }
+                    }
+                    //displayLineCoroutine = StartCoroutine(DisplayLine(playerTextBox, nextLine));
+                }
+                else if (character == "Opponent")
+                {
+                    Debug.Log("enemy");
+                    for (int i = 0; i < textBoxes.Length; i++)
+                    {
+                        if (textBoxesText[i].text == "")
+                        {
+                            StartCoroutine(DisplayLine(textBoxesText[i], nextLine));
+                            break;
+                        }
                     }
                 }
-                //displayLineCoroutine = StartCoroutine(DisplayLine(playerTextBox, nextLine));
-            }
-            else if (character == "Opponent")
-            {
-                Debug.Log("enemy");
-                for (int i = 0; i < textBoxes.Length; i++)
+                else
                 {
-                    if (textBoxesText[i].text == "")
-                    {
-                        StartCoroutine(DisplayLine(textBoxesText[i], nextLine));
-                        break;
-                    }
+                    Debug.Log("not working");
                 }
-            }
-            else
-            {
-            Debug.Log("not working");
-            }
 
+            }
         }
         else
         {
@@ -367,7 +370,11 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterCombat(string character, string action)
     {
-        TextMovement.GetInstance().moveBoxes();
+        if (TextMovement.GetInstance().inPlace == true)
+        {
+            TextMovement.GetInstance().moveBoxes();
+        }
+        
         currentStory = new Story(inkFile.text);
         currentStory.ChoosePathString(character + "." + action);
         dialogueVariables.StartListening(currentStory);

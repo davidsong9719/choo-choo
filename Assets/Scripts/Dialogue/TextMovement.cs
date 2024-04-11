@@ -13,6 +13,8 @@ public class TextMovement : MonoBehaviour
 
     private static TextMovement instance;
 
+    public bool inPlace = true;
+
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class TextMovement : MonoBehaviour
             Debug.LogWarning("Found more than one Dialogue Manager in scene");
         }
         instance = this;
+        inPlace = true;
 
     }
     public static TextMovement GetInstance()
@@ -30,48 +33,62 @@ public class TextMovement : MonoBehaviour
 
     public void moveBoxes()
     {
-        for (int i = 0; i < textBoxes.Length; i++)
         {
-            Debug.Log("moving " + textBoxes[i].name);
-            if (Vector2.Distance(textBoxes[i].transform.position, positions[3].position) < .1f)
-            {
-                //swap target position
-                targetPos = positions[2].position;
+            //if (inPlace) {
+                for (int i = 0; i < textBoxes.Length; i++)
+                {
+                    Debug.Log("moving " + textBoxes[i].name);
+                    if (Vector2.Distance(textBoxes[i].transform.position, positions[3].position) < .1f)
+                    {
+                        //swap target position
+                        targetPos = positions[2].position;
+                        inPlace = true;
+                    }
+                    //continue for all other positions
+                    else if (Vector2.Distance(textBoxes[i].transform.position, positions[2].position) < .1f)
+                    {
+                        //swap target position
+                        targetPos = positions[1].position;
+                        inPlace = true;
+                    }
+                    else if (Vector2.Distance(textBoxes[i].transform.position, positions[1].position) < .1f)
+                    {
+                        //swap target position
+                        targetPos = positions[0].position;
+                        inPlace = true;
+                    }
+                    else if (Vector2.Distance(textBoxes[i].transform.position, positions[0].position) < .1f)
+                    {
+                        //swap target position
+                        textBoxes[i].transform.position = positions[3].position;
+                        textBoxes[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+                        targetPos = positions[3].position;
+                        inPlace = true;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Cant find where to go");
+                        inPlace = false;
+                    }
+                    //if (inPlace)
+                    //{
+                        StartCoroutine(moveUp(textBoxes[i], targetPos));
+                    //}
+                //}
             }
-            //continue for all other positions
-            else if (Vector2.Distance(textBoxes[i].transform.position, positions[2].position) < .1f)
-            {
-                //swap target position
-                targetPos = positions[1].position;
-            }
-            else if (Vector2.Distance(textBoxes[i].transform.position, positions[1].position) < .1f)
-            {
-                //swap target position
-                targetPos = positions[0].position;
-            }
-            else if (Vector2.Distance(textBoxes[i].transform.position, positions[0].position) < .1f)
-            {
-                //swap target position
-                textBoxes[i].transform.position = positions[3].position;
-                textBoxes[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
-                targetPos = positions[3].position;
-            }
-            else
-            {
-                Debug.LogWarning("Ya this aint anywhere rip");
-            }
-            StartCoroutine(moveUp(textBoxes[i], targetPos));
-        }
-        
+        }  
     }
 
     private IEnumerator moveUp(GameObject textbox, Vector3 target)
     {
         while (textbox.transform.position != target)
-        {
-            textbox.transform.position = Vector3.MoveTowards(textbox.transform.position, target, speed * Time.deltaTime);
-            yield return null;
-        }
+            {
+                inPlace = false;
+                textbox.transform.position = Vector3.MoveTowards(textbox.transform.position, target, speed * Time.deltaTime);
+                yield return null;
+            }
+        
+        inPlace = true;
     }
 
     public void ResetPos()
