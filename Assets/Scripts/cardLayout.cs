@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,17 +10,17 @@ public class cardLayout : MonoBehaviour
     {
         playerDeck,
         drawPile,
-        discardPile
+        discardPile,
+        exchangeDeck
     }
 
+    private List<card> cards = new List<card>();
 
     [Header("Setup")]
-    [SerializeField] List<Image> displayObject;
-    [SerializeField] Sprite emptySprite;
+    public List<Image> displayObject;
 
     [Header("Settings")]
     [SerializeField] displayInfo displayContext;
-
 
     private void OnEnable()
     {
@@ -27,48 +28,56 @@ public class cardLayout : MonoBehaviour
     }
     public void refreshDisplay()
     {
-        List<Sprite> sprites = new List<Sprite>();
+
+        cards.Clear();
 
         switch (displayContext)
         {
             case displayInfo.playerDeck:
-                sprites = copyToSpriteList(gameManager.instance.playerDeck, false);
+            case displayInfo.exchangeDeck:
+                cards = copyToCardList(gameManager.instance.playerDeck, false);
                 break;
 
             case displayInfo.drawPile:
-                sprites = copyToSpriteList(combatManager.instance.drawPile, true);
+                cards = copyToCardList(combatManager.instance.drawPile, true);
                 break;
 
             case displayInfo.discardPile:
-                sprites = copyToSpriteList(combatManager.instance.discardPile, true);
+                cards = copyToCardList(combatManager.instance.discardPile, true);
                 break;
-        } 
-
+        }
 
         for (int i = 0; i < displayObject.Count; i++)
         {
-            if (i >= sprites.Count)
+            displayObject[i].enabled = false;
+            if (i >= cards.Count)
             {
-                displayObject[i].sprite = emptySprite;
+                generateCard(displayObject[i].transform, null);
             } else
             {
-                displayObject[i].sprite = sprites[i];
+                cardFeedback cardScript =  generateCard(displayObject[i].transform, cards[i]).GetComponent<cardFeedback>();
+
+                if (displayContext == displayInfo.exchangeDeck)
+                {
+                    cardScript.cardState = "deckReplace";
+                    cardScript.newCardManager = GetComponent<cardOptions>();
+                } 
             }
         }
     }
 
-    private List<Sprite> copyToSpriteList(List<card> targetList, bool shuffle)
+    private List<card> copyToCardList(List<card> targetList, bool shuffle)
     {
-        List<Sprite> newList = new List<Sprite>();
+        List<card> newList = new List<card>();
 
         for (int i = 0; i < targetList.Count; i++)
         {
-            newList.Add(targetList[i].image);
+            newList.Add(targetList[i]);
         }
 
         if (!shuffle) return newList;
 
-        List<Sprite> shuffledNewList = new List<Sprite>();
+        List<card> shuffledNewList = new List<card>();
 
         while (newList.Count > 0)
         {
@@ -78,5 +87,48 @@ public class cardLayout : MonoBehaviour
         }
 
         return shuffledNewList;
+    }
+
+    public GameObject generateCard(Transform parent, card cardInfo)
+    {
+        if (parent.childCount > 0)
+        {
+            Destroy(parent.GetChild(0).gameObject);
+        }
+
+        GameObject newCard = null;
+
+        if (cardInfo == null)
+        {
+            newCard = Instantiate(gameManager.instance.nullCardPrefab, parent);
+            return newCard;
+        }
+
+        switch (cardInfo.type)
+        {
+            case card.cardType.Attack:
+                newCard = Instantiate(gameManager.instance.attackCardPrefab, parent);
+                break;
+
+            case card.cardType.Defend:
+                newCard = Instantiate(gameManager.instance.defendCardPrefab, parent);
+                break;
+
+            case card.cardType.Effect:
+                newCard = Instantiate(gameManager.instance.effectCardPrefab, parent);
+                break;
+        }
+
+        newCard.GetComponent<cardFeedback>().cardInfo = cardInfo;
+
+        if (cardInfo.type == card.cardType.Defend || cardInfo.type == card.cardType.Attack)
+        {
+            TextMeshProUGUI cardDescription = newCard.transform.Find("Description").GetComponent<TextMeshProUGUI>();
+            cardDescription.text = cardDescription.text.Replace("$", cardInfo.cardStrength.ToString());
+
+        }
+
+        return newCard;
+
     }
 }

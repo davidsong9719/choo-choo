@@ -54,9 +54,6 @@ public class cardGenerator : MonoBehaviour
                 break;
         }
 
-
-        print("New " + newCard.type.ToString() + " card with the strength of " + newCard.cardStrength + " generated");
-
         return newCard;
     }
 }

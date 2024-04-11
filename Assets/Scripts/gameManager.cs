@@ -9,9 +9,18 @@ public class gameManager : MonoBehaviour
     [Header("Public Access")]
     public List<card> playerDeck;
     public int playerMaxHealth, playerHealth, playerSpeed, playerAttack, playerCash;
+    public int followerAmount;
+    public int timeElapsed;
 
+    [Header("Templates")]
     public card attack, defend;
+    public GameObject attackCardPrefab, defendCardPrefab, effectCardPrefab, nullCardPrefab;
 
+    [Header("Parameters")]
+    public int stageOneLength;
+    public int stageTwoLength;
+    public int stageThreeLength;
+    
     private void Awake()
     {
         if (instance == null)

@@ -5,12 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/archiveScene.unity
-    guid: e2b01b76f1c2bc34082cdd84d10a755d
   - enabled: 1
-    path: Assets/Scenes/ericaBranch.unity
-    guid: 0dabc721450531643ac96f50c87b2286
+    path: Assets/Scenes/davdBranch.unity
+    guid: 0a39b3d2dd61b504bbadd0799b552b61
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}

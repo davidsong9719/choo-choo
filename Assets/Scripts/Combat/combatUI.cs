@@ -15,7 +15,6 @@ public class combatUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI playerDefenseDisplay, opponentDefenseDisplay;
 
     public List<GameObject> playerCardDisplays;
-    [SerializeField] GameObject attackCardPrefab, defendCardPrefab, effectCardPrefab;
     [SerializeField] List<RectTransform> cardPositions;
     [SerializeField] Transform cardParent;
     [SerializeField] RectTransform playCardBorder;
@@ -55,15 +54,15 @@ public class combatUI : MonoBehaviour
         switch(cardInfo.type)
         {
             case card.cardType.Attack:
-                newCard = Instantiate(attackCardPrefab, cardParent);
+                newCard = Instantiate(gameManager.instance.attackCardPrefab, cardParent);
                 break;
 
             case card.cardType.Defend:
-                newCard = Instantiate(defendCardPrefab, cardParent);
+                newCard = Instantiate(gameManager.instance.defendCardPrefab, cardParent);
                 break;
 
             case card.cardType.Effect:
-                newCard = Instantiate(effectCardPrefab, cardParent);
+                newCard = Instantiate(gameManager.instance.effectCardPrefab, cardParent);
                 break;
 
             default:
@@ -75,7 +74,7 @@ public class combatUI : MonoBehaviour
         if (cardInfo.type == card.cardType.Defend || cardInfo.type == card.cardType.Attack)
         {
             TextMeshProUGUI cardDescription = newCard.transform.Find("Description").GetComponent<TextMeshProUGUI>();
-            cardDescription.text = cardDescription.text.Replace("#", cardInfo.cardStrength.ToString());
+            cardDescription.text = cardDescription.text.Replace("$", cardInfo.cardStrength.ToString());
 
         }
             

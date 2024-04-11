@@ -42,7 +42,7 @@ public class targetNPC : MonoBehaviour
 
     private void findClosestNPC()
     {
-        List<GameObject> npcList = npcManagerScript.npcList;
+        List<GameObject> npcList = npcManagerScript.talkableNPC;
         GameObject closestNPC = null;
         float closestDistance = 999999;
 
