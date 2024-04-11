@@ -40,9 +40,9 @@ public class DialogueManager : MonoBehaviour
     public bool narrationIsPlaying { get; private set; }
 
     //check if player can move to the next line - prevent skipping
-    private bool canContinueToNextLine = false;
+    private bool canContinueToNextLine = true;
 
-    private Coroutine displayLineCoroutine;
+    //private Coroutine displayLineCoroutine;
 
     private static DialogueManager instance;
 
@@ -174,14 +174,15 @@ public class DialogueManager : MonoBehaviour
     private void ContinueStory()
     {
         submitPressed = false;
-        if (currentStory.canContinue)
+        if (currentStory.canContinue && canContinueToNextLine == true)
         {
+            canContinueToNextLine = false;
             TextMovement.GetInstance().moveBoxes();
             //prevent 2 coroutines from going at once
-            if (displayLineCoroutine != null)
-            {
-                StopCoroutine(displayLineCoroutine);
-            }
+            //if (displayLineCoroutine != null)
+            //{
+                //StopCoroutine(displayLineCoroutine);
+            //}
             //set text for the current dialogue line
             nextLine = currentStory.Continue();
 
