@@ -10,13 +10,16 @@ public class cardFeedback : MonoBehaviour
 
     [HideInInspector] public int sortingIndex;
     [HideInInspector] public combatUI uiController;
-    [HideInInspector] public string cardState; //selected, hand, discard
+    [HideInInspector] public string cardState; //selected, hand, discard, freeze, newReplace, deckReplace, replaceSelected
     [HideInInspector] public card cardInfo;
     [HideInInspector] public RectTransform playBorder;
     [HideInInspector] public Vector2 targetPosition;
+    [HideInInspector] public cardOptions newCardManager;
 
     [Header("Setup")]
     public RectTransform cardTransform;
+    [SerializeField] Image highlightedDisplay;
+    [SerializeField] Sprite highlighedSprite, unhighlightedSprite;
 
     [Header("Settings")]
     [SerializeField] float hoverScale;
@@ -45,6 +48,17 @@ public class cardFeedback : MonoBehaviour
         if (cardState == "selected")
         {
             followMouse();
+
+
+            if (cardTransform.localPosition.y > playBorder.localPosition.y) //can Play
+            {
+                highlight();
+            }
+            else //return to hand
+            {
+                unhighlight();
+            }
+
         }
 
         if (cardState == "discard")
@@ -80,9 +94,8 @@ public class cardFeedback : MonoBehaviour
                 uiController.hasSelectedCard = true;
                 Invoke(nameof(selectCard), 0);
             }
-            
         }
-
+            
         if (cardState == "selected")
         {
             if (cardTransform.localPosition.y > playBorder.localPosition.y) //play
@@ -93,6 +106,16 @@ public class cardFeedback : MonoBehaviour
             {
                 Invoke(nameof(returnCard), 0);
             }
+        }
+
+        if (cardState == "newReplace")
+        {
+            newCardManager.selectNewCard(this);
+        }
+
+        if (cardState == "deckReplace")
+        {
+            newCardManager.selectDeckCard(this);
         }
     }
 
@@ -132,5 +155,15 @@ public class cardFeedback : MonoBehaviour
     {
         cardState = "discard";
         targetPosition = discardDeckPosition;
+    }
+
+    public void highlight()
+    {
+        highlightedDisplay.sprite = highlighedSprite;
+    }
+
+    public void unhighlight()
+    {
+        highlightedDisplay.sprite = unhighlightedSprite;
     }
 }

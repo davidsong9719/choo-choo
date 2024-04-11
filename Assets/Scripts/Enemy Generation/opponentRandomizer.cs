@@ -5,16 +5,11 @@ using UnityEngine;
 public class opponentRandomizer : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] int difficultyLevel; //1 to 3
+    private int difficultyLevel; //1 to 3
     [SerializeField] int maxDifficulty;
     [SerializeField] float maxVariation;
     [SerializeField] AnimationCurve healthCurve, speedCurve, attackCurve, defenseCurve;
     [SerializeField] int minHealth, maxHealth, minSpeed, maxSpeed, minAttack, maxAttack, minDefense, maxDefense;
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     public opponentStats generateStats(int difficulty)
     {

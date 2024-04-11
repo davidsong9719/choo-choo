@@ -6,24 +6,30 @@ public class combatManager : MonoBehaviour
 {
     public static combatManager instance { get; private set; }
     [HideInInspector] public opponentStats opponent;
-    [HideInInspector] public string state; //player-choose, player-effects, opponent-choose, opponent-effects, increment speed, player-retort, opponent-retort
-    [HideInInspector] public List<card> drawPile;
-    [HideInInspector] public List<card> discardPile;
+    [HideInInspector] public string state; //player-choose, player-effects, opponent-choose, opponent-effects, increment speed
+    public List<card> drawPile;
+    public List<card> discardPile;
     [HideInInspector] public List<card> playerHand;
 
 
     [Header("Setup")]
     [SerializeField] npcManager npcManagerScript;
+    [SerializeField] cardOptions victoryCardSpawner;
+    [SerializeField] GameObject combatParent;
+    [SerializeField] GameObject victoryParent;
 
     [Header("CombatSettings")]
     public float speedIncrementSpeed;
     [SerializeField] float cardPlayedHoverDuration; //for card
     public int playerHandAmount;
-    [SerializeField] int victoryCardAmount;
 
     [Header("EnemySettings")]
     [SerializeField] int opponentDeckSize;
-    
+
+    [Header("MiscSettings")]
+    [SerializeField] int cardTimeMultiplier;
+
+
     private int playerSpeed, playerAttack, playerMaxHealth, playerHealth, playerDefense;
     private int opponentSpeed, opponentAttack, opponentMaxHealth, opponentHealth, opponentDefense;
 
@@ -36,6 +42,8 @@ public class combatManager : MonoBehaviour
 
     private List<card> opponentCards = new List<card>();
 
+    private int cardsPlayed;
+
     private void Awake()
     {
         instance = this;
@@ -46,6 +54,9 @@ public class combatManager : MonoBehaviour
 
     public void startCombat()
     {
+        combatParent.SetActive(true);
+        victoryParent.SetActive(false);
+
         setStats();
         DialogueManager.GetInstance().ClearAll();
         TextMovement.GetInstance().ResetPos();
@@ -69,8 +80,6 @@ public class combatManager : MonoBehaviour
         shuffleDrawPile();
 
         lastIncremented = "opponent"; //starts on player turn
-
-        //StartCoroutine(incrementSpeed());
     }
 
     public void fight()
@@ -94,6 +103,7 @@ public class combatManager : MonoBehaviour
 
         playerSpeedCounter = 0;
         opponentSpeedCounter = 0;
+        cardsPlayed = 0;
     }
 
     IEnumerator incrementSpeed()
@@ -200,6 +210,7 @@ public class combatManager : MonoBehaviour
 
         yield return new WaitForSeconds(cardPlayedHoverDuration/2);
 
+        cardsPlayed++;
         if (!checkCombatEnd())
         {
             endOpponentRound();
@@ -278,13 +289,14 @@ public class combatManager : MonoBehaviour
             case card.cardType.Effect:
                 break;
         }
-
+        
         yield return new WaitForSeconds(cardPlayedHoverDuration);
 
         uiScript.discardCard(playedCard);
 
         yield return new WaitForSeconds(cardPlayedHoverDuration/4);
 
+        cardsPlayed++;
         if (!checkCombatEnd())
         {
             endPlayerRound();
@@ -357,20 +369,24 @@ public class combatManager : MonoBehaviour
 
         uiScript.clearCards();
         gameManager.instance.playerHealth = playerHealth;
-        subwayManager.instance.switchToMovement();
+        combatParent.SetActive(true);
+
+        combatParent.SetActive(false);
 
         if (state == "loss")
         {
             npcManagerScript.removeAll();
+            subwayManager.instance.switchToMovement();
         }
 
         if (state == "victory")
         {
-            for (int i = 0; i < victoryCardAmount; i++)
-            {
-                cardGenerator.instance.generateNewCard(opponent.aggression);
-            }
-            //get to choose new card
+            gameManager.instance.followerAmount++;
+            gameManager.instance.timeElapsed = cardsPlayed * cardTimeMultiplier;
+            subwayUI.instance.refreshUI();
+
+            victoryParent.SetActive(true);
+            victoryCardSpawner.spawnNewCards(opponent.aggression);
         }
     }
 

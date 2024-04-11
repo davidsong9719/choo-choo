@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class subwayUI : MonoBehaviour
@@ -9,7 +10,11 @@ public class subwayUI : MonoBehaviour
     [SerializeField] nodeManager nodeManagerScript;
     [SerializeField] mapButton mapToggle;
     [SerializeField] GameObject deckParent, drawParent, discardParent;
+    [SerializeField] TextMeshProUGUI followerDisplay, timeDisplay;
+
+    [SerializeField] int defaultHour;
     private string state;
+    
 
     private void Awake()
     {
@@ -104,5 +109,20 @@ public class subwayUI : MonoBehaviour
         Time.timeScale = 0;
 
         state = "discard";
+    }
+
+    public void refreshUI()
+    {
+
+        followerDisplay.text = gameManager.instance.followerAmount.ToString();
+
+        int elapsedTime = gameManager.instance.timeElapsed;
+        int minute = elapsedTime % 60;
+        int hour = (elapsedTime-minute) / 60;
+        hour += defaultHour;
+
+        timeDisplay.text = hour.ToString("00") + ":" + minute.ToString("00") + " PM";
+
+        
     }
 }
