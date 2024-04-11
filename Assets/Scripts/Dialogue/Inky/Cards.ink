@@ -40,6 +40,14 @@
 }
 -> END
 
+= Defend
+{shuffle:
+- im giving u a pamphlet anyway
+- i signed u up already
+- what u yapping about
+}
+-> END
+
 ===Opponent===
 = Attack
 {shuffle:
@@ -78,5 +86,13 @@
         - nuh uh
         - but its cool
     }
+}
+-> END
+
+= Defend
+{shuffle:
+- lalalala not listening
+- AAAAAAA police! this is harrassment
+- bro like stfu
 }
 -> END

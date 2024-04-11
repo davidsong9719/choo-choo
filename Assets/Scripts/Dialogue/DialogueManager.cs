@@ -365,11 +365,10 @@ public class DialogueManager : MonoBehaviour
     {
         TextMovement.GetInstance().moveBoxes();
         currentStory = new Story(inkFile.text);
+        currentStory.ChoosePathString(character + "." + action);
+        dialogueVariables.StartListening(currentStory);
         if (action != "Defend")
         {
-            //TextMovement.GetInstance().moveBoxes();
-            currentStory.ChoosePathString(character + "." + action);
-            dialogueVariables.StartListening(currentStory);
             if (character == "Player")
             {
                 for (int i = 0; i < textBoxes.Length; i++)
@@ -403,14 +402,20 @@ public class DialogueManager : MonoBehaviour
         {
             if (character == "Player")
             {
-                //playerTextBox.text = playerDefense;
-                //StartCoroutine(DisplayLine(playerTextBox, playerDefense));
                 for (int i = 0; i < textBoxes.Length; i++)
                 {
                     if (textBoxesText[i].text == "")
                     {
-                        StartCoroutine(DisplayLine(textBoxesText[i], playerDefense));
-                        break;
+                        if (playerDefense != "")
+                        {
+                            StartCoroutine(DisplayLine(textBoxesText[i], playerDefense));
+                            break;
+                        }
+                        else
+                        {
+                            StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
+                            break;
+                        }
                     }
                 }
             }
@@ -422,8 +427,16 @@ public class DialogueManager : MonoBehaviour
                 {
                     if (textBoxesText[i].text == "")
                     {
-                        StartCoroutine(DisplayLine(textBoxesText[i], enemyDefense));
-                        break;
+                        if (enemyDefense != "")
+                        {
+                            StartCoroutine(DisplayLine(textBoxesText[i], enemyDefense));
+                            break;
+                        }
+                        else
+                        {
+                            StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
+                            break;
+                        }
                     }
                 }
             }
