@@ -73,9 +73,11 @@ public class targetNPC : MonoBehaviour
     {
         RectTransform displayTransform = targetDisplay.GetComponent<RectTransform>();
 
-        displayTransform.anchoredPosition3D = new Vector3(target.position.x, target.position.y + displayHeight, target.position.z);
+        Vector3 headPosition = target.Find("Head").position;
+        displayTransform.anchoredPosition3D = new Vector3(headPosition.x, headPosition.y + displayHeight, headPosition.z);
 
         displayTransform.LookAt(Camera.main.transform, Vector3.up);
+        displayTransform.anchoredPosition3D = Vector3.Lerp(displayTransform.anchoredPosition3D, Camera.main.transform.position, 0.9f);
     }
 
     private void selectTarget()

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class npcManager : MonoBehaviour
@@ -7,12 +9,9 @@ public class npcManager : MonoBehaviour
     public List<GameObject> npcList; //hide in insecter after adding npc generator script and change to private set
     public List<GameObject> talkableNPC;
 
-    [SerializeField] List<Transform> standingSpotsL;
-    [SerializeField] List<Transform> standingSpotsR;
+    [SerializeField] List<Transform> sittingSpots;
 
-    public List<Transform> sittingSpots;
-
-    [SerializeField] GameObject sittingPrefab;
+    [SerializeField] GameObject sittingPrefab0, sittingPrefab1;
     private opponentRandomizer opponentGenerator;
 
     [Header("Difficulty Distribution")]
@@ -25,14 +24,23 @@ public class npcManager : MonoBehaviour
     [SerializeField] AnimationCurve stageThreeStartingDifficultyDistribution;
     [SerializeField] AnimationCurve stageThreeEndingDifficultyDistribution;
 
+    [Header("Density Settings")]
+    [SerializeField] AnimationCurve passengerDensityCurve;
+    [SerializeField] int maxVariation;
+    [SerializeField] float passengerExchangePercentage;
+    private int totalSpots;
+
     private void Awake()
     {
         opponentGenerator = GetComponent<opponentRandomizer>();
+        totalSpots = sittingSpots.Count;
+
+        sittingSpots = shuffleTransforms(sittingSpots);
     }
 
     private void Start()
     {
-        addOpponents();
+        updateCar();
     }
     public void removeFromList(GameObject npc)
     {
@@ -44,15 +52,115 @@ public class npcManager : MonoBehaviour
         talkableNPC.Clear();
     }
 
-    public void addOpponents()
+    private void updateCar()
     {
-        //***** ACTUALLY ADD THE FUCKING physical GENERATION 
+        int passengerExchangeAmount = (int)((float)npcList.Count / passengerExchangePercentage);
 
-        foreach (GameObject npc in npcList)
+        for (int i = 0; i < passengerExchangeAmount; i++)
         {
-            int difficulty = generateDifficulty();
-            npc.GetComponent<opponentInfo>().stats = opponentGenerator.generateStats(difficulty);
+            removeRandomOpponent();
+            spawnOpponent();
         }
+
+        float stageProgress = 0;
+        if (gameManager.instance.timeElapsed < gameManager.instance.stageOneLength)
+        {
+            stageProgress = (float)gameManager.instance.timeElapsed / (float)gameManager.instance.stageOneLength;
+        }
+        else if (gameManager.instance.timeElapsed - gameManager.instance.stageOneLength < gameManager.instance.stageTwoLength)
+        {
+            stageProgress = ((float)gameManager.instance.timeElapsed - (float)gameManager.instance.stageOneLength) / (float)gameManager.instance.stageTwoLength;
+        }
+        else
+        { 
+            stageProgress = (((float)gameManager.instance.timeElapsed - (float)gameManager.instance.stageOneLength) - (float)gameManager.instance.stageTwoLength) / (float)gameManager.instance.stageThreeLength;
+        }
+
+        float passengerDensity = passengerDensityCurve.Evaluate(stageProgress);
+
+        int passengerAmount = (int)Mathf.Lerp(6 + maxVariation, (totalSpots-10)-maxVariation, passengerDensity);
+
+        passengerAmount = Random.Range(passengerAmount - maxVariation, passengerAmount + maxVariation);
+        print(passengerAmount);
+
+        int passengerDifference = passengerAmount - npcList.Count;
+
+        if (passengerDifference > 0)
+        {
+            for (int i =0; i < Mathf.Abs(passengerDifference); i++)
+            {
+                spawnOpponent();
+            }
+        } else
+        {
+            for (int i = 0; i < Mathf.Abs(passengerDifference); i++)
+            {
+                removeRandomOpponent();
+            }
+        }
+    }
+
+    private void removeRandomOpponent()
+    {
+        GameObject removedNPC = npcList[Random.Range(0, npcList.Count)];
+        talkableNPC.Remove(removedNPC);
+        npcList.Remove(removedNPC);
+        Destroy(removedNPC);
+    }
+
+    public void spawnOpponent()
+    {
+        //Find spawn position
+        float randomNum = Random.Range(0, 1);
+        string spotList = "";
+        Transform spotParent = gameObject.transform;
+        GameObject newOpponent = null;
+
+        if (randomNum < (float)sittingSpots.Count/(float)totalSpots)
+        {
+            spotList = "sitting";
+        }
+
+        switch (spotList)
+        {
+            case "sitting":
+                spotParent = sittingSpots[sittingSpots.Count - 1];
+                break;
+        }
+
+        if (spotParent.childCount > 0 || spotParent == gameObject.transform)
+        {
+            return;
+        }
+
+        //Instantitate object
+        switch(spotList)
+        {
+            case "sitting":
+                newOpponent = Instantiate(sittingPrefab0);
+                Transform newTransform = newOpponent.transform;
+
+                newTransform.position = spotParent.transform.position;
+                if (newTransform.position.x > 0)
+                {
+                    newTransform.eulerAngles = new Vector3(0, 180, 0);
+                }
+
+                sittingSpots.Insert(0, spotParent);
+                sittingSpots.RemoveAt(sittingSpots.Count - 1);
+                break;
+        }
+
+        if (newOpponent == null)
+        {
+            Debug.LogWarning("No new opponent generated!");
+            return;
+        }
+
+        int difficulty = generateDifficulty();
+        newOpponent.GetComponent<opponentInfo>().stats = opponentGenerator.generateStats(difficulty);
+        npcList.Add(newOpponent);
+        talkableNPC.Add(newOpponent);
     }
 
     private int generateDifficulty()
@@ -120,4 +228,19 @@ public class npcManager : MonoBehaviour
         int difficulty = (int)(difficultyFloat * 2);
         return difficulty;
     } 
+
+    private List<Transform> shuffleTransforms(List<Transform> oldList)
+    {
+        List<Transform> newList = new List<Transform>();
+
+        while(oldList.Count > 0)
+        {
+            int currentIndex = Random.Range(0, oldList.Count);
+            newList.Add(oldList[currentIndex]);
+            oldList.RemoveAt(currentIndex);
+        }
+
+
+        return newList;
+    }
 }

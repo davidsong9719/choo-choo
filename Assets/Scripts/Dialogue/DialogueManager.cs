@@ -52,7 +52,6 @@ public class DialogueManager : MonoBehaviour
     private InputAction submit;
 
     //used to check if pressed this frame, used in coroutine
-    private bool submitPressed = false;
 
 
     private const string SPEAKER_TAG = "speaker";
@@ -149,11 +148,6 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
 
-        if (submit.WasPressedThisFrame())
-        {
-            submitPressed = true;
-        }
-
         //return right away if dialogue isnt playing
         if (!narrationIsPlaying)
         {
@@ -164,7 +158,6 @@ public class DialogueManager : MonoBehaviour
         //continue to next line when submit is pressed
         if (currentStory.currentChoices.Count == 0 && canContinueToNextLine && submit.WasPressedThisFrame())
         {
-            submitPressed = false;
             ContinueStory();
 
         }
@@ -173,7 +166,6 @@ public class DialogueManager : MonoBehaviour
 
     private void ContinueStory()
     {
-        submitPressed = false;
         if (currentStory.canContinue && canContinueToNextLine == true)
         {
             if (TextMovement.GetInstance().inPlace == true)
@@ -235,9 +227,6 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator DisplayLine(TextMeshProUGUI textBox, string line)
     {
-        //TextMovement.GetInstance().moveBoxes();
-        //empty dialogue text
-        //dialogueText.text = "";
         Debug.Log(line);
         textBox.text = line;
         textBox.maxVisibleCharacters = 0;
@@ -247,17 +236,9 @@ public class DialogueManager : MonoBehaviour
 
         canContinueToNextLine = false;
 
-
         //display each letter one at a time
         foreach (char letter in line.ToCharArray())
         {
-
-            /*if (submitPressed)
-            {
-                submitPressed = false;
-                //textBox.maxVisibleCharacters = line.Length;
-                break;
-            }*/
 
             //check for text tag, dont show (wait for characters) if <>
             textBox.maxVisibleCharacters++;
@@ -362,9 +343,9 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-
-
-
+    //==============
+    //COMBAT
+    //==============
 
 
 
