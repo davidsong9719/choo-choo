@@ -59,8 +59,8 @@ Material:
     - _FresnelThickness: 0.358
     - _PureShadowColor: 0
     - _QueueOffset: 0
-    - _Ramp0: 0.93
-    - _Ramp1: 0.99
+    - _Ramp0: 0.82
+    - _Ramp1: 0.692
     - _RampSmoothness: 0
     - _RampTriple: 1
     - _ReflectionBlend: 0.5

@@ -42,6 +42,14 @@ public class npcManager : MonoBehaviour
     {
         updateCar();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            updateCar();
+        }
+    }
     public void removeFromList(GameObject npc)
     {
         talkableNPC.Remove(npc);
@@ -52,9 +60,9 @@ public class npcManager : MonoBehaviour
         talkableNPC.Clear();
     }
 
-    private void updateCar()
+    public void updateCar()
     {
-        int passengerExchangeAmount = (int)((float)npcList.Count / passengerExchangePercentage);
+        int passengerExchangeAmount = (int)((float)npcList.Count * passengerExchangePercentage);
 
         for (int i = 0; i < passengerExchangeAmount; i++)
         {
@@ -63,6 +71,9 @@ public class npcManager : MonoBehaviour
         }
 
         float stageProgress = 0;
+
+        //Per-stage passenger density
+        /*
         if (gameManager.instance.timeElapsed < gameManager.instance.stageOneLength)
         {
             stageProgress = (float)gameManager.instance.timeElapsed / (float)gameManager.instance.stageOneLength;
@@ -74,11 +85,14 @@ public class npcManager : MonoBehaviour
         else
         { 
             stageProgress = (((float)gameManager.instance.timeElapsed - (float)gameManager.instance.stageOneLength) - (float)gameManager.instance.stageTwoLength) / (float)gameManager.instance.stageThreeLength;
-        }
+        }*/
+         
+        //Singular Passenger Density
+        stageProgress = (float)gameManager.instance.timeElapsed / (float)(gameManager.instance.stageOneLength + gameManager.instance.stageTwoLength + gameManager.instance.stageThreeLength);
 
         float passengerDensity = passengerDensityCurve.Evaluate(stageProgress);
 
-        int passengerAmount = (int)Mathf.Lerp(6 + maxVariation, (totalSpots-10)-maxVariation, passengerDensity);
+        int passengerAmount = (int)Mathf.Lerp(6 + maxVariation, totalSpots-maxVariation, passengerDensity);
 
         passengerAmount = Random.Range(passengerAmount - maxVariation, passengerAmount + maxVariation);
         print(passengerAmount);
@@ -133,11 +147,20 @@ public class npcManager : MonoBehaviour
             return;
         }
 
+        float randomPrefab = Random.Range(0f, 1f);
+
         //Instantitate object
         switch(spotList)
         {
             case "sitting":
-                newOpponent = Instantiate(sittingPrefab0);
+                if (randomPrefab < 0.5)
+                {
+                    newOpponent = Instantiate(sittingPrefab0);
+                } else
+                {
+                    newOpponent = Instantiate(sittingPrefab1);
+                }
+                
                 Transform newTransform = newOpponent.transform;
 
                 newTransform.position = spotParent.transform.position;

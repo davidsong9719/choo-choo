@@ -366,9 +366,12 @@ public class combatManager : MonoBehaviour
     {
 
         nodeManager.instance.progressStation();
+        gameManager.instance.timeElapsed+= cardsPlayed * cardTimeMultiplier;
+        npcManagerScript.updateCar();
 
         uiScript.clearCards();
         gameManager.instance.playerHealth = playerHealth;
+        subwayUI.instance.refreshUI();
         combatParent.SetActive(true);
 
         combatParent.SetActive(false);
@@ -382,8 +385,6 @@ public class combatManager : MonoBehaviour
         if (state == "victory")
         {
             gameManager.instance.followerAmount++;
-            gameManager.instance.timeElapsed = cardsPlayed * cardTimeMultiplier;
-            subwayUI.instance.refreshUI();
 
             victoryParent.SetActive(true);
             victoryCardSpawner.spawnNewCards(opponent.aggression);
