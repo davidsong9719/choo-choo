@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextMovement : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class TextMovement : MonoBehaviour
     public int speed;
 
     [SerializeField] GameObject[] textBoxes;
+    [SerializeField] Canvas[] sortOrder;
 
     private Vector3 targetPos;
 
@@ -33,50 +35,52 @@ public class TextMovement : MonoBehaviour
 
     public void moveBoxes()
     {
+        for (int i = 0; i < textBoxes.Length; i++)
         {
-            //if (inPlace) {
-                for (int i = 0; i < textBoxes.Length; i++)
-                {
-                    Debug.Log("moving " + textBoxes[i].name);
-                    if (Vector2.Distance(textBoxes[i].transform.position, positions[3].position) < .1f)
-                    {
-                        //swap target position
-                        targetPos = positions[2].position;
-                        inPlace = true;
-                    }
-                    //continue for all other positions
-                    else if (Vector2.Distance(textBoxes[i].transform.position, positions[2].position) < .1f)
-                    {
-                        //swap target position
-                        targetPos = positions[1].position;
-                        inPlace = true;
-                    }
-                    else if (Vector2.Distance(textBoxes[i].transform.position, positions[1].position) < .1f)
-                    {
-                        //swap target position
-                        targetPos = positions[0].position;
-                        inPlace = true;
-                    }
-                    else if (Vector2.Distance(textBoxes[i].transform.position, positions[0].position) < .1f)
-                    {
-                        //swap target position
-                        textBoxes[i].transform.position = positions[3].position;
-                        textBoxes[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
-                        targetPos = positions[3].position;
-                        inPlace = true;
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Cant find where to go");
-                        inPlace = false;
-                    }
-                    //if (inPlace)
-                    //{
-                        StartCoroutine(moveUp(textBoxes[i], targetPos));
-                    //}
-                //}
+            Debug.Log("moving " + textBoxes[i].name);
+            if (Vector2.Distance(textBoxes[i].transform.position, positions[3].position) < .1f)
+            {
+                //swap target position
+                targetPos = positions[2].position;
+                textBoxes[i].GetComponent<Image>().color = new Color(0.75f, 0.75f, 0.75f);
+                textBoxes[i].transform.SetParent(sortOrder[2].transform);
+                inPlace = true;
             }
-        }  
+            //continue for all other positions
+            else if (Vector2.Distance(textBoxes[i].transform.position, positions[2].position) < .1f)
+            {
+                //swap target position
+                targetPos = positions[1].position;
+                textBoxes[i].GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f);
+                textBoxes[i].transform.SetParent(sortOrder[1].transform);
+                inPlace = true;
+            }
+            else if (Vector2.Distance(textBoxes[i].transform.position, positions[1].position) < .1f)
+            {
+                //swap target position
+                targetPos = positions[0].position;
+                textBoxes[i].GetComponent<Image>().color = new Color(0.25f, 0.25f, 0.25f);
+                textBoxes[i].transform.SetParent(sortOrder[0].transform); 
+                inPlace = true;
+            }
+            else if (Vector2.Distance(textBoxes[i].transform.position, positions[0].position) < .1f)
+            {
+                //swap target position
+                textBoxes[i].transform.position = positions[3].position;
+                textBoxes[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+                textBoxes[i].GetComponent<Image>().enabled = false;
+                textBoxes[i].GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                textBoxes[i].transform.SetParent(sortOrder[3].transform);
+                targetPos = positions[3].position;
+                inPlace = true;
+            }
+            else
+            {
+                Debug.LogWarning("Cant find where to go");
+                inPlace = false;
+            }
+            StartCoroutine(moveUp(textBoxes[i], targetPos));
+        }
     }
 
     private IEnumerator moveUp(GameObject textbox, Vector3 target)
