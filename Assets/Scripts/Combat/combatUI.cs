@@ -292,5 +292,5 @@ public class combatUI : MonoBehaviour
 
         playerSpeedDisplay.resetPosition();
         opponentSpeedDisplay.resetPosition();
-    }
+    }   
 } 

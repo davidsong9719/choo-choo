@@ -65,7 +65,6 @@ public class combatManager : MonoBehaviour
         DialogueManager.GetInstance().EnterNarration();
 
         uiScript.resetUIs();
-        uiScript.updateSpeedUI((float)opponentSpeedCounter/(float)opponentSpeed, (float)playerSpeedCounter/(float)playerSpeed);
 
         discardPile.Clear();
         drawPile.Clear();
