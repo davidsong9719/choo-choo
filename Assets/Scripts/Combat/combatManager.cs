@@ -30,8 +30,8 @@ public class combatManager : MonoBehaviour
     [SerializeField] int cardTimeMultiplier;
 
 
-    private int playerSpeed, playerAttack, playerMaxHealth, playerHealth, playerDefense;
-    private int opponentSpeed, opponentAttack, opponentMaxHealth, opponentHealth, opponentDefense;
+    private int playerSpeed, playerMaxHealth, playerHealth;
+    private int opponentSpeed, opponentMaxHealth, opponentHealth;
 
     private int playerSpeedCounter, opponentSpeedCounter; 
     private string lastIncremented; //for keeping track of which counter to increment after a participant takes a turn
@@ -43,6 +43,8 @@ public class combatManager : MonoBehaviour
     private List<card> opponentCards = new List<card>();
 
     private int cardsPlayed;
+
+    private int tempPlayerHealth, tempOpponentHealth; //for retort
 
     private void Awake()
     {
@@ -62,9 +64,8 @@ public class combatManager : MonoBehaviour
         TextMovement.GetInstance().ResetPos();
         DialogueManager.GetInstance().EnterNarration();
 
-        uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
+        uiScript.resetUIs();
         uiScript.updateSpeedUI((float)opponentSpeedCounter/(float)opponentSpeed, (float)playerSpeedCounter/(float)playerSpeed);
-        uiScript.updateDefenseUI(opponentDefense, playerDefense);
 
         discardPile.Clear();
         drawPile.Clear();
@@ -92,14 +93,14 @@ public class combatManager : MonoBehaviour
         playerSpeed = gameManager.instance.playerSpeed;
         opponentSpeed = opponent.speed;
 
-        playerAttack = gameManager.instance.playerAttack;
-        opponentAttack = opponent.attack;
-
         playerMaxHealth = gameManager.instance.playerMaxHealth;
         opponentMaxHealth = opponent.health;
 
         playerHealth = gameManager.instance.playerHealth;
         opponentHealth = opponentMaxHealth;
+
+        tempPlayerHealth = playerHealth;
+        tempOpponentHealth = opponentHealth;
 
         playerSpeedCounter = 0;
         opponentSpeedCounter = 0;
@@ -156,12 +157,6 @@ public class combatManager : MonoBehaviour
         state = "player-choose";
         uiScript.hasSelectedCard = false;
 
-        if (lastPlayed == "opponent")
-        {
-            playerDefense = 0;
-            uiScript.updateDefenseUI(opponentDefense, playerDefense);
-        }
-
         for (int i = 0; i < playerHandAmount; i++)
         {
             drawCard();
@@ -174,10 +169,6 @@ public class combatManager : MonoBehaviour
         state = "opponent-choose";
 
         if (lastPlayed == "player")
-        {
-            opponentDefense = 0;
-            uiScript.updateDefenseUI(opponentDefense, playerDefense);
-        }
 
         StartCoroutine(playOpponentCard());
 
@@ -201,12 +192,15 @@ public class combatManager : MonoBehaviour
                 break;
 
             case card.cardType.Defend:
-                increaseDefense(1, currentCard.cardStrength);
+                retort(1, currentCard.cardStrength);
                 break;
 
             case card.cardType.Effect:
                 break;
         }
+
+        opponentHealth = tempOpponentHealth;
+        uiScript.updateHealthUI(opponentHealth, opponentMaxHealth, tempOpponentHealth, playerHealth, playerMaxHealth, tempPlayerHealth);
 
         yield return new WaitForSeconds(cardPlayedHoverDuration/2);
 
@@ -283,13 +277,16 @@ public class combatManager : MonoBehaviour
                 break;
 
             case card.cardType.Defend:
-                increaseDefense(0, cardInfo.cardStrength);
+                retort(0, cardInfo.cardStrength);
                 break;
 
             case card.cardType.Effect:
                 break;
         }
-        
+
+        playerHealth = tempPlayerHealth;
+        uiScript.updateHealthUI(opponentHealth, opponentMaxHealth, tempOpponentHealth, playerHealth, playerMaxHealth, tempPlayerHealth);
+
         yield return new WaitForSeconds(cardPlayedHoverDuration);
 
         uiScript.discardCard(playedCard);
@@ -304,46 +301,46 @@ public class combatManager : MonoBehaviour
         {
             endCombat();
         }
-        
     }
 
     public void inflictDamage(int target, int amount)
     {
         if (target == 0) //targeting player
         {
-            playerDefense -= opponentAttack + amount;
-
-            if (playerDefense < 0)
+            tempPlayerHealth -= amount;
+            if (tempPlayerHealth <= 0)
             {
-                playerHealth -= Mathf.Abs(playerDefense);
-                playerDefense = 0;
+                tempPlayerHealth = 0;
+                playerHealth = 0;
             }
         } else if (target == 1) //targeting opponent
         {
-            opponentDefense -= playerAttack + amount;
-
-            if (opponentDefense < 0)
+            tempOpponentHealth -= amount;
+            if (tempOpponentHealth <= 0)
             {
-                opponentHealth -= Mathf.Abs(opponentDefense);
-                opponentDefense = 0;
+                tempOpponentHealth = 0;
+                opponentHealth = 0;
             }
         }
-
-        uiScript.updateHealthUI((float)opponentHealth / (float)opponentMaxHealth, (float)playerHealth / (float)playerMaxHealth);
-        uiScript.updateDefenseUI(opponentDefense, playerDefense);
     }
 
-    public void increaseDefense(int target, int amount)
+    public void retort(int target, int amount)
     {
         if (target == 0)
         {
-            playerDefense += amount;
+            tempPlayerHealth += amount;
+            if (tempPlayerHealth > playerHealth)
+            {
+                tempPlayerHealth = playerHealth;
+            }
         } else if (target == 1)
         {
-            opponentDefense += amount;
+            tempOpponentHealth += amount;
+            if (tempOpponentHealth > opponentHealth)
+            {
+                tempOpponentHealth = opponentHealth;
+            }
         }
-
-        uiScript.updateDefenseUI(opponentDefense, playerDefense);
     }
 
     private bool checkCombatEnd()
@@ -364,7 +361,6 @@ public class combatManager : MonoBehaviour
 
     private void endCombat()
     {
-
         nodeManager.instance.progressStation();
         gameManager.instance.timeElapsed+= cardsPlayed * cardTimeMultiplier;
         npcManagerScript.updateCar();

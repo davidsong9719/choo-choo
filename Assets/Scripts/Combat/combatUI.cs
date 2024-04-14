@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ public class combatUI : MonoBehaviour
     [Header("Setup")]
     [SerializeField] speedDisplays playerSpeedDisplay;
     [SerializeField] speedDisplays opponentSpeedDisplay;
-    [SerializeField] Image playerHealthDisplay, opponentHealthDisplay;
+    [SerializeField] Image playerHealthDisplay, opponentHealthDisplay, tempPlayerHealthDisplay, tempOpponentHealthDisplay;
     [SerializeField] TextMeshProUGUI playerDefenseDisplay, opponentDefenseDisplay;
 
     public List<GameObject> playerCardDisplays;
@@ -21,7 +22,8 @@ public class combatUI : MonoBehaviour
     [SerializeField] RectTransform drawDeckPosition, discardDeckPosition;
     
     [Header("Settings")]
-    [SerializeField] float speedMeterHeight; 
+    [SerializeField] float speedMeterHeight;
+    [SerializeField] AnimationCurve lerpCurve;
 
     public void updateSpeedUI(float opponentSpeedPercentage, float playerSpeedPercentage)
     {
@@ -29,10 +31,19 @@ public class combatUI : MonoBehaviour
         opponentSpeedDisplay.setTargetPosition(opponentSpeedPercentage, speedMeterHeight);
     }
 
-    public void updateHealthUI(float opponentHealthPercentage, float playerHealthPercentage)
+    public void updateHealthUI(int opponentHealth, int opponentMaxHealth, int opponentTempHealth, int playerHealth, int playerMaxHealth, int playerTempHealth)
     {
-        playerHealthDisplay.fillAmount = playerHealthPercentage;
-        opponentHealthDisplay.fillAmount = opponentHealthPercentage;
+        float opponentPercentage = (float)opponentHealth/(float)opponentMaxHealth;
+        float playerPercentage = (float)playerHealth/(float)playerMaxHealth;
+        float tempOpponentPercentage = (float)opponentTempHealth / (float)opponentMaxHealth;
+        float tempPlayerPercentage = (float)playerTempHealth / (float)playerMaxHealth;
+
+        StopAllCoroutines();
+
+        StartCoroutine(updateHealthBar(playerHealthDisplay, playerPercentage, 0.3f));
+        StartCoroutine(updateHealthBar(opponentHealthDisplay, opponentPercentage, 0.3f));
+        StartCoroutine(updateHealthBar(tempPlayerHealthDisplay, tempPlayerPercentage, 0.2f));
+        StartCoroutine(updateHealthBar(tempOpponentHealthDisplay, tempOpponentPercentage, 0.2f));
     }
 
     public void updateDefenseUI(int opponentDefense, int playerDefense)
@@ -252,4 +263,34 @@ public class combatUI : MonoBehaviour
         }
     }
 
+    IEnumerator updateHealthBar(Image bar, float targetFill, float duration)
+    {
+        float timer = 0;
+        float startFillAmount = bar.fillAmount;
+
+        while(true)
+        {
+            timer += Time.deltaTime;
+            float lerpValue = lerpCurve.Evaluate(timer / duration);
+
+            bar.fillAmount = Mathf.Lerp(startFillAmount, targetFill, lerpValue);
+
+            if (timer >= duration)
+            {
+                break;
+            }
+            yield return null;
+        }
+    }
+
+    public void resetUIs()
+    {
+        StartCoroutine(updateHealthBar(playerHealthDisplay, 1, 0f));
+        StartCoroutine(updateHealthBar(opponentHealthDisplay, 1, 0));
+        StartCoroutine(updateHealthBar(tempPlayerHealthDisplay, 1, 0));
+        StartCoroutine(updateHealthBar(tempOpponentHealthDisplay, 1, 0));
+
+        playerSpeedDisplay.resetPosition();
+        opponentSpeedDisplay.resetPosition();
+    }
 } 

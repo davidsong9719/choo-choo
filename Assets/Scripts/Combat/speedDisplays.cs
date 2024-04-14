@@ -26,6 +26,11 @@ public class speedDisplays : MonoBehaviour
         speedMeterHeight = meterHeight;
     }
 
+    public void resetPosition()
+    {
+        rectTransform.anchoredPosition = defaultPosition;
+    }
+
     IEnumerator moveDisplay(float duration, bool reachedEnd)
     {
         yield return null;
