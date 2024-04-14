@@ -42,7 +42,7 @@ public class TextMovement : MonoBehaviour
             {
                 //swap target position
                 targetPos = positions[2].position;
-                textBoxes[i].GetComponent<Image>().color = new Color(0.75f, 0.75f, 0.75f);
+                textBoxes[i].GetComponentInChildren<Image>().color = new Color(0.75f, 0.75f, 0.75f);
                 textBoxes[i].transform.SetParent(sortOrder[2].transform);
                 inPlace = true;
             }
@@ -51,7 +51,7 @@ public class TextMovement : MonoBehaviour
             {
                 //swap target position
                 targetPos = positions[1].position;
-                textBoxes[i].GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f);
+                textBoxes[i].GetComponentInChildren<Image>().color = new Color(0.5f, 0.5f, 0.5f);
                 textBoxes[i].transform.SetParent(sortOrder[1].transform);
                 inPlace = true;
             }
@@ -59,7 +59,7 @@ public class TextMovement : MonoBehaviour
             {
                 //swap target position
                 targetPos = positions[0].position;
-                textBoxes[i].GetComponent<Image>().color = new Color(0.25f, 0.25f, 0.25f);
+                textBoxes[i].GetComponentInChildren<Image>().color = new Color(0.25f, 0.25f, 0.25f);
                 textBoxes[i].transform.SetParent(sortOrder[0].transform); 
                 inPlace = true;
             }
@@ -68,8 +68,8 @@ public class TextMovement : MonoBehaviour
                 //swap target position
                 textBoxes[i].transform.position = positions[3].position;
                 textBoxes[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
-                textBoxes[i].GetComponent<Image>().enabled = false;
-                textBoxes[i].GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                textBoxes[i].GetComponentInChildren<Image>().enabled = false;
+                textBoxes[i].GetComponentInChildren<Image>().color = new Color(1f, 1f, 1f);
                 textBoxes[i].transform.SetParent(sortOrder[3].transform);
                 targetPos = positions[3].position;
                 inPlace = true;

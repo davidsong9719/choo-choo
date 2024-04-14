@@ -76,7 +76,7 @@ public class DialogueManager : MonoBehaviour
         for (int i = 0; i < textBoxes.Length; i++)
         {
             textBoxesText[i] = textBoxes[i].GetComponentInChildren<TextMeshProUGUI>();
-            textBoxes[i].GetComponent<Image>().enabled = false;
+            textBoxes[i].GetComponentInChildren<Image>().enabled = false;
         }
 
         //set up whether we use the narration or combat scripts
@@ -192,8 +192,8 @@ public class DialogueManager : MonoBehaviour
                         if (textBoxesText[i].text == "")
                         {
                             StartCoroutine(DisplayLine(textBoxesText[i], nextLine));
-                            textBoxes[i].GetComponent<Image>().enabled = true;
-                            textBoxes[i].GetComponent<Image>().sprite = playerBubble;
+                            textBoxes[i].GetComponentInChildren<Image>().enabled = true;
+                            textBoxes[i].GetComponentInChildren<Image>().sprite = playerBubble;
                             break;
                         }
                     }
@@ -207,8 +207,8 @@ public class DialogueManager : MonoBehaviour
                         if (textBoxesText[i].text == "")
                         {
                             StartCoroutine(DisplayLine(textBoxesText[i], nextLine));
-                            textBoxes[i].GetComponent<Image>().enabled = true;
-                            textBoxes[i].GetComponent<Image>().sprite = enemyBubble;
+                            textBoxes[i].GetComponentInChildren<Image>().enabled = true;
+                            textBoxes[i].GetComponentInChildren<Image>().sprite = enemyBubble;
                             break;
                         }
                     }
@@ -369,8 +369,8 @@ public class DialogueManager : MonoBehaviour
                     if (textBoxesText[i].text == "")
                     {
                         StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
-                        textBoxes[i].GetComponent<Image>().enabled = true;
-                        textBoxes[i].GetComponent<Image>().sprite = playerBubble;
+                        textBoxes[i].GetComponentInChildren<Image>().enabled = true;
+                        textBoxes[i].GetComponentInChildren<Image>().sprite = playerBubble;
                         break;
                     }
                 }
@@ -384,8 +384,8 @@ public class DialogueManager : MonoBehaviour
                     if (textBoxesText[i].text == "")
                     {
                         StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
-                        textBoxes[i].GetComponent<Image>().enabled = true;
-                        textBoxes[i].GetComponent<Image>().sprite = enemyBubble;
+                        textBoxes[i].GetComponentInChildren<Image>().enabled = true;
+                        textBoxes[i].GetComponentInChildren<Image>().sprite = enemyBubble;
                         break;
                     }
                 }
@@ -406,15 +406,15 @@ public class DialogueManager : MonoBehaviour
                         if (playerDefense != "")
                         {
                             StartCoroutine(DisplayLine(textBoxesText[i], playerDefense));
-                            textBoxes[i].GetComponent<Image>().enabled = true;
-                            textBoxes[i].GetComponent<Image>().sprite = playerBubble;
+                            textBoxes[i].GetComponentInChildren<Image>().enabled = true;
+                            textBoxes[i].GetComponentInChildren<Image>().sprite = playerBubble;
                             break;
                         }
                         else
                         {
                             StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
-                            textBoxes[i].GetComponent<Image>().enabled = true;
-                            textBoxes[i].GetComponent<Image>().sprite = playerBubble;
+                            textBoxes[i].GetComponentInChildren<Image>().enabled = true;
+                            textBoxes[i].GetComponentInChildren<Image>().sprite = playerBubble;
                             break;
                         }
                     }
@@ -431,15 +431,15 @@ public class DialogueManager : MonoBehaviour
                         if (enemyDefense != "")
                         {
                             StartCoroutine(DisplayLine(textBoxesText[i], enemyDefense));
-                            textBoxes[i].GetComponent<Image>().enabled = true;
-                            textBoxes[i].GetComponent<Image>().sprite = enemyBubble;
+                            textBoxes[i].GetComponentInChildren<Image>().enabled = true;
+                            textBoxes[i].GetComponentInChildren<Image>().sprite = enemyBubble;
                             break;
                         }
                         else
                         {
                             StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
-                            textBoxes[i].GetComponent<Image>().enabled = true;
-                            textBoxes[i].GetComponent<Image>().sprite = enemyBubble;
+                            textBoxes[i].GetComponentInChildren<Image>().enabled = true;
+                            textBoxes[i].GetComponentInChildren<Image>().sprite = enemyBubble;
                             break;
                         }
                     }
@@ -456,7 +456,7 @@ public class DialogueManager : MonoBehaviour
             if (textBoxesText[i].text != "")
             {
                 textBoxesText[i].text = "";
-                textBoxes[i].GetComponent<Image>().enabled = false;
+                textBoxes[i].GetComponentInChildren<Image>().enabled = false;
             }
         }
         enemyDefense = "";
