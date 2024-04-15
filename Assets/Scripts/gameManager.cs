@@ -35,4 +35,30 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    public void playSFX(AudioClip clip, float volumn)
+    {
+        GameObject sfxObject = new GameObject();
+        AudioSource sfxSource = sfxObject.AddComponent<AudioSource>();
+        sfxSource.clip = clip;
+        sfxSource.volume = volumn;
+        sfxSource.Play();
+
+        StartCoroutine(endSFX(sfxSource));
+    }
+
+    IEnumerator endSFX(AudioSource sfxSource)
+    {
+        while (true)
+        {
+            if (sfxSource.isPlaying)
+            {
+                yield return null;
+            } else
+            {
+                Destroy(sfxSource.gameObject);
+                break;
+            }
+            
+        }
+    }
 }

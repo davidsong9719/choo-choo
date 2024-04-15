@@ -9,12 +9,15 @@ public class characterMovement : MonoBehaviour
     [SerializeField] float movementSpeed;
     [SerializeField] float rotateSpeed;
 
+
     private InputAction move;
+    private Animator animator;
 
     private float rotateVelocity = 0; //used by smoothdampangle()
 
     void OnEnable()
     {
+        animator = GetComponent<Animator>();   
         move = subwayManager.instance.playerControls.Player.Move;
         move.Enable();
         
@@ -38,7 +41,15 @@ public class characterMovement : MonoBehaviour
 
     private void movePlayer()
     {
-        if (move.ReadValue<Vector2>() == Vector2.zero) return;
+        if (move.ReadValue<Vector2>() == Vector2.zero)
+        {
+            animator.SetBool("isWalking", false);
+            return;
+        } else
+        {
+            animator.SetBool("isWalking", true);
+        }
+
 
         Vector3 direction = new Vector3 (move.ReadValue<Vector2>().x, -2f, move.ReadValue<Vector2>().y); // y is for gravity
         direction = Quaternion.Euler(0f, Camera.main.transform.eulerAngles.y, 0f) * direction;

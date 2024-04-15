@@ -11,7 +11,7 @@ public class npcManager : MonoBehaviour
 
     [SerializeField] List<Transform> sittingSpots;
 
-    [SerializeField] GameObject sittingPrefab0, sittingPrefab1;
+    [SerializeField] GameObject sittingPrefab0, sittingPrefab1, sittingPrefab2;
     private opponentRandomizer opponentGenerator;
 
     [Header("Difficulty Distribution")]
@@ -153,12 +153,15 @@ public class npcManager : MonoBehaviour
         switch(spotList)
         {
             case "sitting":
-                if (randomPrefab < 0.5)
+                if (randomPrefab < 0.33)
                 {
                     newOpponent = Instantiate(sittingPrefab0);
-                } else
+                } else if (randomPrefab < 0.66)
                 {
                     newOpponent = Instantiate(sittingPrefab1);
+                } else
+                {
+                    newOpponent = Instantiate(sittingPrefab2);
                 }
                 
                 Transform newTransform = newOpponent.transform;

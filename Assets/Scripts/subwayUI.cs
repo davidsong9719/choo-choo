@@ -14,7 +14,8 @@ public class subwayUI : MonoBehaviour
 
     [SerializeField] int defaultHour;
     private string state;
-    
+
+    [SerializeField] AudioSource[] audios;
 
     private void Awake()
     {
@@ -47,6 +48,7 @@ public class subwayUI : MonoBehaviour
         drawParent.SetActive(false);
         discardParent.SetActive(false);
         Time.timeScale = 0;
+
 
         state = "map";
     }
@@ -121,8 +123,6 @@ public class subwayUI : MonoBehaviour
         int hour = (elapsedTime-minute) / 60;
         hour += defaultHour;
 
-        timeDisplay.text = hour.ToString("00") + ":" + minute.ToString("00") + " PM";
-
-        
+        timeDisplay.text = hour.ToString("00") + ":" + minute.ToString("00") + " PM";   
     }
 }
