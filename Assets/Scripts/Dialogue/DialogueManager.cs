@@ -178,7 +178,7 @@ public class DialogueManager : MonoBehaviour
                 nextLine = currentStory.Continue();
 
                 //display choices if there are any
-                //DisplayChoices();
+                DisplayChoices();
                 //handle tags
                 HandleTags(currentStory.currentTags);
 
@@ -422,8 +422,6 @@ public class DialogueManager : MonoBehaviour
             }
             else if (character == "Opponent")
             {
-                //enemyTextBox.text = enemyDefense;
-                //StartCoroutine(DisplayLine(enemyTextBox, enemyDefense));
                 for (int i = 0; i < textBoxes.Length; i++)
                 {
                     if (textBoxesText[i].text == "")
