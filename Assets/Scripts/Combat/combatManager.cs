@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class combatManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class combatManager : MonoBehaviour
     [Header("CombatSettings")]
     public float speedIncrementSpeed;
     [SerializeField] float cardPlayedHoverDuration; //for card
-    public int playerHandAmount;
+    
 
     [Header("EnemySettings")]
     [SerializeField] int opponentDeckSize;
@@ -29,22 +30,25 @@ public class combatManager : MonoBehaviour
     [Header("MiscSettings")]
     [SerializeField] int cardTimeMultiplier;
 
-
     private int playerSpeed, playerMaxHealth, playerHealth;
     private int opponentSpeed, opponentMaxHealth, opponentHealth;
 
     private int playerSpeedCounter, opponentSpeedCounter; 
     private string lastIncremented; //for keeping track of which counter to increment after a participant takes a turn
-    private string lastPlayed; //for keeping track of whos turn it was last
 
     private combatUI uiScript;
     private cardEffect effectsScript;
 
     private List<card> opponentCards = new List<card>();
 
-    private int cardsPlayed;
+    private int cardsPlayed; //for time
 
     private int tempPlayerHealth, tempOpponentHealth; //for retort
+
+    //Card effect Variables
+    [HideInInspector] public int bonusPlayerAttack, bonusOpponentAttack;
+    [HideInInspector] public int bonusPlayerDefend, bonusOpponentDefend;
+    public int playerHandAmount;
 
     private void Awake()
     {
@@ -104,6 +108,12 @@ public class combatManager : MonoBehaviour
         playerSpeedCounter = 0;
         opponentSpeedCounter = 0;
         cardsPlayed = 0;
+
+        bonusPlayerAttack = 0;
+        bonusOpponentAttack = 0;
+        bonusPlayerDefend = 0;
+        bonusOpponentDefend = 0;
+        playerHandAmount = 3;
     }
 
     IEnumerator incrementSpeed()
@@ -160,20 +170,13 @@ public class combatManager : MonoBehaviour
         {
             drawCard();
         }
-        lastPlayed = "player";
     }
 
     private void startOpponentTurn()
     {
         state = "opponent-choose";
 
-        if (lastPlayed == "player")
-
         StartCoroutine(playOpponentCard());
-
-        lastPlayed = "opponent";
-
-
     }
 
     IEnumerator playOpponentCard()
@@ -204,6 +207,7 @@ public class combatManager : MonoBehaviour
         yield return new WaitForSeconds(cardPlayedHoverDuration/2);
 
         cardsPlayed++;
+
         if (!checkCombatEnd())
         {
             endOpponentRound();
@@ -280,6 +284,7 @@ public class combatManager : MonoBehaviour
                 break;
 
             case card.cardType.Effect:
+                effectsScript.playCard(cardInfo, 0);
                 break;
         }
 
@@ -293,6 +298,14 @@ public class combatManager : MonoBehaviour
         yield return new WaitForSeconds(cardPlayedHoverDuration/4);
 
         cardsPlayed++;
+
+        if (cardInfo.cardName == "redraw")
+        {
+            uiScript.discardAllCards();
+            yield return new WaitForSeconds(0.5f);
+            startPlayerTurn();
+            yield break;
+        }
         if (!checkCombatEnd())
         {
             endPlayerRound();
@@ -306,13 +319,35 @@ public class combatManager : MonoBehaviour
     {
         if (target == 0) //targeting player
         {
-            tempPlayerHealth -= amount;
+            tempPlayerHealth -= amount + bonusOpponentAttack;
             if (tempPlayerHealth <= 0)
             {
                 tempPlayerHealth = 0;
                 playerHealth = 0;
             }
         } else if (target == 1) //targeting opponent
+        {
+            tempOpponentHealth -= amount + bonusPlayerAttack;
+            if (tempOpponentHealth <= 0)
+            {
+                tempOpponentHealth = 0;
+                opponentHealth = 0;
+            }
+        }
+    }
+
+    public void inflictSimpleDamage(int target, int amount) //does not take into account bonusDamage
+    {
+        if (target == 0) //targeting player
+        {
+            tempPlayerHealth -= amount;
+            if (tempPlayerHealth <= 0)
+            {
+                tempPlayerHealth = 0;
+                playerHealth = 0;
+            }
+        }
+        else if (target == 1) //targeting opponent
         {
             tempOpponentHealth -= amount;
             if (tempOpponentHealth <= 0)
@@ -327,18 +362,41 @@ public class combatManager : MonoBehaviour
     {
         if (target == 0)
         {
-            tempPlayerHealth += amount;
+            tempPlayerHealth += amount + bonusPlayerDefend;
             if (tempPlayerHealth > playerHealth)
             {
                 tempPlayerHealth = playerHealth;
             }
         } else if (target == 1)
         {
-            tempOpponentHealth += amount;
+            tempOpponentHealth += amount + bonusOpponentDefend;
             if (tempOpponentHealth > opponentHealth)
             {
                 tempOpponentHealth = opponentHealth;
             }
+        }
+    }
+
+    public void heal(int target, int amount)
+    {
+        if (target == 0)
+        {
+            playerHealth += amount;
+
+            if (playerHealth > playerMaxHealth)
+            {
+                playerHealth = playerMaxHealth;
+            }
+            tempPlayerHealth = playerHealth;
+        } else if (target == 1)
+        {
+            opponentHealth += amount;
+
+            if (opponentHealth > opponentMaxHealth)
+            {
+                opponentHealth = opponentMaxHealth;
+            }
+            tempOpponentHealth = opponentHealth;
         }
     }
 

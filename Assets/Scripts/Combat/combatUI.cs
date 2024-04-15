@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UI;
 
 public class combatUI : MonoBehaviour
@@ -82,15 +84,24 @@ public class combatUI : MonoBehaviour
 
         }
 
-        if (cardInfo.type == card.cardType.Defend || cardInfo.type == card.cardType.Attack)
-        {
-            TextMeshProUGUI cardDescription = newCard.transform.Find("Description").GetComponent<TextMeshProUGUI>();
-            cardDescription.text = cardDescription.text.Replace("$", cardInfo.cardStrength.ToString());
+        TextMeshProUGUI cardDescription = newCard.transform.Find("Description").GetComponent<TextMeshProUGUI>();
+        string displayString = cardInfo.cardStrength.ToString();
 
+
+        if (cardInfo.type == card.cardType.Defend && combatManager.instance.bonusPlayerDefend > 0)
+        {
+            displayString = "(" + displayString + "+" + combatManager.instance.bonusPlayerDefend.ToString() +")";
+        } else if (cardInfo.type == card.cardType.Attack && combatManager.instance.bonusPlayerAttack > 0)
+        {
+            displayString = "(" + displayString + "+" + combatManager.instance.bonusPlayerAttack.ToString() + ")";
+        } else if (cardInfo.type == card.cardType.Effect)
+        {
+            cardDescription.text = cardInfo.description;
         }
-            
-        //newCard.GetComponent<Image>().sprite = cardInfo.image;
-        
+
+        cardDescription.text = cardDescription.text.Replace("$", displayString);
+
+
         cardFeedback cardScript = newCard.GetComponent<cardFeedback>();
         cardScript.uiController = this;
         cardScript.cardInfo = cardInfo;
@@ -285,10 +296,10 @@ public class combatUI : MonoBehaviour
 
     public void resetUIs()
     {
-        StartCoroutine(updateHealthBar(playerHealthDisplay, 1, 0f));
-        StartCoroutine(updateHealthBar(opponentHealthDisplay, 1, 0));
-        StartCoroutine(updateHealthBar(tempPlayerHealthDisplay, 1, 0));
-        StartCoroutine(updateHealthBar(tempOpponentHealthDisplay, 1, 0));
+        StartCoroutine(updateHealthBar(playerHealthDisplay, 1, 0.1f));
+        StartCoroutine(updateHealthBar(opponentHealthDisplay, 1, 0.1f));
+        StartCoroutine(updateHealthBar(tempPlayerHealthDisplay, 1, 0.1f));
+        StartCoroutine(updateHealthBar(tempOpponentHealthDisplay, 1, 0.1f));
 
         playerSpeedDisplay.resetPosition();
         opponentSpeedDisplay.resetPosition();

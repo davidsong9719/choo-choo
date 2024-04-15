@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd5910ad9aae4844e8c1e6cff15a9fa3, type: 3}
-  m_Name: effect0
+  m_Name: lifeSteal
   m_EditorClassIdentifier: 
-  cardName: hypnotize
-  image: {fileID: 5290122886639640925, guid: 29e66fc494a54644b94338a1860d1e1d, type: 3}
   type: 2
-  cardStrength: 0
+  cardStrength: 7
+  cardName: lifeSteal
+  description: Drain <color=#FFFFFF>$</color> of opponent's willpower

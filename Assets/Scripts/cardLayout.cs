@@ -121,12 +121,24 @@ public class cardLayout : MonoBehaviour
 
         newCard.GetComponent<cardFeedback>().cardInfo = cardInfo;
 
-        if (cardInfo.type == card.cardType.Defend || cardInfo.type == card.cardType.Attack)
-        {
-            TextMeshProUGUI cardDescription = newCard.transform.Find("Description").GetComponent<TextMeshProUGUI>();
-            cardDescription.text = cardDescription.text.Replace("$", cardInfo.cardStrength.ToString());
+        TextMeshProUGUI cardDescription = newCard.transform.Find("Description").GetComponent<TextMeshProUGUI>();
+        string displayString = cardInfo.cardStrength.ToString();
 
+
+        if (cardInfo.type == card.cardType.Defend && combatManager.instance.bonusPlayerDefend > 0)
+        {
+            displayString = "(" + displayString + "+" + combatManager.instance.bonusPlayerDefend.ToString() + ")";
         }
+        else if (cardInfo.type == card.cardType.Attack && combatManager.instance.bonusPlayerAttack > 0)
+        {
+            displayString = "(" + displayString + "+" + combatManager.instance.bonusPlayerAttack.ToString() + ")";
+        }
+        else if (cardInfo.type == card.cardType.Effect)
+        {
+            cardDescription.text = cardInfo.description;
+        }
+
+        cardDescription.text = cardDescription.text.Replace("$", displayString);
 
         return newCard;
 
