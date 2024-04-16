@@ -62,7 +62,7 @@ public class combatManager : MonoBehaviour
 
     public void startCombat()
     {
-        isPlayerCursed = true;
+        //isPlayerCursed = true;
         combatParent.SetActive(true);
         victoryParent.SetActive(false);
 

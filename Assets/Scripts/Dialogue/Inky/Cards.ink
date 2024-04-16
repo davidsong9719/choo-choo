@@ -52,18 +52,18 @@
 {shuffle:
 - חÂרΘיßרæקοסδφדאØודי
     {shuffle:
-        - yuh huh
-        - please
+        - Excuse me?
+        - What?
     }
 - ודיÂדרΘיκοæυדאØקγוκ
     {shuffle:
-        - on my knees begging
-        - but join the cult
+        - Uhh...
+        - ???
     }
 - חוæקיοדκÂדרßרØו
     {shuffle:
-        - nuh uh
-        - but its cool
+        - What the hell?
+        - Are you alright?
     }
 }
 -> END
