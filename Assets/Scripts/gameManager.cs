@@ -20,6 +20,8 @@ public class gameManager : MonoBehaviour
     public int stageOneLength;
     public int stageTwoLength;
     public int stageThreeLength;
+
+    private float volume;
     
     private void Awake()
     {
@@ -35,15 +37,24 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void playSFX(AudioClip clip, float volumn)
+    public void playSFX(AudioClip clip)
     {
+        //CALL setVolume FIRST!!!!!
+        //
+        //
+
         GameObject sfxObject = new GameObject();
         AudioSource sfxSource = sfxObject.AddComponent<AudioSource>();
         sfxSource.clip = clip;
-        sfxSource.volume = volumn;
+        sfxSource.volume = volume;
         sfxSource.Play();
 
         StartCoroutine(endSFX(sfxSource));
+    }
+
+    public void setVolume(float newVolume)
+    {
+        volume = newVolume;
     }
 
     IEnumerator endSFX(AudioSource sfxSource)

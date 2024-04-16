@@ -36,14 +36,16 @@ public class targetNPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        findClosestNPC();
+        findClosestInteractable();
         selectTarget();
     }
 
-    private void findClosestNPC()
+    private void findClosestInteractable()
     {
         List<GameObject> npcList = npcManagerScript.talkableNPC;
-        GameObject closestNPC = null;
+        List<GameObject> doorList = subwayManager.instance.doorList;
+        GameObject closestInteractable = null;
+
         float closestDistance = 999999;
 
         for (int i = 0; i < npcList.Count; i++)
@@ -53,15 +55,26 @@ public class targetNPC : MonoBehaviour
             if (distance < closestDistance )
             {
                 closestDistance = distance;
-                closestNPC = npcList[i];
+                closestInteractable = npcList[i];
+            }
+        }
+        
+        for (int i = 0; i < doorList.Count; i++)
+        {
+            float distance = Vector3.Distance(gameObject.transform.position, doorList[i].transform.position);
+
+            if (distance <closestDistance)
+            {
+                closestDistance = distance;
+                closestInteractable = doorList[i];
             }
         }
         
         if (closestDistance < targetDistance)
         {
             targetDisplay.SetActive(true);
-            moveTargetDisplay(closestNPC.transform);
-            target = closestNPC;
+            moveTargetDisplay(closestInteractable.transform);
+            target = closestInteractable;
         } else
         {
             targetDisplay.SetActive(false);
@@ -73,8 +86,11 @@ public class targetNPC : MonoBehaviour
     {
         RectTransform displayTransform = targetDisplay.GetComponent<RectTransform>();
 
-        Vector3 headPosition = target.Find("Head").position;
-        displayTransform.anchoredPosition3D = new Vector3(headPosition.x, headPosition.y + displayHeight, headPosition.z);
+        if (target.tag == "NPC")
+        {
+            Vector3 headPosition = target.Find("Head").position;
+            displayTransform.anchoredPosition3D = new Vector3(headPosition.x, headPosition.y + displayHeight, headPosition.z);
+        }
 
         displayTransform.LookAt(Camera.main.transform, Vector3.up);
         //displayTransform.anchoredPosition3D = Vector3.Lerp(displayTransform.anchoredPosition3D, Camera.main.transform.position, 0.9f);
@@ -84,9 +100,15 @@ public class targetNPC : MonoBehaviour
     {
         if (interact.ReadValue<float>() == 0) return;
         if (target == null) return;
+        
+        if (target.tag == "ExitDoor")
+        {
+            subwayManager.instance.switchToStation();
+        } else if (target.tag == "NPC")
+        {
+            subwayManager.instance.startCombat(target.GetComponent<opponentInfo>().stats);
 
-        subwayManager.instance.startCombat(target.GetComponent<opponentInfo>().stats);
-
-        npcManagerScript.removeFromList(target);
+            npcManagerScript.removeFromList(target);
+        }
     }
 }

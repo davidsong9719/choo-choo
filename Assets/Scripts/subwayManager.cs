@@ -16,11 +16,18 @@ public class subwayManager : MonoBehaviour
     [SerializeField] GameObject combatCanavas;
     [SerializeField] GameObject combatManagerObject;
 
+    //station
+    [SerializeField] stationManager stationScript;
+
+    //Camera
+    [SerializeField] Camera carCamera, stationCamera;
+
     [Header("Public Access")]
     public GameObject player;
     public string state;
     public string previousState; //for opening
     public PlayerInputActions playerControls;
+    public List<GameObject> doorList;
 
     private void Awake()
     {
@@ -41,9 +48,12 @@ public class subwayManager : MonoBehaviour
 
         movementScript.enabled = false;
         targetScript.enabled = false;
+        stationScript.enabled = false;
 
         combatManagerObject.SetActive(true);
         combatCanavas.SetActive(true);
+
+        switchCamera("car");
     }
 
     public void startCombat(opponentStats opponent)
@@ -52,11 +62,14 @@ public class subwayManager : MonoBehaviour
 
         movementScript.enabled = false;
         targetScript.enabled = false;
+        stationScript.enabled = false;
 
         combatManagerObject.SetActive(true);
         combatCanavas.SetActive(true);
         combatManager.instance.opponent = opponent;
         combatManager.instance.startCombat();
+
+        switchCamera("car");
     }
 
     public void switchToMovement()
@@ -65,8 +78,39 @@ public class subwayManager : MonoBehaviour
 
         movementScript.enabled = true;
         targetScript.enabled = true;
+        stationScript.enabled = false;
 
         combatManagerObject.SetActive(false);
         combatCanavas.SetActive(false);
+
+        switchCamera("car");
     }
+
+    public void switchToStation()
+    {
+        state = "station";
+
+        movementScript.enabled = true;
+        targetScript.enabled = false;
+        stationScript.enabled = true;
+
+        stationScript.startStation();
+
+        switchCamera("station");
+    }
+
+    private void switchCamera(string newView)
+    {
+        if (newView == "station")
+        {
+            stationCamera.enabled = true;
+            carCamera.enabled = false;
+        } else if (newView == "car")
+        {
+            stationCamera.enabled = false;
+            carCamera.enabled = true;
+        }
+    }
+
+
 }

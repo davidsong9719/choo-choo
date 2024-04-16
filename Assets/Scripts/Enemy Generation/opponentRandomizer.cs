@@ -26,7 +26,6 @@ public class opponentRandomizer : MonoBehaviour
         newStats.speed = Mathf.RoundToInt(speed);
 
         return newStats;
-
     }
     
     private int chooseStat(string stat)
