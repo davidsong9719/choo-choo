@@ -48,6 +48,26 @@
 }
 -> END
 
+= Cursed
+{shuffle:
+- חÂרΘיßרæקοסδφדאØודי
+    {shuffle:
+        - yuh huh
+        - please
+    }
+- ודיÂדרΘיκοæυדאØקγוκ
+    {shuffle:
+        - on my knees begging
+        - but join the cult
+    }
+- חוæקיοדκÂדרßרØו
+    {shuffle:
+        - nuh uh
+        - but its cool
+    }
+}
+-> END
+
 ===Opponent===
 = Attack
 {shuffle:
@@ -94,5 +114,25 @@
 - lalalala not listening
 - AAAAAAA police! this is harrassment
 - bro like stfu
+}
+-> END
+
+= Cursed
+{shuffle:
+- nuh uh
+    {shuffle:
+        - yuh huh
+        - please
+    }
+- nah bro
+    {shuffle:
+        - on my knees begging
+        - but join the cult
+    }
+- this is literally a cult
+    {shuffle:
+        - nuh uh
+        - but its cool
+    }
 }
 -> END
