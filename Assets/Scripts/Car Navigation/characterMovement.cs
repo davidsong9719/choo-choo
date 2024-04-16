@@ -61,4 +61,9 @@ public class characterMovement : MonoBehaviour
         float smoothedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotateVelocity, rotateSpeed);
         transform.rotation = Quaternion.Euler(0, smoothedAngle, 0);
     }
+
+    public void stopWalking()
+    {
+        animator.SetBool("isWalking", false);
+    }
 }

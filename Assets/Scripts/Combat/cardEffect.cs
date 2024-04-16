@@ -12,16 +12,23 @@ public class cardEffect : MonoBehaviour
         manager = GetComponent<combatManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void playCard(card cardInfo, int cardPlayer)
     {
         switch (cardInfo.cardName)
         {
+            //Player
+            case "redraw":
+                if (cardPlayer == 0)
+                {
+                    manager.isPlayerToRedraw = true;
+                }
+                else if (cardPlayer == 1)
+                {
+                    manager.isOpponentToRedraw = true;
+                }
+                break;
+
+            //tier 1
             case "increaseAttack":
                 if (cardPlayer == 0)
                 {
@@ -52,6 +59,8 @@ public class cardEffect : MonoBehaviour
                     }
                 }
                 break;
+
+            //tier 2
             case "lifeSteal":
                 if (cardPlayer == 0)
                 {
@@ -62,6 +71,82 @@ public class cardEffect : MonoBehaviour
                     manager.inflictSimpleDamage(0, cardInfo.cardStrength);
                     manager.heal(1, cardInfo.cardStrength);
                 }
+                break;
+
+            case "curse":
+                if (cardPlayer == 0)
+                {
+                    manager.isOpponentCursed = true;
+                }
+                else if (cardPlayer == 1)
+                {
+                    manager.isPlayerCursed = true;
+                }
+                break;
+
+            case "pray":
+                float randomNum = Random.Range(0f, 1f);
+                bool isSuccessful = randomNum > 0.66;
+                if (cardPlayer == 0)
+                {
+                    if (isSuccessful)
+                    {
+                        manager.inflictSimpleDamage(1, cardInfo.cardStrength);
+                    }
+                    else
+                    {
+                        manager.isPlayerCursed = true;
+                        manager.endPlayerTurnCursed = true;
+                    }
+                }
+                else if (cardPlayer == 1)
+                {
+                    if (isSuccessful)
+                    {
+                        manager.inflictSimpleDamage(0, cardInfo.cardStrength);
+                    }
+                    else
+                    {
+                        manager.isOpponentCursed = true;
+                        manager.endOpponentTurnCursed = true;
+                    }
+                }
+                break;
+
+
+            //tier 3
+            case "outburst":
+                if (cardPlayer == 0)
+                {
+                    manager.inflictDamage(1, cardInfo.cardStrength*3);
+                } else if (cardPlayer == 1)
+                {
+                    manager.inflictSimpleDamage(0, cardInfo.cardStrength*3);
+                }
+                break;
+
+            case "chainRetort":
+                if (cardPlayer == 0)
+                {
+                    manager.simpleRetort(0, cardInfo.cardStrength);
+                    manager.isPlayerMultiPlay = true;
+
+                } else if (cardPlayer == 1)
+                {
+                    manager.isOpponentMultiPlay = true;
+                    manager.simpleRetort(1, cardInfo.cardStrength);
+                }
+                break;
+
+            case "confuse":
+                if (cardPlayer == 0)
+                {
+                    manager.decreaseSpeed(1);
+                } else if (cardPlayer == 1)
+                {
+                    manager.decreaseSpeed(0);
+                }
+
                 break;
         }
     }

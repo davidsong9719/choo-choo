@@ -981,7 +981,15 @@ MonoBehaviour:
   cardPlayedHoverDuration: 0.5
   opponentDeckSize: 7
   cardTimeMultiplier: 2
+  isPlayerCursed: 0
+  isOpponentCursed: 0
+  endPlayerTurnCursed: 0
+  endOpponentTurnCursed: 0
   cursedCard: {fileID: 11400000, guid: f7a9475a2e1d44b4293ad91aab44cf1a, type: 2}
+  isPlayerToRedraw: 0
+  isOpponentToRedraw: 0
+  isPlayerMultiPlay: 0
+  isOpponentMultiPlay: 0
   bonusPlayerAttack: 0
   bonusOpponentAttack: 0
   bonusPlayerDefend: 0
@@ -3600,17 +3608,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
   - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
   - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
   - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
-  - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
-  - {fileID: 11400000, guid: 38c12b8e0153cb34ebd67c6208c3625c, type: 2}
-  - {fileID: 11400000, guid: 38c12b8e0153cb34ebd67c6208c3625c, type: 2}
-  - {fileID: 11400000, guid: 38c12b8e0153cb34ebd67c6208c3625c, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
   playerMaxHealth: 50
   playerHealth: 50
   playerSpeed: 3
@@ -9008,7 +9016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 07f4379006e9b974a92f19b284bee759, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 80a8f843110c3704183b5fdfb132259a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

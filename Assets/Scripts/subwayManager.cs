@@ -60,6 +60,7 @@ public class subwayManager : MonoBehaviour
     {
         state = "combat";
 
+        movementScript.stopWalking();
         movementScript.enabled = false;
         targetScript.enabled = false;
         stationScript.enabled = false;
@@ -111,6 +112,4 @@ public class subwayManager : MonoBehaviour
             carCamera.enabled = true;
         }
     }
-
-
 }

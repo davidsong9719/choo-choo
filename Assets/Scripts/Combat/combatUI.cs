@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -91,16 +92,29 @@ public class combatUI : MonoBehaviour
         if (cardInfo.type == card.cardType.Defend && combatManager.instance.bonusPlayerDefend > 0)
         {
             displayString = "(" + displayString + "+" + combatManager.instance.bonusPlayerDefend.ToString() +")";
-        } else if (cardInfo.type == card.cardType.Attack && combatManager.instance.bonusPlayerAttack > 0)
+        } else if ((cardInfo.type == card.cardType.Attack && combatManager.instance.bonusPlayerAttack > 0) || (cardInfo.cardName == "outburst" && combatManager.instance.bonusPlayerAttack > 0))
         {
             displayString = "(" + displayString + "+" + combatManager.instance.bonusPlayerAttack.ToString() + ")";
-        } else if (cardInfo.type == card.cardType.Effect || cardInfo.type == card.cardType.Cursed)
+        } 
+        
+        if (cardInfo.type == card.cardType.Effect || cardInfo.type == card.cardType.Cursed)
         {
             cardDescription.text = cardInfo.description;
         }
 
         cardDescription.text = cardDescription.text.Replace("$", displayString);
 
+        while(true)
+        {
+            cardDescription.ForceMeshUpdate();
+            if (cardDescription.isTextOverflowing)
+            {
+                cardDescription.fontSize--;
+            } else
+            {
+                break;
+            }
+        }
 
         cardFeedback cardScript = newCard.GetComponent<cardFeedback>();
         cardScript.uiController = this;
@@ -247,8 +261,16 @@ public class combatUI : MonoBehaviour
         cardFeedback cardScript = discardedCard.GetComponent<cardFeedback>();
         cardScript.discardCard(discardDeckPosition.localPosition);
 
-        combatManager.instance.playerHand.Remove(cardScript.cardInfo);
-        combatManager.instance.discardPile.Add(cardScript.cardInfo);
+        if (discardedCard.GetComponent<cardFeedback>().cardInfo.type == card.cardType.Cursed)
+        {
+
+        }
+        else
+        {
+            combatManager.instance.playerHand.Remove(cardScript.cardInfo);
+            combatManager.instance.discardPile.Add(cardScript.cardInfo);
+        }
+
     }
     
     public void discardAllCards()

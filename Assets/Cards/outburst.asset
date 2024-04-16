@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd5910ad9aae4844e8c1e6cff15a9fa3, type: 3}
-  m_Name: defend
+  m_Name: outburst
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   cardStrength: 5
-  cardName: 
-  description: 
+  cardName: outburst
+  description: <color=#FFFFFF>-$</color> to opponent's willpower <color=#FFFFFF>thrice</color>,
+    recieves <color=#FFFFFF>Argue</color> buffs

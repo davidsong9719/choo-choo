@@ -15,6 +15,7 @@ public class cardFeedback : MonoBehaviour
     [HideInInspector] public RectTransform playBorder;
     [HideInInspector] public Vector2 targetPosition;
     [HideInInspector] public cardOptions newCardManager;
+    [HideInInspector] public bool isTemp;
 
     [Header("Setup")]
     public RectTransform cardTransform;
@@ -30,6 +31,8 @@ public class cardFeedback : MonoBehaviour
     
 
     private Vector3 refVelocity; //for smoothdamp
+
+    
 
     // Start is called before the first frame update
     void Start()

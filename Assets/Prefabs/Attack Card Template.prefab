@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <color=#FFFFFF>-$</color> to opponent willpower
+  m_text: <color=#FFFFFF>-$</color> to opponent's willpower
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d8e1b40579bd954687b015bd72f38e5, type: 2}
   m_sharedMaterial: {fileID: -7624680532239796670, guid: 6d8e1b40579bd954687b015bd72f38e5,

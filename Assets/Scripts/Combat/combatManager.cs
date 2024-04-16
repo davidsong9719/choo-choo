@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -44,13 +45,17 @@ public class combatManager : MonoBehaviour
 
     private int cardsPlayed; //for time
 
-    private bool isPlayerCursed, isOpponentCursed;
+    [HideInInspector] public bool isPlayerCursed, isOpponentCursed;
+    [HideInInspector] public bool endPlayerTurnCursed, endOpponentTurnCursed;
     [SerializeField] card cursedCard;
+    [HideInInspector] public bool isPlayerToRedraw, isOpponentToRedraw;
+    [HideInInspector] public bool isPlayerMultiPlay, isOpponentMultiPlay;
 
     //Card effect Variables
     [HideInInspector] public int bonusPlayerAttack, bonusOpponentAttack;
     [HideInInspector] public int bonusPlayerDefend, bonusOpponentDefend;
     public int playerHandAmount;
+
 
     private void Awake()
     {
@@ -62,7 +67,7 @@ public class combatManager : MonoBehaviour
 
     public void startCombat()
     {
-        isPlayerCursed = true;
+        //isPlayerCursed = true;
         combatParent.SetActive(true);
         victoryParent.SetActive(false);
 
@@ -187,9 +192,14 @@ public class combatManager : MonoBehaviour
         yield return new WaitForSeconds(cardPlayedHoverDuration*1.5f);
         print(opponentCards.Count);
         card currentCard = opponentCards[Random.Range(0, opponentCards.Count)]; // CHANGE AFTER ADDING RETORT
-        
+        if (isOpponentCursed)
+        {
+            currentCard = cursedCard;
+        }
+
         DialogueManager.GetInstance().EnterCombat("Opponent", currentCard.type.ToString());
 
+        
         switch (currentCard.type)
         {
             case card.cardType.Attack:
@@ -204,12 +214,29 @@ public class combatManager : MonoBehaviour
                 break;
         }
 
-        opponentHealth = tempOpponentHealth;
+        if (!isOpponentToRedraw)
+        {
+            opponentHealth = tempOpponentHealth;
+        }
+        
         uiScript.updateHealthUI(opponentHealth, opponentMaxHealth, tempOpponentHealth, playerHealth, playerMaxHealth, tempPlayerHealth);
 
         yield return new WaitForSeconds(cardPlayedHoverDuration/2);
 
         cardsPlayed++;
+
+        if (isOpponentMultiPlay)
+        {
+            isOpponentMultiPlay = false;
+            yield break;
+        }
+
+        if (isOpponentToRedraw)
+        {
+            isOpponentToRedraw = false;
+            startOpponentTurn();
+            yield break;
+        }
 
         if (!checkCombatEnd())
         {
@@ -236,17 +263,19 @@ public class combatManager : MonoBehaviour
 
     private void drawCard()
     {
-        playerHand.Add(drawPile[0]);
+        
 
         if (isPlayerCursed == false)
         {
+            playerHand.Add(drawPile[0]);
             uiScript.spawnCard(drawPile[0], false, Vector3.zero);
+            drawPile.RemoveAt(0);
         } else if (isPlayerCursed == true)
         {
             uiScript.spawnCard(cursedCard, false, Vector3.zero);
         }
 
-        drawPile.RemoveAt(0);
+        
 
         if (drawPile.Count == 0)
         {
@@ -265,7 +294,8 @@ public class combatManager : MonoBehaviour
 
     private void endPlayerRound()
     {
-        isPlayerCursed = false;
+        isPlayerCursed = endPlayerTurnCursed;
+        endPlayerTurnCursed = false;
         uiScript.discardAllCards();
         StartCoroutine(incrementSpeed());
 
@@ -273,7 +303,8 @@ public class combatManager : MonoBehaviour
 
     private void endOpponentRound()
     {
-        isOpponentCursed = false;
+        isOpponentCursed = endOpponentTurnCursed;
+        endOpponentTurnCursed = false;
         StartCoroutine(incrementSpeed());
     }
 
@@ -301,7 +332,11 @@ public class combatManager : MonoBehaviour
                 break;
         }
 
-        playerHealth = tempPlayerHealth;
+        if (!isPlayerToRedraw && !isPlayerMultiPlay)
+        {
+            playerHealth = tempPlayerHealth;
+        }
+        
         uiScript.updateHealthUI(opponentHealth, opponentMaxHealth, tempOpponentHealth, playerHealth, playerMaxHealth, tempPlayerHealth);
 
         yield return new WaitForSeconds(cardPlayedHoverDuration);
@@ -312,8 +347,17 @@ public class combatManager : MonoBehaviour
 
         cardsPlayed++;
 
-        if (cardInfo.cardName == "redraw")
+        if (isPlayerMultiPlay && playerHand.Count > 0)
         {
+            yield return new WaitForSeconds(0.2f);
+            uiScript.hasSelectedCard = false;
+            isPlayerMultiPlay = false;
+            yield break;
+        }
+
+        if (isPlayerToRedraw)
+        {
+            isPlayerToRedraw = false;
             uiScript.discardAllCards();
             yield return new WaitForSeconds(0.5f);
             startPlayerTurn();
@@ -389,6 +433,26 @@ public class combatManager : MonoBehaviour
             }
         }
     }
+    public void simpleRetort(int target, int amount)    //does not take into account bonusDefend
+    {
+        if (target == 0)
+        {
+            tempPlayerHealth += amount;
+            if (tempPlayerHealth > playerHealth)
+            {
+                tempPlayerHealth = playerHealth;
+            }
+        }
+        else if (target == 1)
+        {
+            tempOpponentHealth += amount;
+            if (tempOpponentHealth > opponentHealth)
+            {
+                tempOpponentHealth = opponentHealth;
+            }
+        }
+    }
+
 
     public void heal(int target, int amount)
     {
@@ -493,5 +557,20 @@ public class combatManager : MonoBehaviour
 
             opponentCards.Add(newCard);
         }
+    }
+
+    public void decreaseSpeed(int target)
+    {
+        if (target == 0)
+        {
+            playerSpeed++;
+            
+        } else if (target == 1)
+        {
+            opponentSpeed++;
+        }
+
+
+        uiScript.updateSpeedUI((float)opponentSpeedCounter / (float)opponentSpeed, (float)playerSpeedCounter / (float)playerSpeed);
     }
 }
