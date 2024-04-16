@@ -406,6 +406,7 @@ public class DialogueManager : MonoBehaviour
                         if (playerDefense != "")
                         {
                             StartCoroutine(DisplayLine(textBoxesText[i], playerDefense));
+                            playerDefense = "";
                             textBoxes[i].GetComponentInChildren<Image>().enabled = true;
                             textBoxes[i].GetComponentInChildren<Image>().sprite = playerBubble;
                             break;
@@ -429,6 +430,7 @@ public class DialogueManager : MonoBehaviour
                         if (enemyDefense != "")
                         {
                             StartCoroutine(DisplayLine(textBoxesText[i], enemyDefense));
+                            enemyDefense = "";
                             textBoxes[i].GetComponentInChildren<Image>().enabled = true;
                             textBoxes[i].GetComponentInChildren<Image>().sprite = enemyBubble;
                             break;
