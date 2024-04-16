@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class cardGenerator : MonoBehaviour
@@ -51,6 +52,9 @@ public class cardGenerator : MonoBehaviour
 
             case 2:
                 newCard.type = card.cardType.Effect;
+                newCard.cardName = "redraw";
+                newCard.description = "Redraw <color=#FFFFFF>Hand</color>";
+
                 break;
         }
 
