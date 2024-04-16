@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UI;
 
 public class combatUI : MonoBehaviour
@@ -78,10 +75,13 @@ public class combatUI : MonoBehaviour
                 newCard = Instantiate(gameManager.instance.effectCardPrefab, cardParent);
                 break;
 
+            case card.cardType.Cursed:
+                newCard = Instantiate(gameManager.instance.nullCardPrefab, cardParent);
+                break;
+
             default:
                 Debug.LogWarning("Invalid Card Type!!!");
                 return;
-
         }
 
         TextMeshProUGUI cardDescription = newCard.transform.Find("Description").GetComponent<TextMeshProUGUI>();
@@ -94,7 +94,7 @@ public class combatUI : MonoBehaviour
         } else if (cardInfo.type == card.cardType.Attack && combatManager.instance.bonusPlayerAttack > 0)
         {
             displayString = "(" + displayString + "+" + combatManager.instance.bonusPlayerAttack.ToString() + ")";
-        } else if (cardInfo.type == card.cardType.Effect)
+        } else if (cardInfo.type == card.cardType.Effect || cardInfo.type == card.cardType.Cursed)
         {
             cardDescription.text = cardInfo.description;
         }

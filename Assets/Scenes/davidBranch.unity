@@ -981,6 +981,7 @@ MonoBehaviour:
   cardPlayedHoverDuration: 0.5
   opponentDeckSize: 7
   cardTimeMultiplier: 2
+  cursedCard: {fileID: 11400000, guid: f7a9475a2e1d44b4293ad91aab44cf1a, type: 2}
   bonusPlayerAttack: 0
   bonusOpponentAttack: 0
   bonusPlayerDefend: 0
@@ -3629,7 +3630,7 @@ MonoBehaviour:
     type: 3}
   stageOneLength: 60
   stageTwoLength: 60
-  stageThreeLength: 0
+  stageThreeLength: 60
 --- !u!4 &392891240
 Transform:
   m_ObjectHideFlags: 0

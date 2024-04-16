@@ -15,6 +15,7 @@ public class card : ScriptableObject
     {
         Attack,
         Defend,
-        Effect
+        Effect,
+        Cursed
     }
 }

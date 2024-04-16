@@ -32,6 +32,7 @@ public class combatManager : MonoBehaviour
 
     private int playerSpeed, playerMaxHealth, playerHealth;
     private int opponentSpeed, opponentMaxHealth, opponentHealth;
+    private int tempPlayerHealth, tempOpponentHealth; //for retort
 
     private int playerSpeedCounter, opponentSpeedCounter; 
     private string lastIncremented; //for keeping track of which counter to increment after a participant takes a turn
@@ -43,7 +44,8 @@ public class combatManager : MonoBehaviour
 
     private int cardsPlayed; //for time
 
-    private int tempPlayerHealth, tempOpponentHealth; //for retort
+    private bool isPlayerCursed, isOpponentCursed;
+    [SerializeField] card cursedCard;
 
     //Card effect Variables
     [HideInInspector] public int bonusPlayerAttack, bonusOpponentAttack;
@@ -60,6 +62,7 @@ public class combatManager : MonoBehaviour
 
     public void startCombat()
     {
+        isPlayerCursed = true;
         combatParent.SetActive(true);
         victoryParent.SetActive(false);
 
@@ -234,7 +237,15 @@ public class combatManager : MonoBehaviour
     private void drawCard()
     {
         playerHand.Add(drawPile[0]);
-        uiScript.spawnCard(drawPile[0], false, Vector3.zero);
+
+        if (isPlayerCursed == false)
+        {
+            uiScript.spawnCard(drawPile[0], false, Vector3.zero);
+        } else if (isPlayerCursed == true)
+        {
+            uiScript.spawnCard(cursedCard, false, Vector3.zero);
+        }
+
         drawPile.RemoveAt(0);
 
         if (drawPile.Count == 0)
@@ -254,6 +265,7 @@ public class combatManager : MonoBehaviour
 
     private void endPlayerRound()
     {
+        isPlayerCursed = false;
         uiScript.discardAllCards();
         StartCoroutine(incrementSpeed());
 
@@ -261,6 +273,7 @@ public class combatManager : MonoBehaviour
 
     private void endOpponentRound()
     {
+        isOpponentCursed = false;
         StartCoroutine(incrementSpeed());
     }
 
