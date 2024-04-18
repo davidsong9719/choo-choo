@@ -182,6 +182,7 @@ Wonderful! Have you been briefed already? #speaker-Opponent
         Save them from the ignorance and darkness they've been lost in.
         You've been assigned the subway tunnels.
         Find anyone you can and talk to them, open their eyes.
+        You can use [E] to interact with people and objects as well.
         Let me teach you how. In a few moments, the mock recruitment will begin.
         You see the bar underneath me? That's my Willpower. 
         Yours is up there, on the top left.
@@ -195,8 +196,8 @@ Wonderful! Have you been briefed already? #speaker-Opponent
 - -> END
 
 ===Tutorial2===
-Good job! You've worn down my Willpower, and you managed to pick up a new tactic too.
-I'm impressed.
+Good job! You've worn down my Willpower.
+And you managed to pick up a new tactic too, I'm impressed.
 And look at that, you've gained me as a follower! #speaker-Opponent
 You can check your follower count up in the top right corner.
 Recruit as many followers as you can by the end of the day, I'll see you tonight.
