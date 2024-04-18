@@ -73,6 +73,7 @@ public class npcManager : MonoBehaviour
         float stageProgress = 0;
 
         //Per-stage passenger density
+        //not currently in use
         /*
         if (gameManager.instance.timeElapsed < gameManager.instance.stageOneLength)
         {
@@ -195,6 +196,7 @@ public class npcManager : MonoBehaviour
 
         float stageProgress = 0;
         string currentStage = "";
+
         if (gameManager.instance.timeElapsed < gameManager.instance.stageOneLength)
         {
             currentStage = "1";
@@ -251,7 +253,7 @@ public class npcManager : MonoBehaviour
                 break;
         }
 
-        int difficulty = (int)(difficultyFloat * 2);
+        int difficulty = (int)difficultyFloat-1; //the -1 is there to counteract changes to the animation curve, don't touch no matter what lol
         return difficulty;
     } 
 

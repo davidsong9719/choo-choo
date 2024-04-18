@@ -113,19 +113,12 @@ public class subwayUI : MonoBehaviour
         state = "discard";
     }
 
-    public void refreshUI()
+    public void refreshUI(int additionalTime, float timeAnimationDuration)
     {
 
         followerDisplay.text = gameManager.instance.followerAmount.ToString();
 
-        /*
-        int elapsedTime = gameManager.instance.timeElapsed;
-        int minute = elapsedTime % 60;
-        int hour = (elapsedTime-minute) / 60;
-        hour += defaultHour;
-
-        timeDisplay.text = hour.ToString("00") + ":" + minute.ToString("00") + " PM";   
-        */
+        StartCoroutine(updateTime(additionalTime, timeAnimationDuration));
     }
 
     IEnumerator updateTime(int additionalTime, float animationDuration)
