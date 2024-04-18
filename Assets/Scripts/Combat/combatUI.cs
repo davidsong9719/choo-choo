@@ -21,9 +21,14 @@ public class combatUI : MonoBehaviour
     [SerializeField] RectTransform playCardBorder;
     [SerializeField] RectTransform drawDeckPosition, discardDeckPosition;
     
+    
     [Header("Settings")]
     [SerializeField] float speedMeterHeight;
     [SerializeField] AnimationCurve lerpCurve;
+    [SerializeField] Image enemyPortrait;
+    [SerializeField] List<Sprite> enemyPortraits;
+    [SerializeField] List<Color> speedColors;
+
 
     public void updateSpeedUI(float opponentSpeedPercentage, float playerSpeedPercentage)
     {
@@ -325,5 +330,13 @@ public class combatUI : MonoBehaviour
 
         playerSpeedDisplay.resetPosition();
         opponentSpeedDisplay.resetPosition();
-    }   
+        generateEnemyPortrait();
+    }
+
+    private void generateEnemyPortrait()
+    {
+        int index = Random.Range(0, enemyPortraits.Count);
+        enemyPortrait.sprite = enemyPortraits[index];
+        opponentSpeedDisplay.GetComponentsInChildren<Image>()[1].color = speedColors[index];
+    }
 } 

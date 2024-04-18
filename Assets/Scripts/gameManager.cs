@@ -15,6 +15,7 @@ public class gameManager : MonoBehaviour
     [Header("Templates")]
     public card attack, defend;
     public GameObject attackCardPrefab, defendCardPrefab, effectCardPrefab, nullCardPrefab;
+    public AnimationCurve lerpCurve;
 
     [Header("Parameters")]
     public int stageOneLength;

@@ -296,6 +296,7 @@ public class combatManager : MonoBehaviour
     {
         isPlayerCursed = endPlayerTurnCursed;
         endPlayerTurnCursed = false;
+        isPlayerMultiPlay = false;
         uiScript.discardAllCards();
         StartCoroutine(incrementSpeed());
 
@@ -305,6 +306,7 @@ public class combatManager : MonoBehaviour
     {
         isOpponentCursed = endOpponentTurnCursed;
         endOpponentTurnCursed = false;
+        isOpponentMultiPlay = false;
         StartCoroutine(incrementSpeed());
     }
 

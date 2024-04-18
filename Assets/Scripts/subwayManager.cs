@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class subwayManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class subwayManager : MonoBehaviour
     public string previousState; //for opening
     public PlayerInputActions playerControls;
     public List<GameObject> doorList;
+    public UnityEvent subwaySFX;
 
     private void Awake()
     {
@@ -38,7 +40,7 @@ public class subwayManager : MonoBehaviour
 
     void Start()
     {
-        switchToMovement();
+        switchToCar();
     }
 
 
@@ -53,7 +55,6 @@ public class subwayManager : MonoBehaviour
         combatManagerObject.SetActive(true);
         combatCanavas.SetActive(true);
 
-        switchCamera("car");
     }
 
     public void startCombat(opponentStats opponent)
@@ -70,7 +71,6 @@ public class subwayManager : MonoBehaviour
         combatManager.instance.opponent = opponent;
         combatManager.instance.startCombat();
 
-        switchCamera("car");
     }
 
     public void switchToMovement()
@@ -84,7 +84,6 @@ public class subwayManager : MonoBehaviour
         combatManagerObject.SetActive(false);
         combatCanavas.SetActive(false);
 
-        switchCamera("car");
     }
 
     public void switchToStation()
@@ -100,6 +99,12 @@ public class subwayManager : MonoBehaviour
         switchCamera("station");
     }
 
+    public void switchToCar()
+    {
+        subwaySFX.Invoke();
+        switchToMovement();
+        switchCamera("car");
+    }
     private void switchCamera(string newView)
     {
         if (newView == "station")

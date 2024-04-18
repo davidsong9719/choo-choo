@@ -118,11 +118,37 @@ public class subwayUI : MonoBehaviour
 
         followerDisplay.text = gameManager.instance.followerAmount.ToString();
 
+        /*
         int elapsedTime = gameManager.instance.timeElapsed;
         int minute = elapsedTime % 60;
         int hour = (elapsedTime-minute) / 60;
         hour += defaultHour;
 
         timeDisplay.text = hour.ToString("00") + ":" + minute.ToString("00") + " PM";   
+        */
+    }
+
+    IEnumerator updateTime(int additionalTime, float animationDuration)
+    {
+        float startTime = gameManager.instance.timeElapsed;
+        gameManager.instance.timeElapsed +=additionalTime;
+
+        float countTime = 0;
+        while(true)
+        {
+            countTime += Time.deltaTime;
+            float progressPercentage = countTime / animationDuration;
+            int newTime = (int)Mathf.Lerp(startTime, startTime + additionalTime, progressPercentage);
+
+            int minute = newTime % 60;
+            int hour = (newTime - minute) / 60;
+            timeDisplay.text = hour.ToString("00") + ":" + minute.ToString("00") + " PM";
+
+            if (progressPercentage >= 1)
+            {
+                break;
+            }
+            yield return null;
+        }
     }
 }

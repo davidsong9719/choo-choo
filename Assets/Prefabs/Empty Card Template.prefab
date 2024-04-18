@@ -140,7 +140,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LALALLALALALALALALALALALALLALALALALALALA
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d8e1b40579bd954687b015bd72f38e5, type: 2}
   m_sharedMaterial: {fileID: -7624680532239796670, guid: 6d8e1b40579bd954687b015bd72f38e5,
@@ -388,6 +390,7 @@ MonoBehaviour:
   playBorder: {fileID: 0}
   targetPosition: {x: 0, y: 0}
   newCardManager: {fileID: 0}
+  isTemp: 0
   cardTransform: {fileID: 4627903928077983849}
   highlightedDisplay: {fileID: 6455033988055862580}
   highlighedSprite: {fileID: 3562544666649429312, guid: 29e66fc494a54644b94338a1860d1e1d,

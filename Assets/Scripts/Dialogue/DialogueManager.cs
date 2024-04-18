@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -243,6 +243,15 @@ public class DialogueManager : MonoBehaviour
 
             //check for text tag, dont show (wait for characters) if <>
             textBox.maxVisibleCharacters++;
+
+            if (textBox.GetComponentInParent<Image>().sprite == playerBubble)
+            {
+                GetComponent<dialogueAudio>().makeNoise(0);
+            } else
+            {
+                GetComponent<dialogueAudio>().makeNoise(1);
+            }
+            
             yield return new WaitForSeconds(typingSpeed);
 
         }
