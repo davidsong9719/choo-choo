@@ -1,4 +1,4 @@
--> Talk
+->Talk
 ===Talk===
 {shuffle:
     - Hello! #speaker-Player
@@ -165,3 +165,40 @@ Would you like one of these pamplets? #speaker-Player
     And immortality. #speaker-Player
     Okay, I'm more convinced. #speaker-Opponent
 ->END
+
+
+
+===Tutorial===
+Ah our newest member! You know about clicking [E] to continue, yes? #speaker-Opponent
+Wonderful! Have you been briefed already? #speaker-Opponent
+    *[No (instructions)]
+        Not yet, what are my tasks? #speaker-Player
+        Eager, are you? Those above would be proud. #speaker-Opponent
+        //The higher beings have been growing hungry as of late.
+        //And we've run low on sacrifices, so you have a special job of gathering them!
+        The higher beings have been feeling upset, too few are like you and I.
+        Too few have opened their eyes to the truth.
+        It is our job as loyal servants to bring salvation to the rest of the world.
+        Save them from the ignorance and darkness they've been lost in.
+        You've been assigned the subway tunnels.
+        Find anyone you can and talk to them, open their eyes.
+        Let me teach you how. In a few moments, the mock recruitment will begin.
+        You see the bar underneath me? That's my Willpower. 
+        Yours is up there, on the top left.
+        You need to lower the lost souls's Willpower enough to get them to join our cu-
+        Our church.
+        The little bar on the side is for speed, this determines our talking order.
+        Let's give it a shot!
+    *[Yes (skip dialogue)]
+        Yes! I have and I'm ready to serve! #speaker-Player
+        Impressive. Right to the recruitment then! #speaker-Opponent
+- -> END
+
+===Tutorial2===
+Good job! You've worn down my Willpower, and you managed to pick up a new tactic too.
+I'm impressed.
+And look at that, you've gained me as a follower! #speaker-Opponent
+You can check your follower count up in the top right corner.
+Recruit as many followers as you can by the end of the day, I'll see you tonight.
+Go get them tiger!
+-> END

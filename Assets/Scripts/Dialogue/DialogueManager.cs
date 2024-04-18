@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
+using Unity.VisualScripting;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -36,12 +37,14 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] string playerText;
     [SerializeField] string playerDefense;
 
+    [HideInInspector] public int tutorialStage;
+
 
     private Story currentStory;
     public bool narrationIsPlaying { get; private set; }
 
     //check if player can move to the next line - prevent skipping
-    private bool canContinueToNextLine = true;
+    [HideInInspector] public bool canContinueToNextLine = true;
 
     //private Coroutine displayLineCoroutine;
 
@@ -65,6 +68,9 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
+        tutorialStage = 1;
+        //tutorialEnd = false;
+
         playerControls = new PlayerInputActions();
 
         if (instance != null)
@@ -126,6 +132,19 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(inkFile.text);
         narrationIsPlaying = true;
 
+
+        if (tutorialStage == 1)
+        {
+            currentStory.ChoosePathString("Tutorial");
+        }
+        else if (tutorialStage == 2)
+        {
+            currentStory.ChoosePathString("Tutorial2");
+        }
+        else
+        {
+            currentStory.ChoosePathString("Talk");
+        }
         dialogueVariables.StartListening(currentStory);
 
 
@@ -142,8 +161,17 @@ public class DialogueManager : MonoBehaviour
         narrationIsPlaying = false;
         inkFile = combatDialogue;
 
-        dialogueVariables = new DialogueVariables(inkFile);
-        combatManager.instance.fight();
+        if (tutorialStage == 2)
+        {
+            tutorialStage = 3;
+            subwayManager.instance.switchToMovement();
+        }
+        else
+        {
+            dialogueVariables = new DialogueVariables(inkFile);
+            combatManager.instance.fight();
+        }
+        
     }
 
 
@@ -161,7 +189,6 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.currentChoices.Count == 0 && canContinueToNextLine && submit.WasPressedThisFrame())
         {
             ContinueStory();
-
         }
 
     }
@@ -261,7 +288,7 @@ public class DialogueManager : MonoBehaviour
         if (textBox.maxVisibleCharacters == line.Length)
         {
             canContinueToNextLine = true;
-        } 
+        }
     }
 
     private void HideChoices()
@@ -367,7 +394,14 @@ public class DialogueManager : MonoBehaviour
         }
         
         currentStory = new Story(inkFile.text);
-        currentStory.ChoosePathString(character + "." + action);
+        if (tutorialStage == 1)
+        {
+            currentStory.ChoosePathString(character + "Tutorial." + action);
+        }
+        else
+        {
+            currentStory.ChoosePathString(character + "." + action);
+        }
         dialogueVariables.StartListening(currentStory);
         if (action != "Defend")
         {

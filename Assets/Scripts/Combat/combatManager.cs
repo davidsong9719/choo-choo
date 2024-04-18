@@ -244,6 +244,18 @@ public class combatManager : MonoBehaviour
         }
         else
         {
+            while (true)
+            {
+                if (DialogueManager.GetInstance().canContinueToNextLine == true)
+                {
+                    break;
+                }
+                else
+                {
+                    yield return null;
+                }
+            }
+            yield return null;
             endCombat();
         }
     }
@@ -370,6 +382,19 @@ public class combatManager : MonoBehaviour
             endPlayerRound();
         } else
         {
+            while (true)
+            {
+                if (DialogueManager.GetInstance().canContinueToNextLine == true)
+                {
+                    break;
+                } else
+                {
+                    yield return null;
+                }
+            }
+
+            yield return null;
+
             endCombat();
         }
     }

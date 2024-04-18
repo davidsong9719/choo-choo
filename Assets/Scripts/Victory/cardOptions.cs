@@ -90,6 +90,15 @@ public class cardOptions : MonoBehaviour
     {
         if (!isContinuable) return;
 
-        subwayManager.instance.switchToMovement();
+        if (DialogueManager.GetInstance().tutorialStage == 1)
+        {
+            Debug.Log("combat started again");
+            DialogueManager.GetInstance().tutorialStage = 2;
+            combatManager.instance.startCombat();
+        }
+        else
+        {
+            subwayManager.instance.switchToMovement();
+        }
     }
 }
