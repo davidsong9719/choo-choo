@@ -263,8 +263,6 @@ public class combatManager : MonoBehaviour
 
     private void drawCard()
     {
-        
-
         if (isPlayerCursed == false)
         {
             playerHand.Add(drawPile[0]);
@@ -274,8 +272,6 @@ public class combatManager : MonoBehaviour
         {
             uiScript.spawnCard(cursedCard, false, Vector3.zero);
         }
-
-        
 
         if (drawPile.Count == 0)
         {
@@ -498,12 +494,10 @@ public class combatManager : MonoBehaviour
     private void endCombat()
     {
         nodeManager.instance.progressStation();
-        gameManager.instance.timeElapsed+= cardsPlayed * cardTimeMultiplier;
         npcManagerScript.updateCar();
 
         uiScript.clearCards();
         gameManager.instance.playerHealth = playerHealth;
-        subwayUI.instance.refreshUI();
         combatParent.SetActive(true);
 
         combatParent.SetActive(false);
@@ -511,12 +505,14 @@ public class combatManager : MonoBehaviour
         if (state == "loss")
         {
             npcManagerScript.removeAll();
+            subwayUI.instance.refreshUI(cardsPlayed * cardTimeMultiplier, 2);
             subwayManager.instance.switchToMovement();
         }
 
         if (state == "victory")
-        {
+        { 
             gameManager.instance.followerAmount++;
+            subwayUI.instance.refreshUI(cardsPlayed * cardTimeMultiplier, 2);
 
             victoryParent.SetActive(true);
             victoryCardSpawner.spawnNewCards(opponent.aggression);

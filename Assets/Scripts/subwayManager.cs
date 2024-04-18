@@ -91,7 +91,7 @@ public class subwayManager : MonoBehaviour
         state = "station";
 
         movementScript.enabled = true;
-        targetScript.enabled = false;
+        targetScript.enabled = true;
         stationScript.enabled = true;
 
         stationScript.startStation();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class targetNPC : MonoBehaviour
 {
@@ -14,14 +15,21 @@ public class targetNPC : MonoBehaviour
     [Header("Setup")]
     [SerializeField] GameObject targetDisplay;
     [SerializeField] npcManager npcManagerScript;
+    [SerializeField] Sprite levelOneImage, levelTwoImage, levelThreeImage, doorImage, healImage, stairImage;
+    [SerializeField] GameObject statue, stairs;
 
     [Header("Settings")]
     [SerializeField] float targetDistance;
-    [SerializeField] float displayHeight;
+    [SerializeField] float npcHeight, doorHeight, statueHeight, stairsHeight;
 
     private GameObject target;
     private InputAction interact;
+    private Image imageComponent;
 
+    private void Awake()
+    {
+        imageComponent = targetDisplay.GetComponent<Image>();
+    }
     void OnEnable()
     {
         interact = subwayManager.instance.playerControls.Player.Interact;
@@ -63,11 +71,27 @@ public class targetNPC : MonoBehaviour
         {
             float distance = Vector3.Distance(gameObject.transform.position, doorList[i].transform.position);
 
-            if (distance <closestDistance)
+            if (distance < closestDistance)
             {
                 closestDistance = distance;
                 closestInteractable = doorList[i];
             }
+        }
+
+       float statueDistance = Vector3.Distance(gameObject.transform.position, statue.transform.position);
+
+        if (statueDistance < closestDistance)
+        {
+            closestDistance = statueDistance;
+            closestInteractable = statue;
+        }
+
+        float stairDistance = Vector3.Distance(gameObject.transform.position, stairs.transform.position);
+
+        if (stairDistance < closestDistance)
+        {
+            closestDistance = stairDistance;
+            closestInteractable = stairs;
         }
         
         if (closestDistance < targetDistance)
@@ -75,6 +99,35 @@ public class targetNPC : MonoBehaviour
             targetDisplay.SetActive(true);
             moveTargetDisplay(closestInteractable.transform);
             target = closestInteractable;
+
+            switch (closestInteractable.tag)
+            {
+                case "NPC":
+                    int npcDifficulty = Mathf.RoundToInt(closestInteractable.GetComponent<opponentInfo>().stats.difficulty);
+
+                    switch (npcDifficulty)
+                    {
+                        case 0:
+                            imageComponent.sprite = levelOneImage;
+                            break;
+                        case 1:
+                            imageComponent.sprite = levelTwoImage;
+                            break;
+                        case 2:
+                            imageComponent.sprite = levelThreeImage;
+                            break;
+                    }
+                    break;
+
+                case "ExitDoor":
+                    imageComponent.sprite = doorImage;
+                    break;
+
+                case "Statue":
+                    imageComponent.sprite = healImage;
+                    break;
+
+            }
         } else
         {
             targetDisplay.SetActive(false);
@@ -85,15 +138,29 @@ public class targetNPC : MonoBehaviour
     private void moveTargetDisplay(Transform target)
     {
         RectTransform displayTransform = targetDisplay.GetComponent<RectTransform>();
-
-        if (target.tag == "NPC")
+        Vector2 viewportPoint = Vector2.zero;
+        switch (target.tag)
         {
-            Vector3 headPosition = target.Find("Head").position;
-            displayTransform.anchoredPosition3D = new Vector3(headPosition.x, headPosition.y + displayHeight, headPosition.z);
+            case "NPC":
+                Vector3 headPosition = target.Find("Head").position;
+                viewportPoint = Camera.main.WorldToViewportPoint(new Vector3(headPosition.x, headPosition.y + npcHeight, headPosition.z));
+                break;
+
+            case "ExitDoor":
+                viewportPoint = Camera.main.WorldToViewportPoint(new Vector3 (target.position.x, target.position.y + doorHeight, target.position.z));
+                break;
+
+            case "Statue":
+                viewportPoint = Camera.main.WorldToViewportPoint(new Vector3 (target.position.x, target.position.y + statueHeight, target.position.z));
+                break;
+
+            case "Stairs":
+                viewportPoint = Camera.main.WorldToViewportPoint(new Vector3(target.position.x, target.position.y + stairsHeight, target.position.z));
+                break;
         }
 
-        displayTransform.LookAt(Camera.main.transform, Vector3.up);
-        //displayTransform.anchoredPosition3D = Vector3.Lerp(displayTransform.anchoredPosition3D, Camera.main.transform.position, 0.9f);
+
+        displayTransform.anchoredPosition = new Vector2(Screen.width * viewportPoint.x, Screen.height * viewportPoint.y);
     }
 
     private void selectTarget()
