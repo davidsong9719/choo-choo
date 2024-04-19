@@ -15,9 +15,9 @@ public class nodeManager : MonoBehaviour
     private List<mapNode> allNodes = new List<mapNode>(); //only one end of each line
 
     private List<mapNode> allStartingNodes = new List<mapNode>(); //both ends of each line
-    private mapNode currentNode = null;
-    private string currentLine = "";
-    private int currentDirection;
+    public mapNode currentNode = null;
+    public string currentLine = "";
+    public int currentDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -28,13 +28,11 @@ public class nodeManager : MonoBehaviour
             allNodes.Add(currentNode);
         }
 
-        
-
         for (int i = 0; i < startingNodes.Count; i++)
         {
             string currentLine = "";
 
-            if (startingNodes[i].birdBeakLine) currentLine = "birdBeak";
+            if (startingNodes[i].pulseLine) currentLine = "pulse";
             if (startingNodes[i].pilgrimLine) currentLine = "pilgrim";
             if (startingNodes[i].galliumLine) currentLine = "gallium";
 
@@ -46,7 +44,7 @@ public class nodeManager : MonoBehaviour
         currentNode = allStartingNodes[Random.Range(0, allStartingNodes.Count)];
         currentNode.toggleCurrent(true);
 
-        if (currentNode.birdBeakLine) currentLine = "birdBeak";
+        if (currentNode.pulseLine) currentLine = "pulse";
         if (currentNode.pilgrimLine) currentLine = "pilgrim";
         if (currentNode.galliumLine) currentLine = "gallium";
 
@@ -57,14 +55,13 @@ public class nodeManager : MonoBehaviour
         {
             currentDirection = 0;
         }
-        
     }
 
 
 
     public void progressStation()
     {
-        currentNode.moveNode(currentLine, currentDirection);
+        currentNode = currentNode.moveNode(currentLine, currentDirection);
     } 
 
     private void connectNodes(string line, int startingNodeIndex)
@@ -107,10 +104,10 @@ public class nodeManager : MonoBehaviour
                 if (allNodes[i].pilgrimConnectedNodes.Count > 1) continue;
             }
 
-            if (line == "birdBeak")
+            if (line == "pulse")
             {
-                if (!allNodes[i].birdBeakLine) continue;
-                if (allNodes[i].birdBeakConnectedNodes.Count > 1) continue;
+                if (!allNodes[i].pulseLine) continue;
+                if (allNodes[i].pulseConnectedNodes.Count > 1) continue;
             }
 
             if (line == "gallium")
@@ -134,7 +131,7 @@ public class nodeManager : MonoBehaviour
                 closestNode = allNodes[i];
             }
         }
-
+        
         return closestNode;
     }
 
@@ -146,8 +143,8 @@ public class nodeManager : MonoBehaviour
                 node.pilgrimConnectedNodes.Add(connectedNode);
                 break;
 
-            case "birdBeak":
-                node.birdBeakConnectedNodes.Add(connectedNode);
+            case "pulse":
+                node.pulseConnectedNodes.Add(connectedNode);
                 break;
 
             case "gallium":

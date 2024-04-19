@@ -6,11 +6,11 @@ public class mapNode : MonoBehaviour
 {
     [HideInInspector] public Vector2 anchoredPosition;
     [HideInInspector] public bool isCurrent;
-    public List<mapNode> pilgrimConnectedNodes, birdBeakConnectedNodes, galliumConnectedNodes;
+    public List<mapNode> pilgrimConnectedNodes, pulseConnectedNodes, galliumConnectedNodes;
 
     [Header("Settings")]
     public bool pilgrimLine;
-    public bool birdBeakLine;
+    public bool pulseLine;
     public bool galliumLine;
 
     private Image highlightImage;
@@ -48,8 +48,7 @@ public class mapNode : MonoBehaviour
             animationDirection = !animationDirection;
             animationCounter = 0;
         }
-
-        
+                
     }
 
     public mapNode moveNode(string line, int direction)
@@ -62,8 +61,8 @@ public class mapNode : MonoBehaviour
                 newPosition = moveNodes(pilgrimConnectedNodes, direction);
                 break;
 
-            case "birdBeak":
-                newPosition = moveNodes(birdBeakConnectedNodes, direction); 
+            case "pulse":
+                newPosition = moveNodes(pulseConnectedNodes, direction); 
                 break;
 
             case "gallium":

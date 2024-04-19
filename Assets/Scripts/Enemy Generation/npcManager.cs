@@ -42,14 +42,6 @@ public class npcManager : MonoBehaviour
     {
         updateCar();
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            updateCar();
-        }
-    }
     public void removeFromList(GameObject npc)
     {
         talkableNPC.Remove(npc);
