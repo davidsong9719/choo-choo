@@ -8987,6 +8987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementScript: {fileID: 137847593}
   targetScript: {fileID: 137847592}
+  subwaySpawnPosition: {fileID: 1346010401}
   combatCanavas: {fileID: 345212096}
   combatManagerObject: {fileID: 92396093}
   stationScript: {fileID: 964048017}
@@ -9062,6 +9063,7 @@ MonoBehaviour:
   - {fileID: 103257300}
   - {fileID: 1478339579}
   mapManager: {fileID: 1224958742}
+  uiManager: {fileID: 0}
 --- !u!1 &994420272
 GameObject:
   m_ObjectHideFlags: 0
@@ -12665,6 +12667,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38e85b421de787a47a43d33257f5740c, type: 3}
+--- !u!1 &1346010400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1346010401}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1346010401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346010400}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 0, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1359377544
 GameObject:
   m_ObjectHideFlags: 0
@@ -17270,6 +17303,7 @@ SceneRoots:
   - {fileID: 644636820}
   - {fileID: 1949540867}
   - {fileID: 1379642129}
+  - {fileID: 1346010401}
   - {fileID: 1029701619}
   - {fileID: 1070938884}
   - {fileID: 252017154}

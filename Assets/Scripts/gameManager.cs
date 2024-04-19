@@ -44,6 +44,7 @@ public class gameManager : MonoBehaviour
         //
         //
 
+        return;
         GameObject sfxObject = new GameObject();
         AudioSource sfxSource = sfxObject.AddComponent<AudioSource>();
         sfxSource.clip = clip;

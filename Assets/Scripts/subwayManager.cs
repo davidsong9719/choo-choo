@@ -12,6 +12,7 @@ public class subwayManager : MonoBehaviour
     //movement
     [SerializeField] characterMovement movementScript;
     [SerializeField] targetNPC targetScript;
+    [SerializeField] Transform subwaySpawnPosition;
 
     //combat
     [SerializeField] GameObject combatCanavas;
@@ -102,8 +103,15 @@ public class subwayManager : MonoBehaviour
     public void switchToCar()
     {
         subwaySFX.Invoke();
+
         switchToMovement();
         switchCamera("car");
+
+        GameObject player = instance.player;
+        player.GetComponent<CharacterController>().enabled = false;
+        player.transform.position = subwaySpawnPosition.position;
+        player.transform.rotation = subwaySpawnPosition.rotation;
+        player.GetComponent<CharacterController>().enabled = true;
     }
     private void switchCamera(string newView)
     {

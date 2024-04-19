@@ -1,15 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class stationManager : MonoBehaviour
 {
+
     [SerializeField] Transform playerSpawnPosition;
-    [SerializeField] Transform[] menuLines;
+    [SerializeField] List<Transform> menuLines;
     [SerializeField] nodeManager mapManager;
+    [SerializeField] subwayUI uiManager;
+
+    private struct lineInfo
+    {
+        public int direction;
+        public string line;
+        public int time;
+        public lineInfo(int direction, string line, int time)
+        {
+            this.direction = direction;
+            this.line = line;
+            this.time = time;
+        }
+    }
+    private Dictionary<Transform, lineInfo> lineInfoPairs = new Dictionary<Transform, lineInfo>();
+
 
     public void startStation()
     {
@@ -94,7 +110,7 @@ public class stationManager : MonoBehaviour
         }
         else
         {
-            displayLine(index, mapManager.currentLine, currentDirection);
+            displayLine(index, mapManager.currentLine, currentDirection, currentNode);
             index++;
         }
 
@@ -105,22 +121,22 @@ public class stationManager : MonoBehaviour
         }
         else
         {
-            displayLine(index, mapManager.currentLine, oppositeDirection);
+            displayLine(index, mapManager.currentLine, oppositeDirection, currentNode);
             index++;
         }
 
         if (switchLineNodes.Count > 0)
         {
-            displayLine(index, switchLineName, currentDirection);
+            displayLine(index, switchLineName, currentDirection, currentNode);
             index++;
-            displayLine(index, switchLineName, oppositeDirection);
+            displayLine(index, switchLineName, oppositeDirection, currentNode);
             index++;
         }
 
 
-        for (int i = index; i < menuLines.Count(); i++)
+        for (int i = index; i < menuLines.Count; i++)
         {
-            displayLine(i, "null", 0);
+            displayLine(i, "null", 0, currentNode);
         }
     }
 
@@ -136,17 +152,23 @@ public class stationManager : MonoBehaviour
         return newList;
     }
 
-    private void displayLine(int index, string line, int direction)
+    private void displayLine(int index, string line, int direction, mapNode node)
     {
+        int time = Random.Range(2, 11);
+
+        if (line != "null")
+        {
+            lineInfoPairs.Add(menuLines[index], new lineInfo(direction, line, time));
+        }
+
+        //display
         TextMeshProUGUI nameTMP = menuLines[index].Find("Name").GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI timeTMP = menuLines[index].Find("Time").GetComponent<TextMeshProUGUI>();
         Image logoImage = menuLines[index].Find("Logo").GetComponent<Image>();
-
         switch (line)
         {
             case "pulse":
                 nameTMP.text = "Pulse Line - ";
-                
                 if (direction == 0)
                 {
                     nameTMP.text += "End 1";
@@ -189,4 +211,24 @@ public class stationManager : MonoBehaviour
         }
 
     }
+
+    public void chooseLine(Transform callingObject)
+    {
+        lineInfo chosenLine = new lineInfo();
+        if (lineInfoPairs.ContainsKey(callingObject))
+        {
+            chosenLine = lineInfoPairs[callingObject];
+        } else
+        {
+            return;
+        }
+
+        mapManager.currentLine = chosenLine.line;
+        mapManager.currentDirection = chosenLine.direction;
+        uiManager.refreshUI(chosenLine.time, 2);
+        
+        lineInfoPairs.Clear();
+    }
+
+
 }
