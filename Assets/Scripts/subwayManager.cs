@@ -50,7 +50,7 @@ public class subwayManager : MonoBehaviour
 
         movementScript.enabled = false;
         targetScript.enabled = false;
-        stationScript.enabled = false;
+        //stationScript.enabled = false;
 
         combatManagerObject.SetActive(true);
         combatCanavas.SetActive(true);
@@ -64,7 +64,7 @@ public class subwayManager : MonoBehaviour
         movementScript.stopWalking();
         movementScript.enabled = false;
         targetScript.enabled = false;
-        stationScript.enabled = false;
+       // stationScript.enabled = false;
 
         combatManagerObject.SetActive(true);
         combatCanavas.SetActive(true);
@@ -79,7 +79,7 @@ public class subwayManager : MonoBehaviour
 
         movementScript.enabled = true;
         targetScript.enabled = true;
-        stationScript.enabled = false;
+        //stationScript.enabled = false;
 
         combatManagerObject.SetActive(false);
         combatCanavas.SetActive(false);
@@ -92,7 +92,7 @@ public class subwayManager : MonoBehaviour
 
         movementScript.enabled = true;
         targetScript.enabled = true;
-        stationScript.enabled = true;
+        //stationScript.enabled = true;
 
         stationScript.startStation();
 
