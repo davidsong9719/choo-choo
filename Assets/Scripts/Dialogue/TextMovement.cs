@@ -37,7 +37,6 @@ public class TextMovement : MonoBehaviour
     {
         for (int i = 0; i < textBoxes.Length; i++)
         {
-            Debug.Log("moving " + textBoxes[i].name);
             if (Vector2.Distance(textBoxes[i].transform.position, positions[3].position) < .1f)
             {
                 //swap target position

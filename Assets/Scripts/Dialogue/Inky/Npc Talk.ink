@@ -196,9 +196,9 @@ Wonderful! Have you been briefed already? #speaker-Opponent
 - -> END
 
 ===Tutorial2===
-Good job! You've worn down my Willpower.
+Good job! You've worn down my Willpower. #speaker-Opponent
 And you managed to pick up a new tactic too, I'm impressed.
-And look at that, you've gained me as a follower! #speaker-Opponent
+And look at that, you've gained me as a follower! 
 You can check your follower count up in the top right corner.
 Recruit as many followers as you can by the end of the day, I'll see you tonight.
 Go get them tiger!
