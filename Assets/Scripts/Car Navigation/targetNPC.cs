@@ -17,6 +17,7 @@ public class targetNPC : MonoBehaviour
     [SerializeField] npcManager npcManagerScript;
     [SerializeField] Sprite levelOneImage, levelTwoImage, levelThreeImage, doorImage, healImage, stairImage;
     [SerializeField] GameObject statue, stairs;
+    [SerializeField] stationManager stationScript;
 
     [Header("Settings")]
     [SerializeField] float targetDistance;
@@ -166,6 +167,8 @@ public class targetNPC : MonoBehaviour
     private void selectTarget()
     {
         if (interact.ReadValue<float>() == 0) return;
+        if (subwayUI.instance.state != "closed") return;
+
         if (target == null) return;
         
         if (target.tag == "ExitDoor")
@@ -176,6 +179,12 @@ public class targetNPC : MonoBehaviour
             subwayManager.instance.startCombat(target.GetComponent<opponentInfo>().stats);
 
             npcManagerScript.removeFromList(target);
+        } else if (target.tag == "Statue")
+        {
+
+        } else if (target.tag == "Stairs")
+        {
+            stationScript.generateMenu();
         }
     }
 }

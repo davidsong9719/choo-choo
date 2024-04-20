@@ -51,7 +51,6 @@ public class subwayManager : MonoBehaviour
 
         movementScript.enabled = false;
         targetScript.enabled = false;
-        //stationScript.enabled = false;
 
         combatManagerObject.SetActive(true);
         combatCanavas.SetActive(true);
@@ -65,7 +64,6 @@ public class subwayManager : MonoBehaviour
         movementScript.stopWalking();
         movementScript.enabled = false;
         targetScript.enabled = false;
-       // stationScript.enabled = false;
 
         combatManagerObject.SetActive(true);
         combatCanavas.SetActive(true);
@@ -80,7 +78,6 @@ public class subwayManager : MonoBehaviour
 
         movementScript.enabled = true;
         targetScript.enabled = true;
-        //stationScript.enabled = false;
 
         combatManagerObject.SetActive(false);
         combatCanavas.SetActive(false);
@@ -93,7 +90,6 @@ public class subwayManager : MonoBehaviour
 
         movementScript.enabled = true;
         targetScript.enabled = true;
-        //stationScript.enabled = true;
 
         stationScript.startStation();
 
@@ -102,6 +98,7 @@ public class subwayManager : MonoBehaviour
 
     public void switchToCar()
     {
+        subwayUI.instance.closeUI();
         subwaySFX.Invoke();
 
         switchToMovement();
@@ -113,6 +110,7 @@ public class subwayManager : MonoBehaviour
         player.transform.rotation = subwaySpawnPosition.rotation;
         player.GetComponent<CharacterController>().enabled = true;
     }
+
     private void switchCamera(string newView)
     {
         if (newView == "station")

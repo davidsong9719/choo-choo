@@ -9,11 +9,11 @@ public class subwayUI : MonoBehaviour
     public static subwayUI instance;
     [SerializeField] nodeManager nodeManagerScript;
     [SerializeField] mapButton mapToggle;
-    [SerializeField] GameObject deckParent, drawParent, discardParent;
+    [SerializeField] GameObject deckParent, drawParent, discardParent, lineMenuParent;
     [SerializeField] TextMeshProUGUI followerDisplay, timeDisplay;
 
     [SerializeField] int defaultHour;
-    private string state;
+    public string state = "closed";
 
     [SerializeField] AudioSource[] audios;
 
@@ -47,6 +47,7 @@ public class subwayUI : MonoBehaviour
         deckParent.SetActive(false);
         drawParent.SetActive(false);
         discardParent.SetActive(false);
+        lineMenuParent.SetActive(false);
         Time.timeScale = 0;
 
 
@@ -64,18 +65,20 @@ public class subwayUI : MonoBehaviour
         deckParent.SetActive(true);
         drawParent.SetActive(false);
         discardParent.SetActive(false);
+        lineMenuParent.SetActive(false);
         Time.timeScale = 0;
 
         state = "deck";
     }
 
-    private void closeUI()
+    public  void closeUI()
     {
         
         mapToggle.toggleMapVisibility(false);
         deckParent.SetActive(false);
         drawParent.SetActive(false);
         discardParent.SetActive(false);
+        lineMenuParent.SetActive(false);
         Time.timeScale = 1;
 
         state = "closed";
@@ -92,6 +95,7 @@ public class subwayUI : MonoBehaviour
         deckParent.SetActive(false);
         drawParent.SetActive(true);
         discardParent.SetActive(false);
+        lineMenuParent.SetActive(false);
         Time.timeScale = 0;
 
         state = "draw";
@@ -108,9 +112,27 @@ public class subwayUI : MonoBehaviour
         deckParent.SetActive(false);
         drawParent.SetActive(false);
         discardParent.SetActive(true);
+        lineMenuParent.SetActive(false);
         Time.timeScale = 0;
 
         state = "discard";
+    }
+
+    public void switchToLineMenu()
+    {
+        if (state == "line")
+        {
+            closeUI();
+            return;
+        }
+        mapToggle.toggleMapVisibility(false);
+        deckParent.SetActive(false);
+        drawParent.SetActive(false);
+        discardParent.SetActive(false);
+        lineMenuParent.SetActive(true);
+        Time.timeScale = 0;
+
+        state = "line";
     }
 
     public void refreshUI(int additionalTime, float timeAnimationDuration)
@@ -120,6 +142,7 @@ public class subwayUI : MonoBehaviour
 
         StartCoroutine(updateTime(additionalTime, timeAnimationDuration));
     }
+
 
     IEnumerator updateTime(int additionalTime, float animationDuration)
     {

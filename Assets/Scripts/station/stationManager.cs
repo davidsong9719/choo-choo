@@ -10,7 +10,6 @@ public class stationManager : MonoBehaviour
     [SerializeField] Transform playerSpawnPosition;
     [SerializeField] List<Transform> menuLines;
     [SerializeField] nodeManager mapManager;
-    [SerializeField] subwayUI uiManager;
 
     private struct lineInfo
     {
@@ -34,19 +33,12 @@ public class stationManager : MonoBehaviour
         player.transform.position = playerSpawnPosition.position;
         player.transform.rotation = playerSpawnPosition.rotation;
         player.GetComponent<CharacterController>().enabled = true;
-        generateMenu();
     }
 
-    private void Update()
+    public void generateMenu()
     {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            generateMenu();
-        }
-    }
-
-    private void generateMenu()
-    {
+        lineInfoPairs.Clear();
+        subwayUI.instance.switchToLineMenu();
         int index = 0;
 
         //display current direction
@@ -156,15 +148,23 @@ public class stationManager : MonoBehaviour
     {
         int time = Random.Range(2, 11);
 
-        if (line != "null")
-        {
-            lineInfoPairs.Add(menuLines[index], new lineInfo(direction, line, time));
-        }
-
-        //display
         TextMeshProUGUI nameTMP = menuLines[index].Find("Name").GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI timeTMP = menuLines[index].Find("Time").GetComponent<TextMeshProUGUI>();
         Image logoImage = menuLines[index].Find("Logo").GetComponent<Image>();
+
+        if (line != "null")
+        {
+            lineInfoPairs.Add(menuLines[index], new lineInfo(direction, line, time));
+            timeTMP.text = time.ToString() + " min";
+        } else
+        {
+            timeTMP.text = "";
+        }
+
+        //display
+
+
+        
         switch (line)
         {
             case "pulse":
@@ -225,10 +225,11 @@ public class stationManager : MonoBehaviour
 
         mapManager.currentLine = chosenLine.line;
         mapManager.currentDirection = chosenLine.direction;
-        uiManager.refreshUI(chosenLine.time, 2);
-        
         lineInfoPairs.Clear();
+
+        //CALL MID-TRANSITION
+        subwayUI.instance.refreshUI(chosenLine.time, 0.5f);
+        subwayManager.instance.switchToCar();
+        
     }
-
-
 }
