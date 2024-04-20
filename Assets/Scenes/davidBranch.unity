@@ -1296,6 +1296,7 @@ GameObject:
   - component: {fileID: 103257300}
   - component: {fileID: 103257302}
   - component: {fileID: 103257301}
+  - component: {fileID: 103257303}
   m_Layer: 5
   m_Name: Line0 (2)
   m_TagString: Untagged
@@ -1345,7 +1346,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1363,6 +1365,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103257299}
   m_CullTransparentMesh: 1
+--- !u!114 &103257303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103257299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 964048017}
+          m_TargetAssemblyTypeName: stationManager, Assembly-CSharp
+          m_MethodName: chooseLine
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 103257300}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &111362470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,6 +1775,7 @@ MonoBehaviour:
   stairImage: {fileID: 0}
   statue: {fileID: 636383369}
   stairs: {fileID: 461913597}
+  stationScript: {fileID: 964048017}
   targetDistance: 2
   npcHeight: 0.9
   doorHeight: 4.57
@@ -3621,7 +3653,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -6145,6 +6177,7 @@ GameObject:
   - component: {fileID: 644122558}
   - component: {fileID: 644122560}
   - component: {fileID: 644122559}
+  - component: {fileID: 644122561}
   m_Layer: 5
   m_Name: Line0 (1)
   m_TagString: Untagged
@@ -6194,7 +6227,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6212,6 +6246,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 644122557}
   m_CullTransparentMesh: 1
+--- !u!114 &644122561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644122557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 964048017}
+          m_TargetAssemblyTypeName: stationManager, Assembly-CSharp
+          m_MethodName: chooseLine
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 644122558}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &644636817
 GameObject:
   m_ObjectHideFlags: 0
@@ -6482,7 +6545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &656569793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6492,7 +6555,7 @@ RectTransform:
   m_GameObject: {fileID: 656569792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1440928591}
@@ -6501,6 +6564,7 @@ RectTransform:
   - {fileID: 644122558}
   - {fileID: 103257300}
   - {fileID: 1478339579}
+  - {fileID: 1929115665}
   m_Father: {fileID: 1696168085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -9063,7 +9127,6 @@ MonoBehaviour:
   - {fileID: 103257300}
   - {fileID: 1478339579}
   mapManager: {fileID: 1224958742}
-  uiManager: {fileID: 0}
 --- !u!1 &994420272
 GameObject:
   m_ObjectHideFlags: 0
@@ -10924,6 +10987,7 @@ GameObject:
   - component: {fileID: 1154013286}
   - component: {fileID: 1154013288}
   - component: {fileID: 1154013287}
+  - component: {fileID: 1154013289}
   m_Layer: 5
   m_Name: Line0
   m_TagString: Untagged
@@ -10973,7 +11037,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10991,6 +11056,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154013285}
   m_CullTransparentMesh: 1
+--- !u!114 &1154013289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154013285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 964048017}
+          m_TargetAssemblyTypeName: stationManager, Assembly-CSharp
+          m_MethodName: chooseLine
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1154013286}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1161011284
 GameObject:
   m_ObjectHideFlags: 0
@@ -13675,6 +13769,7 @@ GameObject:
   - component: {fileID: 1478339579}
   - component: {fileID: 1478339581}
   - component: {fileID: 1478339580}
+  - component: {fileID: 1478339582}
   m_Layer: 5
   m_Name: Line0 (3)
   m_TagString: Untagged
@@ -13724,7 +13819,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13742,6 +13838,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478339578}
   m_CullTransparentMesh: 1
+--- !u!114 &1478339582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478339578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 964048017}
+          m_TargetAssemblyTypeName: stationManager, Assembly-CSharp
+          m_MethodName: chooseLine
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1478339579}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1479739544
 GameObject:
   m_ObjectHideFlags: 0
@@ -14847,9 +14972,11 @@ MonoBehaviour:
   deckParent: {fileID: 12373243}
   drawParent: {fileID: 841554620}
   discardParent: {fileID: 848562430}
+  lineMenuParent: {fileID: 656569792}
   followerDisplay: {fileID: 823347936}
   timeDisplay: {fileID: 601049440}
   defaultHour: 1
+  state: 
   audios: []
 --- !u!1 &1706041582
 GameObject:
@@ -15921,6 +16048,112 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9534497, y: 1.143187, z: 0.82179755}
   m_Center: {x: 14.003927, y: 0.8389127, z: 2.5416014}
+--- !u!1 &1929115664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1929115665}
+  - component: {fileID: 1929115668}
+  - component: {fileID: 1929115667}
+  - component: {fileID: 1929115666}
+  m_Layer: 5
+  m_Name: Exit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1929115665
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929115664}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 656569793}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -637, y: -314.99988}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1929115666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929115664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: closeUI
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1929115667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929115664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -2056639419796726586, guid: 29e66fc494a54644b94338a1860d1e1d,
+    type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1929115668
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929115664}
+  m_CullTransparentMesh: 1
 --- !u!1 &1933863089 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2328170176683876071, guid: 38e85b421de787a47a43d33257f5740c,
