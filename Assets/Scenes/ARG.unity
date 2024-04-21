@@ -1951,7 +1951,6 @@ MonoBehaviour:
   playerDefense: 
   tutorialStage: 0
   canContinueToNextLine: 1
-  swipe: {fileID: 1168915966}
 --- !u!4 &185944574
 Transform:
   m_ObjectHideFlags: 0
@@ -9607,6 +9606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1015648956}
+  - component: {fileID: 1015648957}
   m_Layer: 0
   m_Name: Transitions
   m_TagString: Untagged
@@ -9630,6 +9630,19 @@ Transform:
   - {fileID: 1168915964}
   m_Father: {fileID: 1696168085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1015648957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015648955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0d63d956e19464fb3433d080e314ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swipe: {fileID: 1168915966}
 --- !u!1 &1021012362 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 244148211741256350, guid: 38e85b421de787a47a43d33257f5740c,

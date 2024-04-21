@@ -175,8 +175,7 @@ public class targetNPC : MonoBehaviour
         if (target.tag == "ExitDoor")
         {
             interact.Disable();
-            DialogueManager.GetInstance().swipe.SetTrigger("swipe");
-            subwayManager.instance.Invoke("switchToStation", 1.2f);
+            StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
 
         }
         else if (target.tag == "NPC")

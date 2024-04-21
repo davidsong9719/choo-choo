@@ -70,8 +70,7 @@ public class subwayManager : MonoBehaviour
         combatManager.instance.opponent = opponent;
         //combatManager.instance.startCombat();
 
-        DialogueManager.GetInstance().swipe.SetTrigger("swipe");
-        Invoke("openCombat", 1.5f);
+        StartCoroutine(TransitionManager.GetInstance().Swipe(openCombat));
 
     }
 
