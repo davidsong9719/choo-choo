@@ -65,7 +65,7 @@ public class DialogueManager : MonoBehaviour
 
     private string nextLine;
 
-    [SerializeField] Animator swipe;
+    [HideInInspector] public Animator swipe;
 
     private void Awake()
     {
@@ -131,7 +131,6 @@ public class DialogueManager : MonoBehaviour
     {
         currentStory = new Story(inkFile.text);
         narrationIsPlaying = true;
-        submit.Enable();
 
         if (tutorialStage == 1)
         {
@@ -166,7 +165,7 @@ public class DialogueManager : MonoBehaviour
             
             swipe.SetTrigger("swipe");
 
-            subwayManager.instance.Invoke("switchToMovement", 1f * Time.deltaTime);
+            subwayManager.instance.Invoke("switchToMovement", 1.5f);
         }
         else
         {
@@ -249,7 +248,6 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            submit.Disable();
             ExitNarration();
         }
     }
@@ -263,6 +261,7 @@ public class DialogueManager : MonoBehaviour
         HideChoices();
 
         canContinueToNextLine = false;
+        submit.Disable();
 
         //display each letter one at a time
         foreach (char letter in line.ToCharArray())
@@ -288,6 +287,7 @@ public class DialogueManager : MonoBehaviour
         if (textBox.maxVisibleCharacters == line.Length)
         {
             canContinueToNextLine = true;
+            submit.Enable();
         }
     }
 

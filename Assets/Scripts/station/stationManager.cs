@@ -229,6 +229,9 @@ public class stationManager : MonoBehaviour
 
         //CALL MID-TRANSITION
         subwayUI.instance.refreshUI(chosenLine.time, 0.5f);
+
+        DialogueManager.GetInstance().swipe.SetTrigger("swipe");
+        //subwayManager.instance.Invoke("switchToCar", 1.2f);
         subwayManager.instance.switchToCar();
         
     }
