@@ -46,7 +46,11 @@ public class targetNPC : MonoBehaviour
     void Update()
     {
         findClosestInteractable();
-        selectTarget();
+        if (TransitionManager.GetInstance().playingTransition == false)
+        {
+            selectTarget();
+        }
+        
     }
 
     private void findClosestInteractable()
@@ -176,13 +180,13 @@ public class targetNPC : MonoBehaviour
         {
             interact.Disable();
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
-
         }
         else if (target.tag == "NPC")
         {
             subwayManager.instance.startCombat(target.GetComponent<opponentInfo>().stats);
 
             npcManagerScript.removeFromList(target);
+
         } else if (target.tag == "Statue")
         {
 
