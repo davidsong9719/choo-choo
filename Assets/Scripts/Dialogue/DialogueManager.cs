@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.UIElements.Experimental;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -65,7 +66,6 @@ public class DialogueManager : MonoBehaviour
 
     private string nextLine;
 
-    [HideInInspector] public Animator swipe;
 
     private void Awake()
     {
@@ -162,10 +162,8 @@ public class DialogueManager : MonoBehaviour
         if (tutorialStage == 2)
         {
             tutorialStage = 3;
-            
-            swipe.SetTrigger("swipe");
 
-            subwayManager.instance.Invoke("switchToMovement", 1.5f);
+            StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToMovement));
         }
         else
         {
