@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour
 
     private string character;
 
-    public PlayerInputActions playerControls;
+    //public PlayerInputActions playerControls;
     private InputAction submit;
 
     //used to check if pressed this frame, used in coroutine
@@ -71,7 +71,7 @@ public class DialogueManager : MonoBehaviour
     {
         tutorialStage = 2;
         //tutorialEnd = false;
-        playerControls = new PlayerInputActions();
+        //playerControls = new PlayerInputActions();
 
         if (instance != null)
         {
@@ -92,7 +92,7 @@ public class DialogueManager : MonoBehaviour
 
     private void OnEnable() //Must be used for the new input system to work properly
     {
-        submit = playerControls.Player.Interact;
+        submit = subwayManager.instance.playerControls.Player.Interact;
         submit.Enable();
     }
 
