@@ -323,10 +323,8 @@ public class combatUI : MonoBehaviour
 
     public void resetUIs()
     {
-        StartCoroutine(updateHealthBar(playerHealthDisplay, 1, 0.1f));
-        StartCoroutine(updateHealthBar(opponentHealthDisplay, 1, 0.1f));
-        StartCoroutine(updateHealthBar(tempPlayerHealthDisplay, 1, 0.1f));
-        StartCoroutine(updateHealthBar(tempOpponentHealthDisplay, 1, 0.1f));
+        //StartCoroutine(updateHealthBar(opponentHealthDisplay, 1, 0.1f));
+        //StartCoroutine(updateHealthBar(tempOpponentHealthDisplay, 1, 0.1f));
 
         playerSpeedDisplay.resetPosition();
         opponentSpeedDisplay.resetPosition();

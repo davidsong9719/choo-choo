@@ -527,6 +527,7 @@ public class combatManager : MonoBehaviour
 
         combatParent.SetActive(false);
 
+        uiScript.updateHealthUI(1, 1, 1, playerHealth, playerMaxHealth, tempPlayerHealth);
         if (state == "loss")
         {
             npcManagerScript.removeAll();
@@ -593,7 +594,11 @@ public class combatManager : MonoBehaviour
             opponentSpeed++;
         }
 
-
         uiScript.updateSpeedUI((float)opponentSpeedCounter / (float)opponentSpeed, (float)playerSpeedCounter / (float)playerSpeed);
+    }
+
+    public void healPlayer()
+    {
+        uiScript.updateHealthUI(1, 1, 1, 1, 1, 1);
     }
 }

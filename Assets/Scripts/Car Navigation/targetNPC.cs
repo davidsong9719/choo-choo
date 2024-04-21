@@ -181,7 +181,8 @@ public class targetNPC : MonoBehaviour
             npcManagerScript.removeFromList(target);
         } else if (target.tag == "Statue")
         {
-
+            gameManager.instance.playerHealth = gameManager.instance.playerMaxHealth;
+            combatManager.instance.healPlayer();
         } else if (target.tag == "Stairs")
         {
             stationScript.generateMenu();

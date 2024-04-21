@@ -11,6 +11,7 @@ public class stationManager : MonoBehaviour
     [SerializeField] List<Transform> menuLines;
     [SerializeField] nodeManager mapManager;
 
+
     private struct lineInfo
     {
         public int direction;
