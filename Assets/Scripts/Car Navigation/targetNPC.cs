@@ -11,7 +11,7 @@ public class targetNPC : MonoBehaviour
     //
 
     //to hide in inspector after making npc generator script
-    
+
     [Header("Setup")]
     [SerializeField] GameObject targetDisplay;
     [SerializeField] npcManager npcManagerScript;
@@ -61,13 +61,13 @@ public class targetNPC : MonoBehaviour
         {
             float distance = Vector3.Distance(gameObject.transform.position, npcList[i].transform.position);
 
-            if (distance < closestDistance )
+            if (distance < closestDistance)
             {
                 closestDistance = distance;
                 closestInteractable = npcList[i];
             }
         }
-        
+
         for (int i = 0; i < doorList.Count; i++)
         {
             float distance = Vector3.Distance(gameObject.transform.position, doorList[i].transform.position);
@@ -79,7 +79,7 @@ public class targetNPC : MonoBehaviour
             }
         }
 
-       float statueDistance = Vector3.Distance(gameObject.transform.position, statue.transform.position);
+        float statueDistance = Vector3.Distance(gameObject.transform.position, statue.transform.position);
 
         if (statueDistance < closestDistance)
         {
@@ -94,7 +94,7 @@ public class targetNPC : MonoBehaviour
             closestDistance = stairDistance;
             closestInteractable = stairs;
         }
-        
+
         if (closestDistance < targetDistance)
         {
             targetDisplay.SetActive(true);
@@ -129,7 +129,8 @@ public class targetNPC : MonoBehaviour
                     break;
 
             }
-        } else
+        }
+        else
         {
             targetDisplay.SetActive(false);
             target = null;
@@ -148,11 +149,11 @@ public class targetNPC : MonoBehaviour
                 break;
 
             case "ExitDoor":
-                viewportPoint = Camera.main.WorldToViewportPoint(new Vector3 (target.position.x, target.position.y + doorHeight, target.position.z));
+                viewportPoint = Camera.main.WorldToViewportPoint(new Vector3(target.position.x, target.position.y + doorHeight, target.position.z));
                 break;
 
             case "Statue":
-                viewportPoint = Camera.main.WorldToViewportPoint(new Vector3 (target.position.x, target.position.y + statueHeight, target.position.z));
+                viewportPoint = Camera.main.WorldToViewportPoint(new Vector3(target.position.x, target.position.y + statueHeight, target.position.z));
                 break;
 
             case "Stairs":
@@ -170,11 +171,15 @@ public class targetNPC : MonoBehaviour
         if (subwayUI.instance.state != "closed") return;
 
         if (target == null) return;
-        
+
         if (target.tag == "ExitDoor")
         {
-            subwayManager.instance.switchToStation();
-        } else if (target.tag == "NPC")
+            interact.Disable();
+            DialogueManager.GetInstance().swipe.SetTrigger("swipe");
+            subwayManager.instance.Invoke("switchToStation", 1.2f);
+
+        }
+        else if (target.tag == "NPC")
         {
             subwayManager.instance.startCombat(target.GetComponent<opponentInfo>().stats);
 

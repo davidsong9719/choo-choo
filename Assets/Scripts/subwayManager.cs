@@ -65,9 +65,21 @@ public class subwayManager : MonoBehaviour
         movementScript.enabled = false;
         targetScript.enabled = false;
 
+        //combatManagerObject.SetActive(true);
+        //combatCanavas.SetActive(true);
+        combatManager.instance.opponent = opponent;
+        //combatManager.instance.startCombat();
+
+        DialogueManager.GetInstance().swipe.SetTrigger("swipe");
+        Invoke("openCombat", 1.5f);
+
+    }
+
+    public void openCombat()
+    {
+
         combatManagerObject.SetActive(true);
         combatCanavas.SetActive(true);
-        combatManager.instance.opponent = opponent;
         combatManager.instance.startCombat();
 
     }
@@ -86,15 +98,19 @@ public class subwayManager : MonoBehaviour
 
     public void switchToStation()
     {
+        playerControls.Player.Interact.Enable();
         state = "station";
 
         movementScript.enabled = true;
         targetScript.enabled = true;
 
+
         stationScript.startStation();
 
         switchCamera("station");
+        
     }
+
 
     public void switchToCar()
     {

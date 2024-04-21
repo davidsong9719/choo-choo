@@ -65,12 +65,12 @@ public class DialogueManager : MonoBehaviour
 
     private string nextLine;
 
+    [HideInInspector] public Animator swipe;
 
     private void Awake()
     {
-        tutorialStage = 1;
+        tutorialStage = 2;
         //tutorialEnd = false;
-
         playerControls = new PlayerInputActions();
 
         if (instance != null)
@@ -132,7 +132,6 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(inkFile.text);
         narrationIsPlaying = true;
 
-
         if (tutorialStage == 1)
         {
             currentStory.ChoosePathString("Tutorial");
@@ -157,14 +156,16 @@ public class DialogueManager : MonoBehaviour
     //Swap to combat
     private void ExitNarration()
     {
-        //
         narrationIsPlaying = false;
         inkFile = combatDialogue;
 
         if (tutorialStage == 2)
         {
             tutorialStage = 3;
-            subwayManager.instance.switchToMovement();
+            
+            swipe.SetTrigger("swipe");
+
+            subwayManager.instance.Invoke("switchToMovement", 1.5f);
         }
         else
         {
@@ -213,7 +214,6 @@ public class DialogueManager : MonoBehaviour
                 //start coroutine to type one letter at a time
                 if (character == "Player")
                 {
-                    Debug.Log("player");
                     for (int i = 0; i < textBoxes.Length; i++)
                     {
                         if (textBoxesText[i].text == "")
@@ -228,7 +228,6 @@ public class DialogueManager : MonoBehaviour
                 }
                 else if (character == "Opponent")
                 {
-                    Debug.Log("enemy");
                     for (int i = 0; i < textBoxes.Length; i++)
                     {
                         if (textBoxesText[i].text == "")
@@ -255,7 +254,6 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator DisplayLine(TextMeshProUGUI textBox, string line)
     {
-        Debug.Log(line);
         textBox.text = line;
         textBox.maxVisibleCharacters = 0;
 
@@ -263,6 +261,7 @@ public class DialogueManager : MonoBehaviour
         HideChoices();
 
         canContinueToNextLine = false;
+        submit.Disable();
 
         //display each letter one at a time
         foreach (char letter in line.ToCharArray())
@@ -288,6 +287,7 @@ public class DialogueManager : MonoBehaviour
         if (textBox.maxVisibleCharacters == line.Length)
         {
             canContinueToNextLine = true;
+            submit.Enable();
         }
     }
 

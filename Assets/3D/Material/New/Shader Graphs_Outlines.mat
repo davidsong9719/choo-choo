@@ -40,8 +40,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _OVERLAY: 1
-    - _color_threshold: 0.36
-    - _normal_threshold: 2.12
+    - _color_threshold: 0.4
+    - _normal_threshold: 2
+    - _thickness: 1.5
     m_Colors:
     - _outline_color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
