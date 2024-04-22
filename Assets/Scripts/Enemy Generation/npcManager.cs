@@ -10,6 +10,7 @@ public class npcManager : MonoBehaviour
     public List<GameObject> talkableNPC;
 
     [SerializeField] List<Transform> sittingSpots;
+    [SerializeField] stationManager stationManagerScript;
 
     [SerializeField] GameObject sittingPrefab0, sittingPrefab1, sittingPrefab2;
     private opponentRandomizer opponentGenerator;
@@ -54,6 +55,18 @@ public class npcManager : MonoBehaviour
 
     public void updateCar()
     {
+        if (stationManagerScript.checkLastStation())
+        {
+            for (int i = 0; i < npcList.Count; i++)
+            {
+                Destroy(npcList[i]);
+            }
+
+            npcList.Clear();
+            talkableNPC.Clear();
+            return;
+        }
+
         int passengerExchangeAmount = (int)((float)npcList.Count * passengerExchangePercentage);
 
         for (int i = 0; i < passengerExchangeAmount; i++)
@@ -64,23 +77,6 @@ public class npcManager : MonoBehaviour
 
         float stageProgress = 0;
 
-        //Per-stage passenger density
-        //not currently in use
-        /*
-        if (gameManager.instance.timeElapsed < gameManager.instance.stageOneLength)
-        {
-            stageProgress = (float)gameManager.instance.timeElapsed / (float)gameManager.instance.stageOneLength;
-        }
-        else if (gameManager.instance.timeElapsed - gameManager.instance.stageOneLength < gameManager.instance.stageTwoLength)
-        {
-            stageProgress = ((float)gameManager.instance.timeElapsed - (float)gameManager.instance.stageOneLength) / (float)gameManager.instance.stageTwoLength;
-        }
-        else
-        { 
-            stageProgress = (((float)gameManager.instance.timeElapsed - (float)gameManager.instance.stageOneLength) - (float)gameManager.instance.stageTwoLength) / (float)gameManager.instance.stageThreeLength;
-        }*/
-         
-        //Singular Passenger Density
         stageProgress = (float)gameManager.instance.timeElapsed / (float)(gameManager.instance.stageOneLength + gameManager.instance.stageTwoLength + gameManager.instance.stageThreeLength);
 
         float passengerDensity = passengerDensityCurve.Evaluate(stageProgress);

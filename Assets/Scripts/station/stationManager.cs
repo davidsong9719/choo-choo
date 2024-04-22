@@ -235,4 +235,22 @@ public class stationManager : MonoBehaviour
         subwayManager.instance.switchToCar();
         
     }
+
+    public bool checkLastStation()
+    {
+        mapNode currentNode = mapManager.currentNode;
+
+        switch (mapManager.currentLine)
+        {
+            case "pulse":
+                return currentNode.pulseConnectedNodes[mapManager.currentDirection] == currentNode;
+            case "pilgrim":
+                return currentNode.pilgrimConnectedNodes[mapManager.currentDirection] == currentNode;
+            case "gallium":
+                return currentNode.galliumConnectedNodes[mapManager.currentDirection] == currentNode;
+        }
+
+        return false;
+
+    }
 }

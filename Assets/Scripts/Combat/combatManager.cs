@@ -549,14 +549,14 @@ public class combatManager : MonoBehaviour
     {
         int effectAmount = Random.Range(0, 3);
         float balancedAggression = opponent.aggression - 0.1f;
-        if (balancedAggression >= 0.6)
+        if (balancedAggression >= 0.7)
         {
-            balancedAggression = 0.6f;
-        } else if (balancedAggression <= 0.2)
+            balancedAggression = 0.7f;
+        } else if (balancedAggression <= 0.4)
         {
-            balancedAggression = 0.2f;
+            balancedAggression = 0.4f;
         }
-        int attackAmount = Mathf.RoundToInt((opponentDeckSize-effectAmount)* balancedAggression);
+        int attackAmount = Mathf.RoundToInt(opponentDeckSize* balancedAggression);
 
         int addedEffectAmount = 0;
         int addedAttackAmount = 0;
@@ -568,11 +568,13 @@ public class combatManager : MonoBehaviour
             if (addedEffectAmount < effectAmount) //effect
             {
                 newCard.type = card.cardType.Effect;
+                addedEffectAmount++;
 
             } else if (addedAttackAmount < attackAmount) //attack
             {
                 newCard.type = card.cardType.Attack;
                 newCard.cardStrength = Random.Range(opponent.attack - 2, opponent.attack + 3);
+                addedAttackAmount++;
             } else //defense
             {
                 newCard.type = card.cardType.Defend;
@@ -595,10 +597,5 @@ public class combatManager : MonoBehaviour
         }
 
         uiScript.updateSpeedUI((float)opponentSpeedCounter / (float)opponentSpeed, (float)playerSpeedCounter / (float)playerSpeed);
-    }
-
-    public void healPlayer()
-    {
-        uiScript.updateHealthUI(1, 1, 1, 1, 1, 1);
     }
 }

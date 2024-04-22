@@ -18,6 +18,7 @@ public class targetNPC : MonoBehaviour
     [SerializeField] Sprite levelOneImage, levelTwoImage, levelThreeImage, doorImage, healImage, stairImage;
     [SerializeField] GameObject statue, stairs;
     [SerializeField] stationManager stationScript;
+    [SerializeField] Image playerHealthBar, tempPlayerHealthBar;
 
     [Header("Settings")]
     [SerializeField] float targetDistance;
@@ -26,6 +27,7 @@ public class targetNPC : MonoBehaviour
     private GameObject target;
     private InputAction interact;
     private Image imageComponent;
+    [HideInInspector] public bool hasUsedHeal = false;
 
     private void Awake()
     {
@@ -129,7 +131,14 @@ public class targetNPC : MonoBehaviour
                     break;
 
                 case "Statue":
-                    imageComponent.sprite = healImage;
+                    if (hasUsedHeal || gameManager.instance.playerHealth == gameManager.instance.playerMaxHealth)
+                    {
+                        targetDisplay.SetActive(false);
+                        target = null;
+                    } else
+                    {
+                        imageComponent.sprite = healImage;
+                    }
                     break;
 
             }
@@ -186,14 +195,40 @@ public class targetNPC : MonoBehaviour
             subwayManager.instance.startCombat(target.GetComponent<opponentInfo>().stats);
 
             npcManagerScript.removeFromList(target);
+            hasUsedHeal = false;
 
         } else if (target.tag == "Statue")
         {
+            if (hasUsedHeal) return;
+
             gameManager.instance.playerHealth = gameManager.instance.playerMaxHealth;
-            combatManager.instance.healPlayer();
+            StartCoroutine(healHealth(playerHealthBar,0.3f));
+            StartCoroutine(healHealth(tempPlayerHealthBar, 0.3f));
+            hasUsedHeal = true;
         } else if (target.tag == "Stairs")
         {
             stationScript.generateMenu();
+        }
+    }
+
+
+    IEnumerator healHealth(Image bar, float duration)
+    {
+        float timer = 0;
+        float startFillAmount = bar.fillAmount;
+
+        while (true)
+        {
+            timer += Time.deltaTime;
+            float lerpValue = gameManager.instance.lerpCurve.Evaluate(timer / duration);
+
+            bar.fillAmount = Mathf.Lerp(startFillAmount, 1, lerpValue);
+
+            if (timer >= duration)
+            {
+                break;
+            }
+            yield return null;
         }
     }
 }

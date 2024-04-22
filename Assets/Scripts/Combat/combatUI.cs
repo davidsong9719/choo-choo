@@ -47,8 +47,8 @@ public class combatUI : MonoBehaviour
 
         StartCoroutine(updateHealthBar(playerHealthDisplay, playerPercentage, 0.3f));
         StartCoroutine(updateHealthBar(opponentHealthDisplay, opponentPercentage, 0.3f));
-        StartCoroutine(updateHealthBar(tempPlayerHealthDisplay, tempPlayerPercentage, 0.2f));
-        StartCoroutine(updateHealthBar(tempOpponentHealthDisplay, tempOpponentPercentage, 0.2f));
+        StartCoroutine(updateHealthBar(tempPlayerHealthDisplay, tempPlayerPercentage, 0.3f));
+        StartCoroutine(updateHealthBar(tempOpponentHealthDisplay, tempOpponentPercentage, 0.3f));
     }
 
     public void updateDefenseUI(int opponentDefense, int playerDefense)

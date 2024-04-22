@@ -157,7 +157,7 @@ public class subwayUI : MonoBehaviour
             int newTime = (int)Mathf.Lerp(startTime, startTime + additionalTime, progressPercentage);
 
             int minute = newTime % 60;
-            int hour = (newTime - minute) / 60;
+            int hour = ((newTime - minute) / 60)+defaultHour;
             timeDisplay.text = hour.ToString("00") + ":" + minute.ToString("00") + " PM";
 
             if (progressPercentage >= 1)

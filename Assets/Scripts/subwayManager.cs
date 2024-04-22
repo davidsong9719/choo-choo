@@ -17,6 +17,7 @@ public class subwayManager : MonoBehaviour
     //combat
     [SerializeField] GameObject combatCanavas;
     [SerializeField] GameObject combatManagerObject;
+    [SerializeField] npcManager npcManagerScript;
 
     //station
     [SerializeField] stationManager stationScript;
@@ -115,6 +116,8 @@ public class subwayManager : MonoBehaviour
     {
         subwayUI.instance.closeUI();
         subwaySFX.Invoke();
+
+        npcManagerScript.updateCar();
 
         switchToMovement();
         switchCamera("car");

@@ -23,6 +23,13 @@ public class cardOptions : MonoBehaviour
         continueButton.color = Color.gray;
     }
 
+    private void OnEnable()
+    {
+        replaceButton.color = Color.gray;
+        continueButton.color = Color.gray;
+        isContinuable = false;
+    }
+
     public void spawnNewCards(float difficulty)
     {
         for (int i = 0; i < displayObject.Count; i++)
