@@ -101,10 +101,12 @@ public class cardOptions : MonoBehaviour
         {
             DialogueManager.GetInstance().tutorialStage = 2;
             combatManager.instance.startCombat();
+            subwayUI.instance.setGuideTextPerm("Board a train by the stairs");
         }
         else
         {
             subwayManager.instance.switchToMovement();
+            subwayUI.instance.setGuideTextPerm("");
         }
     }
 }

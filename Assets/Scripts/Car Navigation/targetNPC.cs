@@ -12,6 +12,8 @@ public class targetNPC : MonoBehaviour
 
     //to hide in inspector after making npc generator script
 
+    [HideInInspector] public bool canLeaveCar;
+
     [Header("Setup")]
     [SerializeField] GameObject targetDisplay;
     [SerializeField] npcManager npcManagerScript;
@@ -48,6 +50,7 @@ public class targetNPC : MonoBehaviour
     void Update()
     {
         findClosestInteractable();
+
         if (TransitionManager.GetInstance().playingTransition == false)
         {
             selectTarget();
@@ -127,7 +130,15 @@ public class targetNPC : MonoBehaviour
                     break;
 
                 case "ExitDoor":
-                    imageComponent.sprite = doorImage;
+                    if (!canLeaveCar)
+                    {
+                        targetDisplay.SetActive(false);
+                        target = null;
+                    } else
+                    {
+                        imageComponent.sprite = doorImage;
+                    }
+                    
                     break;
 
                 case "Statue":
@@ -187,8 +198,8 @@ public class targetNPC : MonoBehaviour
 
         if (target.tag == "ExitDoor")
         {
-            interact.Disable();
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
+            canLeaveCar = false;
         }
         else if (target.tag == "NPC")
         {
@@ -196,7 +207,7 @@ public class targetNPC : MonoBehaviour
 
             npcManagerScript.removeFromList(target);
             hasUsedHeal = false;
-
+            canLeaveCar = true;
         } else if (target.tag == "Statue")
         {
             if (hasUsedHeal) return;

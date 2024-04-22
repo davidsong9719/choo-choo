@@ -144,6 +144,7 @@ public class subwayUI : MonoBehaviour
     {
 
         followerDisplay.text = gameManager.instance.followerAmount.ToString();
+        StartCoroutine(updateFontSize(followerDisplay));
 
         StartCoroutine(updateTime(additionalTime, timeAnimationDuration));
     }

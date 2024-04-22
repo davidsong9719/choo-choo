@@ -313,11 +313,11 @@ MonoBehaviour:
   playBorder: {fileID: 0}
   targetPosition: {x: 0, y: 0}
   newCardManager: {fileID: 0}
+  isTemp: 0
   cardTransform: {fileID: 4627903928077983849}
   highlightedDisplay: {fileID: 3721610621622315851}
-  highlighedSprite: {fileID: 3562544666649429312, guid: 29e66fc494a54644b94338a1860d1e1d,
-    type: 3}
-  unhighlightedSprite: {fileID: 132520759477694417, guid: 29e66fc494a54644b94338a1860d1e1d,
+  highlighedSprite: {fileID: 21300000, guid: f240d53d4429c0c41b955df6f602a61f, type: 3}
+  unhighlightedSprite: {fileID: 21300000, guid: a07b217a8b376184d98611366fb469df,
     type: 3}
   hoverScale: 1.2
   cardSpeed: 0.15
@@ -346,9 +346,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6996262682429119862}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.29999998, y: -0.29999998, z: -0.29999998}
+  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4627903928077983849}
@@ -356,7 +356,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 67, y: 108}
-  m_SizeDelta: {x: 180, y: 100}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9032295285164319620
 CanvasRenderer:
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 132520759477694417, guid: 29e66fc494a54644b94338a1860d1e1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a07b217a8b376184d98611366fb469df, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
