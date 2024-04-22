@@ -25,6 +25,9 @@ public class subwayManager : MonoBehaviour
     //Camera
     [SerializeField] Camera carCamera, stationCamera;
 
+    //Tutorial
+    [SerializeField] opponentStats tutorialStats;
+
     [Header("Public Access")]
     public GameObject player;
     public string state;
@@ -42,20 +45,8 @@ public class subwayManager : MonoBehaviour
 
     void Start()
     {
-        switchToCar();
-    }
-
-
-    public void switchToCombat()
-    {
-        state = "combat";
-
-        movementScript.enabled = false;
-        targetScript.enabled = false;
-
-        combatManagerObject.SetActive(true);
-        combatCanavas.SetActive(true);
-
+        switchToStation();
+        startCombat(tutorialStats);
     }
 
     public void startCombat(opponentStats opponent)
@@ -98,26 +89,25 @@ public class subwayManager : MonoBehaviour
 
     public void switchToStation()
     {
-        playerControls.Player.Interact.Enable();
         state = "station";
 
         movementScript.enabled = true;
         targetScript.enabled = true;
 
+        combatManagerObject.SetActive(false);
+        combatCanavas.SetActive(false);
 
         stationScript.startStation();
 
         switchCamera("station");
-        
     }
-
 
     public void switchToCar()
     {
         subwayUI.instance.closeUI();
         subwaySFX.Invoke();
 
-        npcManagerScript.updateCar();
+        npcManagerScript.updateCar();   
 
         switchToMovement();
         switchCamera("car");

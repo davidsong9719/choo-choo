@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 710572}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.04, y: 0.55, z: -105.53}
+  m_LocalPosition: {x: -30.04, y: 0.08, z: -105.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -564,15 +564,15 @@ RectTransform:
   m_GameObject: {fileID: 32073797}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.298, y: 0.298, z: 0.298}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1669862590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 104, y: -233}
-  m_SizeDelta: {x: 1920, y: 507}
+  m_AnchoredPosition: {x: 321.99997, y: -176.99998}
+  m_SizeDelta: {x: 1756, y: 191}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &32073799
 MonoBehaviour:
@@ -594,7 +594,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 76e23cfefe2ca1c4d8aab60c11ccf5d4, type: 3}
+  m_Sprite: {fileID: -114933614, guid: 059a883c2427eee43be2083a8a7bf023, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -755,6 +755,38 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextTemp
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Open map
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Map
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &35345332
@@ -1525,6 +1557,8 @@ RectTransform:
   m_Children:
   - {fileID: 1867262848}
   - {fileID: 425860141}
+  - {fileID: 1587709067}
+  - {fileID: 1295304928}
   m_Father: {fileID: 727147322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
@@ -2860,6 +2894,38 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextTemp
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Pause game
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Pause game
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &250942791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3033,15 +3099,15 @@ RectTransform:
   m_GameObject: {fileID: 259739091}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.298, y: 0.298, z: 0.298}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1669862590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 104, y: -233}
-  m_SizeDelta: {x: 1920, y: 507}
+  m_AnchoredPosition: {x: 322, y: -177}
+  m_SizeDelta: {x: 1756, y: 191}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &259739093
 MonoBehaviour:
@@ -3063,7 +3129,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 45d72f8e0d8ea7b44b7d96a8cd60a46e, type: 3}
+  m_Sprite: {fileID: -1788666508, guid: 134687f801e0a394f8df72db1a2b1861, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3360,7 +3426,7 @@ GameObject:
   - component: {fileID: 301826668}
   - component: {fileID: 301826667}
   m_Layer: 5
-  m_Name: textDisplay
+  m_Name: Guide Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3636,6 +3702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1054918488}
+  transformOffset: {x: -8, y: 4.5, z: -8}
 --- !u!114 &302478029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4127,6 +4194,7 @@ GameObject:
   - component: {fileID: 357855962}
   - component: {fileID: 357855961}
   - component: {fileID: 357855963}
+  - component: {fileID: 357855964}
   m_Layer: 5
   m_Name: Opponent Speed Display
   m_TagString: Untagged
@@ -4151,7 +4219,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -739, y: 257}
+  m_AnchoredPosition: {x: 222.00003, y: 247.00003}
   m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &357855961
@@ -4205,6 +4273,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 357855960}
+--- !u!114 &357855964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357855959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextTemp
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Opponent speed
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Followers
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &363115675
 GameObject:
   m_ObjectHideFlags: 0
@@ -4729,16 +4842,15 @@ RectTransform:
   m_GameObject: {fileID: 425860140}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1587709067}
+  m_LocalScale: {x: 0.297, y: 0.297, z: 0.297}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
   m_Father: {fileID: 128802258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 507}
+  m_SizeDelta: {x: 1756, y: 191}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &425860142
 MonoBehaviour:
@@ -4760,7 +4872,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf19b5c76bf22ae40a43d3da4efac4d7, type: 3}
+  m_Sprite: {fileID: 1263593012, guid: 443e21c5bc3a0b445aabaf5bb542da17, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4817,6 +4929,7 @@ GameObject:
   - component: {fileID: 429174660}
   - component: {fileID: 429174659}
   - component: {fileID: 429174661}
+  - component: {fileID: 429174662}
   m_Layer: 5
   m_Name: Player Speed Display
   m_TagString: Untagged
@@ -4840,7 +4953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -878, y: 272}
+  m_AnchoredPosition: {x: 83, y: 262}
   m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &429174659
@@ -4894,6 +5007,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 429174658}
+--- !u!114 &429174662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429174657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextTemp
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Your speed
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Followers
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &447428650
 GameObject:
   m_ObjectHideFlags: 0
@@ -7164,15 +7322,15 @@ RectTransform:
   m_GameObject: {fileID: 716735733}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.298, y: 0.298, z: 0.298}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1669862590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 104, y: -233}
-  m_SizeDelta: {x: 1920, y: 507}
+  m_AnchoredPosition: {x: 321.99997, y: -176.99998}
+  m_SizeDelta: {x: 1756, y: 191}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &716735735
 MonoBehaviour:
@@ -7194,7 +7352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8198d1ee28387844ca762bbb9b555a93, type: 3}
+  m_Sprite: {fileID: -1447067, guid: a5f7e342a2906ad4390100167abdc65d, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8552,8 +8710,9 @@ GameObject:
   - component: {fileID: 823347935}
   - component: {fileID: 823347937}
   - component: {fileID: 823347936}
+  - component: {fileID: 823347938}
   m_Layer: 5
-  m_Name: followers
+  m_Name: Follower Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8575,7 +8734,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -145.70874, y: -57}
+  m_AnchoredPosition: {x: -145.7085, y: -57}
   m_SizeDelta: {x: 68.4174, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &823347936
@@ -8676,6 +8835,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823347934}
   m_CullTransparentMesh: 1
+--- !u!114 &823347938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823347934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextTemp
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Follower amount
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Followers
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &834840458
 GameObject:
   m_ObjectHideFlags: 0
@@ -8797,6 +9001,38 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextTemp
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Open deck
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Deck
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!114 &839910906
@@ -9381,6 +9617,7 @@ MonoBehaviour:
   stationScript: {fileID: 964048017}
   carCamera: {fileID: 302478025}
   stationCamera: {fileID: 2137930189}
+  tutorialStats: {fileID: 11400000, guid: acc33438c8783754ba29c284069913c1, type: 2}
   player: {fileID: 137847588}
   state: movement
   previousState: 
@@ -10604,6 +10841,38 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextTemp
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Open draw deck
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1069284609
 GameObject:
   m_ObjectHideFlags: 0
@@ -11552,7 +11821,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 960, y: -54.5}
+  m_AnchoredPosition: {x: 0, y: -54.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1209606427
@@ -12847,6 +13116,159 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextTemp
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Open discard deck
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!1 &1295304927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1295304928}
+  - component: {fileID: 1295304930}
+  - component: {fileID: 1295304929}
+  - component: {fileID: 1295304931}
+  m_Layer: 5
+  m_Name: Outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1295304928
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295304927}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 128802258}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1824, y: 249}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1295304929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295304927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 411438330, guid: 3221837028d1fe749aba5861ef4e629e, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1295304930
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295304927}
+  m_CullTransparentMesh: 1
+--- !u!114 &1295304931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295304927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 92396094}
+          m_TargetAssemblyTypeName: combatManager, Assembly-CSharp
+          m_MethodName: healthGuideText
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1297417640
 GameObject:
   m_ObjectHideFlags: 0
@@ -13905,6 +14327,7 @@ GameObject:
   - component: {fileID: 1454761994}
   - component: {fileID: 1454761996}
   - component: {fileID: 1454761995}
+  - component: {fileID: 1454761997}
   m_Layer: 5
   m_Name: Meter
   m_TagString: Untagged
@@ -13921,15 +14344,15 @@ RectTransform:
   m_GameObject: {fileID: 1454761993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1172650114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -808, y: -63}
-  m_SizeDelta: {x: 600, y: 600}
+  m_AnchoredPosition: {x: 153.00003, y: -72.99997}
+  m_SizeDelta: {x: 352, y: 1782}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1454761995
 MonoBehaviour:
@@ -13951,7 +14374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ee48407d83f02fc4db61b6bc1f912106, type: 3}
+  m_Sprite: {fileID: 973196390, guid: ee48407d83f02fc4db61b6bc1f912106, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13969,6 +14392,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1454761993}
   m_CullTransparentMesh: 1
+--- !u!114 &1454761997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454761993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextTemp
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Speed Meter
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Followers
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1460247179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8440934946049208855, guid: 38e85b421de787a47a43d33257f5740c,
@@ -14508,15 +14976,15 @@ RectTransform:
   m_GameObject: {fileID: 1587709066}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.297, y: 0.297, z: 0.297}
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 425860141}
+  m_Father: {fileID: 128802258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 507}
+  m_SizeDelta: {x: 1756, y: 191}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1587709068
 MonoBehaviour:
@@ -14538,7 +15006,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 006862188f4862044b0057ccdaee5f62, type: 3}
+  m_Sprite: {fileID: 2058478787, guid: a23dea00edbd79043ac09453059e987c, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15048,6 +15516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1669862590}
+  - component: {fileID: 1669862591}
   m_Layer: 5
   m_Name: Player Health
   m_TagString: Untagged
@@ -15070,13 +15539,59 @@ RectTransform:
   - {fileID: 259739092}
   - {fileID: 716735734}
   - {fileID: 32073798}
+  - {fileID: 2139947177}
   m_Father: {fileID: 1696168085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200.75, y: 59}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1669862591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669862589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 92396094}
+          m_TargetAssemblyTypeName: combatManager, Assembly-CSharp
+          m_MethodName: healthGuideText
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1670495830
 GameObject:
   m_ObjectHideFlags: 0
@@ -15347,6 +15862,7 @@ MonoBehaviour:
   lineMenuParent: {fileID: 656569792}
   followerDisplay: {fileID: 823347936}
   timeDisplay: {fileID: 601049440}
+  guideText: {fileID: 301826667}
   defaultHour: 1
   state: closed
   audios: []
@@ -15852,7 +16368,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1867262848
 RectTransform:
@@ -15863,15 +16379,15 @@ RectTransform:
   m_GameObject: {fileID: 1867262847}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.297, y: 0.297, z: 0.297}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 128802258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 507}
+  m_SizeDelta: {x: 1756, y: 191}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1867262849
 MonoBehaviour:
@@ -15893,7 +16409,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 71c8fa5e63bb38e43bfe268fc35329b4, type: 3}
+  m_Sprite: {fileID: 1195801242, guid: 84127d7a42f9eb2408dbd8946ce3cefe, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16681,8 +17197,9 @@ GameObject:
   - component: {fileID: 1966532329}
   - component: {fileID: 1966532331}
   - component: {fileID: 1966532330}
+  - component: {fileID: 1966532332}
   m_Layer: 5
-  m_Name: pause (1)
+  m_Name: Follower Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16746,6 +17263,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966532328}
   m_CullTransparentMesh: 1
+--- !u!114 &1966532332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966532328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextTemp
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Follower amount
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1696168086}
+          m_TargetAssemblyTypeName: subwayUI, Assembly-CSharp
+          m_MethodName: setGuideTextToPerm
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Followers
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2006017392
 GameObject:
   m_ObjectHideFlags: 0
@@ -17119,20 +17681,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 4.1184306
-      outSlope: 4.1184306
+      inSlope: 3.215732
+      outSlope: 3.215732
       tangentMode: 0
       weightedMode: 3
       inWeight: 0
-      outWeight: 0.24166666
+      outWeight: 0.15416667
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 4.795476
-      outSlope: 4.795476
+      inSlope: 4.090481
+      outSlope: 4.090481
       tangentMode: 0
       weightedMode: 3
-      inWeight: 0.20833331
+      inWeight: 0.125
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -17185,14 +17747,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  minHealth: 30
-  maxHealth: 120
+  minHealth: 14
+  maxHealth: 75
   minSpeed: 3
   maxSpeed: 8
   minAttack: 7
-  maxAttack: 25
+  maxAttack: 20
   minDefense: 4
-  maxDefense: 20
+  maxDefense: 12
 --- !u!1 &2038140395
 GameObject:
   m_ObjectHideFlags: 0
@@ -17766,6 +18328,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 23.88, y: 206.576, z: 0}
+--- !u!1 &2139947176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2139947177}
+  - component: {fileID: 2139947179}
+  - component: {fileID: 2139947178}
+  m_Layer: 5
+  m_Name: Border
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2139947177
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139947176}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1669862590}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 317.59998, y: -172.79999}
+  m_SizeDelta: {x: 1851, y: 276}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2139947178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139947176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1229581304, guid: 3975f0f98578ea043adb8994f8f427e4, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2139947179
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139947176}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1612495344077373965
 PrefabInstance:
   m_ObjectHideFlags: 0

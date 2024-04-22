@@ -56,6 +56,7 @@ public class combatManager : MonoBehaviour
     [HideInInspector] public int bonusPlayerDefend, bonusOpponentDefend;
     public int playerHandAmount;
 
+    private bool isTutorial = false;
 
     private void Awake()
     {
@@ -67,6 +68,8 @@ public class combatManager : MonoBehaviour
 
     public void startCombat()
     {
+        isTutorial = DialogueManager.GetInstance().tutorialStage < 3;
+
         //isPlayerCursed = true;
         combatParent.SetActive(true);
         victoryParent.SetActive(false);
@@ -259,6 +262,7 @@ public class combatManager : MonoBehaviour
             endCombat();
         }
     }
+
     private void shuffleDrawPile()
     {
         List<card> shuffledPile = new List<card>();
@@ -518,12 +522,14 @@ public class combatManager : MonoBehaviour
 
     private void endCombat()
     {
-        nodeManager.instance.progressStation();
-        npcManagerScript.updateCar();
+        if (!isTutorial)
+        {
+            nodeManager.instance.progressStation();
+            npcManagerScript.updateCar();
+        }
 
         uiScript.clearCards();
         gameManager.instance.playerHealth = playerHealth;
-        combatParent.SetActive(true);
 
         combatParent.SetActive(false);
 
@@ -597,5 +603,16 @@ public class combatManager : MonoBehaviour
         }
 
         uiScript.updateSpeedUI((float)opponentSpeedCounter / (float)opponentSpeed, (float)playerSpeedCounter / (float)playerSpeed);
+    }
+
+    public void healthGuideText(int target)
+    {
+        if (target == 0)
+        {
+            subwayUI.instance.setGuideTextTemp("Your Willpower: " + tempPlayerHealth + "/" + playerMaxHealth);
+        } else
+        {
+            subwayUI.instance.setGuideTextTemp("Opponent Willpower: " + tempOpponentHealth + "/" + opponentMaxHealth);
+        }
     }
 }

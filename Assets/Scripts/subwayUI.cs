@@ -10,11 +10,10 @@ public class subwayUI : MonoBehaviour
     [SerializeField] nodeManager nodeManagerScript;
     [SerializeField] mapButton mapToggle;
     [SerializeField] GameObject deckParent, drawParent, discardParent, lineMenuParent;
-    [SerializeField] TextMeshProUGUI followerDisplay, timeDisplay;
-
+    [SerializeField] TextMeshProUGUI followerDisplay, timeDisplay, guideText;
     [SerializeField] int defaultHour;
     public string state = "closed";
-
+    private string permText;
     [SerializeField] AudioSource[] audios;
 
     private void Awake()
@@ -73,7 +72,7 @@ public class subwayUI : MonoBehaviour
 
     public  void closeUI()
     {
-        
+        setGuideTextPerm("");
         mapToggle.toggleMapVisibility(false);
         deckParent.SetActive(false);
         drawParent.SetActive(false);
@@ -91,6 +90,8 @@ public class subwayUI : MonoBehaviour
             closeUI();
             return;
         }
+
+        setGuideTextPerm("The Draw Deck");
         mapToggle.toggleMapVisibility(false);
         deckParent.SetActive(false);
         drawParent.SetActive(true);
@@ -108,6 +109,8 @@ public class subwayUI : MonoBehaviour
             closeUI();
             return;
         }
+
+        setGuideTextPerm("The Discard Deck");
         mapToggle.toggleMapVisibility(false);
         deckParent.SetActive(false);
         drawParent.SetActive(false);
@@ -143,7 +146,6 @@ public class subwayUI : MonoBehaviour
         StartCoroutine(updateTime(additionalTime, timeAnimationDuration));
     }
 
-
     IEnumerator updateTime(int additionalTime, float animationDuration)
     {
         float startTime = gameManager.instance.timeElapsed;
@@ -166,5 +168,27 @@ public class subwayUI : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    public void setGuideTextTemp(string newText)
+    {
+        guideText.text = newText;
+    }
+
+    public void setGuideTextPerm(string newText)
+    {
+        if (guideText.text == permText)
+        {
+            permText = newText;
+            setGuideTextToPerm();
+        } else
+        {
+            permText = newText;
+        }
+    }
+
+    public void setGuideTextToPerm()
+    {
+        guideText.text = permText;
     }
 }

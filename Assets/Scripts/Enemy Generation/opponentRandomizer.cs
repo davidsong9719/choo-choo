@@ -79,6 +79,6 @@ public class opponentRandomizer : MonoBehaviour
         float curveValue = currentCurve.Evaluate(relativeDifficulty);
         float statValue = Mathf.Lerp(currentMin, currentMax, curveValue);
 
-        return Mathf.RoundToInt(statValue); ;
+        return Mathf.RoundToInt(statValue);
     }
 }

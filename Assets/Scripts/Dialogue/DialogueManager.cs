@@ -7,8 +7,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
-using Unity.VisualScripting;
-using UnityEngine.UIElements.Experimental;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -57,8 +55,6 @@ public class DialogueManager : MonoBehaviour
     private InputAction submit;
 
     //used to check if pressed this frame, used in coroutine
-
-
     private const string SPEAKER_TAG = "speaker";
     private const string PORTRAIT_TAG = "portrait";
 
@@ -69,7 +65,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-        tutorialStage = 2;
+        tutorialStage = 1;
         //tutorialEnd = false;
         //playerControls = new PlayerInputActions();
 
