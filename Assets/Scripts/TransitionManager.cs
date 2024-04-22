@@ -29,10 +29,10 @@ public class TransitionManager : MonoBehaviour
     {
         playingTransition = true;
         swipe.SetTrigger("end");
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSecondsRealtime(0.6f);
         function();
         swipe.SetTrigger("start");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         playingTransition = false;
     }
 
