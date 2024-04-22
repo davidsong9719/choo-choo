@@ -200,6 +200,8 @@ Good job! You've worn down my Willpower. #speaker-Opponent
 And you managed to pick up a new tactic too, I'm impressed.
 And look at that, you've gained me as a follower! 
 You can check your follower count up in the top right corner.
+Now, head over to the stairs to the left and wait for a train!
+You can check where you are on your map on the top right.
 Recruit as many followers as you can by the end of the day, I'll see you tonight.
 Go get them tiger!
 -> END
