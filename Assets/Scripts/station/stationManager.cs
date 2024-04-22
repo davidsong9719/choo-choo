@@ -231,8 +231,7 @@ public class stationManager : MonoBehaviour
         //CALL MID-TRANSITION
         subwayUI.instance.refreshUI(chosenLine.time, 0.5f);
 
-        //StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToCar));
-        subwayManager.instance.switchToCar();
+        StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToCar));
         
     }
 
