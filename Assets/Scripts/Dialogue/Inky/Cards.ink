@@ -147,9 +147,9 @@
 ===PlayerTutorial===
 = Attack
 {shuffle:
-- Attack! Right?
+- Here's an awesome argument! Right?
     {shuffle:
-        - Good Job! My will has decreased!
+        - Good Job! My Willpower has decreased.
         - Impressive!
     }
 - Look at this airtight argument.
@@ -157,30 +157,27 @@
         - I can't think of a counter. Just kidding, I can.
         - Not that airtight.
     }
-- tutorial
+- Am I arguing right now?
     {shuffle:
-        - nah
-        - sorry im broke
+        - You are! You've decreased my Willpower!
+        - Yeah, you're doing great.
     }
 }
 -> END
 
 = Effect
 {shuffle:
-- tutorial
+- Pull again!
     {shuffle:
-        - what
-        - yum takoyaki
+        - An effect, clever.
     }
-- tutorial
+- New tactics!
     {shuffle:
-        - aaa i cant say no
-        - i kick puppies
+        - An effect, clever.
     }
-- tutorial
+- Hmmmm.. let me try again.
     {shuffle:
-        - i cant see
-        - im a pathological liar
+        - An effect, clever.
     }
 }
 -> END
@@ -188,7 +185,7 @@
 = Defend
 {shuffle:
 - Heal!
-- More willpower!
+- More Willpower!
 - You can't defeat me!
 }
 -> END
@@ -197,18 +194,8 @@
 {shuffle:
 - חÂרΘיßרæקοסδφדאØודי
     {shuffle:
-        - Excuse me?
-        - What?
-    }
-- ודיÂדרΘיκοæυדאØקγוκ
-    {shuffle:
-        - Uhh...
-        - ???
-    }
-- חוæקיοדκÂדרßרØו
-    {shuffle:
-        - What the hell?
-        - Are you alright?
+        - Enjoying your curse?
+        - Hm? I can't understand you.
     }
 }
 -> END
@@ -216,68 +203,46 @@
 ===OpponentTutorial===
 = Attack
 {shuffle:
-- I'm arguing, your will has gone down!
+- I'm arguing, your Willpower has gone down!
     {shuffle:
-        - Good Job! My will has decreased!
-        - Impressive!
+        - How could you have done this?
+        - I can bring it back!
     }
-- tutorial
+- Look, this is an argument, see the Willpower decrease?
     {shuffle:
-        - i eat kids
-        - me too
+        - Nooo, bring it back!
+        - Oh no, I do!
     }
-- tutorial
+- Take this argument!
     {shuffle:
-        - samesies
-        - cult gives monee i swear
+        - Take this retort!
+        - I won't!
     }
 }
 -> END
 
 = Effect
 {shuffle:
-- tutorial
+- Hey, check this out, this is an example of an effect!
     {shuffle:
-        - yuh huh
-        - please
+        - דאØודי??
+        - !!
     }
-- tutorial
+- Well how about a little curse?
     {shuffle:
-        - on my knees begging
-        - but join the cult
+        - רΘיκο ;(
     }
-- tutorial
+- Isn't this effect cool?
     {shuffle:
-        - nuh uh
-        - but its cool
+        - !!??
     }
 }
 -> END
 
 = Defend
 {shuffle:
-- I'm retorting! I can only recover as much will as your argue.
+- I'm retorting! I can only recover as much Willpower as your last argue.
 - Retort! This won't do anything if you haven't argued though.
-- You can't defeat me!
-}
--> END
-
-= Cursed
-{shuffle:
-- tutorial
-    {shuffle:
-        - yuh huh
-        - please
-    }
-- tutorial
-    {shuffle:
-        - on my knees begging
-        - but join the cult
-    }
-- tutorial
-    {shuffle:
-        - nuh uh
-        - but its cool
-    }
+- I'll retort! This brings back some of my Willpower.
 }
 -> END

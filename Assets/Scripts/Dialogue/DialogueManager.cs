@@ -444,6 +444,7 @@ public class DialogueManager : MonoBehaviour
                         {
                             StartCoroutine(DisplayLine(textBoxesText[i], playerDefense));
                             playerDefense = "";
+                            enemyDefense = "";
                             textBoxes[i].GetComponentInChildren<Image>().enabled = true;
                             textBoxes[i].GetComponentInChildren<Image>().sprite = playerBubble;
                             break;
@@ -453,6 +454,7 @@ public class DialogueManager : MonoBehaviour
                             StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
                             textBoxes[i].GetComponentInChildren<Image>().enabled = true;
                             textBoxes[i].GetComponentInChildren<Image>().sprite = playerBubble;
+                            enemyDefense = "";
                             break;
                         }
                     }
@@ -468,6 +470,7 @@ public class DialogueManager : MonoBehaviour
                         {
                             StartCoroutine(DisplayLine(textBoxesText[i], enemyDefense));
                             enemyDefense = "";
+                            playerDefense = "";
                             textBoxes[i].GetComponentInChildren<Image>().enabled = true;
                             textBoxes[i].GetComponentInChildren<Image>().sprite = enemyBubble;
                             break;
@@ -477,6 +480,7 @@ public class DialogueManager : MonoBehaviour
                             StartCoroutine(DisplayLine(textBoxesText[i], currentStory.Continue()));
                             textBoxes[i].GetComponentInChildren<Image>().enabled = true;
                             textBoxes[i].GetComponentInChildren<Image>().sprite = enemyBubble;
+                            playerDefense = "";
                             break;
                         }
                     }
