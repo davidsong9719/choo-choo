@@ -15,6 +15,8 @@ public class subwayUI : MonoBehaviour
     public string state = "closed";
     private string permText;
     [SerializeField] AudioSource[] audios;
+    [SerializeField] int fontDefaultSize, fontUpdateSize;
+    private Coroutine timeCoroutine, guideCoroutine;
 
     private void Awake()
     {
@@ -162,6 +164,13 @@ public class subwayUI : MonoBehaviour
             int hour = ((newTime - minute) / 60)+defaultHour;
             timeDisplay.text = hour.ToString("00") + ":" + minute.ToString("00") + " PM";
 
+            if (timeCoroutine != null)
+            {
+                StopCoroutine(timeCoroutine);
+            }
+
+            guideCoroutine = StartCoroutine(updateFontSize(timeDisplay));
+
             if (progressPercentage >= 1)
             {
                 break;
@@ -173,6 +182,11 @@ public class subwayUI : MonoBehaviour
     public void setGuideTextTemp(string newText)
     {
         guideText.text = newText;
+        if (guideCoroutine != null)
+        {
+            StopCoroutine(guideCoroutine);
+        }
+        guideCoroutine = StartCoroutine(updateFontSize(guideText));
     }
 
     public void setGuideTextPerm(string newText)
@@ -190,5 +204,29 @@ public class subwayUI : MonoBehaviour
     public void setGuideTextToPerm()
     {
         guideText.text = permText;
+        if (guideCoroutine != null)
+        {
+            StopCoroutine(guideCoroutine);
+        }
+        
+        guideCoroutine = StartCoroutine(updateFontSize(guideText));
+    }
+
+    IEnumerator updateFontSize(TextMeshProUGUI textComponent)
+    {
+        float resetTime = 0.2f;
+        float timeCounter = 0;
+        float lerpCurveValue = 0;
+
+        while (true)
+        {
+            timeCounter += Time.deltaTime;
+            lerpCurveValue = gameManager.instance.lerpCurve.Evaluate(timeCounter / resetTime);
+
+            textComponent.fontSize = Mathf.Lerp(fontUpdateSize, fontDefaultSize, lerpCurveValue);
+
+            if (timeCounter > resetTime) break;
+            yield return null;
+        }
     }
 }

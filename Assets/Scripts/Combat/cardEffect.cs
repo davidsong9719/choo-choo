@@ -26,6 +26,7 @@ public class cardEffect : MonoBehaviour
                 {
                     manager.isOpponentToRedraw = true;
                 }
+                subwayUI.instance.setGuideTextPerm("Redrew hand");
                 break;
 
             //tier 1
@@ -37,6 +38,7 @@ public class cardEffect : MonoBehaviour
                 {
                     manager.bonusOpponentAttack += cardInfo.cardStrength;
                 }
+                subwayUI.instance.setGuideTextPerm("Future Argues improved by " + cardInfo.cardStrength);
                 break;
 
             case "increaseDefend":
@@ -48,6 +50,7 @@ public class cardEffect : MonoBehaviour
                 {
                     manager.bonusOpponentDefend += cardInfo.cardStrength;
                 }
+                subwayUI.instance.setGuideTextPerm("Future Retort improved by " + cardInfo.cardStrength);
                 break;
 
             case "increaseHand":
@@ -58,6 +61,7 @@ public class cardEffect : MonoBehaviour
                         manager.playerHandAmount++;
                     }
                 }
+                subwayUI.instance.setGuideTextPerm("Hand size increased to " + manager.playerHandAmount);
                 break;
 
             //tier 2
@@ -71,6 +75,7 @@ public class cardEffect : MonoBehaviour
                     manager.inflictSimpleDamage(0, cardInfo.cardStrength);
                     manager.heal(1, cardInfo.cardStrength);
                 }
+                subwayUI.instance.setGuideTextPerm("Drained " + cardInfo.cardStrength + "Willpower");
                 break;
 
             case "curse":
@@ -82,8 +87,9 @@ public class cardEffect : MonoBehaviour
                 {
                     manager.isPlayerCursed = true;
                 }
+                subwayUI.instance.setGuideTextPerm("Cursed!");
                 break;
-
+                
             case "pray":
                 float randomNum = Random.Range(0f, 1f);
                 bool isSuccessful = randomNum > 0.66;
@@ -110,6 +116,14 @@ public class cardEffect : MonoBehaviour
                         manager.isOpponentCursed = true;
                         manager.endOpponentTurnCursed = true;
                     }
+                }
+
+                if (isSuccessful)
+                {
+                    subwayUI.instance.setGuideTextPerm("Roll succeeded, decreased Willpower by " + cardInfo.cardStrength);
+                } else
+                {
+                    subwayUI.instance.setGuideTextPerm("Roll failed, became Cursed!");
                 }
                 break;
 

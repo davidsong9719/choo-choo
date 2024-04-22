@@ -207,10 +207,12 @@ public class combatManager : MonoBehaviour
         {
             case card.cardType.Attack:
                 inflictDamage(0, currentCard.cardStrength);
+                subwayUI.instance.setGuideTextPerm("Argued for " + currentCard.cardStrength + " Willpower");
                 break;
 
             case card.cardType.Defend:
                 retort(1, currentCard.cardStrength);
+                subwayUI.instance.setGuideTextPerm("Retorted for " + currentCard.cardStrength + " Willpower");
                 break;
 
             case card.cardType.Effect:
@@ -335,10 +337,12 @@ public class combatManager : MonoBehaviour
         {
             case card.cardType.Attack:
                 inflictDamage(1, cardInfo.cardStrength);
+                subwayUI.instance.setGuideTextPerm("Argued for " + cardInfo.cardStrength + " Willpower");
                 break;
 
             case card.cardType.Defend:
                 retort(0, cardInfo.cardStrength);
+                subwayUI.instance.setGuideTextPerm("Retorted for " + cardInfo.cardStrength + " Willpower");
                 break;
 
             case card.cardType.Effect:
@@ -546,6 +550,7 @@ public class combatManager : MonoBehaviour
             gameManager.instance.followerAmount++;
             subwayUI.instance.refreshUI(cardsPlayed * cardTimeMultiplier, 2);
 
+            subwayUI.instance.setGuideTextPerm("Replace at least one card!");
             victoryParent.SetActive(true);
             victoryCardSpawner.spawnNewCards(opponent.aggression);
         }
@@ -607,10 +612,12 @@ public class combatManager : MonoBehaviour
 
     public void healthGuideText(int target)
     {
+        if (subwayManager.instance.state != "combat") tempPlayerHealth = gameManager.instance.playerHealth;
         if (target == 0)
         {
             subwayUI.instance.setGuideTextTemp("Your Willpower: " + tempPlayerHealth + "/" + playerMaxHealth);
-        } else
+        }
+        else
         {
             subwayUI.instance.setGuideTextTemp("Opponent Willpower: " + tempOpponentHealth + "/" + opponentMaxHealth);
         }
