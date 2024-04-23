@@ -29,6 +29,10 @@ public class combatUI : MonoBehaviour
     [SerializeField] List<Sprite> enemyPortraits;
     [SerializeField] List<Color> speedColors;
 
+    [SerializeField] Sprite guidePortrait;
+    [SerializeField] Color guideColor;
+
+
 
     public void updateSpeedUI(float opponentSpeedPercentage, float playerSpeedPercentage)
     {
@@ -333,8 +337,16 @@ public class combatUI : MonoBehaviour
 
     private void generateEnemyPortrait()
     {
-        int index = Random.Range(0, enemyPortraits.Count);
-        enemyPortrait.sprite = enemyPortraits[index];
-        opponentSpeedDisplay.GetComponentsInChildren<Image>()[1].color = speedColors[index];
+        if (DialogueManager.GetInstance().tutorialStage >= 3)
+        {
+            int index = Random.Range(0, enemyPortraits.Count);
+            enemyPortrait.sprite = enemyPortraits[index];
+            opponentSpeedDisplay.GetComponentsInChildren<Image>()[1].color = speedColors[index];
+        }
+        else
+        {
+            enemyPortrait.sprite = guidePortrait;
+            opponentSpeedDisplay.GetComponentsInChildren<Image>()[1].color = guideColor;
+        }
     }
 } 

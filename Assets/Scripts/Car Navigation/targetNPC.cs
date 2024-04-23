@@ -218,6 +218,7 @@ public class targetNPC : MonoBehaviour
             hasUsedHeal = true;
         } else if (target.tag == "Stairs")
         {
+            Debug.Log("stairs");
             stationScript.generateMenu();
         }
     }
