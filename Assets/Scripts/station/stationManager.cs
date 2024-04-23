@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class stationManager : MonoBehaviour
@@ -12,6 +13,11 @@ public class stationManager : MonoBehaviour
     [SerializeField] nodeManager mapManager;
 
     [SerializeField] GameObject cultGuide;
+
+    [SerializeField] Material trainColors;
+    [SerializeField] Texture pulseColors;
+    [SerializeField] Texture pilgrimColors;
+    [SerializeField] Texture galliumColors;
 
 
     private struct lineInfo
@@ -236,6 +242,26 @@ public class stationManager : MonoBehaviour
 
         //CALL MID-TRANSITION
         subwayUI.instance.refreshUI(chosenLine.time, 0.5f);
+
+        if (mapManager.currentLine == "pilgrim")
+        {
+            trainColors.SetTexture("_MainTex", pilgrimColors);
+            Debug.Log("on line " + mapManager.currentLine);
+        }
+        else if (mapManager.currentLine == "gallium")
+        {
+            trainColors.SetTexture("_MainTex", galliumColors);
+            Debug.Log("on line " + mapManager.currentLine);
+        }
+        else if (mapManager.currentLine == "pulse")
+        {
+            trainColors.SetTexture("_MainTex", pulseColors);
+            Debug.Log("on line " + mapManager.currentLine);
+        }
+        else
+        {
+            Debug.Log("a line name was wrong");
+        }
 
         StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToCar));
         if (DialogueManager.GetInstance().tutorialStage == 3)

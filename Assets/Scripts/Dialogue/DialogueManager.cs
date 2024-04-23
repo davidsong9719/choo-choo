@@ -65,7 +65,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-        tutorialStage = 1;
+        tutorialStage = 2;
         //tutorialEnd = false;
         //playerControls = new PlayerInputActions();
 
