@@ -1096,7 +1096,8 @@ MonoBehaviour:
   speedIncrementSpeed: 0.35
   cardPlayedHoverDuration: 0.5
   opponentDeckSize: 10
-  cardTimeMultiplier: 2
+  cardTimeMultiplier: 4
+  opponentCards: []
   isPlayerCursed: 0
   isOpponentCursed: 0
   endPlayerTurnCursed: 0
@@ -4561,9 +4562,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  stageOneLength: 60
-  stageTwoLength: 60
-  stageThreeLength: 60
+  stageOneLength: 120
+  stageTwoLength: 120
+  stageThreeLength: 120
 --- !u!4 &392891240
 Transform:
   m_ObjectHideFlags: 0
@@ -6171,7 +6172,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1:00 PM
+  m_text: 3:00 PM
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d8e1b40579bd954687b015bd72f38e5, type: 2}
   m_sharedMaterial: {fileID: -7624680532239796670, guid: 6d8e1b40579bd954687b015bd72f38e5,
@@ -15687,7 +15688,7 @@ MonoBehaviour:
   followerDisplay: {fileID: 823347936}
   timeDisplay: {fileID: 601049440}
   guideText: {fileID: 301826667}
-  defaultHour: 1
+  defaultHour: 3
   state: closed
   audios: []
   fontDefaultSize: 36

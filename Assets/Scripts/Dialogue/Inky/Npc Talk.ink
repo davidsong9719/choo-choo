@@ -202,6 +202,6 @@ And look at that, you've gained me as a follower!
 You can check your follower count up in the top right corner.
 Now, head over to the stairs to the left and wait for a train!
 You can check where you are on your map on the top right.
-Recruit as many followers as you can by the end of the day, I'll see you tonight.
+Recruit as many followers as you can by the end of the day, I'll see you at 9:00 PM.
 Go get them tiger!
 -> END
