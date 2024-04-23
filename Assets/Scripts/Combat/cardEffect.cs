@@ -75,7 +75,7 @@ public class cardEffect : MonoBehaviour
                     manager.inflictSimpleDamage(0, cardInfo.cardStrength);
                     manager.heal(1, cardInfo.cardStrength);
                 }
-                subwayUI.instance.setGuideTextPerm("Drained " + cardInfo.cardStrength + "Willpower");
+                subwayUI.instance.setGuideTextPerm("Drained " + cardInfo.cardStrength + " Willpower");
                 break;
 
             case "curse":
