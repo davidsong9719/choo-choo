@@ -337,7 +337,7 @@ public class combatUI : MonoBehaviour
 
     private void generateEnemyPortrait()
     {
-        if (DialogueManager.GetInstance().tutorialStage >= 3)
+        if (DialogueManager.GetInstance().tutorialStage >= 4)
         {
             int index = Random.Range(0, enemyPortraits.Count);
             enemyPortrait.sprite = enemyPortraits[index];

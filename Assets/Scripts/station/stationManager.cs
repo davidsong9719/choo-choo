@@ -42,9 +42,14 @@ public class stationManager : MonoBehaviour
         player.transform.position = playerSpawnPosition.position;
         player.transform.rotation = playerSpawnPosition.rotation;
         player.GetComponent<CharacterController>().enabled = true;
-        if (DialogueManager.GetInstance().tutorialStage > 3)
+        if (DialogueManager.GetInstance().tutorialStage == 4)
         {
             cultGuide.SetActive(false);
+        }
+
+        else if (DialogueManager.GetInstance().tutorialStage == 5)
+        {
+            cultGuide.SetActive(true);
         }
     }
 

@@ -36,7 +36,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] string playerText;
     [SerializeField] string playerDefense;
 
-    [HideInInspector] public int tutorialStage;
+    //[HideInInspector] public int tutorialStage;
+    public int tutorialStage;
 
 
     private Story currentStory;
@@ -66,8 +67,6 @@ public class DialogueManager : MonoBehaviour
     private void Awake()
     {
         tutorialStage = 1;
-        //tutorialEnd = false;
-        //playerControls = new PlayerInputActions();
 
         if (instance != null)
         {
@@ -136,6 +135,10 @@ public class DialogueManager : MonoBehaviour
         {
             currentStory.ChoosePathString("Tutorial2");
         }
+        else if (tutorialStage == 3)
+        {
+            currentStory.ChoosePathString("Tutorial3");
+        }
         else
         {
             currentStory.ChoosePathString("Talk");
@@ -154,10 +157,15 @@ public class DialogueManager : MonoBehaviour
     {
         narrationIsPlaying = false;
         inkFile = combatDialogue;
-
-        if (tutorialStage == 2)
+        if (tutorialStage == 1)
         {
-            tutorialStage = 3;
+            tutorialStage = 2;
+
+            StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToMovement));
+        }
+        else if (tutorialStage == 3)
+        {
+            tutorialStage = 4;
 
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToMovement));
         }
@@ -388,7 +396,7 @@ public class DialogueManager : MonoBehaviour
         }
         
         currentStory = new Story(inkFile.text);
-        if (tutorialStage == 1)
+        if (tutorialStage == 2)
         {
             currentStory.ChoosePathString(character + "Tutorial." + action);
         }
