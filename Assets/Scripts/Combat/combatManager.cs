@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.XR;
 
 public class combatManager : MonoBehaviour
@@ -41,7 +42,7 @@ public class combatManager : MonoBehaviour
     private combatUI uiScript;
     private cardEffect effectsScript;
 
-    private List<card> opponentCards = new List<card>();
+    public List<card> opponentCards = new List<card>();
 
     private int cardsPlayed; //for time
 
@@ -57,6 +58,7 @@ public class combatManager : MonoBehaviour
     public int playerHandAmount;
 
     private bool isTutorial = false;
+    private int tutorialCardCycle;
 
     private void Awake()
     {
@@ -84,7 +86,6 @@ public class combatManager : MonoBehaviour
         discardPile.Clear();
         drawPile.Clear();
         playerHand.Clear();
-        opponentCards.Clear();
         createOpponentDeck();
 
         for (int i = 0; i  < gameManager.instance.playerDeck.Count; i++)
@@ -193,11 +194,20 @@ public class combatManager : MonoBehaviour
     IEnumerator playOpponentCard()
     {
         yield return new WaitForSeconds(cardPlayedHoverDuration*1.5f);
-        print(opponentCards.Count);
         card currentCard = opponentCards[Random.Range(0, opponentCards.Count)]; // CHANGE AFTER ADDING RETORT
         if (isOpponentCursed)
         {
             currentCard = cursedCard;
+
+        } else if (isTutorial)
+        {
+            currentCard = opponentCards[tutorialCardCycle];
+            tutorialCardCycle++;
+
+            if (tutorialCardCycle == 3)
+            {
+                tutorialCardCycle = 0;
+            }
         }
 
         DialogueManager.GetInstance().EnterCombat("Opponent", currentCard.type.ToString());
@@ -216,6 +226,7 @@ public class combatManager : MonoBehaviour
                 break;
 
             case card.cardType.Effect:
+                effectsScript.playCard(currentCard, 1);
                 break;
         }
 
@@ -558,34 +569,59 @@ public class combatManager : MonoBehaviour
 
     private void createOpponentDeck()
     {
-        int effectAmount = Random.Range(0, 3);
-        float balancedAggression = opponent.aggression - 0.1f;
-        if (balancedAggression >= 0.7)
-        {
-            balancedAggression = 0.7f;
-        } else if (balancedAggression <= 0.4)
-        {
-            balancedAggression = 0.4f;
-        }
-        int attackAmount = Mathf.RoundToInt(opponentDeckSize* balancedAggression);
-
-        int addedEffectAmount = 0;
-        int addedAttackAmount = 0;
-
+        opponentCards.Clear();
         for (int i = 0; i < opponentDeckSize; i++)
         {
             card newCard = ScriptableObject.CreateInstance<card>();
-            
-            if (addedEffectAmount < effectAmount) //effect
+            float randomFloat = Random.Range(0f, 1f);
+            if (i < 3) //effect
             {
-                newCard.type = card.cardType.Effect;
-                addedEffectAmount++;
+                switch (nodeManager.instance.currentLine)
+                {
+                    case "pilgrim":
+                        if (randomFloat < 0.5f)
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[0];
+                        } else
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[1];
+                        }
+                        break;
 
-            } else if (addedAttackAmount < attackAmount) //attack
+                    case "gallium":
+                        if (randomFloat < 0.33f)
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[2];
+                        } else if (randomFloat <0.66) 
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[3];
+                        } else
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[4];
+                        }
+                        break;
+
+                    case "pulse":
+                        if (randomFloat < 0.33f)
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[5];
+                        }
+                        else if (randomFloat < 0.66)
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[6];
+                        }
+                        else
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[7];
+                        }
+                        break;
+                }
+
+            } else if (i < 8) //attack
             {
                 newCard.type = card.cardType.Attack;
                 newCard.cardStrength = Random.Range(opponent.attack - 2, opponent.attack + 3);
-                addedAttackAmount++;
+
             } else //defense
             {
                 newCard.type = card.cardType.Defend;
@@ -593,6 +629,23 @@ public class combatManager : MonoBehaviour
             }
 
             opponentCards.Add(newCard);
+        }
+
+        if (isTutorial)
+        {
+            card card0 = ScriptableObject.CreateInstance<card>();
+            card0.type = card.cardType.Attack;
+            card0.cardStrength = opponent.attack;
+            opponentCards[0] = card0;
+
+            card card1 = ScriptableObject.CreateInstance<card>();
+            card1.type = card.cardType.Defend;
+            card1.cardStrength = opponent.defense;
+            opponentCards[1] = card1;
+
+            card card2 = ScriptableObject.CreateInstance<card>();
+            card2 = gameManager.instance.effectCardTemplates[2];
+            opponentCards[2] = card2;
         }
     }
 

@@ -15,5 +15,5 @@ MonoBehaviour:
   type: 2
   cardStrength: 5
   cardName: outburst
-  description: <color=#FFFFFF>-$</color> to opponent's willpower <color=#FFFFFF>thrice</color>,
+  description: <color=#FFFFFF>-$</color> to opponent's Willpower <color=#FFFFFF>thrice</color>,
     recieves <color=#FFFFFF>Argue</color> buffs

@@ -8,6 +8,7 @@ public class gameManager : MonoBehaviour
 
     [Header("Public Access")]
     public List<card> playerDeck;
+    public List<card> effectCardTemplates;
     public int playerMaxHealth, playerHealth, playerSpeed, playerAttack, playerCash;
     public int followerAmount;
     public int timeElapsed;

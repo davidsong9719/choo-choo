@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: blah blah blah blahllllllllllllllllllllllllllllllllllllllllllaaaaa
+  m_text: Slow opponent's talking speed by <color=#FFFFFF>1</color>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d8e1b40579bd954687b015bd72f38e5, type: 2}
   m_sharedMaterial: {fileID: -7624680532239796670, guid: 6d8e1b40579bd954687b015bd72f38e5,

@@ -15,5 +15,5 @@ MonoBehaviour:
   type: 2
   cardStrength: 10
   cardName: pray
-  description: <color=#FFFFFF>50/50</color> chance to decrease opponent's willpower
+  description: <color=#FFFFFF>50/50</color> chance to decrease opponent's Willpower
     by <color=#FFFFFF>$</color> or become <color=#FFFFFF>Cursed</color>

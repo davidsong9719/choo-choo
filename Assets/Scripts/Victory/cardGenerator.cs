@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class cardGenerator : MonoBehaviour
 {
@@ -51,10 +52,53 @@ public class cardGenerator : MonoBehaviour
                 break;
 
             case 2:
-                newCard.type = card.cardType.Effect;
-                newCard.cardName = "redraw";
-                newCard.description = "Redraw <color=#FFFFFF>Hand</color>";
+                float randomFloat = Random.Range(0f, 1f);
+                switch (nodeManager.instance.currentLine)
+                {
+                    case "pilgrim":
+                        if (randomFloat < 0.33f)
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[0];
+                        }
+                        else if (randomFloat < 0.66)
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[1];
+                        } else
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[8];
+                        }
+                        break;
 
+                    case "gallium":
+                        if (randomFloat < 0.33f)
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[2];
+                        }
+                        else if (randomFloat < 0.66)
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[3];
+                        }
+                        else
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[4];
+                        }
+                        break;
+
+                    case "pulse":
+                        if (randomFloat < 0.33f)
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[5];
+                        }
+                        else if (randomFloat < 0.66)
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[6];
+                        }
+                        else
+                        {
+                            newCard = gameManager.instance.effectCardTemplates[7];
+                        }
+                        break;
+                }
                 break;
         }
 

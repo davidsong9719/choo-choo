@@ -15,4 +15,4 @@ MonoBehaviour:
   type: 2
   cardStrength: 7
   cardName: lifeSteal
-  description: Drain <color=#FFFFFF>$</color> of opponent's willpower
+  description: Drain <color=#FFFFFF>$</color> of opponent's Willpower

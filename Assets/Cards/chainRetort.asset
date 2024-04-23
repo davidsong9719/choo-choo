@@ -15,5 +15,5 @@ MonoBehaviour:
   type: 2
   cardStrength: 5
   cardName: chainRetort
-  description: 'Regain up to <color=#FFFFFF>$</color> willpower, <color=#FFFFFF>play
+  description: 'Regain up to <color=#FFFFFF>$</color> Willpower, <color=#FFFFFF>play
     another card</color> '

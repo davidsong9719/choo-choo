@@ -4510,6 +4510,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
   - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
   - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
+  effectCardTemplates:
+  - {fileID: 11400000, guid: 4506eb26b9424214b8ca6f57e40dc4c4, type: 2}
+  - {fileID: 11400000, guid: f134a6aac8178de4891bf2eac336c024, type: 2}
+  - {fileID: 11400000, guid: 8ad89e2d31d2b4147b5a82d0587675e4, type: 2}
+  - {fileID: 11400000, guid: 7b9cd7cc81788dd43b24c0090f43ad33, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
+  - {fileID: 11400000, guid: 2aa9a843d98a2174d950de7bcd10300c, type: 2}
+  - {fileID: 11400000, guid: e39dbc6c21f11524a96412401adb9be5, type: 2}
+  - {fileID: 11400000, guid: 8108ae1603e600a459a1ca554af40375, type: 2}
+  - {fileID: 11400000, guid: 2abbeeb0ae321b84890323d8df956343, type: 2}
   playerMaxHealth: 50
   playerHealth: 50
   playerSpeed: 3
@@ -4674,7 +4684,7 @@ MonoBehaviour:
   maxVariation: 3
   minDefend: 2
   maxDefend: 15
-  minAttack: 4
+  minAttack: 7
   maxAttack: 30
 --- !u!1 &425860140
 GameObject:
@@ -17564,11 +17574,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   minHealth: 14
-  maxHealth: 75
+  maxHealth: 50
   minSpeed: 3
   maxSpeed: 8
-  minAttack: 7
-  maxAttack: 20
+  minAttack: 4
+  maxAttack: 14
   minDefense: 4
   maxDefense: 12
 --- !u!1 &2038140395
