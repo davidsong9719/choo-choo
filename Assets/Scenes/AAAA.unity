@@ -1807,6 +1807,7 @@ MonoBehaviour:
   stairImage: {fileID: 0}
   statue: {fileID: 636383369}
   stairs: {fileID: 461913597}
+  guide: {fileID: 2114843427}
   stationScript: {fileID: 964048017}
   playerHealthBar: {fileID: 716735735}
   tempPlayerHealthBar: {fileID: 32073799}
@@ -1815,6 +1816,7 @@ MonoBehaviour:
   doorHeight: 4.57
   statueHeight: 4.2
   stairsHeight: 1.9
+  guideHeight: 0
   hasUsedHeal: 0
 --- !u!114 &137847593
 MonoBehaviour:
@@ -19905,6 +19907,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tutorialCultist
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4268ead366a455249b4568a7fb0cc8a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Guide
       objectReference: {fileID: 0}
     - target: {fileID: 939062782407371443, guid: 4268ead366a455249b4568a7fb0cc8a5,
         type: 3}

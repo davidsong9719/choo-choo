@@ -18,13 +18,13 @@ public class targetNPC : MonoBehaviour
     [SerializeField] GameObject targetDisplay;
     [SerializeField] npcManager npcManagerScript;
     [SerializeField] Sprite levelOneImage, levelTwoImage, levelThreeImage, doorImage, healImage, stairImage;
-    [SerializeField] GameObject statue, stairs;
+    [SerializeField] GameObject statue, stairs, guide;
     [SerializeField] stationManager stationScript;
     [SerializeField] Image playerHealthBar, tempPlayerHealthBar;
 
     [Header("Settings")]
     [SerializeField] float targetDistance;
-    [SerializeField] float npcHeight, doorHeight, statueHeight, stairsHeight;
+    [SerializeField] float npcHeight, doorHeight, statueHeight, stairsHeight, guideHeight;
 
     private GameObject target;
     private InputAction interact;
@@ -104,6 +104,14 @@ public class targetNPC : MonoBehaviour
             closestInteractable = stairs;
         }
 
+        float guideDistance = Vector3.Distance(gameObject.transform.position, guide.transform.position);
+
+        if (guideDistance < closestDistance)
+        {
+            closestDistance = guideDistance;
+            closestInteractable = guide;
+        }
+
         if (closestDistance < targetDistance)
         {
             targetDisplay.SetActive(true);
@@ -152,6 +160,18 @@ public class targetNPC : MonoBehaviour
                     }
                     break;
 
+                case "Guide":
+                    if (DialogueManager.GetInstance().tutorialStage > 3 || DialogueManager.GetInstance().tutorialStage == 5)
+                    {
+                        targetDisplay.SetActive(false);
+                        target = null;
+                    }
+                    else
+                    {
+                        imageComponent.sprite = levelOneImage;
+                    }
+                    break;
+
             }
         }
         else
@@ -183,6 +203,10 @@ public class targetNPC : MonoBehaviour
             case "Stairs":
                 viewportPoint = Camera.main.WorldToViewportPoint(new Vector3(target.position.x, target.position.y + stairsHeight, target.position.z));
                 break;
+
+            case "Guide":
+                viewportPoint = Camera.main.WorldToViewportPoint(new Vector3(target.position.x, target.position.y + guideHeight, target.position.z));
+                break;
         }
 
 
@@ -208,7 +232,17 @@ public class targetNPC : MonoBehaviour
             npcManagerScript.removeFromList(target);
             hasUsedHeal = false;
             canLeaveCar = true;
-        } else if (target.tag == "Statue")
+        }
+        else if (target.tag == "Guide")
+        {
+            subwayManager.instance.startCombat(subwayManager.instance.tutorialStats);
+            Debug.Log("guide");
+
+            //npcManagerScript.removeFromList(target);
+            //hasUsedHeal = false;
+            //canLeaveCar = true;
+        }
+        else if (target.tag == "Statue")
         {
             if (hasUsedHeal) return;
 

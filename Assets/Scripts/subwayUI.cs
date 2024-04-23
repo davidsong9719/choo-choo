@@ -178,6 +178,13 @@ public class subwayUI : MonoBehaviour
             }
             yield return null;
         }
+
+        if (gameManager.instance.timeElapsed >= 50)
+        {
+            DialogueManager.GetInstance().tutorialStage = 5;
+            StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
+        }
+
     }
 
     public void setGuideTextTemp(string newText)

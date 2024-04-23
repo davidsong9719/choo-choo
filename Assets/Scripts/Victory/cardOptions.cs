@@ -97,9 +97,9 @@ public class cardOptions : MonoBehaviour
     {
         if (!isContinuable) return;
 
-        if (DialogueManager.GetInstance().tutorialStage == 1)
+        if (DialogueManager.GetInstance().tutorialStage == 2)
         {
-            DialogueManager.GetInstance().tutorialStage = 2;
+            DialogueManager.GetInstance().tutorialStage = 3;
             combatManager.instance.startCombat();
             subwayUI.instance.setGuideTextPerm("Board a train by the stairs");
         }

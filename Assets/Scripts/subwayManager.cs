@@ -26,7 +26,7 @@ public class subwayManager : MonoBehaviour
     [SerializeField] Camera carCamera, stationCamera;
 
     //Tutorial
-    [SerializeField] opponentStats tutorialStats;
+    [HideInInspector] public opponentStats tutorialStats;
 
     [Header("Public Access")]
     public GameObject player;

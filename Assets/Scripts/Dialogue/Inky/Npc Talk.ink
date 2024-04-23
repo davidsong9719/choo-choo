@@ -169,10 +169,10 @@ Would you like one of these pamplets? #speaker-Player
 
 
 ===Tutorial===
-Ah our newest member! You know about clicking [E] to continue, yes? #speaker-Opponent
-Wonderful! Have you been briefed already? #speaker-Opponent
+Ah our newest member. You know about clicking [E] to continue, yes? #speaker-Opponent
+Wonderful, have you been briefed already? #speaker-Opponent
     *[No (instructions)]
-        Not yet, what are my tasks? #speaker-Player
+        Not yet! What are my tasks? #speaker-Player
         Eager, are you? Those above would be proud. #speaker-Opponent
         //The higher beings have been growing hungry as of late.
         //And we've run low on sacrifices, so you have a special job of gathering them!
@@ -183,25 +183,38 @@ Wonderful! Have you been briefed already? #speaker-Opponent
         You've been assigned the subway tunnels.
         Find anyone you can and talk to them, open their eyes.
         You can use [E] to interact with people and objects as well.
-        Let me teach you how. In a few moments, the mock recruitment will begin.
-        You see the bar underneath me? That's my Willpower. 
-        Yours is up there, on the top left.
-        You need to lower the lost souls's Willpower enough to get them to join our cu-
-        Our church.
-        The little bar on the side is for speed, this determines our talking order.
-        Let's give it a shot!
+        Come back and interact with me when you are ready for the practice recruitment.
+        
     *[Yes (skip dialogue)]
         Yes! I have and I'm ready to serve! #speaker-Player
-        Impressive. Right to the recruitment then! #speaker-Opponent
+        Impressive. Come back when you are ready for the recruitment test. #speaker-Opponent
 - -> END
 
 ===Tutorial2===
-Good job! You've worn down my Willpower. #speaker-Opponent
+Welcome back. #speaker-Opponent
+Did you get a chance to explore?
+*[Yes]
+    Yeah! Very awesome! #speaker-Player
+    Good, you will be very familiar with these stations soon. #speaker-Opponent
+*No... #speaker-Player
+    Worry not, there will be more chances. #speaker-Opponent
+- Now, let us begin. #speaker-Opponent
+  In a few moments, the mock recruitment will begin.
+  You see the bar underneath me? That's my Willpower.
+  Yours is up there, on the top left.
+  You need to lower the lost souls's Willpower enough to get them to join our cu-
+  Our church.
+  The little bar on the side is for speed, this determines our talking order.
+  Let's give it a try.
+-> END
+
+===Tutorial3===
+Good job, you've worn down my Willpower. #speaker-Opponent
 And you managed to pick up a new tactic too, I'm impressed.
-And look at that, you've gained me as a follower! 
+And look at that, you've gained me as a follower. 
 You can check your follower count up in the top right corner.
-Now, head over to the stairs to the left and wait for a train!
+Now, head over to the stairs to the left and wait for a train.
 You can check where you are on your map on the top left.
 Recruit as many followers as you can by the end of the day, I'll see you at 9:00 PM.
-Go get them tiger!
+Good luck, soldier.
 -> END
