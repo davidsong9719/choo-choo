@@ -11,6 +11,8 @@ public class stationManager : MonoBehaviour
     [SerializeField] List<Transform> menuLines;
     [SerializeField] nodeManager mapManager;
 
+    [SerializeField] GameObject cultGuide;
+
 
     private struct lineInfo
     {
@@ -34,6 +36,10 @@ public class stationManager : MonoBehaviour
         player.transform.position = playerSpawnPosition.position;
         player.transform.rotation = playerSpawnPosition.rotation;
         player.GetComponent<CharacterController>().enabled = true;
+        if (DialogueManager.GetInstance().tutorialStage > 3)
+        {
+            cultGuide.SetActive(false);
+        }
     }
 
     public void generateMenu()
@@ -232,6 +238,10 @@ public class stationManager : MonoBehaviour
         subwayUI.instance.refreshUI(chosenLine.time, 0.5f);
 
         StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToCar));
+        if (DialogueManager.GetInstance().tutorialStage == 3)
+        {
+            DialogueManager.GetInstance().tutorialStage = 4;
+        }
         
     }
 

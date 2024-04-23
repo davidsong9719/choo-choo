@@ -2538,7 +2538,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d69a5a198e8107d4a9a69b9172d46a4c, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -15779,8 +15779,8 @@ RectTransform:
   - {fileID: 12373244}
   - {fileID: 841554619}
   - {fileID: 848562431}
-  - {fileID: 211080138}
   - {fileID: 656569793}
+  - {fileID: 211080138}
   - {fileID: 386758649}
   - {fileID: 32886114}
   - {fileID: 839910903}
