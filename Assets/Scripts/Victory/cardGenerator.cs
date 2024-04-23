@@ -14,6 +14,10 @@ public class cardGenerator : MonoBehaviour
     [SerializeField] int maxVariation;
     [SerializeField] int minDefend, maxDefend, minAttack, maxAttack;
 
+    [TextArea]
+    public string Notes = "";
+
+
     public card generateNewCard(float difficulty) 
     {
         card newCard = ScriptableObject.CreateInstance<card>();
@@ -56,46 +60,56 @@ public class cardGenerator : MonoBehaviour
                 switch (nodeManager.instance.currentLine)
                 {
                     case "pilgrim":
-                        if (randomFloat < 0.33f)
+                        if (randomFloat < 0.33f) //pray
                         {
                             newCard = gameManager.instance.effectCardTemplates[0];
+                            curveValue = attackValueCurve.Evaluate(difficulty);
+                            newCard.cardStrength = Mathf.RoundToInt(Mathf.Lerp(minAttack, maxAttack, curveValue)*1.5f);
                         }
-                        else if (randomFloat < 0.66)
+                        else if (randomFloat < 0.66) //confuse
                         {
                             newCard = gameManager.instance.effectCardTemplates[1];
-                        } else
+                        } else //increase hand
                         {
                             newCard = gameManager.instance.effectCardTemplates[8];
                         }
                         break;
 
                     case "gallium":
-                        if (randomFloat < 0.33f)
+                        if (randomFloat < 0.33f) //curse
                         {
                             newCard = gameManager.instance.effectCardTemplates[2];
                         }
-                        else if (randomFloat < 0.66)
+                        else if (randomFloat < 0.66) //increase defend
                         {
                             newCard = gameManager.instance.effectCardTemplates[3];
+                            newCard.cardStrength = Random.Range(1, 3);
                         }
-                        else
+                        else //chainRetort
                         {
                             newCard = gameManager.instance.effectCardTemplates[4];
+                            curveValue = defendValueCurve.Evaluate(difficulty);
+                            newCard.cardStrength = Mathf.RoundToInt(Mathf.Lerp(minDefend, maxDefend, curveValue)*0.75f);
                         }
                         break;
 
                     case "pulse":
-                        if (randomFloat < 0.33f)
+                        if (randomFloat < 0.33f) //increase attack
                         {
                             newCard = gameManager.instance.effectCardTemplates[5];
+                            newCard.cardStrength = Random.Range(1, 5);
                         }
-                        else if (randomFloat < 0.66)
+                        else if (randomFloat < 0.66) //life steal
                         {
                             newCard = gameManager.instance.effectCardTemplates[6];
+                            curveValue = defendValueCurve.Evaluate(difficulty);
+                            newCard.cardStrength = Mathf.RoundToInt(Mathf.Lerp(minDefend, maxDefend, curveValue));
                         }
-                        else
+                        else //outburst
                         {
                             newCard = gameManager.instance.effectCardTemplates[7];
+                            curveValue = attackValueCurve.Evaluate(difficulty);
+                            newCard.cardStrength = Mathf.RoundToInt(Mathf.Lerp(minAttack, maxAttack, curveValue) * 0.33f);
                         }
                         break;
                 }

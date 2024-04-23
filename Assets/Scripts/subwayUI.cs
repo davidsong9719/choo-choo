@@ -9,7 +9,7 @@ public class subwayUI : MonoBehaviour
     public static subwayUI instance;
     [SerializeField] nodeManager nodeManagerScript;
     [SerializeField] mapButton mapToggle;
-    [SerializeField] GameObject deckParent, drawParent, discardParent, lineMenuParent;
+    [SerializeField] GameObject deckParent, drawParent, discardParent, lineMenuParent, healthDisplay, combatHealthParent, uiHealthParent;
     [SerializeField] TextMeshProUGUI followerDisplay, timeDisplay, guideText;
     [SerializeField] int defaultHour;
     public string state = "closed";
@@ -49,6 +49,7 @@ public class subwayUI : MonoBehaviour
         drawParent.SetActive(false);
         discardParent.SetActive(false);
         lineMenuParent.SetActive(false);
+        
         Time.timeScale = 0;
 
 
@@ -235,6 +236,18 @@ public class subwayUI : MonoBehaviour
 
             if (timeCounter > resetTime) break;
             yield return null;
+        }
+    }
+
+    public void switchHealth(bool isCombat)
+    {
+        if (isCombat)
+        {
+            healthDisplay.transform.SetParent(combatHealthParent.transform);
+            
+        } else
+        {
+            healthDisplay.transform.SetParent(uiHealthParent.transform);
         }
     }
 }

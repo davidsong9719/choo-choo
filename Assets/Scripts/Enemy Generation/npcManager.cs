@@ -84,7 +84,6 @@ public class npcManager : MonoBehaviour
         int passengerAmount = (int)Mathf.Lerp(6 + maxVariation, totalSpots-maxVariation, passengerDensity);
 
         passengerAmount = Random.Range(passengerAmount - maxVariation, passengerAmount + maxVariation);
-        print(passengerAmount);
 
         int passengerDifference = passengerAmount - npcList.Count;
 
@@ -198,6 +197,8 @@ public class npcManager : MonoBehaviour
             currentStage = "3";
             stageProgress = (((float)gameManager.instance.timeElapsed - (float)gameManager.instance.stageOneLength) - (float)gameManager.instance.stageTwoLength) / (float) gameManager.instance.stageThreeLength;
         }
+
+        print("current stage is " + currentStage + ", stageProgress is " + stageProgress);
 
         float difficultyFloat = 0;
         float randomFloat = Random.Range(0, 1);

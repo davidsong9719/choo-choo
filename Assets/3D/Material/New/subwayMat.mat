@@ -433,7 +433,7 @@ Material:
     - _RimLightOverridden: 0
     - _RimLightVisible: 1
     - _RimLight_FeatherOff: 1
-    - _RimLight_InsideMask: 0.385
+    - _RimLight_InsideMask: 0.421
     - _RimLight_Power: 0.226
     - _Rotate_EmissiveUV: 0
     - _Rotate_MatCapUV: 0
@@ -548,7 +548,7 @@ Material:
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineMaskColor: {r: 0, g: 0, b: 0, a: 1}
     - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _RimLightColor: {r: 0.5981132, g: 0.8859163, b: 1, a: 1}
+    - _RimLightColor: {r: 0.6, g: 0.8862745, b: 1, a: 1}
     - _RimLightMaskColor: {r: 1, g: 0, b: 1, a: 1}
     - _SecondShadeMaskColor: {r: 0, g: 0, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
