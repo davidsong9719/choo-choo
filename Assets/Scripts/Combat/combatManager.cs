@@ -543,6 +543,11 @@ public class combatManager : MonoBehaviour
             npcManagerScript.updateCar();
         }
 
+        bonusOpponentAttack = 0;
+        bonusPlayerAttack = 0;
+        bonusOpponentDefend = 0;
+        bonusPlayerDefend = 0;
+
         uiScript.clearCards();
         gameManager.instance.playerHealth = playerHealth;
 

@@ -11,6 +11,7 @@ public class opponentRandomizer : MonoBehaviour
     [SerializeField] AnimationCurve healthCurve, speedCurve, attackCurve, defenseCurve;
     [SerializeField] int minHealth, maxHealth, minSpeed, maxSpeed, minAttack, maxAttack, minDefense, maxDefense;
 
+    [SerializeField] int debugDifficulty;
     public opponentStats generateStats(int difficulty)
     {
         difficultyLevel = difficulty;
@@ -27,7 +28,8 @@ public class opponentRandomizer : MonoBehaviour
 
         return newStats;
     }
-    
+
+
     private int chooseStat(string stat)
     {
         AnimationCurve currentCurve = null;

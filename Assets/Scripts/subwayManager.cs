@@ -40,7 +40,6 @@ public class subwayManager : MonoBehaviour
     {
         playerControls = new PlayerInputActions();
         instance = this;
-
     }
 
     void Start()
@@ -62,6 +61,7 @@ public class subwayManager : MonoBehaviour
         combatManager.instance.opponent = opponent;
         //combatManager.instance.startCombat();
 
+        subwayUI.instance.switchHealth(true);
         StartCoroutine(TransitionManager.GetInstance().Swipe(openCombat));
 
     }
@@ -85,6 +85,7 @@ public class subwayManager : MonoBehaviour
         combatManagerObject.SetActive(false);
         combatCanavas.SetActive(false);
 
+        subwayUI.instance.switchHealth(false);
     }
 
     public void switchToStation()
@@ -99,6 +100,7 @@ public class subwayManager : MonoBehaviour
 
         stationScript.startStation();
 
+        subwayUI.instance.switchHealth(false);
         switchCamera("station");
     }
 

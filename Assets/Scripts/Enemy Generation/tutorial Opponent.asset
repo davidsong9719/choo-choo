@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9959954e87e554b48a87425adfb4917e, type: 3}
   m_Name: tutorial Opponent
   m_EditorClassIdentifier: 
-  health: 20
+  health: 15
   speed: 5
   defense: 3
   attack: 4

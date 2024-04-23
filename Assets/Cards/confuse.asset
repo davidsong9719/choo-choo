@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: confuse
   m_EditorClassIdentifier: 
   type: 2
-  cardStrength: 0
+  cardStrength: 1
   cardName: confuse
   description: Premanently slow opponent's talking speed by <color=#FFFFFF>1</color>
