@@ -9,14 +9,15 @@ public class subwayUI : MonoBehaviour
     public static subwayUI instance;
     [SerializeField] nodeManager nodeManagerScript;
     [SerializeField] mapButton mapToggle;
-    [SerializeField] GameObject deckParent, drawParent, discardParent, lineMenuParent, healthDisplay, combatHealthParent, uiHealthParent;
+    [SerializeField] GameObject deckParent, drawParent, discardParent, lineMenuParent, healthDisplay, combatHealthParent, uiHealthParent, pauseParent;
     [SerializeField] TextMeshProUGUI followerDisplay, timeDisplay, guideText;
     [SerializeField] int defaultHour;
     public string state = "closed";
     private string permText;
-    [SerializeField] AudioSource[] audios;
     [SerializeField] int fontDefaultSize, fontUpdateSize;
     private Coroutine timeCoroutine, guideCoroutine;
+
+    private string prePauseState, prePausePermText;
 
     private void Awake()
     {
@@ -124,6 +125,8 @@ public class subwayUI : MonoBehaviour
         state = "discard";
     }
 
+
+
     public void switchToLineMenu()
     {
         if (state == "line")
@@ -139,6 +142,24 @@ public class subwayUI : MonoBehaviour
         Time.timeScale = 0;
 
         state = "line";
+    }
+    public void switchToPause()
+    {
+        if (state == "pause")
+        {
+            pauseParent.SetActive(false);
+            state = prePauseState;
+            setGuideTextPerm(prePausePermText);
+            Time.timeScale = 1;
+            return;
+        }
+
+        pauseParent.SetActive(true);
+        prePausePermText = permText;
+        setGuideTextPerm("Paused");
+
+        Time.timeScale = 0;
+        state = "pause";
     }
 
     public void refreshUI(int additionalTime, float timeAnimationDuration)
