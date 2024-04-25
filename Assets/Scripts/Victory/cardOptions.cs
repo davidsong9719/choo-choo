@@ -108,5 +108,11 @@ public class cardOptions : MonoBehaviour
             subwayManager.instance.switchToMovement();
             subwayUI.instance.setGuideTextPerm("");
         }
+
+        if (DialogueManager.GetInstance().tutorialStage > 3 && DialogueManager.GetInstance().result == "")
+        {
+            nodeManager.instance.progressStation();
+            combatManager.instance.npcManagerScript.updateCar();
+        }
     }
 }

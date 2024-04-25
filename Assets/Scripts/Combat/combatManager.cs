@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.ProBuilder.MeshOperations;
-using UnityEngine.XR;
 
 public class combatManager : MonoBehaviour
 {
@@ -16,7 +13,7 @@ public class combatManager : MonoBehaviour
 
 
     [Header("Setup")]
-    [SerializeField] npcManager npcManagerScript;
+    [HideInInspector] public npcManager npcManagerScript;
     [HideInInspector] public cardOptions victoryCardSpawner;
     [SerializeField] GameObject combatParent;
     [HideInInspector] public GameObject victoryParent;
@@ -98,6 +95,7 @@ public class combatManager : MonoBehaviour
         shuffleDrawPile();
 
         lastIncremented = "opponent"; //starts on player turn
+
     }
 
     public void fight()
@@ -540,11 +538,7 @@ public class combatManager : MonoBehaviour
 
     private void endCombat()
     {
-        if (!isTutorial)
-        {
-            nodeManager.instance.progressStation();
-            npcManagerScript.updateCar();
-        }
+        
 
         bonusOpponentAttack = 0;
         bonusPlayerAttack = 0;

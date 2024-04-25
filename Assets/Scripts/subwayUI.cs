@@ -204,6 +204,18 @@ public class subwayUI : MonoBehaviour
         if (gameManager.instance.timeElapsed >= gameManager.instance.stageOneLength + gameManager.instance.stageTwoLength + gameManager.instance.stageThreeLength)
         {
             DialogueManager.GetInstance().tutorialStage = 5;
+            while (true)
+            {
+                if (TransitionManager.GetInstance().playingTransition == false)
+                {
+                    break;
+                }
+                else
+                {
+                    yield return null;
+                }
+            }
+            yield return null;
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
         }
 

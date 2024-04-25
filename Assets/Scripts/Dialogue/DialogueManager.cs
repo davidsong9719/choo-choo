@@ -155,11 +155,26 @@ public class DialogueManager : MonoBehaviour
 
         if(result == "win")
         {
-            currentStory.ChoosePathString("Win");
+            if (tutorialStage > 3)
+            {
+                currentStory.ChoosePathString("Win");
+            }
+            else
+            {
+                currentStory.ChoosePathString("TutorialWin");
+            }
+            
         }
         if(result == "lose")
         {
-            currentStory.ChoosePathString("Lose");
+            if (tutorialStage > 3)
+            {
+                currentStory.ChoosePathString("Lose");
+            }
+            else
+            {
+                currentStory.ChoosePathString("TutorialLose");
+            }
         }
 
         //if we change the portraits (we prolly wont but in case ig)

@@ -164,6 +164,7 @@ public class stationManager : MonoBehaviour
 
     private void displayLine(int index, string line, int direction, mapNode node)
     {
+
         int time = Random.Range(2, 11);
 
         TextMeshProUGUI nameTMP = menuLines[index].Find("Name").GetComponent<TextMeshProUGUI>();
@@ -232,6 +233,8 @@ public class stationManager : MonoBehaviour
 
     public void chooseLine(Transform callingObject)
     {
+        if (DialogueManager.GetInstance().tutorialStage < 3) return;
+
         lineInfo chosenLine = new lineInfo();
         if (lineInfoPairs.ContainsKey(callingObject))
         {

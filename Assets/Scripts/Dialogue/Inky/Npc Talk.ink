@@ -222,8 +222,7 @@ Did you get a chance to explore?
 -> END
 
 ===Tutorial3===
-Good job, you've worn down my Willpower. #speaker-Opponent
-And you managed to pick up a new tactic too, I'm impressed.
+You picked your tactics, good job. #speaker-Opponent
 And look at that, you've gained me as a follower. 
 You can check your follower count up in the top right corner.
 Now, head over to the stairs to the left and wait for a train.
@@ -233,5 +232,13 @@ Good luck, soldier.
 -> END
 
 ===TutorialWin===
-Im convinced. #speaker-Opponent
+!!! Did I do it? #speaker-Player
+You've worn down my Willpower, congratulations. You learn fast. #speaker-Opponent
+After every recruitment you'll have the opportunity to learn new tactics.
+You can learn up to three and a minimum of one.
+Keep in mind sometimes you forget what you learned.
+Just click on the tactic you want to learn and the one you want to replace and confirm.
+->END
+===TutorialLose===
+How. #speaker-Opponent
 ->END
