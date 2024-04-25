@@ -363,9 +363,12 @@ public class combatUI : MonoBehaviour
     {
         if (DialogueManager.GetInstance().tutorialStage >= 4)
         {
-            int index = Random.Range(0, enemyPortraits.Count);
-            enemyPortrait.sprite = enemyPortraits[index];
-            opponentSpeedDisplay.GetComponentsInChildren<Image>()[1].color = speedColors[index];
+            if(DialogueManager.GetInstance().result == "")
+            {
+                int index = Random.Range(0, enemyPortraits.Count);
+                enemyPortrait.sprite = enemyPortraits[index];
+                opponentSpeedDisplay.GetComponentsInChildren<Image>()[1].color = speedColors[index];
+            } 
         }
         else
         {

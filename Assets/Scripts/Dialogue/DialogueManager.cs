@@ -39,6 +39,8 @@ public class DialogueManager : MonoBehaviour
     //[HideInInspector] public int tutorialStage;
     public int tutorialStage;
 
+    [HideInInspector] public string result;
+
 
     private Story currentStory;
     public bool narrationIsPlaying { get; private set; }
@@ -124,6 +126,8 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterNarration()
     {
+        inkFile = narrationDialogue;
+        dialogueVariables = new DialogueVariables(inkFile);
         currentStory = new Story(inkFile.text);
         narrationIsPlaying = true;
 
@@ -133,7 +137,10 @@ public class DialogueManager : MonoBehaviour
         }
         else if (tutorialStage == 2)
         {
-            currentStory.ChoosePathString("Tutorial2");
+            if (result == "")
+            {
+                currentStory.ChoosePathString("Tutorial2");
+            } 
         }
         else if (tutorialStage == 3)
         {
@@ -143,11 +150,21 @@ public class DialogueManager : MonoBehaviour
         {
             currentStory.ChoosePathString("Talk");
         }
-        dialogueVariables.StartListening(currentStory);
+        
 
+        if(result == "win")
+        {
+            currentStory.ChoosePathString("Win");
+        }
+        if(result == "lose")
+        {
+            currentStory.ChoosePathString("Lose");
+        }
 
         //if we change the portraits (we prolly wont but in case ig)
         //portraitAnimator.Play("");
+
+        dialogueVariables.StartListening(currentStory);
 
         ContinueStory();
     }
@@ -157,6 +174,30 @@ public class DialogueManager : MonoBehaviour
     {
         narrationIsPlaying = false;
         inkFile = combatDialogue;
+
+        if (result == "win")
+        {
+            subwayUI.instance.setGuideTextPerm("Replace at least one card!");
+            combatManager.instance.victoryParent.SetActive(true);
+            combatManager.instance.victoryCardSpawner.spawnNewCards(combatManager.instance.opponent.aggression);
+            result = "";
+            ClearAll();
+        }
+        else if (result == "lose")
+        {
+            subwayManager.instance.switchToMovement();
+            result = "";
+        }
+        else
+        {
+            if (tutorialStage == 4 || tutorialStage == 2)
+            {
+                dialogueVariables = new DialogueVariables(inkFile);
+                combatManager.instance.fight();
+            }
+        }
+
+
         if (tutorialStage == 1)
         {
             tutorialStage = 2;
@@ -169,12 +210,8 @@ public class DialogueManager : MonoBehaviour
 
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToMovement));
         }
-        else
-        {
-            dialogueVariables = new DialogueVariables(inkFile);
-            combatManager.instance.fight();
-        }
-        
+
+            
     }
 
 
@@ -513,8 +550,8 @@ public class DialogueManager : MonoBehaviour
 
 
         //return to regular dialogue
-        inkFile = narrationDialogue;
-        dialogueVariables = new DialogueVariables(inkFile);
+        //inkFile = narrationDialogue;
+        //dialogueVariables = new DialogueVariables(inkFile);
     }
 
 }

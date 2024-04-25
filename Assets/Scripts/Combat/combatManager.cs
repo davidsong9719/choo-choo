@@ -17,9 +17,9 @@ public class combatManager : MonoBehaviour
 
     [Header("Setup")]
     [SerializeField] npcManager npcManagerScript;
-    [SerializeField] cardOptions victoryCardSpawner;
+    [HideInInspector] public cardOptions victoryCardSpawner;
     [SerializeField] GameObject combatParent;
-    [SerializeField] GameObject victoryParent;
+    [HideInInspector] public GameObject victoryParent;
 
     [Header("CombatSettings")]
     public float speedIncrementSpeed;
@@ -77,15 +77,17 @@ public class combatManager : MonoBehaviour
         victoryParent.SetActive(false);
 
         setStats();
-        DialogueManager.GetInstance().ClearAll();
+        if(DialogueManager.GetInstance().result == "")
+        {
+            DialogueManager.GetInstance().ClearAll();
+            uiScript.resetUIs();
+            discardPile.Clear();
+            drawPile.Clear();
+            playerHand.Clear();
+        }
         TextMovement.GetInstance().ResetPos();
         DialogueManager.GetInstance().EnterNarration();
 
-        uiScript.resetUIs();
-
-        discardPile.Clear();
-        drawPile.Clear();
-        playerHand.Clear();
         createOpponentDeck();
 
         for (int i = 0; i  < gameManager.instance.playerDeck.Count; i++)
@@ -558,7 +560,11 @@ public class combatManager : MonoBehaviour
         {
             npcManagerScript.removeAll();
             subwayUI.instance.refreshUI(cardsPlayed * cardTimeMultiplier, 2);
-            subwayManager.instance.switchToMovement();
+
+            DialogueManager.GetInstance().result = "lose";
+            startCombat();
+
+            //subwayManager.instance.switchToMovement();
         }
 
         if (state == "victory")
@@ -566,9 +572,12 @@ public class combatManager : MonoBehaviour
             gameManager.instance.followerAmount++;
             subwayUI.instance.refreshUI(cardsPlayed * cardTimeMultiplier, 2);
 
-            subwayUI.instance.setGuideTextPerm("Replace at least one card!");
+            DialogueManager.GetInstance().result = "win";
+            startCombat();
+
+            /*subwayUI.instance.setGuideTextPerm("Replace at least one card!");
             victoryParent.SetActive(true);
-            victoryCardSpawner.spawnNewCards(opponent.aggression);
+            victoryCardSpawner.spawnNewCards(opponent.aggression);*/
         }
     }
 
