@@ -868,7 +868,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f40b20d926a347b47972ce26de4105ce, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0061e8f0028e9b947911261900920cd5, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1190,14 +1190,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a08937212febc724794d7d0dc1f70a90, type: 3}
   - {fileID: 21300000, guid: 80a8f843110c3704183b5fdfb132259a, type: 3}
   - {fileID: 21300000, guid: a8177a701a4f5414fa4b9bbc8eb5ff9f, type: 3}
-  speedColors:
-  - {r: 0.654902, g: 0.26666668, b: 0.5529412, a: 1}
-  - {r: 0.44705886, g: 0.48627454, b: 0.80392164, a: 1}
-  - {r: 0.15294118, g: 0.54509807, b: 0.4431373, a: 1}
-  - {r: 0.12941177, g: 0.427451, b: 0.64705884, a: 1}
-  - {r: 0.6627451, g: 0.21960786, b: 0.81568635, a: 1}
+  speechColors:
+  - {r: 1, g: 0.67358494, b: 0.9146006, a: 1}
+  - {r: 0.6036942, g: 0.57924527, b: 1, a: 1}
+  - {r: 0.6227483, g: 0.9245283, b: 0.84531105, a: 1}
+  - {r: 0.4377358, g: 0.7648713, b: 1, a: 1}
+  - {r: 0.9303712, g: 0.73018867, b: 1, a: 1}
+  healthColors:
+  - {r: 1, g: 0.32452828, b: 0.8232409, a: 1}
+  - {r: 0.3339622, g: 0.40618315, b: 1, a: 1}
+  - {r: 0.25161976, g: 0.8773585, b: 0.71540266, a: 1}
+  - {r: 0.1641509, g: 0.6476324, b: 1, a: 1}
+  - {r: 0.8751815, g: 0.51320755, b: 1, a: 1}
   guidePortrait: {fileID: 21300000, guid: 42373101a5887a24b82b786e769f14c3, type: 3}
-  guideColor: {r: 0.77254903, g: 0.16862746, b: 0.5137255, a: 1}
+  guideSpeechColor: {r: 1, g: 0.70980394, b: 0.8784314, a: 1}
+  guideHealthColor: {r: 1, g: 0.2901961, b: 0.7019608, a: 1}
 --- !u!114 &92396098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2043,7 +2050,7 @@ MonoBehaviour:
   choices:
   - {fileID: 231588403}
   - {fileID: 1125426382}
-  enemyBubble: {fileID: 21300000, guid: f40b20d926a347b47972ce26de4105ce, type: 3}
+  enemyBubble: {fileID: 21300000, guid: 0061e8f0028e9b947911261900920cd5, type: 3}
   playerBubble: {fileID: 21300000, guid: b629773c0638d344ea93eaaa547ed683, type: 3}
   narrationDialogue: {fileID: 4900000, guid: 47b733764d9b58041a0c5b362b297728, type: 3}
   combatDialogue: {fileID: 4900000, guid: 5466807bfde93c443b4377974cc00de2, type: 3}
@@ -2055,6 +2062,7 @@ MonoBehaviour:
   tutorialStage: 0
   result: 
   canContinueToNextLine: 1
+  bubbleColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &185944574
 Transform:
   m_ObjectHideFlags: 0
@@ -4902,7 +4910,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e5ab0e3915ab3b848bc5cad9aff756e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4b4d1dda1fc8c864885bf59508020c85, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8697,7 +8705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -159.6, y: -31.6}
+  m_AnchoredPosition: {x: -159.59998, y: -31.599976}
   m_SizeDelta: {x: 68.4174, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &823347936
@@ -9744,7 +9752,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f40b20d926a347b47972ce26de4105ce, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0061e8f0028e9b947911261900920cd5, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11039,7 +11047,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 80a8f843110c3704183b5fdfb132259a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42373101a5887a24b82b786e769f14c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15056,14 +15064,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.2396226, b: 0.66918653, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2058478787, guid: a23dea00edbd79043ac09453059e987c, type: 3}
+  m_Sprite: {fileID: 1263593012, guid: 443e21c5bc3a0b445aabaf5bb542da17, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -15,7 +15,7 @@ public class TextMovement : MonoBehaviour
 
     private static TextMovement instance;
 
-    public bool inPlace = true;
+    public bool inPlace = true; 
 
 
     private void Awake()
@@ -37,11 +37,14 @@ public class TextMovement : MonoBehaviour
     {
         for (int i = 0; i < textBoxes.Length; i++)
         {
+            Image textBubble = textBoxes[i].GetComponentInChildren<Image>();
+            textBubble.color = Color.Lerp(textBubble.color, new Color(0.026f, 0.037f, 0.25f), 0.4f);
+            
+
             if (Vector2.Distance(textBoxes[i].transform.position, positions[3].position) < .1f)
             {
                 //swap target position
                 targetPos = positions[2].position;
-                textBoxes[i].GetComponentInChildren<Image>().color = new Color(0.75f, 0.75f, 0.75f);
                 textBoxes[i].transform.SetParent(sortOrder[2].transform);
                 inPlace = true;
             }
@@ -50,15 +53,13 @@ public class TextMovement : MonoBehaviour
             {
                 //swap target position
                 targetPos = positions[1].position;
-                textBoxes[i].GetComponentInChildren<Image>().color = new Color(0.5f, 0.5f, 0.5f);
                 textBoxes[i].transform.SetParent(sortOrder[1].transform);
                 inPlace = true;
             }
             else if (Vector2.Distance(textBoxes[i].transform.position, positions[1].position) < .1f)
             {
                 //swap target position
-                targetPos = positions[0].position;
-                textBoxes[i].GetComponentInChildren<Image>().color = new Color(0.25f, 0.25f, 0.25f);
+                targetPos = positions[0].position; 
                 textBoxes[i].transform.SetParent(sortOrder[0].transform); 
                 inPlace = true;
             }
@@ -67,8 +68,8 @@ public class TextMovement : MonoBehaviour
                 //swap target position
                 textBoxes[i].transform.position = positions[3].position;
                 textBoxes[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
-                textBoxes[i].GetComponentInChildren<Image>().enabled = false;
-                textBoxes[i].GetComponentInChildren<Image>().color = new Color(1f, 1f, 1f);
+                textBubble.enabled = false;
+                textBubble.color = new Color(1f, 1f, 1f);
                 textBoxes[i].transform.SetParent(sortOrder[3].transform);
                 targetPos = positions[3].position;
                 inPlace = true;
