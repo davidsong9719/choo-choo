@@ -167,6 +167,19 @@ Would you like one of these pamplets? #speaker-Player
 ->END
 
 
+===Win===
+Im convinced. #speaker-Opponent
+->END
+
+===Lose===
+Nah, im good. #speaker-Opponent
+->END
+
+
+
+
+
+
 
 ===Tutorial===
 Ah our newest member. You know about clicking [E] to continue, yes? #speaker-Opponent
