@@ -246,6 +246,7 @@ public class combatManager : MonoBehaviour
         if (isOpponentMultiPlay)
         {
             isOpponentMultiPlay = false;
+            startOpponentTurn(); 
             yield break;
         }
 

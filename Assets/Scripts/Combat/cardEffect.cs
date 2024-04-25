@@ -152,7 +152,7 @@ public class cardEffect : MonoBehaviour
                     manager.isOpponentMultiPlay = true;
                     manager.simpleRetort(1, cardInfo.cardStrength);
                 }
-                subwayUI.instance.setGuideTextPerm("Retorted for " + cardInfo.cardStrength + " Willpower");
+                subwayUI.instance.setGuideTextPerm("Retorted for " + cardInfo.cardStrength + " Willpower, can play another card");
                 break;
 
             case "confuse":
