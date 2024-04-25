@@ -67,15 +67,14 @@ public class subwayManager : MonoBehaviour
         //combatCanavas.SetActive(true);
         combatManager.instance.opponent = opponent;
         //combatManager.instance.startCombat();
-
-        subwayUI.instance.switchHealth(true);
+        combatManagerObject.SetActive(true);
         StartCoroutine(TransitionManager.GetInstance().Swipe(openCombat));
 
     }
 
     public void openCombat()
     {
-
+        subwayUI.instance.switchHealth(true);
         combatManagerObject.SetActive(true);
         combatCanavas.SetActive(true);
         combatManager.instance.startCombat();

@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
+using Random = UnityEngine.Random;
 
 public class combatUI : MonoBehaviour
 {
@@ -21,16 +23,17 @@ public class combatUI : MonoBehaviour
     [SerializeField] RectTransform playCardBorder;
     [SerializeField] RectTransform drawDeckPosition, discardDeckPosition;
     
-    
     [Header("Settings")]
     [SerializeField] float speedMeterHeight;
     [SerializeField] AnimationCurve lerpCurve;
     [SerializeField] Image enemyPortrait;
     [SerializeField] List<Sprite> enemyPortraits;
-    [SerializeField] List<Color> speedColors;
+    [SerializeField] List<Color> speechColors;
+    [SerializeField] List<Color> healthColors;
 
     [SerializeField] Sprite guidePortrait;
-    [SerializeField] Color guideColor;
+    [SerializeField] Color guideSpeechColor; //FFB5E0
+    [SerializeField] Color guideHealthColor;
 
 
 
@@ -366,14 +369,22 @@ public class combatUI : MonoBehaviour
             if(DialogueManager.GetInstance().result == "")
             {
                 int index = Random.Range(0, enemyPortraits.Count);
+
+
                 enemyPortrait.sprite = enemyPortraits[index];
-                opponentSpeedDisplay.GetComponentsInChildren<Image>()[1].color = speedColors[index];
-            } 
+                opponentSpeedDisplay.GetComponentsInChildren<Image>()[1].color = healthColors[index];
+                tempOpponentHealthDisplay.color = healthColors[index];
+                opponentHealthDisplay.color = Color.Lerp(speechColors[index], Color.white, 0.75f);
+                DialogueManager.GetInstance().bubbleColor = speechColors[index];
+            }  
         }
         else
         {
             enemyPortrait.sprite = guidePortrait;
-            opponentSpeedDisplay.GetComponentsInChildren<Image>()[1].color = guideColor;
+            opponentSpeedDisplay.GetComponentsInChildren<Image>()[1].color = guideHealthColor;
+            tempOpponentHealthDisplay.color = guideHealthColor; 
+            opponentHealthDisplay.color = Color.Lerp(guideSpeechColor, Color.white, 0.75f);
+            DialogueManager.GetInstance().bubbleColor = guideSpeechColor; 
         }
     }
 } 
