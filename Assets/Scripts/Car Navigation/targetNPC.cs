@@ -164,7 +164,7 @@ public class targetNPC : MonoBehaviour
                         imageComponent.sprite = stairImage;
                     break;
                 case "Guide":
-                    if (DialogueManager.GetInstance().tutorialStage > 3 || DialogueManager.GetInstance().tutorialStage == 5)
+                    if (DialogueManager.GetInstance().tutorialStage > 3 && DialogueManager.GetInstance().tutorialStage != 5)
                     {
                         targetDisplay.SetActive(false);
                         target = null;

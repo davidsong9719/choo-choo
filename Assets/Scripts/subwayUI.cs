@@ -204,6 +204,9 @@ public class subwayUI : MonoBehaviour
         if (gameManager.instance.timeElapsed >= gameManager.instance.stageOneLength + gameManager.instance.stageTwoLength + gameManager.instance.stageThreeLength)
         {
             DialogueManager.GetInstance().tutorialStage = 5;
+            ((Ink.Runtime.IntValue)DialogueManager.GetInstance().GetVariableState("score")).value = gameManager.instance.followerAmount;
+
+
             while (true)
             {
                 if (TransitionManager.GetInstance().playingTransition == false)

@@ -1,4 +1,8 @@
-->Talk
+VAR lastScore = 15
+VAR highScore = 20
+VAR score = 0
+
+->Ending
 ===Talk===
 {shuffle:
     - Hello! #speaker-Player
@@ -232,7 +236,7 @@ Good luck, soldier.
 -> END
 
 ===TutorialWin===
-!!! Did I do it? #speaker-Player
+Did I do it? #speaker-Player
 You've worn down my Willpower, congratulations. You learn fast. #speaker-Opponent
 After every recruitment you'll have the opportunity to learn new tactics.
 You can learn up to three and a minimum of one.
@@ -241,4 +245,36 @@ Just click on the tactic you want to learn and the one you want to replace and c
 ->END
 ===TutorialLose===
 How. #speaker-Opponent
+->END
+
+
+
+
+===Ending===
+You're back.
+How many followers have you recruited?
+{score}!
+{score > lastScore: 
+    Impressive. 
+    {score > highScore: 
+        Incredibly impressive, actually.
+        I think thats the highest amount of followers I've ever heard recruited in day.
+        I only got {lastScore}.
+        Those above shine down upon you, little one.
+        You are blessed.
+    - else:
+        That's even more than me, you learn fast. 
+        I only got {lastScore}.
+    }
+- else:
+	Good job, you're learning quick.
+	Maybe you'll even beat me soon.
+	I got {lastScore}{score == lastScore: too}.
+}
+{score <= highScore: 
+    I've heard rumors of a fellow worshipper from the other district.
+    Apparrently they've {score == highScore: also} recruited {highScore} new followers.
+    That's the highest recorded by those above.
+    {score == highScore: You're well on your way to beating their record.}
+}
 ->END

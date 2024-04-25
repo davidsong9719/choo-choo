@@ -147,6 +147,10 @@ public class DialogueManager : MonoBehaviour
         {
             currentStory.ChoosePathString("Tutorial3");
         }
+        else if (tutorialStage == 5)
+        {
+            currentStory.ChoosePathString("Ending");
+        }
         else
         {
             currentStory.ChoosePathString("Talk");
@@ -568,6 +572,19 @@ public class DialogueManager : MonoBehaviour
         //return to regular dialogue
         //inkFile = narrationDialogue;
         //dialogueVariables = new DialogueVariables(inkFile);
+    }
+
+
+
+    public Ink.Runtime.Object GetVariableState(string variableName)
+    {
+        Ink.Runtime.Object variableValue = null;
+        dialogueVariables.variables.TryGetValue(variableName, out variableValue);
+        if (variableValue == null)
+        {
+            Debug.LogWarning("Ink variables was found to be null: " + variableName);
+        }
+        return variableValue;
     }
 
 }
