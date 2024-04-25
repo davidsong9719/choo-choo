@@ -118,15 +118,13 @@ Would you like one of these pamplets? #speaker-Player
 = continue
     * They sent me to help you. #speaker-Player
     * This is inevitable.  #speaker-Player
-        - It's destiny, you see? #speaker-Player
-        We were fated to meet and I was fated to show you the truth. #speaker-Player
+        - We were fated to meet and I was fated to show you the truth. #speaker-Player
     {shuffle:
         - Prove it. #speaker-Opponent
         - I don't believe in that. #speaker-Opponent
             You will soon. #speaker-Player
         - Fated to insult me? #speaker-Opponent
             Merely opening your eyes. #speaker-Player
-            Allow me to explain. #speaker-Player
     }
 -> END
 
@@ -168,6 +166,7 @@ Would you like one of these pamplets? #speaker-Player
 
 
 ===Win===
+I did it! #speaker-Player
 Im convinced. #speaker-Opponent
 ->END
 
@@ -212,12 +211,13 @@ Did you get a chance to explore?
 *No... #speaker-Player
     Worry not, there will be more chances. #speaker-Opponent
 - Now, let us begin. #speaker-Opponent
-  In a few moments, the mock recruitment will begin.
+  In a few moments, we'll have a mock recruitment.
   You see the bar underneath me? That's my Willpower.
   Yours is up there, on the top left.
   You need to lower the lost souls's Willpower enough to get them to join our cu-
   Our church.
   The little bar on the side is for speed, this determines our talking order.
+  To use a card, pull it up until its eyes open.
   Let's give it a try.
 -> END
 
@@ -231,3 +231,7 @@ You can check where you are on your map on the top left.
 Recruit as many followers as you can by the end of the day, I'll see you at 9:00 PM.
 Good luck, soldier.
 -> END
+
+===TutorialWin===
+Im convinced. #speaker-Opponent
+->END

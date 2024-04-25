@@ -13,6 +13,7 @@ public class subwayManager : MonoBehaviour
     [SerializeField] characterMovement movementScript;
     [SerializeField] targetNPC targetScript;
     [SerializeField] Transform subwaySpawnPosition;
+    [SerializeField] Transform TutorialStartPos;
 
     //combat
     [SerializeField] GameObject combatCanavas;
@@ -36,6 +37,7 @@ public class subwayManager : MonoBehaviour
     public List<GameObject> doorList;
     public UnityEvent subwaySFX;
 
+
     private void Awake()
     {
         playerControls = new PlayerInputActions();
@@ -45,6 +47,11 @@ public class subwayManager : MonoBehaviour
     void Start()
     {
         switchToStation();
+
+        GameObject player = instance.player;
+        player.transform.position = TutorialStartPos.position;
+        player.transform.rotation = TutorialStartPos.rotation;
+
         startCombat(tutorialStats);
     }
 

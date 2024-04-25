@@ -1816,7 +1816,7 @@ MonoBehaviour:
   doorHeight: 4.57
   statueHeight: 4.2
   stairsHeight: 1.9
-  guideHeight: 0
+  guideHeight: 3.7
   hasUsedHeal: 0
 --- !u!114 &137847593
 MonoBehaviour:
@@ -2054,6 +2054,7 @@ MonoBehaviour:
   playerText: 
   playerDefense: 
   tutorialStage: 0
+  result: 
   canContinueToNextLine: 1
 --- !u!4 &185944574
 Transform:
@@ -4507,6 +4508,12 @@ MonoBehaviour:
   defendCardPrefab: {fileID: 6633029566642285854, guid: 08f0300656a7b3a4eb9cd4b74079ab3a,
     type: 3}
   effectCardPrefab: {fileID: 6633029566642285854, guid: 8fc8b919d10dab244a12457e63cd77c1,
+    type: 3}
+  galliumCardPrefab: {fileID: 6633029566642285854, guid: 5c01bda13dc10814baa12cbdc4a24ec9,
+    type: 3}
+  pilgrimCardPrefab: {fileID: 6633029566642285854, guid: 5315995921928c2488ea8776b7d7f6a3,
+    type: 3}
+  pulseCardPrefab: {fileID: 6633029566642285854, guid: e652ca124a52acc40bf513bd64a86359,
     type: 3}
   nullCardPrefab: {fileID: 6633029566642285854, guid: 2fcfe9681c9b5954db3137f19919ec22,
     type: 3}
@@ -8580,6 +8587,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.0000315, y: 3.0179553, z: 22.350977}
   m_Center: {x: 3.637979e-12, y: -0.13479501, z: 9.417461}
+--- !u!1 &814569111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 814569112}
+  m_Layer: 0
+  m_Name: Player Tutorial Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &814569112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814569111}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7773275, z: -0, w: 0.62909615}
+  m_LocalPosition: {x: -20.43, y: 0.08, z: -97.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -102.033, z: 0}
 --- !u!1 &823347934
 GameObject:
   m_ObjectHideFlags: 0
@@ -9492,6 +9530,7 @@ MonoBehaviour:
   movementScript: {fileID: 137847593}
   targetScript: {fileID: 137847592}
   subwaySpawnPosition: {fileID: 1346010401}
+  TutorialStartPos: {fileID: 814569112}
   combatCanavas: {fileID: 345212096}
   combatManagerObject: {fileID: 92396093}
   npcManagerScript: {fileID: 2018889519}
@@ -17639,6 +17678,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   maxVariation: 2
   passengerExchangePercentage: 0.15
+  stageOneMaterial: {fileID: 0}
+  stageTwoMaterial: {fileID: 0}
+  stageThreeMaterial: {fileID: 0}
 --- !u!114 &2018889520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22048,6 +22090,7 @@ SceneRoots:
   - {fileID: 1438993502}
   - {fileID: 455874227}
   - {fileID: 710573}
+  - {fileID: 814569112}
   - {fileID: 1231409900}
   - {fileID: 1342452543}
   - {fileID: 2072730446}

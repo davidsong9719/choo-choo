@@ -4691,6 +4691,7 @@ MonoBehaviour:
   maxDefend: 15
   minAttack: 7
   maxAttack: 30
+  Notes: 
 --- !u!1 &425860140
 GameObject:
   m_ObjectHideFlags: 0
@@ -5216,6 +5217,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471485178}
   m_CullTransparentMesh: 1
+--- !u!1 &474592808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 474592809}
+  m_Layer: 5
+  m_Name: Health Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &474592809
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474592808}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 727147322}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -54.5}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &477185375 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5947766076886881550, guid: 38e85b421de787a47a43d33257f5740c,
@@ -7275,6 +7311,7 @@ RectTransform:
   m_Children:
   - {fileID: 1105265828}
   - {fileID: 1172650114}
+  - {fileID: 474592809}
   - {fileID: 128802258}
   - {fileID: 1266639768}
   - {fileID: 523879742}
@@ -8786,6 +8823,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1706041583}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &837529977
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 837529978}
+  m_Layer: 5
+  m_Name: Health Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &837529978
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837529977}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1696168085}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &839910902
 GameObject:
   m_ObjectHideFlags: 0
@@ -15664,6 +15736,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 837529978}
   - {fileID: 1669862590}
   - {fileID: 501338200}
   - {fileID: 12373244}
@@ -15704,6 +15777,9 @@ MonoBehaviour:
   drawParent: {fileID: 841554620}
   discardParent: {fileID: 848562430}
   lineMenuParent: {fileID: 656569792}
+  healthDisplay: {fileID: 1669862589}
+  combatHealthParent: {fileID: 474592808}
+  uiHealthParent: {fileID: 837529977}
   followerDisplay: {fileID: 823347936}
   timeDisplay: {fileID: 601049440}
   guideText: {fileID: 301826667}
@@ -17601,6 +17677,7 @@ MonoBehaviour:
   maxAttack: 14
   minDefense: 4
   maxDefense: 12
+  debugDifficulty: 0
 --- !u!1 &2038140395
 GameObject:
   m_ObjectHideFlags: 0

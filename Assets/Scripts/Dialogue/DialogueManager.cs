@@ -38,8 +38,9 @@ public class DialogueManager : MonoBehaviour
 
     //[HideInInspector] public int tutorialStage;
     public int tutorialStage;
+    public string result;
 
-    [HideInInspector] public string result;
+    //[HideInInspector] public string result;
 
 
     private Story currentStory;

@@ -2,17 +2,17 @@
 ===Player===
 = Attack
 {shuffle:
-- imma kill u aaaaaaaaaaaaaa
+- But what about this?
     {shuffle:
-        - so mean
-        - freedom
+        - What's this?
+        - What about what?
     }
-- join the cult aaaaaaaaaaaaaaaaaaaa
+- Join the cult, I insist.
     {shuffle:
         - i dont wanna
         - but why tho
     }
-- donate plz aaaaaaaaaaaaaaaaaa
+- donate plz
     {shuffle:
         - nah
         - sorry im broke
@@ -173,11 +173,11 @@
     }
 - New tactics!
     {shuffle:
-        - An effect, clever.
+        - Hm. Good job.
     }
 - Hmmmm.. let me try again.
     {shuffle:
-        - An effect, clever.
+        - Go ahead.
     }
 }
 -> END
