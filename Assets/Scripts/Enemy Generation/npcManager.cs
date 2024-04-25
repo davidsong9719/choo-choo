@@ -31,6 +31,9 @@ public class npcManager : MonoBehaviour
     [SerializeField] float passengerExchangePercentage;
     private int totalSpots;
 
+    [Header("Visual Settings")]
+    [SerializeField] Material stageOneMaterial, stageTwoMaterial, stageThreeMaterial;
+
     private void Awake()
     {
         opponentGenerator = GetComponent<opponentRandomizer>();
@@ -171,8 +174,29 @@ public class npcManager : MonoBehaviour
             return;
         }
 
+        if (Random.Range(0f, 1f) > 0.5)
+        {
+            npcList.Add(newOpponent);
+            return;
+        }
+
         int difficulty = generateDifficulty();
         newOpponent.GetComponent<opponentInfo>().stats = opponentGenerator.generateStats(difficulty);
+
+        switch(difficulty)
+        {
+            case 0:
+                newOpponent.GetComponentInChildren<Renderer>().material = stageOneMaterial;
+                break;
+
+            case 1:
+                newOpponent.GetComponentInChildren<Renderer>().material = stageTwoMaterial;
+                break;
+
+            case 2:
+                newOpponent.GetComponentInChildren<Renderer>().material = stageThreeMaterial;
+                break;
+        }
         npcList.Add(newOpponent);
         talkableNPC.Add(newOpponent);
     }

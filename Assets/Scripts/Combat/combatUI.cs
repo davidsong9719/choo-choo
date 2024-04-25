@@ -71,7 +71,7 @@ public class combatUI : MonoBehaviour
     public void spawnCard(card cardInfo, bool hasSpawnPosition, Vector3 spawnPosition)
     {
         GameObject newCard = null;
-        switch(cardInfo.type)
+        switch (cardInfo.type)
         {
             case card.cardType.Attack:
                 newCard = Instantiate(gameManager.instance.attackCardPrefab, cardParent);
@@ -82,7 +82,31 @@ public class combatUI : MonoBehaviour
                 break;
 
             case card.cardType.Effect:
-                newCard = Instantiate(gameManager.instance.effectCardPrefab, cardParent);
+                switch (cardInfo.cardName)
+                {
+                    case "redraw":
+                        newCard = Instantiate(gameManager.instance.effectCardPrefab, cardParent);
+                        break;
+
+                    case "increaseAttack":
+                    case "lifeSteal":
+                    case "outburst":
+                        newCard = Instantiate(gameManager.instance.pulseCardPrefab, cardParent);
+                        break;
+
+                    case "increaseDefend":
+                    case "curse":
+                    case "chainRetort":
+                        newCard = Instantiate(gameManager.instance.galliumCardPrefab, cardParent);
+                        break;
+
+                    case "increaseHand":
+                    case "pray":
+                    case "confuse":
+                        newCard = Instantiate(gameManager.instance.pilgrimCardPrefab, cardParent);
+                        break;  
+
+                }
                 break;
 
             case card.cardType.Cursed:

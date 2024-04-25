@@ -15,7 +15,7 @@ public class gameManager : MonoBehaviour
 
     [Header("Templates")]
     public card attack, defend;
-    public GameObject attackCardPrefab, defendCardPrefab, effectCardPrefab, nullCardPrefab;
+    public GameObject attackCardPrefab, defendCardPrefab, effectCardPrefab, galliumCardPrefab, pilgrimCardPrefab, pulseCardPrefab, nullCardPrefab;
     public AnimationCurve lerpCurve;
 
     [Header("Parameters")]

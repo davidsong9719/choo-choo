@@ -133,9 +133,11 @@ public class cardEffect : MonoBehaviour
                 if (cardPlayer == 0)
                 {
                     manager.inflictDamage(1, cardInfo.cardStrength*3);
+                    subwayUI.instance.setGuideTextPerm("Argued for " + (cardInfo.cardStrength * 3 + manager.bonusPlayerAttack) + " Willpower");
                 } else if (cardPlayer == 1)
                 {
-                    manager.inflictSimpleDamage(0, cardInfo.cardStrength*3);
+                    manager.inflictDamage(0, cardInfo.cardStrength*3);
+                    subwayUI.instance.setGuideTextPerm("Argued for " + (cardInfo.cardStrength*3+manager.bonusOpponentAttack) + " Willpower");
                 }
                 break;
 
@@ -150,6 +152,7 @@ public class cardEffect : MonoBehaviour
                     manager.isOpponentMultiPlay = true;
                     manager.simpleRetort(1, cardInfo.cardStrength);
                 }
+                subwayUI.instance.setGuideTextPerm("Retorted for " + cardInfo.cardStrength + " Willpower");
                 break;
 
             case "confuse":
@@ -160,7 +163,7 @@ public class cardEffect : MonoBehaviour
                 {
                     manager.decreaseSpeed(0);
                 }
-
+                subwayUI.instance.setGuideTextPerm("Talking speed slowed by 1");
                 break;
         }
     }

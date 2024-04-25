@@ -115,7 +115,31 @@ public class cardLayout : MonoBehaviour
                 break;
 
             case card.cardType.Effect:
-                newCard = Instantiate(gameManager.instance.effectCardPrefab, parent);
+                switch (cardInfo.cardName)
+                {
+                    case "redraw":
+                        newCard = Instantiate(gameManager.instance.effectCardPrefab, parent);
+                        break;
+
+                    case "increaseAttack":
+                    case "lifeSteal":
+                    case "outburst":
+                        newCard = Instantiate(gameManager.instance.pulseCardPrefab, parent);
+                        break;
+
+                    case "increaseDefend":
+                    case "curse":
+                    case "chainRetort":
+                        newCard = Instantiate(gameManager.instance.galliumCardPrefab, parent);
+                        break;
+
+                    case "increaseHand":
+                    case "pray":
+                    case "confuse":
+                        newCard = Instantiate(gameManager.instance.pilgrimCardPrefab, parent);
+                        break;
+
+                }
                 break;
         }
 

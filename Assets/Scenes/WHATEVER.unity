@@ -4508,6 +4508,12 @@ MonoBehaviour:
     type: 3}
   effectCardPrefab: {fileID: 6633029566642285854, guid: 8fc8b919d10dab244a12457e63cd77c1,
     type: 3}
+  galliumCardPrefab: {fileID: 6633029566642285854, guid: 5c01bda13dc10814baa12cbdc4a24ec9,
+    type: 3}
+  pilgrimCardPrefab: {fileID: 6633029566642285854, guid: 5315995921928c2488ea8776b7d7f6a3,
+    type: 3}
+  pulseCardPrefab: {fileID: 6633029566642285854, guid: e652ca124a52acc40bf513bd64a86359,
+    type: 3}
   nullCardPrefab: {fileID: 6633029566642285854, guid: 2fcfe9681c9b5954db3137f19919ec22,
     type: 3}
   lerpCurve:
@@ -7350,7 +7356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &770370927
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17639,6 +17645,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   maxVariation: 2
   passengerExchangePercentage: 0.15
+  stageOneMaterial: {fileID: 2100000, guid: a643a027f8013554a9140268120a37e6, type: 2}
+  stageTwoMaterial: {fileID: 2100000, guid: b437f16ff5d7f4a409c6a19e0797d838, type: 2}
+  stageThreeMaterial: {fileID: 2100000, guid: 0a4d3dcc784f562428aba64fa932adf4, type: 2}
 --- !u!114 &2018889520
 MonoBehaviour:
   m_ObjectHideFlags: 0

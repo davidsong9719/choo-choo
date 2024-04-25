@@ -217,12 +217,12 @@ public class combatManager : MonoBehaviour
         {
             case card.cardType.Attack:
                 inflictDamage(0, currentCard.cardStrength);
-                subwayUI.instance.setGuideTextPerm("Argued for " + currentCard.cardStrength + " Willpower");
+                subwayUI.instance.setGuideTextPerm("Argued for " + (currentCard.cardStrength+bonusOpponentAttack) + " Willpower");
                 break;
 
             case card.cardType.Defend:
                 retort(1, currentCard.cardStrength);
-                subwayUI.instance.setGuideTextPerm("Retorted for " + currentCard.cardStrength + " Willpower");
+                subwayUI.instance.setGuideTextPerm("Retorted for " + (currentCard.cardStrength+bonusOpponentDefend) + " Willpower");
                 break;
 
             case card.cardType.Effect:
@@ -348,12 +348,12 @@ public class combatManager : MonoBehaviour
         {
             case card.cardType.Attack:
                 inflictDamage(1, cardInfo.cardStrength);
-                subwayUI.instance.setGuideTextPerm("Argued for " + cardInfo.cardStrength + " Willpower");
+                subwayUI.instance.setGuideTextPerm("Argued for " + (cardInfo.cardStrength+bonusPlayerAttack) + " Willpower");
                 break;
 
             case card.cardType.Defend:
                 retort(0, cardInfo.cardStrength);
-                subwayUI.instance.setGuideTextPerm("Retorted for " + cardInfo.cardStrength + " Willpower");
+                subwayUI.instance.setGuideTextPerm("Retorted for " + (cardInfo.cardStrength+bonusPlayerDefend) + " Willpower");
                 break;
 
             case card.cardType.Effect:
@@ -587,6 +587,7 @@ public class combatManager : MonoBehaviour
                         if (randomFloat < 0.5f)
                         {
                             newCard = gameManager.instance.effectCardTemplates[0];
+                            newCard.cardStrength = Mathf.RoundToInt(Random.Range(opponent.attack - 2, opponent.attack + 3) * 1.5f);
                         } else
                         {
                             newCard = gameManager.instance.effectCardTemplates[1];
@@ -600,9 +601,11 @@ public class combatManager : MonoBehaviour
                         } else if (randomFloat <0.66) 
                         {
                             newCard = gameManager.instance.effectCardTemplates[3];
+                            newCard.cardStrength = Random.Range(1, 3);
                         } else
                         {
                             newCard = gameManager.instance.effectCardTemplates[4];
+                            newCard.cardStrength = Mathf.RoundToInt(Random.Range(opponent.defense - 2, opponent.defense + 3) * 0.75f);
                         }
                         break;
 
@@ -610,14 +613,17 @@ public class combatManager : MonoBehaviour
                         if (randomFloat < 0.33f)
                         {
                             newCard = gameManager.instance.effectCardTemplates[5];
+                            newCard.cardStrength = Random.Range(1, 5);
                         }
                         else if (randomFloat < 0.66)
                         {
                             newCard = gameManager.instance.effectCardTemplates[6];
+                            newCard.cardStrength = Random.Range(opponent.defense - 2, opponent.defense + 3);
                         }
                         else
                         {
                             newCard = gameManager.instance.effectCardTemplates[7];
+                            newCard.cardStrength = Mathf.RoundToInt(Random.Range(opponent.attack - 2, opponent.attack + 3) * 0.33f);
                         }
                         break;
                 }
