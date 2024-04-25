@@ -160,6 +160,9 @@ public class targetNPC : MonoBehaviour
                     }
                     break;
 
+                case "Stairs":
+                        imageComponent.sprite = stairImage;
+                    break;
                 case "Guide":
                     if (DialogueManager.GetInstance().tutorialStage > 3 || DialogueManager.GetInstance().tutorialStage == 5)
                     {
@@ -236,11 +239,6 @@ public class targetNPC : MonoBehaviour
         else if (target.tag == "Guide")
         {
             subwayManager.instance.startCombat(subwayManager.instance.tutorialStats);
-            Debug.Log("guide");
-
-            //npcManagerScript.removeFromList(target);
-            //hasUsedHeal = false;
-            //canLeaveCar = true;
         }
         else if (target.tag == "Statue")
         {
@@ -252,7 +250,6 @@ public class targetNPC : MonoBehaviour
             hasUsedHeal = true;
         } else if (target.tag == "Stairs")
         {
-            Debug.Log("stairs");
             stationScript.generateMenu();
         }
     }
