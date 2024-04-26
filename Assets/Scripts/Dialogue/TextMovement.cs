@@ -38,8 +38,8 @@ public class TextMovement : MonoBehaviour
         print("move!");
         for (int i = 0; i < textBoxes.Length; i++)
         {
-                Image textBubble = textBoxes[i].GetComponentInChildren<Image>();
-                //textBubble.color = Color.Lerp(textBubble.color, new Color(0.026f, 0.037f, 0.25f), 0.4f);
+            Image textBubble = textBoxes[i].GetComponentInChildren<Image>();
+            textBubble.color = Color.Lerp(textBubble.color, new Color(0.026f, 0.037f, 0.25f), 0.4f);
 
             if (Vector2.Distance(textBoxes[i].transform.position, positions[3].position) < .01f)
             {
