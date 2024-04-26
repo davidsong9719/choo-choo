@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class cardFeedback : MonoBehaviour
@@ -21,6 +18,7 @@ public class cardFeedback : MonoBehaviour
     public RectTransform cardTransform;
     [SerializeField] Image highlightedDisplay;
     [SerializeField] Sprite highlighedSprite, unhighlightedSprite;
+    [SerializeField] GameObject highlightBackground;
 
     [Header("Settings")]
     [SerializeField] float hoverScale;
@@ -163,10 +161,12 @@ public class cardFeedback : MonoBehaviour
     public void highlight()
     {
         highlightedDisplay.sprite = highlighedSprite;
+        highlightBackground.SetActive(true);
     }
 
     public void unhighlight()
     {
         highlightedDisplay.sprite = unhighlightedSprite;
+        highlightBackground.SetActive(false);
     }
 }
