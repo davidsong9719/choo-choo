@@ -22,7 +22,7 @@ public class cardGenerator : MonoBehaviour
     {
         card newCard = ScriptableObject.CreateInstance<card>();
         int randomNum = Mathf.RoundToInt(cardTypeDistribution.Evaluate(Random.Range(0f, 1f)));
-       float curveValue = 0;
+        float curveValue = 0;
 
         switch (randomNum)
         {
@@ -62,32 +62,32 @@ public class cardGenerator : MonoBehaviour
                     case "pilgrim":
                         if (randomFloat < 0.33f) //pray
                         {
-                            newCard = gameManager.instance.effectCardTemplates[0];
+                            newCard = copyCard(gameManager.instance.effectCardTemplates[0]);
                             curveValue = attackValueCurve.Evaluate(difficulty);
                             newCard.cardStrength = Mathf.RoundToInt(Mathf.Lerp(minAttack, maxAttack, curveValue)*1.5f);
                         }
                         else if (randomFloat < 0.66) //confuse
                         {
-                            newCard = gameManager.instance.effectCardTemplates[1];
+                            newCard = copyCard(gameManager.instance.effectCardTemplates[1]);
                         } else //increase hand
                         {
-                            newCard = gameManager.instance.effectCardTemplates[8];
+                            newCard = copyCard(gameManager.instance.effectCardTemplates[8]);
                         }
                         break;
 
                     case "gallium":
                         if (randomFloat < 0.33f) //curse
                         {
-                            newCard = gameManager.instance.effectCardTemplates[2];
+                            newCard = copyCard(gameManager.instance.effectCardTemplates[2]);
                         }
                         else if (randomFloat < 0.66) //increase defend
                         {
-                            newCard = gameManager.instance.effectCardTemplates[3];
+                            newCard = copyCard(gameManager.instance.effectCardTemplates[3]);
                             newCard.cardStrength = Random.Range(1, 3);
                         }
                         else //chainRetort
                         {
-                            newCard = gameManager.instance.effectCardTemplates[4];
+                            newCard = copyCard(gameManager.instance.effectCardTemplates[4]);
                             curveValue = defendValueCurve.Evaluate(difficulty);
                             newCard.cardStrength = Mathf.RoundToInt(Mathf.Lerp(minDefend, maxDefend, curveValue)*0.75f);
                         }
@@ -96,18 +96,18 @@ public class cardGenerator : MonoBehaviour
                     case "pulse":
                         if (randomFloat < 0.33f) //increase attack
                         {
-                            newCard = gameManager.instance.effectCardTemplates[5];
+                            newCard = copyCard(gameManager.instance.effectCardTemplates[5]);
                             newCard.cardStrength = Random.Range(1, 5);
                         }
                         else if (randomFloat < 0.66) //life steal
                         {
-                            newCard = gameManager.instance.effectCardTemplates[6];
+                            newCard = copyCard(gameManager.instance.effectCardTemplates[6]);
                             curveValue = defendValueCurve.Evaluate(difficulty);
                             newCard.cardStrength = Mathf.RoundToInt(Mathf.Lerp(minDefend, maxDefend, curveValue));
                         }
                         else //outburst
                         {
-                            newCard = gameManager.instance.effectCardTemplates[7];
+                            newCard = copyCard(gameManager.instance.effectCardTemplates[7]);
                             curveValue = attackValueCurve.Evaluate(difficulty);
                             newCard.cardStrength = Mathf.RoundToInt(Mathf.Lerp(minAttack, maxAttack, curveValue) * 0.33f);
                         }
@@ -116,6 +116,16 @@ public class cardGenerator : MonoBehaviour
                 break;
         }
 
+        return newCard;
+    }
+
+    public card copyCard(card originalCard)
+    {
+        card newCard = ScriptableObject.CreateInstance<card>();
+        newCard.type = originalCard.type;
+        newCard.cardStrength = originalCard.cardStrength;
+        newCard.cardName = originalCard.cardName;
+        newCard.description = originalCard.description;
         return newCard;
     }
 }

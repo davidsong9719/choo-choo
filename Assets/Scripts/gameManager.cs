@@ -31,7 +31,7 @@ public class gameManager : MonoBehaviour
         {
             instance = this;
             cardGenerator.instance = GetComponent<cardGenerator>();
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {

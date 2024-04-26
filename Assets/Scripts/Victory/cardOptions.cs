@@ -10,6 +10,7 @@ public class cardOptions : MonoBehaviour
     [SerializeField] RectTransform deckParent, newCardsParent;
     [SerializeField] Image replaceButton, continueButton, background;
     [SerializeField] Vector3 deckXSET, newCardsXSET; //x axis start, end, and lerp time
+    [SerializeField] combatUI combatUIScript;
     private cardLayout layoutManager;
     private cardFeedback selectedNewCard, selectedDeckCard;
 
@@ -43,7 +44,7 @@ public class cardOptions : MonoBehaviour
 
         StartCoroutine(transition(newCardsParent, newCardsXSET, true));
         StartCoroutine(transition(deckParent, deckXSET, true));
-        StartCoroutine(fadeIn(background, 0.5f));
+        StartCoroutine(fade(background, 0.5f, true));
     }
 
     public void selectNewCard(cardFeedback selected)
@@ -99,10 +100,38 @@ public class cardOptions : MonoBehaviour
     public void continueGame()
     {
         if (!isContinuable) return;
+        isContinuable = false;
+        StartCoroutine(continueGameCR());
 
+    }
+
+    IEnumerator continueGameCR()
+    {
         if (DialogueManager.GetInstance().tutorialStage == 2)
         {
             DialogueManager.GetInstance().tutorialStage = 3;
+            combatUIScript.resetUIs();
+        } else
+        {
+            combatManager.instance.combatParent.SetActive(false);
+            combatUIScript.blurObject.SetActive(false); 
+        }
+
+        if (DialogueManager.GetInstance().tutorialStage > 3 && DialogueManager.GetInstance().result == "")
+        {
+            nodeManager.instance.progressStation();
+            combatManager.instance.npcManagerScript.updateCar();
+        }
+
+        StartCoroutine(transition(newCardsParent, new Vector3(newCardsXSET.y, newCardsXSET.x, newCardsXSET.z), true));
+        StartCoroutine(transition(deckParent, new Vector3(deckXSET.y, deckXSET.x, deckXSET.z), true));
+        StartCoroutine(fade(background, 0.5f, false));
+
+        yield return new WaitForSeconds(newCardsXSET.z);
+
+        if (DialogueManager.GetInstance().tutorialStage == 3)
+        {
+            
             combatManager.instance.startCombat();
             subwayUI.instance.setGuideTextPerm("Board a train by the stairs");
         }
@@ -111,14 +140,8 @@ public class cardOptions : MonoBehaviour
             subwayManager.instance.switchToMovement();
             subwayUI.instance.setGuideTextPerm("");
         }
-
-        if (DialogueManager.GetInstance().tutorialStage > 3 && DialogueManager.GetInstance().result == "")
-        {
-            nodeManager.instance.progressStation();
-            combatManager.instance.npcManagerScript.updateCar();
-        }
     }
-
+        
     IEnumerator transition(RectTransform movedObject, Vector3 startEndTime, bool isMovingX)
     {
         float timeCounter = -Time.deltaTime; // to zero out the value for the first loop
@@ -144,13 +167,21 @@ public class cardOptions : MonoBehaviour
 
     }
 
-    IEnumerator fadeIn(Image image, float fadeTime)
+    IEnumerator fade(Image image, float fadeTime, bool fadeIn)
     {
         float timeCounter = -Time.deltaTime;
         while (true)
         {
             timeCounter += Time.deltaTime;
-            image.color = new Color(image.color.r, image.color.g, image.color.b, gameManager.instance.lerpCurve.Evaluate(timeCounter / fadeTime));
+
+            if (fadeIn)
+            {
+                image.color = new Color(image.color.r, image.color.g, image.color.b, gameManager.instance.lerpCurve.Evaluate(timeCounter / fadeTime));
+            } else
+            {
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 1-gameManager.instance.lerpCurve.Evaluate(timeCounter / fadeTime));
+            }
+            
 
             if (timeCounter >= fadeTime) break;
             yield return null;

@@ -15,7 +15,7 @@ public class combatManager : MonoBehaviour
     [Header("Setup")]
     [HideInInspector] public npcManager npcManagerScript;
     [HideInInspector] public cardOptions victoryCardSpawner;
-    [SerializeField] GameObject combatParent;
+    public GameObject combatParent;
     [HideInInspector] public GameObject victoryParent;
 
     [Header("CombatSettings")]
@@ -592,25 +592,25 @@ public class combatManager : MonoBehaviour
                     case "pilgrim":
                         if (randomFloat < 0.5f)
                         {
-                            newCard = gameManager.instance.effectCardTemplates[0];
+                            newCard = cardGenerator.instance.copyCard(gameManager.instance.effectCardTemplates[0]);
                             newCard.cardStrength = Mathf.RoundToInt(Random.Range(opponent.attack - 2, opponent.attack + 3) * 1.5f);
                         } else
                         {
-                            newCard = gameManager.instance.effectCardTemplates[1];
+                            newCard = cardGenerator.instance.copyCard(gameManager.instance.effectCardTemplates[1]);
                         }
                         break;
 
                     case "gallium":
                         if (randomFloat < 0.33f)
                         {
-                            newCard = gameManager.instance.effectCardTemplates[2];
+                            newCard = cardGenerator.instance.copyCard(gameManager.instance.effectCardTemplates[2]);
                         } else if (randomFloat <0.66) 
                         {
-                            newCard = gameManager.instance.effectCardTemplates[3];
+                            newCard = cardGenerator.instance.copyCard(gameManager.instance.effectCardTemplates[3]);
                             newCard.cardStrength = Random.Range(1, 3);
                         } else
                         {
-                            newCard = gameManager.instance.effectCardTemplates[4];
+                            newCard = cardGenerator.instance.copyCard(gameManager.instance.effectCardTemplates[4]);
                             newCard.cardStrength = Mathf.RoundToInt(Random.Range(opponent.defense - 2, opponent.defense + 3) * 0.75f);
                         }
                         break;
@@ -618,17 +618,17 @@ public class combatManager : MonoBehaviour
                     case "pulse":
                         if (randomFloat < 0.33f)
                         {
-                            newCard = gameManager.instance.effectCardTemplates[5];
+                            newCard = cardGenerator.instance.copyCard(gameManager.instance.effectCardTemplates[5]);
                             newCard.cardStrength = Random.Range(1, 5);
                         }
                         else if (randomFloat < 0.66)
                         {
-                            newCard = gameManager.instance.effectCardTemplates[6];
+                            newCard = cardGenerator.instance.copyCard(gameManager.instance.effectCardTemplates[6]);
                             newCard.cardStrength = Random.Range(opponent.defense - 2, opponent.defense + 3);
                         }
                         else
                         {
-                            newCard = gameManager.instance.effectCardTemplates[7];
+                            newCard = cardGenerator.instance.copyCard(gameManager.instance.effectCardTemplates[7]);
                             newCard.cardStrength = Mathf.RoundToInt(Random.Range(opponent.attack - 2, opponent.attack + 3) * 0.33f);
                         }
                         break;
@@ -660,8 +660,7 @@ public class combatManager : MonoBehaviour
             card1.cardStrength = opponent.defense;
             opponentCards[1] = card1;
 
-            card card2 = ScriptableObject.CreateInstance<card>();
-            card2 = gameManager.instance.effectCardTemplates[2];
+            card card2 = cardGenerator.instance.copyCard(gameManager.instance.effectCardTemplates[2]);
             opponentCards[2] = card2;
         }
     }

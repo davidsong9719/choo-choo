@@ -22,6 +22,7 @@ public class combatUI : MonoBehaviour
     [SerializeField] Transform cardParent;
     [SerializeField] RectTransform playCardBorder;
     [SerializeField] RectTransform drawDeckPosition, discardDeckPosition;
+    public GameObject blurObject;
     
     [Header("Settings")]
     [SerializeField] float speedMeterHeight;
@@ -357,6 +358,7 @@ public class combatUI : MonoBehaviour
         //StartCoroutine(updateHealthBar(opponentHealthDisplay, 1, 0.1f));
         //StartCoroutine(updateHealthBar(tempOpponentHealthDisplay, 1, 0.1f));
 
+        blurObject.SetActive(true);
         playerSpeedDisplay.resetPosition();
         opponentSpeedDisplay.resetPosition();
         generateEnemyPortrait();
