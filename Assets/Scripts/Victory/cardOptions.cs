@@ -7,14 +7,13 @@ public class cardOptions : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField] List<Transform> displayObject;
-    [SerializeField] Image replaceButton, continueButton;
-
+    [SerializeField] RectTransform deckParent, newCardsParent;
+    [SerializeField] Image replaceButton, continueButton, background;
+    [SerializeField] Vector3 deckXSET, newCardsXSET; //x axis start, end, and lerp time
     private cardLayout layoutManager;
     private cardFeedback selectedNewCard, selectedDeckCard;
 
     private bool isReplaceable, isContinuable;
-
-    
 
     private void Awake()
     {
@@ -29,7 +28,7 @@ public class cardOptions : MonoBehaviour
         continueButton.color = Color.gray;
         isContinuable = false;
     }
-
+    
     public void spawnNewCards(float difficulty)
     {
         for (int i = 0; i < displayObject.Count; i++)
@@ -41,6 +40,10 @@ public class cardOptions : MonoBehaviour
             cardScript.cardState = "newReplace";
             cardScript.newCardManager = this;
         }
+
+        StartCoroutine(transition(newCardsParent, newCardsXSET, true));
+        StartCoroutine(transition(deckParent, deckXSET, true));
+        StartCoroutine(fadeIn(background, 0.5f));
     }
 
     public void selectNewCard(cardFeedback selected)
@@ -113,6 +116,44 @@ public class cardOptions : MonoBehaviour
         {
             nodeManager.instance.progressStation();
             combatManager.instance.npcManagerScript.updateCar();
+        }
+    }
+
+    IEnumerator transition(RectTransform movedObject, Vector3 startEndTime, bool isMovingX)
+    {
+        float timeCounter = -Time.deltaTime; // to zero out the value for the first loop
+
+        while (true)
+        {
+            timeCounter += Time.deltaTime;
+
+            float newPosition = Mathf.Lerp(startEndTime.x, startEndTime.y, gameManager.instance.lerpCurve.Evaluate(timeCounter / startEndTime.z));
+
+            if (isMovingX)
+            {
+                movedObject.anchoredPosition = new Vector2(newPosition, movedObject.anchoredPosition.y);
+            }
+            else
+            {
+                movedObject.anchoredPosition = new Vector2(movedObject.anchoredPosition.x, newPosition);
+            }
+
+            if (timeCounter >= startEndTime.z) break;
+            yield return null;
+        }
+
+    }
+
+    IEnumerator fadeIn(Image image, float fadeTime)
+    {
+        float timeCounter = -Time.deltaTime;
+        while (true)
+        {
+            timeCounter += Time.deltaTime;
+            image.color = new Color(image.color.r, image.color.g, image.color.b, gameManager.instance.lerpCurve.Evaluate(timeCounter / fadeTime));
+
+            if (timeCounter >= fadeTime) break;
+            yield return null;
         }
     }
 }
