@@ -43,6 +43,14 @@ public class TransitionManager : MonoBehaviour
         function();
         swipe.SetTrigger("start");
     }*/
-
+    public IEnumerator End()
+    {
+        playingTransition = true;
+        swipe.SetTrigger("end");
+        yield return new WaitForSecondsRealtime(0.6f);
+        //function();
+        //yield return new WaitForSecondsRealtime(1f);
+        //playingTransition = false;
+    }
 
 }

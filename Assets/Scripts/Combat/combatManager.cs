@@ -77,12 +77,12 @@ public class combatManager : MonoBehaviour
         if(DialogueManager.GetInstance().result == "")
         {
             DialogueManager.GetInstance().ClearAll();
+            TextMovement.GetInstance().ResetPos();
             uiScript.resetUIs();
             discardPile.Clear();
             drawPile.Clear();
             playerHand.Clear();
         }
-        TextMovement.GetInstance().ResetPos();
         DialogueManager.GetInstance().EnterNarration();
 
         createOpponentDeck();

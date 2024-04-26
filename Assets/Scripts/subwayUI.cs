@@ -204,8 +204,6 @@ public class subwayUI : MonoBehaviour
         if (gameManager.instance.timeElapsed >= gameManager.instance.stageOneLength + gameManager.instance.stageTwoLength + gameManager.instance.stageThreeLength)
         {
             DialogueManager.GetInstance().tutorialStage = 5;
-            ((Ink.Runtime.IntValue)DialogueManager.GetInstance().GetVariableState("score")).value = gameManager.instance.followerAmount;
-
 
             while (true)
             {
@@ -220,6 +218,7 @@ public class subwayUI : MonoBehaviour
             }
             yield return null;
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
+            DialogueManager.GetInstance().result = "";
         }
 
     }

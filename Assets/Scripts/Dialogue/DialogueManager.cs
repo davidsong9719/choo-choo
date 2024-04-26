@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
 using System.Security;
+using static UnityEngine.Rendering.DebugUI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -133,6 +135,7 @@ public class DialogueManager : MonoBehaviour
         dialogueVariables = new DialogueVariables(inkFile);
         currentStory = new Story(inkFile.text);
         narrationIsPlaying = true;
+        
 
         if (tutorialStage == 1)
         {
@@ -151,6 +154,20 @@ public class DialogueManager : MonoBehaviour
         }
         else if (tutorialStage == 5)
         {
+            ((IntValue)GetVariableState("score")).value = gameManager.instance.followerAmount;
+            Debug.Log("score is " + ((IntValue)GetVariableState("score")).value);
+
+            if(PlayerPrefs.GetInt("lastScore") != 0)
+            {
+                ((IntValue)GetVariableState("lastScore")).value = PlayerPrefs.GetInt("lastScore");
+                Debug.Log("last score is " + ((IntValue)GetVariableState("lastScore")).value);
+            }
+            if (PlayerPrefs.GetInt("highScore") != 0)
+            {
+                ((IntValue)GetVariableState("highScore")).value = PlayerPrefs.GetInt("highScore");
+                Debug.Log("high score is " + ((IntValue)GetVariableState("highScore")).value);
+            }
+
             currentStory.ChoosePathString("Ending");
         }
         else
@@ -207,8 +224,9 @@ public class DialogueManager : MonoBehaviour
         }
         else if (result == "lose")
         {
-            subwayManager.instance.switchToMovement();
+            StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToMovement));
             result = "";
+            //ClearAll();
         }
         else
         {
@@ -232,8 +250,19 @@ public class DialogueManager : MonoBehaviour
 
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToMovement));
         }
+        else if (tutorialStage == 5)
+        {
+            if (((IntValue)GetVariableState("score")).value > ((IntValue)GetVariableState("highScore")).value)
+            {
+                ((IntValue)GetVariableState("highScore")).value = ((IntValue)GetVariableState("score")).value;
+                PlayerPrefs.SetInt("highScore", ((IntValue)GetVariableState("highScore")).value);
+            }
+            ((IntValue)GetVariableState("lastScore")).value = ((IntValue)GetVariableState("score")).value;
+            PlayerPrefs.SetInt("lastScore", ((IntValue)GetVariableState("lastScore")).value);
+            StartCoroutine(TransitionManager.GetInstance().End());
+        }
 
-            
+
     }
 
 

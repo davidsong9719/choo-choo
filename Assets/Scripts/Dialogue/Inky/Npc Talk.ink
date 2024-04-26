@@ -251,7 +251,7 @@ How. #speaker-Opponent
 
 
 ===Ending===
-You're back.
+You're back. #speaker-Opponent
 How many followers have you recruited?
 {score}!
 {score > lastScore: 
