@@ -35,13 +35,13 @@ public class TextMovement : MonoBehaviour
 
     public void moveBoxes()
     {
+        print("move!");
         for (int i = 0; i < textBoxes.Length; i++)
         {
-            Image textBubble = textBoxes[i].GetComponentInChildren<Image>();
-            textBubble.color = Color.Lerp(textBubble.color, new Color(0.026f, 0.037f, 0.25f), 0.4f);
-            
+                Image textBubble = textBoxes[i].GetComponentInChildren<Image>();
+                //textBubble.color = Color.Lerp(textBubble.color, new Color(0.026f, 0.037f, 0.25f), 0.4f);
 
-            if (Vector2.Distance(textBoxes[i].transform.position, positions[3].position) < .1f)
+            if (Vector2.Distance(textBoxes[i].transform.position, positions[3].position) < .01f)
             {
                 //swap target position
                 targetPos = positions[2].position;
@@ -49,21 +49,21 @@ public class TextMovement : MonoBehaviour
                 inPlace = true;
             }
             //continue for all other positions
-            else if (Vector2.Distance(textBoxes[i].transform.position, positions[2].position) < .1f)
+            else if (Vector2.Distance(textBoxes[i].transform.position, positions[2].position) < .01f)
             {
                 //swap target position
                 targetPos = positions[1].position;
                 textBoxes[i].transform.SetParent(sortOrder[1].transform);
                 inPlace = true;
             }
-            else if (Vector2.Distance(textBoxes[i].transform.position, positions[1].position) < .1f)
+            else if (Vector2.Distance(textBoxes[i].transform.position, positions[1].position) < .01f)
             {
                 //swap target position
                 targetPos = positions[0].position; 
                 textBoxes[i].transform.SetParent(sortOrder[0].transform); 
                 inPlace = true;
             }
-            else if (Vector2.Distance(textBoxes[i].transform.position, positions[0].position) < .1f)
+            else if (Vector2.Distance(textBoxes[i].transform.position, positions[0].position) < .01f)
             {
                 //swap target position
                 textBoxes[i].transform.position = positions[3].position;

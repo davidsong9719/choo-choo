@@ -74,23 +74,25 @@ public class combatManager : MonoBehaviour
         victoryParent.SetActive(false);
 
         setStats();
-        if(DialogueManager.GetInstance().result == "")
+        
+        if (DialogueManager.GetInstance().result == "")
         {
-            DialogueManager.GetInstance().ClearAll();
             TextMovement.GetInstance().ResetPos();
+            DialogueManager.GetInstance().ClearAll();
             uiScript.resetUIs();
             discardPile.Clear();
             drawPile.Clear();
             playerHand.Clear();
+
+            for (int i = 0; i < gameManager.instance.playerDeck.Count; i++)
+            {
+                drawPile.Add(gameManager.instance.playerDeck[i]);
+            }
         }
+
         DialogueManager.GetInstance().EnterNarration();
 
         createOpponentDeck();
-
-        for (int i = 0; i  < gameManager.instance.playerDeck.Count; i++)
-        {
-            drawPile.Add(gameManager.instance.playerDeck[i]);
-        }
 
         shuffleDrawPile();
 
