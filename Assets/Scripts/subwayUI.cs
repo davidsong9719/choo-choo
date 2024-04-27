@@ -38,6 +38,53 @@ public class subwayUI : MonoBehaviour
         closeUI();
     }
 
+    private string createMapPermText()
+    {
+        string mapText = ", heading towards ";
+        switch (nodeManager.instance.currentLine)
+        {
+            case "pulse":
+                if (nodeManager.instance.currentDirection == 0)
+                {
+                    mapText = "Pulse Line" + mapText + "West Station";
+                }
+                else
+                {
+                    mapText = "Pulse Line" + mapText + "South Station";
+                }
+                break;
+
+            case "pilgrim":
+                if (nodeManager.instance.currentDirection == 0)
+                {
+                    mapText = "Pilgrim Line" + mapText + "West Station";
+                }
+                else
+                {
+                    mapText = "Pilgrim Line" + mapText + "East Station";
+                }
+                break;
+
+            case "gallium":
+                if (nodeManager.instance.currentDirection == 0)
+                {
+                    mapText = "Gallium Line" + mapText + "South Station";
+                }
+                else
+                {
+                    mapText = "Gallium Line" + mapText + "North Station";
+                }
+                break;
+
+            case "null":
+                mapText = "";
+                break;
+
+        }
+
+        return mapText;
+    }
+
     public void switchToMap()
     {
         if (state == "map")
@@ -45,6 +92,8 @@ public class subwayUI : MonoBehaviour
             closeUI();
             return;
         }
+
+        setGuideTextPerm(createMapPermText());
         mapToggle.toggleMapVisibility(true);
         deckParent.SetActive(false);
         drawParent.SetActive(false);
@@ -64,6 +113,8 @@ public class subwayUI : MonoBehaviour
             closeUI();
             return;
         }
+
+        setGuideTextPerm("The Deck");
         mapToggle.toggleMapVisibility(false);
         deckParent.SetActive(true);
         drawParent.SetActive(false);

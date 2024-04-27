@@ -23,10 +23,9 @@ public class combatUI : MonoBehaviour
     [SerializeField] RectTransform playCardBorder;
     [SerializeField] RectTransform drawDeckPosition, discardDeckPosition;
     public GameObject blurObject;
-    [SerializeField] GameObject speedMarker, markerParent;
     [SerializeField] TextMeshProUGUI playerSpeedText, opponentSpeedText;
+    [SerializeField] Sprite playerNormalSpeed, playerCursedSpeed, opponentNormalSpeed, opponentCursedSpeed;
 
-    
     [Header("Settings")]
     [SerializeField] float speedMeterHeight;
     [SerializeField] AnimationCurve lerpCurve;
@@ -39,7 +38,8 @@ public class combatUI : MonoBehaviour
     [SerializeField] Color guideSpeechColor;
     [SerializeField] Color guideHealthColor;
 
-    private List<GameObject> speedMarkers = new List<GameObject>();
+    private int currentColorIndex;
+
 
     public void updateSpeedUI(int opponentSpeedCounter, int opponentSpeed, int playerSpeedCounter, int playerSpeed)
     {
@@ -401,7 +401,7 @@ public class combatUI : MonoBehaviour
             if(DialogueManager.GetInstance().result == "")
             {
                 int index = Random.Range(0, enemyPortraits.Count);
-
+                currentColorIndex = index;
 
                 enemyPortrait.sprite = enemyPortraits[index];
                 opponentSpeedDisplay.GetComponentsInChildren<Image>()[1].color = healthColors[index];
@@ -417,6 +417,28 @@ public class combatUI : MonoBehaviour
             tempOpponentHealthDisplay.color = guideHealthColor; 
             opponentHealthDisplay.color = Color.Lerp(guideSpeechColor, Color.white, 0.75f);
             DialogueManager.GetInstance().bubbleColor = guideSpeechColor; 
+        }
+    }
+
+    public void updateCursedDisplay(bool playerCursed, bool opponentCursed)
+    {
+        if (playerCursed)
+        {
+            playerSpeedDisplay.GetComponent<Image>().sprite = playerCursedSpeed;
+        } else
+        {
+            playerSpeedDisplay.GetComponent<Image>().sprite = playerNormalSpeed;
+        }
+
+        if (opponentCursed)
+        {
+            opponentSpeedDisplay.transform.GetComponentsInChildren<Image>()[1].color = Color.white;
+            opponentSpeedDisplay.transform.GetComponentsInChildren<Image>()[1].sprite = opponentCursedSpeed;
+        }
+        else
+        {
+            opponentSpeedDisplay.transform.GetComponentsInChildren<Image>()[1].color = healthColors[currentColorIndex];
+            opponentSpeedDisplay.transform.GetComponentsInChildren<Image>()[1].sprite = opponentNormalSpeed;
         }
     }
 } 

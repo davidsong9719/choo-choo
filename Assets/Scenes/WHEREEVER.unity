@@ -1004,11 +1004,14 @@ MonoBehaviour:
   drawDeckPosition: {fileID: 1059232318}
   discardDeckPosition: {fileID: 1290690831}
   blurObject: {fileID: 1801764000}
-  speedMarker: {fileID: 9182846924728916173, guid: ffb95bd9227e7f64f9813aeb49a3f676,
-    type: 3}
-  markerParent: {fileID: 891968237}
   playerSpeedText: {fileID: 1261136607}
   opponentSpeedText: {fileID: 2129696616}
+  playerNormalSpeed: {fileID: 21300000, guid: 4b4d1dda1fc8c864885bf59508020c85, type: 3}
+  playerCursedSpeed: {fileID: 21300000, guid: e5ab0e3915ab3b848bc5cad9aff756e9, type: 3}
+  opponentNormalSpeed: {fileID: 21300000, guid: 55e37e7ddede5ac429a2db72ecf01265,
+    type: 3}
+  opponentCursedSpeed: {fileID: 21300000, guid: 3f6a33aab10f63c4084031f655170fa6,
+    type: 3}
   speedMeterHeight: 490
   lerpCurve:
     serializedVersion: 2
@@ -4406,7 +4409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDeck:
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
+  - {fileID: 11400000, guid: 8ad89e2d31d2b4147b5a82d0587675e4, type: 2}
   - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
   - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
   - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
@@ -5240,7 +5243,7 @@ PrefabInstance:
     - target: {fileID: 1152814163544778823, guid: 753f09e61475f8f49a7cdad34a8b7369,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1210885380840608498, guid: 753f09e61475f8f49a7cdad34a8b7369,
         type: 3}

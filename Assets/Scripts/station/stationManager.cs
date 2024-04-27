@@ -181,19 +181,16 @@ public class stationManager : MonoBehaviour
         }
 
         //display
-
-
-        
         switch (line)
         {
             case "pulse":
                 nameTMP.text = "Pulse Line - ";
                 if (direction == 0)
                 {
-                    nameTMP.text += "End 1";
+                    nameTMP.text += "West Station";
                 } else
                 {
-                    nameTMP.text += "End 2";
+                    nameTMP.text += "South Station";
                 }
                 break;
 
@@ -202,11 +199,11 @@ public class stationManager : MonoBehaviour
 
                 if (direction == 0)
                 {
-                    nameTMP.text += "End 1";
+                    nameTMP.text += "West Station";
                 }
                 else
                 {
-                    nameTMP.text += "End 2";
+                    nameTMP.text += "East Station";
                 }
                 break;
 
@@ -215,11 +212,11 @@ public class stationManager : MonoBehaviour
 
                 if (direction == 0)
                 {
-                    nameTMP.text += "End 1";
+                    nameTMP.text += "South Station";
                 }
                 else
                 {
-                    nameTMP.text += "End 2";
+                    nameTMP.text += "North Station";
                 }
                 break;
 

@@ -87,6 +87,7 @@ public class cardEffect : MonoBehaviour
                 {
                     manager.isPlayerCursed = true;
                 }
+                combatManager.instance.updateCursedUI();
                 subwayUI.instance.setGuideTextPerm("Cursed!");
                 break;
                 
@@ -103,6 +104,7 @@ public class cardEffect : MonoBehaviour
                     {
                         manager.isPlayerCursed = true;
                         manager.endPlayerTurnCursed = true;
+                        combatManager.instance.updateCursedUI();
                     }
                 }
                 else if (cardPlayer == 1)
@@ -115,6 +117,7 @@ public class cardEffect : MonoBehaviour
                     {
                         manager.isOpponentCursed = true;
                         manager.endOpponentTurnCursed = true;
+                        combatManager.instance.updateCursedUI();
                     }
                 }
 

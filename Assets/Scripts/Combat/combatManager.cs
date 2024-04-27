@@ -69,7 +69,7 @@ public class combatManager : MonoBehaviour
     {
         isTutorial = DialogueManager.GetInstance().tutorialStage < 3;
 
-        //isPlayerCursed = true;
+
         combatParent.SetActive(true);
         victoryParent.SetActive(false);
 
@@ -83,7 +83,7 @@ public class combatManager : MonoBehaviour
             discardPile.Clear();
             drawPile.Clear();
             playerHand.Clear();
-
+            updateCursedUI();
             for (int i = 0; i < gameManager.instance.playerDeck.Count; i++)
             {
                 drawPile.Add(gameManager.instance.playerDeck[i]);
@@ -128,12 +128,18 @@ public class combatManager : MonoBehaviour
         bonusPlayerDefend = 0;
         bonusOpponentDefend = 0;
         playerHandAmount = 3;
+
+        isOpponentCursed = false;
+        isPlayerCursed = false;
+        endPlayerTurnCursed = false;
+        endOpponentTurnCursed = false;
     }
 
     IEnumerator incrementSpeed()
     {
         state = "increment speed";
         yield return new WaitForSeconds(speedIncrementSpeed);
+        updateCursedUI();
 
         while (true)
         {
@@ -323,6 +329,8 @@ public class combatManager : MonoBehaviour
     private void endPlayerRound()
     {
         isPlayerCursed = endPlayerTurnCursed;
+        
+
         endPlayerTurnCursed = false;
         isPlayerMultiPlay = false;
         uiScript.discardAllCards();
@@ -333,6 +341,7 @@ public class combatManager : MonoBehaviour
     private void endOpponentRound()
     {
         isOpponentCursed = endOpponentTurnCursed;
+
         endOpponentTurnCursed = false;
         isOpponentMultiPlay = false;
         StartCoroutine(incrementSpeed());
@@ -688,5 +697,10 @@ public class combatManager : MonoBehaviour
         {
             subwayUI.instance.setGuideTextTemp("Opponent Willpower: " + tempOpponentHealth + "/" + opponentMaxHealth);
         }
+    }
+
+    public void updateCursedUI()
+    {
+        uiScript.updateCursedDisplay(isPlayerCursed, isOpponentCursed);
     }
 }
