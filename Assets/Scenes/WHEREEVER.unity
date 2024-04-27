@@ -1047,7 +1047,7 @@ MonoBehaviour:
   speechColors:
   - {r: 1, g: 0.67358494, b: 0.9146006, a: 1}
   - {r: 0.6036942, g: 0.57924527, b: 1, a: 1}
-  - {r: 0.49377, g: 0.8962264, b: 0.7221414, a: 1}
+  - {r: 0.5921569, g: 0.90588236, b: 0.6313726, a: 1}
   - {r: 0.5509434, g: 0.7014795, b: 1, a: 1}
   - {r: 0.9303712, g: 0.73018867, b: 1, a: 1}
   healthColors:
@@ -4334,18 +4334,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDeck:
   - {fileID: 11400000, guid: 8ad89e2d31d2b4147b5a82d0587675e4, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
-  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
+  - {fileID: 11400000, guid: 5d1db2bafe8907649b07f6bec18686a5, type: 2}
+  - {fileID: 11400000, guid: 7b9cd7cc81788dd43b24c0090f43ad33, type: 2}
+  - {fileID: 11400000, guid: 2aa9a843d98a2174d950de7bcd10300c, type: 2}
+  - {fileID: 11400000, guid: e39dbc6c21f11524a96412401adb9be5, type: 2}
+  - {fileID: 11400000, guid: 8108ae1603e600a459a1ca554af40375, type: 2}
+  - {fileID: 11400000, guid: 4506eb26b9424214b8ca6f57e40dc4c4, type: 2}
+  - {fileID: 11400000, guid: 2abbeeb0ae321b84890323d8df956343, type: 2}
+  - {fileID: 11400000, guid: f134a6aac8178de4891bf2eac336c024, type: 2}
   - {fileID: 11400000, guid: 38c12b8e0153cb34ebd67c6208c3625c, type: 2}
-  - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
-  - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
-  - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
-  - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
+  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
+  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
+  - {fileID: 11400000, guid: eff3846378e68fd4a99b05a5b3706032, type: 2}
   - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
   - {fileID: 11400000, guid: e530346b26d9a09448490c3e9f2dcdc4, type: 2}
   effectCardTemplates:
@@ -11468,7 +11468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 42373101a5887a24b82b786e769f14c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a08937212febc724794d7d0dc1f70a90, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
