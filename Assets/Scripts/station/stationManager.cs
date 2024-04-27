@@ -250,6 +250,7 @@ public class stationManager : MonoBehaviour
 
         //CALL MID-TRANSITION
         subwayUI.instance.refreshUI(chosenLine.time, 0.5f);
+        nodeManager.instance.updateCurrentStationVisual();
 
         if (mapManager.currentLine == "pilgrim")
         {

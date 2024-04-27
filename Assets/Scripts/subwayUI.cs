@@ -26,7 +26,7 @@ public class subwayUI : MonoBehaviour
             instance = this;
             nodeManager.instance = nodeManagerScript;
 
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         } else
         {
             Destroy(gameObject);

@@ -43,7 +43,7 @@ public class combatManager : MonoBehaviour
 
     private int cardsPlayed; //for time
 
-    [HideInInspector] public bool isPlayerCursed, isOpponentCursed;
+    [HideInInspector] public bool isPlayerCursed, isOpponentCursed; 
     [HideInInspector] public bool endPlayerTurnCursed, endOpponentTurnCursed;
     [SerializeField] card cursedCard;
     [HideInInspector] public bool isPlayerToRedraw, isOpponentToRedraw;
@@ -150,7 +150,7 @@ public class combatManager : MonoBehaviour
 
             }
 
-            uiScript.updateSpeedUI((float)opponentSpeedCounter / (float)opponentSpeed, (float)playerSpeedCounter / (float)playerSpeed);
+            uiScript.updateSpeedUI(opponentSpeedCounter, opponentSpeed, playerSpeedCounter, playerSpeed);
 
             //has reached turn check
             bool hasReachedTurn = false;
@@ -540,8 +540,6 @@ public class combatManager : MonoBehaviour
 
     private void endCombat()
     {
-        
-
         bonusOpponentAttack = 0;
         bonusPlayerAttack = 0;
         bonusOpponentDefend = 0;
@@ -676,7 +674,7 @@ public class combatManager : MonoBehaviour
             opponentSpeed++;
         }
 
-        uiScript.updateSpeedUI((float)opponentSpeedCounter / (float)opponentSpeed, (float)playerSpeedCounter / (float)playerSpeed);
+        uiScript.updateSpeedUI(opponentSpeedCounter, opponentSpeed, playerSpeedCounter, playerSpeed);
     }
 
     public void healthGuideText(int target)

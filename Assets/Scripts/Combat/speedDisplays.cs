@@ -8,7 +8,7 @@ public class speedDisplays : MonoBehaviour
 {
     private float targetY;
     private Vector2 defaultPosition;
-    private float speedMeterHeight;
+    public float speedMeterHeight;
     [HideInInspector]
     [Header("Setup")]
     [SerializeField] RectTransform rectTransform;
@@ -43,16 +43,11 @@ public class speedDisplays : MonoBehaviour
             time += Time.deltaTime;
             
             float t = time / duration;
-            //t = t * t * (3f - 2f * t);
 
             rectTransform.anchoredPosition = new Vector2(defaultPosition.x, Mathf.SmoothStep(startingY, targetY, t));
 
             if (t >= 1)
             {
-                if (reachedEnd)
-                {
-                    //rectTransform.anchoredPosition = defaultPosition;
-                }
                 break;
             }
             yield return null;

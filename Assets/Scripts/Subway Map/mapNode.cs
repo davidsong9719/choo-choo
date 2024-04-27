@@ -13,42 +13,9 @@ public class mapNode : MonoBehaviour
     public bool pulseLine;
     public bool galliumLine;
 
-    private Image highlightImage;
-    private bool animationDirection;
-    private float animationCounter;
-
     private void Awake()
     {
         anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-        highlightImage = transform.GetChild(0).GetComponent<Image>();
-    }
-
-    private void Update()
-    {
-        if (isCurrent)
-        {
-            highlightAnimation();
-        }
-    }
-
-    private void highlightAnimation()
-    {
-        if (animationDirection)
-        {
-            highlightImage.color = Color.Lerp(Color.white, Color.black, animationCounter += Time.unscaledDeltaTime*2f);
-        }
-
-        if (!animationDirection)
-        {
-            highlightImage.color = Color.Lerp(Color.black, Color.white, animationCounter += Time.unscaledDeltaTime * 2f);
-        }
-
-        if (animationCounter >= 2)
-        {
-            animationDirection = !animationDirection;
-            animationCounter = 0;
-        }
-                
     }
 
     public mapNode moveNode(string line, int direction)
@@ -80,18 +47,10 @@ public class mapNode : MonoBehaviour
 
         return lineNodes[direction];
     }
+     
+
     public void toggleCurrent(bool isCurrentNode)
     {
         isCurrent = isCurrentNode;
-
-        if (isCurrent)
-        {
-            highlightImage.color = Color.black;
-        } else
-        {
-            highlightImage.color = Color.white;
-        }
-
-        animationCounter = 0;
     }
 }

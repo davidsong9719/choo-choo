@@ -10,6 +10,7 @@ public class npcManager : MonoBehaviour
     public List<GameObject> talkableNPC;
 
     [SerializeField] List<Transform> sittingSpots;
+    private List<Transform> openSpots = new List<Transform>();
     [SerializeField] stationManager stationManagerScript;
 
     [SerializeField] GameObject sittingPrefab0, sittingPrefab1, sittingPrefab2;
@@ -38,6 +39,7 @@ public class npcManager : MonoBehaviour
     {
         opponentGenerator = GetComponent<opponentRandomizer>();
         totalSpots = sittingSpots.Count;
+        openSpots = copyList(sittingSpots);
 
         sittingSpots = shuffleTransforms(sittingSpots);
     }
@@ -67,11 +69,13 @@ public class npcManager : MonoBehaviour
 
             npcList.Clear();
             talkableNPC.Clear();
+            openSpots = copyList(sittingSpots);
             return;
         }
 
         int passengerExchangeAmount = (int)((float)npcList.Count * passengerExchangePercentage);
 
+        print("i = " + passengerExchangeAmount);
         for (int i = 0; i < passengerExchangeAmount; i++)
         {
             removeRandomOpponent();
@@ -108,8 +112,15 @@ public class npcManager : MonoBehaviour
     private void removeRandomOpponent()
     {
         GameObject removedNPC = npcList[Random.Range(0, npcList.Count)];
-        talkableNPC.Remove(removedNPC);
+
+        openSpots.Add(removedNPC.GetComponent<opponentInfo>().transformParent);
         npcList.Remove(removedNPC);
+        
+        if(talkableNPC.Contains(removedNPC))
+        {
+            talkableNPC.Remove(removedNPC);
+        }
+
         Destroy(removedNPC);
     }
 
@@ -117,61 +128,43 @@ public class npcManager : MonoBehaviour
     {
         //Find spawn position
         float randomNum = Random.Range(0, 1);
-        string spotList = "";
-        Transform spotParent = gameObject.transform;
-        GameObject newOpponent = null;
 
-        if (randomNum < (float)sittingSpots.Count/(float)totalSpots)
+        Transform spotParent = transform;
+        if (openSpots.Count > 0)
         {
-            spotList = "sitting";
-        }
-
-        switch (spotList)
+            spotParent = openSpots[Random.Range(0, openSpots.Count)];
+        } else
         {
-            case "sitting":
-                spotParent = sittingSpots[sittingSpots.Count - 1];
-                break;
-        }
-
-        if (spotParent.childCount > 0 || spotParent == gameObject.transform)
-        {
+            Debug.LogWarning("No open seats left!");
             return;
         }
 
+        GameObject newOpponent = null;
         float randomPrefab = Random.Range(0f, 1f);
 
         //Instantitate object
-        switch(spotList)
+        if (randomPrefab < 0.33)
         {
-            case "sitting":
-                if (randomPrefab < 0.33)
-                {
-                    newOpponent = Instantiate(sittingPrefab0);
-                } else if (randomPrefab < 0.66)
-                {
-                    newOpponent = Instantiate(sittingPrefab1);
-                } else
-                {
-                    newOpponent = Instantiate(sittingPrefab2);
-                }
-                
-                Transform newTransform = newOpponent.transform;
-
-                newTransform.position = spotParent.transform.position;
-                if (newTransform.position.x > 0)
-                {
-                    newTransform.eulerAngles = new Vector3(0, 180, 0);
-                }
-
-                sittingSpots.Insert(0, spotParent);
-                sittingSpots.RemoveAt(sittingSpots.Count - 1);
-                break;
+            newOpponent = Instantiate(sittingPrefab0);
+        } else if (randomPrefab < 0.66)
+        {
+            newOpponent = Instantiate(sittingPrefab1);
+        } else
+        {
+            newOpponent = Instantiate(sittingPrefab2);
         }
+        
+        Transform newTransform = newOpponent.transform;
 
-        if (newOpponent == null)
+
+        newTransform.position = spotParent.position;
+        openSpots.Remove(spotParent);
+        opponentInfo opponentScript = newOpponent.GetComponent<opponentInfo>();
+        opponentScript.transformParent = spotParent;
+
+        if (newTransform.position.x > 0)
         {
-            Debug.LogWarning("No new opponent generated!");
-            return;
+            newTransform.eulerAngles = new Vector3(0, 180, 0);
         }
 
         if (Random.Range(0f, 1f) > 0.5)
@@ -181,8 +174,9 @@ public class npcManager : MonoBehaviour
         }
 
         int difficulty = generateDifficulty();
-        newOpponent.GetComponent<opponentInfo>().stats = opponentGenerator.generateStats(difficulty);
-
+        
+        opponentScript.stats = opponentGenerator.generateStats(difficulty);
+        
         switch(difficulty)
         {
             case 0:
@@ -281,6 +275,17 @@ public class npcManager : MonoBehaviour
             oldList.RemoveAt(currentIndex);
         }
 
+
+        return newList;
+    }
+
+    private List<Transform> copyList(List<Transform> oldList)
+    {
+        List<Transform> newList = new List<Transform> ();
+        for (int i = 0; i < oldList.Count; i++)
+        {
+            newList.Add(oldList[i]);
+        }
 
         return newList;
     }

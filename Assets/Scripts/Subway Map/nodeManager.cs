@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class nodeManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class nodeManager : MonoBehaviour
 
     [Header("Setup")]
     [SerializeField] List<mapNode> startingNodes;
+    [SerializeField] Sprite pilgrimSprite, galliumSprite, pulseSprite;
+    [SerializeField] RectTransform trainImageTransform;
+
     private List<mapNode> allNodes = new List<mapNode>(); //only one end of each line
 
     private List<mapNode> allStartingNodes = new List<mapNode>(); //both ends of each line
@@ -43,10 +47,11 @@ public class nodeManager : MonoBehaviour
         //randomStart
         currentNode = allStartingNodes[Random.Range(0, allStartingNodes.Count)];
         currentNode.toggleCurrent(true);
-
+     
         if (currentNode.pulseLine) currentLine = "pulse";
         if (currentNode.pilgrimLine) currentLine = "pilgrim";
         if (currentNode.galliumLine) currentLine = "gallium";
+        updateCurrentStationVisual();
 
         if (startingNodes.Contains(currentNode))
         {
@@ -68,7 +73,26 @@ public class nodeManager : MonoBehaviour
     public void progressStation()
     {
         currentNode = currentNode.moveNode(currentLine, currentDirection);
+        updateCurrentStationVisual();
     } 
+
+    public void updateCurrentStationVisual()
+    {
+        trainImageTransform.anchoredPosition = currentNode.GetComponent<RectTransform>().anchoredPosition;
+        Image trainImage = trainImageTransform.GetComponentInChildren<Image>();
+
+        switch (currentLine)
+        {
+            case "pilgrim":
+                trainImage.sprite = pilgrimSprite; break;
+
+            case "pulse":
+                trainImage.sprite = pulseSprite; break;
+
+            case "gallium":
+                trainImage.sprite = galliumSprite; break;
+        }
+    }
 
     private void connectNodes(string line, int startingNodeIndex)
     {

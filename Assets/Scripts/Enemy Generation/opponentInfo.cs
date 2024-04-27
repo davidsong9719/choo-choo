@@ -5,6 +5,8 @@ using UnityEngine;
 public class opponentInfo : MonoBehaviour
 {
     public opponentStats stats;
+    public Transform transformParent;
+
     [SerializeField] string animationName;
     // Start is called before the first frame update
     void Start()

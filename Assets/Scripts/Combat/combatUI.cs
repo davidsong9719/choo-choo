@@ -23,6 +23,9 @@ public class combatUI : MonoBehaviour
     [SerializeField] RectTransform playCardBorder;
     [SerializeField] RectTransform drawDeckPosition, discardDeckPosition;
     public GameObject blurObject;
+    [SerializeField] GameObject speedMarker, markerParent;
+    [SerializeField] TextMeshProUGUI playerSpeedText, opponentSpeedText;
+
     
     [Header("Settings")]
     [SerializeField] float speedMeterHeight;
@@ -33,13 +36,36 @@ public class combatUI : MonoBehaviour
     [SerializeField] List<Color> healthColors;
 
     [SerializeField] Sprite guidePortrait;
-    [SerializeField] Color guideSpeechColor; //FFB5E0
+    [SerializeField] Color guideSpeechColor;
     [SerializeField] Color guideHealthColor;
 
+    private List<GameObject> speedMarkers = new List<GameObject>();
 
-
-    public void updateSpeedUI(float opponentSpeedPercentage, float playerSpeedPercentage)
+    public void updateSpeedUI(int opponentSpeedCounter, int opponentSpeed, int playerSpeedCounter, int playerSpeed)
     {
+        if (playerSpeedCounter != playerSpeed)
+        {
+            playerSpeedText.text = playerSpeedCounter.ToString() + "/" + playerSpeed.ToString();
+            
+        } else
+        {
+            playerSpeedText.text = "";
+        }
+
+        if (opponentSpeedCounter != opponentSpeed)
+        {
+            opponentSpeedText.text = opponentSpeedCounter.ToString() + "/" + opponentSpeed.ToString();
+
+        }
+        else
+        {
+            opponentSpeedText.text = "";
+        }
+        
+        //move speed bubble
+        float playerSpeedPercentage = (float)playerSpeedCounter / (float)playerSpeed;
+        float opponentSpeedPercentage = (float)opponentSpeedCounter / (float)opponentSpeed;
+
         playerSpeedDisplay.setTargetPosition(playerSpeedPercentage, speedMeterHeight);
         opponentSpeedDisplay.setTargetPosition(opponentSpeedPercentage, speedMeterHeight);
     }
@@ -358,10 +384,14 @@ public class combatUI : MonoBehaviour
         //StartCoroutine(updateHealthBar(opponentHealthDisplay, 1, 0.1f));
         //StartCoroutine(updateHealthBar(tempOpponentHealthDisplay, 1, 0.1f));
 
+        playerSpeedText.text = "";
+        opponentSpeedText.text = ""; 
+
+        generateEnemyPortrait();
         blurObject.SetActive(true);
         playerSpeedDisplay.resetPosition();
         opponentSpeedDisplay.resetPosition();
-        generateEnemyPortrait();
+
     }
 
     private void generateEnemyPortrait()
