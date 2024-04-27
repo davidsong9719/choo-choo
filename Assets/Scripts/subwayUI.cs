@@ -217,11 +217,8 @@ public class subwayUI : MonoBehaviour
                 }
                 break;
             }
-                
-                
             yield return new WaitForSecondsRealtime(0.001f);
         }
-
     }
     public void switchToPause()
     {
