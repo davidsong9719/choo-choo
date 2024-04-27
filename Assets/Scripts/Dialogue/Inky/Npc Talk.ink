@@ -1,6 +1,7 @@
 VAR lastScore = 15
 VAR highScore = 20
 VAR score = 0
+VAR tutorialStage = 1
 
 ->Ending
 ===Talk===
@@ -187,7 +188,9 @@ Nah, im good. #speaker-Opponent
 ===Tutorial===
 Ah our newest member. You know about clicking [E] to continue, yes? #speaker-Opponent
 Wonderful, have you been briefed already? #speaker-Opponent
-    *[No (instructions)]
+A briefing is highly reccomended!
+    *[No (tutorial)]
+        ~ tutorialStage = 2
         Not yet! What are my tasks? #speaker-Player
         Eager, are you? Those above would be proud. #speaker-Opponent
         //The higher beings have been growing hungry as of late.
@@ -201,9 +204,11 @@ Wonderful, have you been briefed already? #speaker-Opponent
         You can use [E] to interact with people and objects as well.
         Come back and interact with me when you are ready for the practice recruitment.
         
-    *[Yes (skip dialogue)]
+    *[Yes (skip tutorial)]
+    ~ tutorialStage = 4
         Yes! I have and I'm ready to serve! #speaker-Player
-        Impressive. Come back when you are ready for the recruitment test. #speaker-Opponent
+        Impressive. Go to the left to find a station and get started then. #speaker-Opponent
+        I'll return at 9:00pm. 
 - -> END
 
 ===Tutorial2===

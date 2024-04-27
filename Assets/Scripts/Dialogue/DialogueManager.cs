@@ -73,7 +73,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-        tutorialStage = 4;
+        tutorialStage = 1;
 
         if (instance != null)
         {
@@ -240,7 +240,7 @@ public class DialogueManager : MonoBehaviour
 
         if (tutorialStage == 1)
         {
-            tutorialStage = 2;
+            tutorialStage = ((IntValue)GetVariableState("tutorialStage")).value;
 
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToMovement));
         }

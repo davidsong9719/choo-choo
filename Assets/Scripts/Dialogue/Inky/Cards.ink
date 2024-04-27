@@ -6,16 +6,67 @@
     {shuffle:
         - What's this?
         - What about what?
+        - ... Are you gonna follow that up with anything?
+        - This what?
     }
-- Join the cult, I insist.
+- Join our church, I insist.
     {shuffle:
-        - i dont wanna
-        - but why tho
+        - I'm not religious.
+        - Your insistance annoys me.
+        - You should join OUR church instead, I insist.
     }
-- donate plz
+- We see things through a different lens in life.
     {shuffle:
-        - nah
-        - sorry im broke
+        - I think your prescription is outdated.
+        - Everyone sees things differently, you aren't special.
+        - Those are sunglasses. They blind you.
+        - I bet those lenses are rose-tinted.
+    }
+- You're a lost soul, we can help you find your path.
+    {shuffle:
+        - I'm just trying to my path leads to getting off at the next stop.
+        - I'm actually pretty happy with how my life is going right now.
+        - Sometimes exploring is fun, I don't need a set path.
+    }
+- We can open your eyes to truths you cannot comprehend.
+    {shuffle:
+        - Ignorance is bliss.
+        - I comprehend very little already, any more and I'll explode.
+        - Why would I want to know things I won't understand?
+    }
+- There's no harm in taking a pamphlet, just think about it.
+    {shuffle:
+        - I suppose... Wait no, that's how they get you.
+        - I don't like to read.
+        - You guys need to fire your graphic designer, it harms my eyes.
+    }
+- We have a 5 star review on yelp.
+    {shuffle:
+        - I'll rate you 1 star if you keep talking to me.
+        - How are you even on yelp?
+        - I just looked, you only have 1 review from your mom.
+        - I bet you used bots.
+    }
+- We can promise you immortality.. in the afterlife.
+    {shuffle:
+        - That doesn't count.
+        - So do most other religions.
+        - I believe in rebirth, I don't need immortality.
+        - That sounds like it'll get boring after a while.
+        - Aren't life's thrills from how short it is?
+    }
+- Those above have seen you and your potential here.
+    {shuffle:
+        - They'd be the first.
+        - They see wrong, I have none.
+        - What about my potential elsewhere?
+        - Aw, thank you.
+    }
+- The higher beings offer you a seat next to them. You'd be a fool not to take it.
+    {shuffle:
+        - I must be a fool then.
+        - I'd rather stand.
+        - I'm on a 3 hour subway trip, don't talk to me about more sitting.
     }
 }
 -> END
@@ -71,7 +122,7 @@
 ===Opponent===
 = Attack
 {shuffle:
-- sorry bro
+- I'm an atheist.
     {shuffle:
         - plese
         - please were desperate
@@ -82,6 +133,11 @@
         - me too
     }
 - im broke
+    {shuffle:
+        - samesies
+        - cult gives monee i swear
+    }
+- 
     {shuffle:
         - samesies
         - cult gives monee i swear
