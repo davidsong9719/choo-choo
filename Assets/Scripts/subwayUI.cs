@@ -15,6 +15,7 @@ public class subwayUI : MonoBehaviour
     public string state = "closed";
     private string permText;
     [SerializeField] int fontDefaultSize, fontUpdateSize;
+    [SerializeField] Vector3 stationChoiceYSET;
     private Coroutine timeCoroutine, guideCoroutine;
 
     private string prePauseState, prePausePermText;
@@ -182,7 +183,7 @@ public class subwayUI : MonoBehaviour
     {
         if (state == "line")
         {
-            closeUI();
+            StartCoroutine(lineTransition(lineMenuParent.GetComponent<RectTransform>(), new Vector3(stationChoiceYSET.y, stationChoiceYSET.x, stationChoiceYSET.z), true));
             return;
         }
         mapToggle.toggleMapVisibility(false);
@@ -191,8 +192,36 @@ public class subwayUI : MonoBehaviour
         discardParent.SetActive(false);
         lineMenuParent.SetActive(true);
         Time.timeScale = 0;
-
         state = "line";
+
+        StartCoroutine(lineTransition(lineMenuParent.GetComponent<RectTransform>(), stationChoiceYSET, false));
+    }
+
+    IEnumerator lineTransition(RectTransform movedObject, Vector3 startEndTime, bool isClosing)
+    {
+        float timeCounter = -Time.unscaledDeltaTime; // to zero out the value for the first loop
+
+        while (true)
+        {
+            timeCounter += Time.unscaledDeltaTime;
+
+            float newPosition = Mathf.Lerp(startEndTime.x, startEndTime.y, gameManager.instance.lerpCurve.Evaluate(timeCounter / startEndTime.z));
+
+            movedObject.anchoredPosition = new Vector2(movedObject.anchoredPosition.x, newPosition);
+
+            if (timeCounter >= startEndTime.z)
+            {
+                if (isClosing)
+                {
+                    closeUI();
+                }
+                break;
+            }
+                
+                
+            yield return new WaitForSecondsRealtime(0.001f);
+        }
+
     }
     public void switchToPause()
     {

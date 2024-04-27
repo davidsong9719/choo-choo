@@ -164,6 +164,19 @@ public class cardLayout : MonoBehaviour
 
         cardDescription.text = cardDescription.text.Replace("$", displayString);
 
+        while (true)
+        {
+            cardDescription.ForceMeshUpdate();
+            if (cardDescription.isTextOverflowing)
+            {
+                cardDescription.fontSize--;
+            }
+            else
+            {
+                break;
+            }
+        }
+
         return newCard;
 
     }
