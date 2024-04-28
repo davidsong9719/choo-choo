@@ -122,37 +122,72 @@
 ===Opponent===
 = Attack
 {shuffle:
-- I'm an atheist.
+- I'm not interested in whatever you're promising.
     {shuffle:
-        - plese
-        - please were desperate
+        - It's never too late to see the truth.
+        - Those above can change your mind.
+        - But I'm promising a lot of great stuff.
     }
-- ive got kids to feed
+- What would my kids think if I join a cult?
     {shuffle:
-        - i eat kids
-        - me too
+        - I eat kids.
+        - This isn't a cult.
+        - They'd think you're pretty cool.
+        - They'd thank you for all the gifts the higher beings provide.
     }
-- im broke
+- I'm already part of another cult.
     {shuffle:
-        - samesies
-        - cult gives monee i swear
+        - It's not a cult. But ours is better.
+        - a
+        - a
     }
-- 
+- I'm too busy for more obligations.
     {shuffle:
-        - samesies
-        - cult gives monee i swear
+        - a
+        - a
+        - a
+    }
+- Maybe you're the one who can't see the truth.
+    {shuffle:
+        - a
+        - a
+        - a
+    }
+- Can you promise anything tangible?
+    {shuffle:
+        - a
+        - a
+        - a
+    }
+- Why should I believe you over everyone else?
+    {shuffle:
+        - a
+        - a
+        - a
+    }
+- Bothering people on a subway is bad advertising.
+    {shuffle:
+        - a
+        - a
+        - a
+    }
+- The truth you claim to see is subjective.
+    {shuffle:
+        - a
+        - a
+        - a
     }
 }
 -> END
 
 = Effect
 {shuffle:
-- nuh uh
+- You're hiding something.
     {shuffle:
-        - yuh huh
+        - What? No I'm not!
         - please
     }
-- nah bro
+- What are you, really?
     {shuffle:
         - on my knees begging
         - but join the cult
@@ -175,17 +210,17 @@
 
 = Cursed
 {shuffle:
-- nuh uh
+- mmf...disnnd..sndn.urk.
     {shuffle:
-        - yuh huh
+        - What's that?
         - please
     }
-- nah bro
+- .icd..mdks...asfn......wut..
     {shuffle:
         - on my knees begging
         - but join the cult
     }
-- this is literally a cult
+- ..hlp...whts.....ak..
     {shuffle:
         - nuh uh
         - but its cool
