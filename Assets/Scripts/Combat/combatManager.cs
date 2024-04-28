@@ -567,6 +567,10 @@ public class combatManager : MonoBehaviour
 
             subwayUI.instance.setGuideTextPerm("Regain Willpower in station");
             DialogueManager.GetInstance().result = "lose";
+
+            nodeManager.instance.progressStation();
+            npcManagerScript.updateCar();
+
             startCombat();
 
             //subwayManager.instance.switchToMovement();
