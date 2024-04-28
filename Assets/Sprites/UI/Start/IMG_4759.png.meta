@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 136a79b58cd74dd4e91926af00126bb4
+guid: badd8735197868542a4c41f20779c6ae
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -49,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 61, y: 18, z: 60, w: 21}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_4720_0
+      name: IMG_4759_0
       rect:
         serializedVersion: 2
-        x: 62
-        y: 21
-        width: 275
-        height: 357
+        x: 223
+        y: 17
+        width: 1488
+        height: 465
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 102786bf3194a0944a22d6ce8f8032c6
-      internalID: 1167150274
+      spriteID: 72cef810991a4fd47b411fcb8cb4a6b3
+      internalID: -968277215
       vertices: []
       indices: 
       edges: []
@@ -147,15 +147,14 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IMG_4720_0: 1167150274
-      IMG_4720_1: -1510932328
+      IMG_4759_0: -968277215
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

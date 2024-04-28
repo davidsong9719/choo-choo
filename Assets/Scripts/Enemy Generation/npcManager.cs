@@ -215,8 +215,6 @@ public class npcManager : MonoBehaviour
             stageProgress = (((float)gameManager.instance.timeElapsed - (float)gameManager.instance.stageOneLength) - (float)gameManager.instance.stageTwoLength) / (float) gameManager.instance.stageThreeLength;
         }
 
-        print("current stage is " + currentStage + ", stageProgress is " + stageProgress);
-
         float difficultyFloat = 0;
         float randomFloat = Random.Range(0, 1);
 
