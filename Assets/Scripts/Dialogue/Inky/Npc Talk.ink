@@ -121,15 +121,14 @@ Would you like one of these pamplets? #speaker-Player
 - -> pathetic.continue
 
 = continue
-    * They sent me to help you. #speaker-Player
-    * This is inevitable.  #speaker-Player
-        - We were fated to meet and I was fated to show you the truth. #speaker-Player
+    But it's okay!
+    Because they sent me to help you. #speaker-Player
     {shuffle:
-        - Prove it. #speaker-Opponent
+        - How?. #speaker-Opponent
         - I don't believe in that. #speaker-Opponent
-            You will soon. #speaker-Player
-        - Fated to insult me? #speaker-Opponent
-            Merely opening your eyes. #speaker-Player
+            You will soon! #speaker-Player
+        - They sent you to insult me? #speaker-Opponent
+            Merely opening your eyes! #speaker-Player
     }
 -> END
 
@@ -176,7 +175,30 @@ Im convinced. #speaker-Opponent
 ->END
 
 ===Lose===
-Nah, im good. #speaker-Opponent
+{shuffle:
+    - AAAAAAAAAAAAA #speaker-Opponent
+    What the?? #speaker-Player
+    AAAAAAAAAAAA #speaker-Opponent
+    What are you doing? #speaker-Player
+    AAAAAAAAAA #speaker-Opponent
+    Alright, alright I'm going! Quit screaming! #speaker-Player
+    AAAAAAA #speaker-Opponent
+    
+    - Sorry, this is my stop. #speaker-Opponent
+    Wait! Take a pamphlet before you go! #speaker-Player
+    Sorry, I'm in a rush! Bye! #speaker-Opponent
+    
+    - Your cult isn't as incredible as you seem to believe. #speaker-Opponent
+    It's not a cult! #speaker-Player
+    And it's awesome.
+    Not awesome enough for me. Goodbye. #speaker-Opponent
+    
+    - There's something else to this. #speaker-Opponent
+    I don't trust you. #speaker-Player
+    But I'm so trustworthy! #speaker-Player
+    This is too suspicious, I'm reporting you. #speaker-Opponent
+    No, wait! I'll go, I'll go! #speaker-Player
+}
 ->END
 
 
@@ -187,26 +209,30 @@ Nah, im good. #speaker-Opponent
 
 ===Tutorial===
 Ah our newest member. You know about clicking [E] to continue, yes? #speaker-Opponent
-Wonderful, have you been briefed already? #speaker-Opponent
+Yep! #speaker-Player
+Wonderful, do you need me to go over your assignment? #speaker-Opponent
 A briefing is highly reccomended!
-    *[No (tutorial)]
+    *[Yes (tutorial)]
         ~ tutorialStage = 2
-        Not yet! What are my tasks? #speaker-Player
+        Yes, please! What are my tasks? #speaker-Player
         Eager, are you? Those above would be proud. #speaker-Opponent
-        //The higher beings have been growing hungry as of late.
-        //And we've run low on sacrifices, so you have a special job of gathering them!
-        The higher beings have been feeling upset, too few are like you and I.
-        Too few have opened their eyes to the truth.
-        It is our job as loyal servants to bring salvation to the rest of the world.
-        Save them from the ignorance and darkness they've been lost in.
-        You've been assigned the subway tunnels.
-        Find anyone you can and talk to them, open their eyes.
-        You can use [E] to interact with people and objects as well.
+        The higher beings have been growing hungry as of late.
+        And we've run low on sacrifices.
+        I think I see where this is going! #speaker-Player
+        Good. It is our job as mere servants to feed the perceptive ones. #speaker-Opponent
+        Thank them for watching over us below.
+        You've been assigned to the subway tunnels.
+        Go talk to people there and recruit them as loyal followers of the higher.
+        Remember not to tell them about the feeding.
+        Mortals are not as... open to such things as we. 
+        They don't see what we do.
+        Of course! Silly creatures. #speaker-Player
+        You can use [E] to interact with people. You can do the same to objects. #speaker-Opponent
         Come back and interact with me when you are ready for the practice recruitment.
         
-    *[Yes (skip tutorial)]
+    *[No (skip tutorial)]
     ~ tutorialStage = 4
-        Yes! I have and I'm ready to serve! #speaker-Player
+        Nope! I'm all caught up and ready to serve! #speaker-Player
         Impressive. Go to the left to find a station and get started then. #speaker-Opponent
         I'll return at 9:00pm. 
 - -> END
@@ -246,10 +272,11 @@ You've worn down my Willpower, congratulations. You learn fast. #speaker-Opponen
 After every recruitment you'll have the opportunity to learn new tactics.
 You can learn up to three and a minimum of one.
 Keep in mind sometimes you forget what you learned.
-Just click on the tactic you want to learn and the one you want to replace and confirm.
+Just click on the tactic you want to learn and the one to replace and confirm.
 ->END
 ===TutorialLose===
 How. #speaker-Opponent
+This is coded to be impossible.
 ->END
 
 
