@@ -211,7 +211,7 @@ Im convinced. #speaker-Opponent
 Ah our newest member. You know about clicking [E] to continue, yes? #speaker-Opponent
 Yep! #speaker-Player
 Wonderful, do you need me to go over your assignment? #speaker-Opponent
-A briefing is highly reccomended!
+A briefing is highly recommended!
     *[Yes (tutorial)]
         ~ tutorialStage = 2
         Yes, please! What are my tasks? #speaker-Player
