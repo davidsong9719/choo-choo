@@ -565,6 +565,7 @@ public class combatManager : MonoBehaviour
             npcManagerScript.removeAll();
             subwayUI.instance.refreshUI(cardsPlayed * cardTimeMultiplier, 2);
 
+            subwayUI.instance.setGuideTextPerm("Regain Willpower in station");
             DialogueManager.GetInstance().result = "lose";
             startCombat();
 
@@ -576,6 +577,7 @@ public class combatManager : MonoBehaviour
             gameManager.instance.followerAmount++;
             subwayUI.instance.refreshUI(cardsPlayed * cardTimeMultiplier, 2);
 
+            subwayUI.instance.setGuideTextPerm("");
             DialogueManager.GetInstance().result = "win";
             startCombat();
 

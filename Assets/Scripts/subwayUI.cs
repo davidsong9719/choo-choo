@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class subwayUI : MonoBehaviour
 {
@@ -126,7 +127,7 @@ public class subwayUI : MonoBehaviour
         state = "deck";
     }
 
-    public  void closeUI()
+    public void closeUI()
     {
         setGuideTextPerm("");
         mapToggle.toggleMapVisibility(false);
@@ -228,6 +229,7 @@ public class subwayUI : MonoBehaviour
             state = prePauseState;
             setGuideTextPerm(prePausePermText);
             Time.timeScale = 1;
+            
             return;
         }
 
@@ -348,6 +350,30 @@ public class subwayUI : MonoBehaviour
 
             if (timeCounter > resetTime) break;
             yield return null;
+        }
+    }
+
+    public void startUpdateMapSize()
+    {
+        StartCoroutine(updateSize(mapToggle.GetComponent<RectTransform>()));
+    }
+    IEnumerator updateSize(RectTransform transformComponent)
+    {
+        float resetTime = 0.2f;
+        float timeCounter = 0;
+        float lerpCurveValue = 0;
+        float startScale = transformComponent.localScale.x;
+
+        while (true)
+        {
+            timeCounter += Time.unscaledDeltaTime;
+            lerpCurveValue = gameManager.instance.lerpCurve.Evaluate(timeCounter / resetTime);
+            float newScaleValue = Mathf.Lerp(startScale + 0.14f, startScale, lerpCurveValue);
+
+            transformComponent.localScale = Vector3.one * newScaleValue;
+
+            if (timeCounter > resetTime) break;
+            yield return new WaitForSecondsRealtime(0);
         }
     }
 

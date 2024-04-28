@@ -78,8 +78,9 @@ public class nodeManager : MonoBehaviour
 
     public void updateCurrentStationVisual()
     {
+        subwayUI.instance.startUpdateMapSize();
         trainImageTransform.anchoredPosition = currentNode.GetComponent<RectTransform>().anchoredPosition;
-        Image trainImage = trainImageTransform.GetComponentInChildren<Image>();
+        Image trainImage = trainImageTransform.Find("Sprite").GetComponent<Image>();
 
         switch (currentLine)
         {

@@ -75,7 +75,6 @@ public class npcManager : MonoBehaviour
 
         int passengerExchangeAmount = (int)((float)npcList.Count * passengerExchangePercentage);
 
-        print("i = " + passengerExchangeAmount);
         for (int i = 0; i < passengerExchangeAmount; i++)
         {
             removeRandomOpponent();

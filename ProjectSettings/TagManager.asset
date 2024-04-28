@@ -9,6 +9,7 @@ TagManager:
   - Statue
   - Stairs
   - Guide
+  - Station Interactable
   layers:
   - Default
   - TransparentFX

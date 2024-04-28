@@ -35,7 +35,6 @@ public class TextMovement : MonoBehaviour
 
     public void moveBoxes()
     {
-        print("move!");
         for (int i = 0; i < textBoxes.Length; i++)
         {
             Image textBubble = textBoxes[i].GetComponentInChildren<Image>();

@@ -19,6 +19,12 @@ public class stationManager : MonoBehaviour
     [SerializeField] Texture pilgrimColors;
     [SerializeField] Texture galliumColors;
 
+    [Header("Logo Icons")]
+    [SerializeField] Sprite pilgrimSprite;
+    [SerializeField] Sprite pulseSprite;
+    [SerializeField] Sprite galliumSprite;
+    [SerializeField] Sprite pilgrimHighlight, pulseHighlight, galliumHightlight;
+
 
     private struct lineInfo
     {
@@ -164,20 +170,24 @@ public class stationManager : MonoBehaviour
 
     private void displayLine(int index, string line, int direction, mapNode node)
     {
-
         int time = Random.Range(2, 11);
 
         TextMeshProUGUI nameTMP = menuLines[index].Find("Name").GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI timeTMP = menuLines[index].Find("Time").GetComponent<TextMeshProUGUI>();
-        Image logoImage = menuLines[index].Find("Logo").GetComponent<Image>();
+        Image imageComponent = menuLines[index].Find("Logo").GetComponent<Image>();
+        GameObject background = menuLines[index].Find("Background").gameObject;
+
+        background.SetActive(false);
 
         if (line != "null")
         {
             lineInfoPairs.Add(menuLines[index], new lineInfo(direction, line, time));
             timeTMP.text = time.ToString() + " min";
+            imageComponent.color = new Color(1, 1, 1, 1);
         } else
         {
             timeTMP.text = "";
+            imageComponent.color = new Color(1, 1, 1, 0);
         }
 
         //display
@@ -185,6 +195,8 @@ public class stationManager : MonoBehaviour
         {
             case "pulse":
                 nameTMP.text = "Pulse Line - ";
+                imageComponent.sprite = pulseSprite;
+
                 if (direction == 0)
                 {
                     nameTMP.text += "West Station";
@@ -196,6 +208,7 @@ public class stationManager : MonoBehaviour
 
             case "pilgrim":
                 nameTMP.text = "Pilgrim Line - ";
+                imageComponent.sprite = pilgrimSprite;
 
                 if (direction == 0)
                 {
@@ -209,6 +222,7 @@ public class stationManager : MonoBehaviour
 
             case "gallium":
                 nameTMP.text = "Gallium Line - ";
+                imageComponent.sprite = galliumSprite;
 
                 if (direction == 0)
                 {
@@ -225,7 +239,71 @@ public class stationManager : MonoBehaviour
                 break;
 
         }
+    }
 
+    public void highlightLine(Transform callingObject)
+    {
+        lineInfo highlightedLine = new lineInfo();
+        if (lineInfoPairs.ContainsKey(callingObject))
+        {
+            highlightedLine = lineInfoPairs[callingObject];
+        }
+        else
+        {
+            return;
+        }
+
+        Image imageComponent = callingObject.Find("Logo").GetComponent<Image>();
+        GameObject background = callingObject.Find("Background").gameObject;
+        background.SetActive(true);
+
+        switch (highlightedLine.line)
+        {
+            case "pilgrim":
+                imageComponent.sprite = pilgrimHighlight;
+                break;
+
+            case "gallium":
+                imageComponent.sprite = galliumHightlight;
+                break;
+
+            case "pulse":
+                imageComponent.sprite = pulseHighlight;
+                break;
+        }
+    }
+
+    public void dehighlightLine(Transform callingObject)
+    {
+        lineInfo highlightedLine = new lineInfo();
+
+        if (lineInfoPairs.ContainsKey(callingObject))
+        {
+            highlightedLine = lineInfoPairs[callingObject];
+        }
+        else
+        {
+            return;
+        }
+
+        Image imageComponent = callingObject.Find("Logo").GetComponent<Image>();
+        GameObject background = callingObject.Find("Background").gameObject;
+        background.SetActive(false);
+
+        switch (highlightedLine.line)
+        {
+            case "pilgrim":
+                imageComponent.sprite = pilgrimSprite;
+                break;
+
+            case "gallium":
+                imageComponent.sprite = galliumSprite;
+                break;
+
+            case "pulse":
+                imageComponent.sprite = pulseSprite;
+                break;
+        }
     }
 
     public void chooseLine(Transform callingObject)
@@ -252,21 +330,18 @@ public class stationManager : MonoBehaviour
         if (mapManager.currentLine == "pilgrim")
         {
             trainColors.SetTexture("_MainTex", pilgrimColors);
-            Debug.Log("on line " + mapManager.currentLine);
         }
         else if (mapManager.currentLine == "gallium")
         {
             trainColors.SetTexture("_MainTex", galliumColors);
-            Debug.Log("on line " + mapManager.currentLine);
         }
         else if (mapManager.currentLine == "pulse")
         {
             trainColors.SetTexture("_MainTex", pulseColors);
-            Debug.Log("on line " + mapManager.currentLine);
         }
         else
         {
-            Debug.Log("a line name was wrong");
+            Debug.LogWarning("a line name was wrong");
         }
 
         StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToCar));

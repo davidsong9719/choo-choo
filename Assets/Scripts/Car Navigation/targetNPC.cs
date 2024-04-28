@@ -29,6 +29,7 @@ public class targetNPC : MonoBehaviour
     private GameObject target;
     private InputAction interact;
     private Image imageComponent;
+    private GameObject lastInteractable;
     [HideInInspector] public bool hasUsedHeal = false;
 
     private void Awake()
@@ -163,6 +164,7 @@ public class targetNPC : MonoBehaviour
                 case "Stairs":
                         imageComponent.sprite = stairImage;
                     break;
+
                 case "Guide":
                     if (DialogueManager.GetInstance().tutorialStage > 3 && DialogueManager.GetInstance().tutorialStage != 5)
                     {
@@ -174,7 +176,6 @@ public class targetNPC : MonoBehaviour
                         imageComponent.sprite = levelOneImage;
                     }
                     break;
-
             }
         }
         else
