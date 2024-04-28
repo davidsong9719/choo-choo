@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class subwayManager : MonoBehaviour
 {
@@ -24,10 +28,17 @@ public class subwayManager : MonoBehaviour
     [SerializeField] stationManager stationScript;
 
     //Camera
-    [SerializeField] Camera carCamera, stationCamera;
+    [SerializeField] Camera carCamera, stationCamera, startCamera;
 
     //Tutorial
     [HideInInspector] public opponentStats tutorialStats;
+
+    //Start
+    [SerializeField] List<Image> startHiddenImages;
+    [SerializeField] List<TextMeshProUGUI> startHiddenTexts;
+    [SerializeField] List<Image> startUI;
+    public bool hasStarted = false;
+
 
     [Header("Public Access")]
     public GameObject player;
@@ -42,17 +53,104 @@ public class subwayManager : MonoBehaviour
     {
         playerControls = new PlayerInputActions();
         instance = this;
+        hasStarted = false;
     }
 
     void Start()
     {
+        startScreen();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            restart();
+        }
+    }
+
+    public void restart()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void startScreen()
+    {
+        Time.timeScale = 0f;
+        startCamera.enabled = false;
+        carCamera.enabled = false;
+        stationCamera.enabled = true;;
+
+        combatManagerObject.SetActive(false);
+        combatCanavas.SetActive(false);
+
+        for (int i = 0; i < startHiddenImages.Count; i++)
+        {
+            startHiddenImages[i].enabled = false;
+        }
+
+        for (int i = 0; i < startHiddenTexts.Count; i++)
+        {
+            startHiddenTexts[i].enabled = false;
+        }
+
+        for (int i = 0; i < startUI.Count; i++)
+        {
+            startUI[i].gameObject.SetActive(true);
+        }
+
+        DialogueManager.GetInstance().submit.Enable();
+        targetScript.interact.Enable();
+    }
+
+    public void exitGame()
+    {
+        Application.Quit();
+    }
+
+    public void startGame()
+    {
+        if (hasStarted) return;
+        hasStarted = true;
+
+        StartCoroutine(TransitionManager.GetInstance().Swipe(startGameTransition));
+    }
+
+    public void startGameTransition()
+    {
+
+        Time.timeScale = 1f;
+        for (int i = 0; i < startHiddenImages.Count; i++)
+        {
+            startHiddenImages[i].enabled = true;
+        }
+
+        for (int i = 0; i < startHiddenTexts.Count; i++)
+        {
+            startHiddenTexts[i].enabled = true;
+        }
+
+        for (int i = 0; i < startUI.Count; i++)
+        {
+            startUI[i].gameObject.SetActive(false);
+        }
+
         switchToStation();
 
         GameObject player = instance.player;
         player.transform.position = TutorialStartPos.position;
         player.transform.rotation = TutorialStartPos.rotation;
 
-        startCombat(tutorialStats);
+        state = "combat";
+
+        movementScript.stopWalking();
+        movementScript.enabled = false;
+        targetScript.enabled = false;
+
+        combatManager.instance.opponent = tutorialStats;
+        combatManagerObject.SetActive(true);
+
+        openCombat();
     }
 
     public void startCombat(opponentStats opponent)
@@ -63,13 +161,10 @@ public class subwayManager : MonoBehaviour
         movementScript.enabled = false;
         targetScript.enabled = false;
 
-        //combatManagerObject.SetActive(true);
-        //combatCanavas.SetActive(true);
         combatManager.instance.opponent = opponent;
-        //combatManager.instance.startCombat();
         combatManagerObject.SetActive(true);
-        StartCoroutine(TransitionManager.GetInstance().Swipe(openCombat));
 
+        StartCoroutine(TransitionManager.GetInstance().Swipe(openCombat));
     }
 
     public void openCombat()
@@ -129,14 +224,16 @@ public class subwayManager : MonoBehaviour
 
     private void switchCamera(string newView)
     {
+        startCamera.enabled = false;
         if (newView == "station")
         {
             stationCamera.enabled = true;
             carCamera.enabled = false;
         } else if (newView == "car")
         {
-            stationCamera.enabled = false;
             carCamera.enabled = true;
+            stationCamera.enabled = false;
         }
+
     }
 }

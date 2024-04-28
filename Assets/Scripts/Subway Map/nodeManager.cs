@@ -62,14 +62,6 @@ public class nodeManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            progressStation();
-        }
-    }
-
     public void progressStation()
     {
         currentNode = currentNode.moveNode(currentLine, currentDirection);
