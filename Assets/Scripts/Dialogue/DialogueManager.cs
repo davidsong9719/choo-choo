@@ -6,10 +6,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System;
-using System.Security;
-using static UnityEngine.Rendering.DebugUI;
-using static Cinemachine.DocumentationSortingAttribute;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -59,7 +55,7 @@ public class DialogueManager : MonoBehaviour
     private string character;
 
     //public PlayerInputActions playerControls;
-    private InputAction submit;
+    public InputAction submit;
 
     //used to check if pressed this frame, used in coroutine
     private const string SPEAKER_TAG = "speaker";
@@ -95,7 +91,7 @@ public class DialogueManager : MonoBehaviour
     private void OnEnable() //Must be used for the new input system to work properly
     {
         submit = subwayManager.instance.playerControls.Player.Interact;
-        submit.Enable();
+        submit.Disable();
     }
 
     private void OnDisable() //Must be used for the new input system to work properly

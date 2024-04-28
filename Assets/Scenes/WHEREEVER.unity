@@ -2239,6 +2239,15 @@ MonoBehaviour:
   tutorialStage: 0
   result: 
   canContinueToNextLine: 1
+  submit:
+    m_Name: Submit
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2d45800a-cfe7-4ffd-b329-8086d3417768
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   bubbleColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &185944574
 Transform:

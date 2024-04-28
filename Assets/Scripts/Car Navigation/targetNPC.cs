@@ -27,7 +27,7 @@ public class targetNPC : MonoBehaviour
     [SerializeField] float npcHeight, doorHeight, statueHeight, stairsHeight, guideHeight;
 
     private GameObject target;
-    private InputAction interact;
+    public InputAction interact;
     private Image imageComponent;
     private GameObject lastInteractable;
     [HideInInspector] public bool hasUsedHeal = false;
@@ -39,7 +39,7 @@ public class targetNPC : MonoBehaviour
     void OnEnable()
     {
         interact = subwayManager.instance.playerControls.Player.Interact;
-        interact.Enable();
+        interact.Disable();
     }
 
     void OnDisable()
@@ -219,6 +219,7 @@ public class targetNPC : MonoBehaviour
 
     private void selectTarget()
     {
+        if (!subwayManager.instance.hasStarted) return;
         if (interact.ReadValue<float>() == 0) return;
         if (subwayUI.instance.state != "closed") return;
 

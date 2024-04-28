@@ -296,6 +296,7 @@ public class subwayUI : MonoBehaviour
                 }
             }
             yield return null;
+
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
             DialogueManager.GetInstance().result = "";
         }

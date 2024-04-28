@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -36,7 +37,7 @@ public class subwayManager : MonoBehaviour
     [SerializeField] List<Image> startHiddenImages;
     [SerializeField] List<TextMeshProUGUI> startHiddenTexts;
     [SerializeField] List<Image> startUI;
-    private bool hasStarted = false;
+    public bool hasStarted = false;
 
 
     [Header("Public Access")]
@@ -80,6 +81,8 @@ public class subwayManager : MonoBehaviour
         carCamera.enabled = false;
         stationCamera.enabled = true;;
 
+        combatManagerObject.SetActive(false);
+        combatCanavas.SetActive(false);
 
         for (int i = 0; i < startHiddenImages.Count; i++)
         {
@@ -95,6 +98,9 @@ public class subwayManager : MonoBehaviour
         {
             startUI[i].gameObject.SetActive(true);
         }
+
+        DialogueManager.GetInstance().submit.Enable();
+        targetScript.interact.Enable();
     }
 
     public void exitGame()
@@ -106,6 +112,7 @@ public class subwayManager : MonoBehaviour
     {
         if (hasStarted) return;
         hasStarted = true;
+
         StartCoroutine(TransitionManager.GetInstance().Swipe(startGameTransition));
     }
 
@@ -156,6 +163,7 @@ public class subwayManager : MonoBehaviour
 
         combatManager.instance.opponent = opponent;
         combatManagerObject.SetActive(true);
+
         StartCoroutine(TransitionManager.GetInstance().Swipe(openCombat));
     }
 
