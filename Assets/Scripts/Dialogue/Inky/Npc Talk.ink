@@ -208,6 +208,26 @@ Im convinced. #speaker-Opponent
 
 
 ===Tutorial===
+THIS IS THE START OF THE TEST #speaker-Opponent
+ER #speaker-Player
+uh #speaker-Opponent
+ER #speaker-Player
+uh #speaker-Opponent
+ER #speaker-Player
+uh #speaker-Opponent
+ER #speaker-Player
+uh #speaker-Opponent
+o #speaker-Player
+a #speaker-Opponent
+o #speaker-Player
+a #speaker-Opponent
+o #speaker-Player
+a #speaker-Opponent
+o #speaker-Player
+a #speaker-Opponent
+o #speaker-Player
+a #speaker-Opponent
+THIS IS THE END OF THE TEST #speaker-Player
 Ah our newest member. You know about clicking [E] to continue, yes? #speaker-Opponent
 Yep! #speaker-Player
 Wonderful, do you need me to go over your assignment? #speaker-Opponent

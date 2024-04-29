@@ -1,3 +1,4 @@
+using Ink.Parsed;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -15,7 +16,8 @@ public class TextMovement : MonoBehaviour
 
     private static TextMovement instance;
 
-    [HideInInspector] public bool inPlace = true; 
+    [HideInInspector] public bool inPlace = true;
+
 
 
     private void Awake()
@@ -97,5 +99,7 @@ public class TextMovement : MonoBehaviour
             textBoxes[i].transform.position = positions[i].position;
         }
     }
+
+
 
 }
