@@ -43,11 +43,15 @@ public class stationManager : MonoBehaviour
 
     public void startStation()
     {
-        GameObject player = subwayManager.instance.player;
-        player.GetComponent<CharacterController>().enabled = false;
-        player.transform.position = playerSpawnPosition.position;
-        player.transform.rotation = playerSpawnPosition.rotation;
-        player.GetComponent<CharacterController>().enabled = true;
+        if (subwayManager.instance.state != "start")
+        {
+            GameObject player = subwayManager.instance.player;
+            player.GetComponent<CharacterController>().enabled = false;
+            player.transform.position = playerSpawnPosition.position;
+            player.transform.rotation = playerSpawnPosition.rotation;
+            player.GetComponent<CharacterController>().enabled = true;
+        }
+
         if (DialogueManager.GetInstance().tutorialStage == 4)
         {
             cultGuide.SetActive(false);

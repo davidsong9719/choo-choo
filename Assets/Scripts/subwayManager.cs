@@ -76,6 +76,7 @@ public class subwayManager : MonoBehaviour
 
     private void startScreen()
     {
+        state = "start";
         Time.timeScale = 0f;
         startCamera.enabled = false;
         carCamera.enabled = false;
@@ -138,8 +139,10 @@ public class subwayManager : MonoBehaviour
         switchToStation();
 
         GameObject player = instance.player;
+        player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = TutorialStartPos.position;
         player.transform.rotation = TutorialStartPos.rotation;
+        player.GetComponent<CharacterController>().enabled = true;
 
         state = "combat";
 

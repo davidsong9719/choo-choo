@@ -39,7 +39,7 @@ public class targetNPC : MonoBehaviour
     void OnEnable()
     {
         interact = subwayManager.instance.playerControls.Player.Interact;
-        interact.Disable();
+        interact.Enable();
     }
 
     void OnDisable()
@@ -50,6 +50,7 @@ public class targetNPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (subwayManager.instance.state == "start") return;
         findClosestInteractable();
 
         if (TransitionManager.GetInstance().playingTransition == false)

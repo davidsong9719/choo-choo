@@ -2001,7 +2001,7 @@ MonoBehaviour:
   stairsHeight: 2.42
   guideHeight: 3.7
   interact:
-    m_Name: 
+    m_Name: Interact
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: b88b92df-b645-4c75-b26a-76d616efd2f5
@@ -19604,7 +19604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1669862590
 RectTransform:
   m_ObjectHideFlags: 0
