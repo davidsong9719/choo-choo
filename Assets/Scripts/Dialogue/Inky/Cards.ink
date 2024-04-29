@@ -131,51 +131,61 @@
 - What would my kids think if I join a cult?
     {shuffle:
         - I eat kids.
-        - This isn't a cult.
+        - This isn't a cult!
         - They'd think you're pretty cool.
         - They'd thank you for all the gifts the higher beings provide.
+        - You could get your kids to join too!
     }
 - I'm already part of another cult.
     {shuffle:
-        - It's not a cult. But ours is better.
-        - a
-        - a
+        - It's not a cult! But ours is better.
+        - I can't believe you'd join a cult, those things are terrible.
+        - No cult offers what we can.
     }
 - I'm too busy for more obligations.
     {shuffle:
-        - a
-        - a
-        - a
+        - We only have three meetings a day! I'm sure you could make time.
+        - I guarantee you, you won't be too busy for this.
+        - Really? You look plenty free to me right now.
+        - Interesting, I didn't peg you for someone with a life.
     }
 - Maybe you're the one who can't see the truth.
     {shuffle:
-        - a
-        - a
-        - a
+        - Hey, I have 21/20 vision!
+        - The perceptive ones above would beg to differ.
+        - I've seen the fifth dimension, don't tell me what I can't see!
     }
 - Can you promise anything tangible?
     {shuffle:
-        - a
-        - a
-        - a
+        - We offer free food sometimes.
+        - Our rewards will be very tangible! ...in your next life.
+        - I can promise that you'll physically meet the higher ones if you join us.
+        - You might be able to make some friends! You need some of those, right?
     }
 - Why should I believe you over everyone else?
     {shuffle:
-        - a
-        - a
-        - a
+        - I'm the most trustworthy person you'll ever meet!
+        - Don't be a sheep, everyone else is mindless!
+        - Because I'm better than everyone else, obviously.
     }
 - Bothering people on a subway is bad advertising.
     {shuffle:
-        - a
-        - a
-        - a
+        - But there's so many lost souls here!
+        - Don't worry, we advertise elsewhere too!
+        - I'm not bothering anyone, it's simply a casual chat.
     }
 - The truth you claim to see is subjective.
     {shuffle:
-        - a
-        - a
-        - a
+        - The truth you see is just wrong.
+        - Everything in life can be considered subjective, except this. This is a fact.
+        - And if our truth is the true truth? Why take the risk?
+    }
+- If these "perceptive ones" were so perceptive, they'd see that I'm not joining you.
+    {shuffle:
+        - They see that you'd change your mind!
+        - They see much further than your immediate reaction. You'll return sooner or later.
+        - Maybe not yet, but you'll come back.
+        - They see the pitiful path you take if you don't join us.
     }
 }
 -> END
@@ -185,17 +195,17 @@
 - You're hiding something.
     {shuffle:
         - What? No I'm not!
-        - please
+        - a
     }
 - What are you, really?
     {shuffle:
-        - on my knees begging
-        - but join the cult
+        - a
+        - a
     }
-- this is literally a cult
+- Something is off about your story...
     {shuffle:
-        - nuh uh
-        - but its cool
+        - a
+        - a
     }
 }
 -> END
@@ -205,6 +215,7 @@
 - lalalala not listening
 - AAAAAAA police! this is harrassment
 - bro like stfu
+- Quit talking to me, I can't hear myself think.
 }
 -> END
 
@@ -213,17 +224,17 @@
 - mmf...disnnd..sndn.urk.
     {shuffle:
         - What's that?
-        - please
+        - Hm? Are you having trouble speaking?
     }
 - .icd..mdks...asfn......wut..
     {shuffle:
-        - on my knees begging
-        - but join the cult
+        - Cat got your tongue?
+        - a
     }
 - ..hlp...whts.....ak..
     {shuffle:
-        - nuh uh
-        - but its cool
+        - a
+        - a
     }
 }
 -> END
