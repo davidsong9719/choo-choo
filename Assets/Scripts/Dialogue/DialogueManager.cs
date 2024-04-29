@@ -284,7 +284,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue && canContinueToNextLine == true)
         {
-            if (TextMovement.GetInstance().inPlace == true)
+            if (TextMovement.GetInstance().inPlace == true && TextMovement.GetInstance().isInPlace())
             {
                 canContinueToNextLine = false;
                 TextMovement.GetInstance().moveBoxes();
@@ -483,7 +483,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterCombat(string character, string action)
     {
-        if (TextMovement.GetInstance().inPlace == true)
+        if (TextMovement.GetInstance().inPlace == true && TextMovement.GetInstance().isInPlace())
         {
             TextMovement.GetInstance().moveBoxes();
         }

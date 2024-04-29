@@ -1,5 +1,6 @@
 using Ink.Parsed;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,12 +17,19 @@ public class TextMovement : MonoBehaviour
 
     private static TextMovement instance;
 
-    [HideInInspector] public bool inPlace = true;
-
+    public bool inPlace = true;
+    private Dictionary<GameObject, bool> inPlaceDict;
 
 
     private void Awake()
     {
+        inPlaceDict = new Dictionary<GameObject, bool> { };
+
+        for (int i = 0; i < textBoxes.Length; i++)
+        {
+            inPlaceDict.Add(textBoxes[i], true);
+        }
+
         if (instance != null)
         {
             Debug.LogWarning("Found more than one Dialogue Manager in scene");
@@ -37,6 +45,7 @@ public class TextMovement : MonoBehaviour
 
     public void moveBoxes()
     {
+        
         for (int i = 0; i < textBoxes.Length; i++)
         {
             Image textBubble = textBoxes[i].GetComponentInChildren<Image>();
@@ -84,12 +93,26 @@ public class TextMovement : MonoBehaviour
     private IEnumerator moveUp(GameObject textbox, Vector3 target)
     {
         while (textbox.transform.position != target)
-            {
-                inPlace = false;
-                textbox.transform.position = Vector3.MoveTowards(textbox.transform.position, target, speed * Time.deltaTime);
-                yield return null;
-            }
+        {
+            inPlaceDict[textbox] = false;
+            inPlace = false;
+            textbox.transform.position = Vector3.MoveTowards(textbox.transform.position, target, speed * Time.deltaTime);
+            yield return null;
+        }
+
+        inPlaceDict[textbox] = true;
+        
         inPlace = true;
+    }
+
+    public bool isInPlace()
+    {
+        foreach (var textBox in inPlaceDict)
+        {
+            if (textBox.Value == false) return false;
+        }
+
+        return true;
     }
 
     public void ResetPos()
