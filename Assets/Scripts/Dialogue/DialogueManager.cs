@@ -36,8 +36,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] string playerDefense;
 
     //[HideInInspector] public int tutorialStage;
-    public int tutorialStage;
-    public string result;
+    [HideInInspector] public int tutorialStage;
+    [HideInInspector] public string result;
 
     //[HideInInspector] public string result;
 
@@ -329,7 +329,6 @@ public class DialogueManager : MonoBehaviour
                 {
                     Debug.Log("not working");
                 }
-
             }
         }
         else

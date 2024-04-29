@@ -15,7 +15,7 @@ public class TextMovement : MonoBehaviour
 
     private static TextMovement instance;
 
-    public bool inPlace = true; 
+    [HideInInspector] public bool inPlace = true; 
 
 
     private void Awake()
@@ -45,7 +45,6 @@ public class TextMovement : MonoBehaviour
                 //swap target position
                 targetPos = positions[2].position;
                 textBoxes[i].transform.SetParent(sortOrder[2].transform);
-                inPlace = true;
             }
             //continue for all other positions
             else if (Vector2.Distance(textBoxes[i].transform.position, positions[2].position) < .01f)
@@ -53,14 +52,12 @@ public class TextMovement : MonoBehaviour
                 //swap target position
                 targetPos = positions[1].position;
                 textBoxes[i].transform.SetParent(sortOrder[1].transform);
-                inPlace = true;
             }
             else if (Vector2.Distance(textBoxes[i].transform.position, positions[1].position) < .01f)
             {
                 //swap target position
                 targetPos = positions[0].position; 
                 textBoxes[i].transform.SetParent(sortOrder[0].transform); 
-                inPlace = true;
             }
             else if (Vector2.Distance(textBoxes[i].transform.position, positions[0].position) < .01f)
             {
@@ -71,13 +68,13 @@ public class TextMovement : MonoBehaviour
                 textBubble.color = new Color(1f, 1f, 1f);
                 textBoxes[i].transform.SetParent(sortOrder[3].transform);
                 targetPos = positions[3].position;
-                inPlace = true;
             }
             else
             {
-                Debug.LogWarning("Cant find where to go");
                 inPlace = false;
+                Debug.LogWarning("Cant find where to go");
             }
+
             StartCoroutine(moveUp(textBoxes[i], targetPos));
         }
     }
@@ -90,7 +87,6 @@ public class TextMovement : MonoBehaviour
                 textbox.transform.position = Vector3.MoveTowards(textbox.transform.position, target, speed * Time.deltaTime);
                 yield return null;
             }
-        
         inPlace = true;
     }
 
