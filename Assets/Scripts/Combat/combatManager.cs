@@ -29,8 +29,9 @@ public class combatManager : MonoBehaviour
     [Header("MiscSettings")]
     [SerializeField] int cardTimeMultiplier;
 
-    [Header("MiscSettings")]
-    [SerializeField] AudioClip speedProgressSFX, cardPlaySFX;
+    [Header("SFX")]
+    [SerializeField] AudioClip speedProgressSFX; 
+    public AudioClip cardPlaySFX, cardInteractSFX;
 
     private int playerSpeed, playerMaxHealth, playerHealth;
     private int opponentSpeed, opponentMaxHealth, opponentHealth;

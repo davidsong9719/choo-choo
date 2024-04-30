@@ -120,6 +120,12 @@ public class cardFeedback : MonoBehaviour
         }
     }
 
+    public void playSFX()
+    {
+        gameManager.instance.setVolume(0.4f);
+        gameManager.instance.playSFX(combatManager.instance.cardInteractSFX);
+    }
+
     private void followMouse()
     {
         transform.position = Input.mousePosition;
