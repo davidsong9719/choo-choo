@@ -75,53 +75,65 @@
 {shuffle:
 - I've snuck a pamphlet in your pocket already.
     {shuffle:
-        - a
-        - a
+        - I'll just throw it out at the next stop.
+        - I don't have pockets though.
+        - And I sneaked it back in your backpack already.
     }
 - The higher ones expect your attendance tomorrow.
     {shuffle:
-        - a
-        - a
+        - Tell them I'm not going!
+        - I'm afraid they'll be disappointed.
+        - They expect too much.
+        - Maybe they should learn to manage their expectations.
     }
 - Please, you look so nutritious!
     {shuffle:
         - Nutritious? What's that supposed to mean?
-        - a
+        - I look nutritious?
+        - What? Are you going to eat me or something?
     }
 - Have a carrot, good for the eyes.
     {shuffle:
         - Why would I want your carrot?
         - My eyes are fine.
+        - I'm not some sort of rabbit.
     }
-- Do you want food by the way? On the house.
+- Do you want food by the way? On the house!
     {shuffle:
-        - a
-        - a
+        - No, the food in your bag looks nasty.
+        - On what house? You're alone in a subway.
+        - You expect anyone to pay for that?
     }
 - Out of curiousity, would you say you have good vision?
     {shuffle:
         - What does my vision have to do with anything?
-        - a
+        - Uh, that's wildly off topic.
+        - I guess? Why do you ask?
     }
 - Here, have a snack!
     {shuffle:
-        - a
-        - a
+        - Gross, why is it slimy?
+        - Your idea of snacks are carrots?
+        - You don't even have the good snacks.
     }
 - Those above admire your eyesight.
     {shuffle:
         - They should know that I've had surgery for it.
-        - a
+        - Thanks. These aren't my eyes.
+        - Uh. Thanks? I wear contacts.
     }
 - I've already put you on the men- the attendance.
     {shuffle:
-        - a
-        - a
+        - The what?
+        - Well, take me off it.
+        - This will be a terribly inaccurate headcount.
     }
-- If you show up tomorrow, you get a complimentary welcome dinner!
+- If you show up tomorrow, you get a complimentary 17 course welcome dinner!
     {shuffle:
-        - a
-        - a
+        - I have something tomorrow, can you move it to next week?
+        - I don't think I could eat that much if I wanted to.
+        - How much funding do you guys have?
+        - You'd be stuffing us like pigs.
     }
 }
 -> END
@@ -239,53 +251,63 @@
 - You're hiding something.
     {shuffle:
         - What? No I'm not!
-        - a
+        - Me? Hide something from you? Never!
+        - I am an open book! Nothing to hide here.
     }
 - What are you, really?
     {shuffle:
-        - a
-        - a
+        - What does that mean?
+        - I'm like you! A fellow person. Obviously.
+        - I don't know, what are you?
+        - Don't give me an existential crisis!
     }
 - Something is off about your story...
     {shuffle:
-        - a
-        - a
+        - Nothing is off at all.
+        - It all adds up to me, you must've misunderstood something.
+        - There is no story, only the truth.
     }
 - Something's telling me you're lying to me.
     {shuffle:
-        - Me? Impossible!
+        - Me? Impossible! I would never lie to you.
         - I've never lied in my life!
         - I would never lead you astray!
     }
 - Why are there tentacles coming out from your bag?
     {shuffle:
-        - a
-        - a
+        - Oh don't mind Doug. He just doesn't get let out very often.
+        - What? Oh, shoot. Ignore him.
+        - Uh. I dont know what you're talking about?
     }
-- What's with it with you and food?
+- What's with it with you and your strange food?
     {shuffle:
-        - a
-        - a
+        - What? I can't offer a dear friend some food?
+        - You can't even give out goat meat to strangers on the subway anymore?
+        - It's not strange. It's what normal people eat! Right?
     }
 - I have a terrible gut feeling about this.
     {shuffle:
         - You must be hungry then! Have some snacks.
-        - a
+        - You must be sick, our church has plenty of remedies for you.
+        - The future ensures your safety.
     }
 - Is this a trick? A trap?
     {shuffle:
         - Why would I trick you?
-        - a
+        - No tricks, no traps, only the path to everything good in the world!
+        - What would the trick even be? I just want you to join our family.
     }
 - Does your cult consist of sacrifices?
     {shuffle:
         - Who told you that??
-        - a
+        - Where in the world did you hear that from?
+        - What could possibly make you think that?
     }
 - I feel like I'd be stepping right into danger.
     {shuffle:
-        - a
-        - a
+        - Sometimes you need a leap of faith.
+        - Not at all! I only seek what's best for us. And you, of course.
+        - Put your trust in the perceptive ones. You're in safe arms.
     }
 }
 -> END
@@ -315,12 +337,12 @@
 - .icd..mdks...asfn......wut..
     {shuffle:
         - Cat got your tongue?
-        - a
+        - You regretting your words?
     }
 - ..hlp...whts.....ak..
     {shuffle:
-        - a
-        - a
+        - What is it? What do you see?
+        - Only those above can help you.
     }
 }
 -> END
