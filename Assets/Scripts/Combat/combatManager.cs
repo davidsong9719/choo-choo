@@ -29,6 +29,9 @@ public class combatManager : MonoBehaviour
     [Header("MiscSettings")]
     [SerializeField] int cardTimeMultiplier;
 
+    [Header("MiscSettings")]
+    [SerializeField] AudioClip speedProgressSFX, cardPlaySFX;
+
     private int playerSpeed, playerMaxHealth, playerHealth;
     private int opponentSpeed, opponentMaxHealth, opponentHealth;
     private int tempPlayerHealth, tempOpponentHealth; //for retort
@@ -143,6 +146,9 @@ public class combatManager : MonoBehaviour
 
         while (true)
         {
+            gameManager.instance.setVolume(0.15f);
+            gameManager.instance.playSFX(speedProgressSFX);
+
             //increment
             if (lastIncremented == "player")
             {
@@ -349,6 +355,9 @@ public class combatManager : MonoBehaviour
 
     public void startPlayCard(GameObject playedCard, card cardInfo)
     {
+        gameManager.instance.setVolume(0.2f);
+        gameManager.instance.playSFX(cardPlaySFX);
+
         StartCoroutine(playCard(playedCard, cardInfo));
     }
 
