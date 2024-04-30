@@ -93,7 +93,7 @@
         - Why would I want your carrot?
         - My eyes are fine.
     }
-- Do you want free food by the way?
+- Do you want food by the way? On the house.
     {shuffle:
         - a
         - a
@@ -118,7 +118,7 @@
         - a
         - a
     }
-- If you show up tomorrow, you get a free welcome dinner!
+- If you show up tomorrow, you get a complimentary welcome dinner!
     {shuffle:
         - a
         - a
@@ -132,6 +132,12 @@
 - Please? The higher beings are giving you puppy dog eyes from above!
 - Fine, we don't want you anyway! I lied, we do, please change your mind.
 - We have free food available for new recruits!
+- a
+- a
+- a
+- a
+- a
+- a
 }
 -> END
 
@@ -177,6 +183,7 @@
         - It's not a cult! But ours is better.
         - I can't believe you'd join a cult, those things are terrible.
         - No cult offers what we can.
+        - I bet your cult doesn't give out complimentary meals!
     }
 - I'm too busy for more obligations.
     {shuffle:
@@ -203,6 +210,7 @@
         - I'm the most trustworthy person you'll ever meet!
         - Don't be a sheep, everyone else is mindless!
         - Because I'm better than everyone else, obviously.
+        - We serve free food!
     }
 - Bothering people on a subway is bad advertising.
     {shuffle:
@@ -291,7 +299,7 @@
 - I'm not listening to a word you're saying right now.
 - What if I report you to the cops right now?
 - Leave me alone, this is harrassment.
-- a
+- I don't want the lies you're offering. Or your weird snacks.
 - a
 }
 -> END
