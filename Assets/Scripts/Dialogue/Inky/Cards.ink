@@ -100,7 +100,7 @@
     }
 - Out of curiousity, would you say you have good vision?
     {shuffle:
-        - What does my eyesight have to do with anything?
+        - What does my vision have to do with anything?
         - a
     }
 - Here, have a snack!
@@ -110,7 +110,7 @@
     }
 - Those above admire your eyesight.
     {shuffle:
-        - a
+        - They should know that I've had surgery for it.
         - a
     }
 - I've already put you on the men- the attendance.
@@ -132,12 +132,12 @@
 - Please? The higher beings are giving you puppy dog eyes from above!
 - Fine, we don't want you anyway! I lied, we do, please change your mind.
 - We have free food available for new recruits!
-- a
-- a
-- a
-- a
-- a
-- a
+- Our church is cooler than anything you could even think of!
+- You know you want to join.
+- You'll join us eventually, you're just lost right now.
+- Come on, we offer so much!
+- Someone as charming and charismatic as me can only be telling the truth!
+- What's so bad about trying new things? Give it a chance!
 }
 -> END
 
@@ -253,8 +253,9 @@
     }
 - Something's telling me you're lying to me.
     {shuffle:
-        - a
-        - a
+        - Me? Impossible!
+        - I've never lied in my life!
+        - I would never lead you astray!
     }
 - Why are there tentacles coming out from your bag?
     {shuffle:
@@ -271,14 +272,14 @@
         - You must be hungry then! Have some snacks.
         - a
     }
-- I don't think I should trust you.
+- Is this a trick? A trap?
     {shuffle:
-        - a
+        - Why would I trick you?
         - a
     }
 - Does your cult consist of sacrifices?
     {shuffle:
-        - a
+        - Who told you that??
         - a
     }
 - I feel like I'd be stepping right into danger.
@@ -300,7 +301,7 @@
 - What if I report you to the cops right now?
 - Leave me alone, this is harrassment.
 - I don't want the lies you're offering. Or your weird snacks.
-- a
+- Your cult sounds lame.
 }
 -> END
 

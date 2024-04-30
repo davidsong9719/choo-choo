@@ -62,6 +62,7 @@ VAR tutorialStage = 1
     {shuffle:
         - What's that supposed to mean? #speaker-Opponent
         - How would you know? #speaker-Opponent
+        - What? #speaker-Opponent
     }
     
 * We have now! #speaker-Player
@@ -69,6 +70,7 @@ VAR tutorialStage = 1
     {shuffle:
         - That's creepy. #speaker-Opponent
         - What are you? Some stalker? #speaker-Opponent
+        - Leave me alone. #speaker-Opponent
     }
 - -> hello.continue
 
@@ -79,6 +81,7 @@ Would you like one of these pamplets? #speaker-Player
             {shuffle:
                 - You are not good until you've read it! #speaker-Player
                 - We can make you better than good! #speaker-Player
+                - Have one anyway!
             }
         - No, thanks. #speaker-Opponent
             I insist! #speaker-Player
@@ -112,6 +115,7 @@ Would you like one of these pamplets? #speaker-Player
 -> pathetic.continue
 
 = option3
+But it's okay!
     * Look at it positively! #speaker-Player
         We are here now. #speaker-Player
         And we see the way to fulfilling your true potential. #speaker-Player
@@ -121,14 +125,13 @@ Would you like one of these pamplets? #speaker-Player
 - -> pathetic.continue
 
 = continue
-    But it's okay!
-    Because they sent me to help you. #speaker-Player
+    Join us for dinner tomorrow, we can help you. #speaker-Player
     {shuffle:
-        - How?. #speaker-Opponent
-        - I don't believe in that. #speaker-Opponent
-            You will soon! #speaker-Player
-        - They sent you to insult me? #speaker-Opponent
-            Merely opening your eyes! #speaker-Player
+        - How? #speaker-Opponent
+        - I don't need your help. #speaker-Opponent
+            But you need theirs. #speaker-Player
+        - I have dinner plans. #speaker-Opponent
+            None that'll change your life like this! #speaker-Player
     }
 -> END
 
@@ -162,16 +165,35 @@ Would you like one of these pamplets? #speaker-Player
         }
     - -> time.continue
 = continue
-    We provide a new way to live life, to look at the world. #speaker-Player
+    We can make you.. technically immortal! #speaker-Player
     I'm not convinced. #speaker-Opponent
-    And immortality. #speaker-Player
+    We have free food? #speaker-Player
     Okay, I'm more convinced. #speaker-Opponent
 ->END
 
 
 ===Win===
-I did it! #speaker-Player
-Im convinced. #speaker-Opponent
+{shuffle:
+    - So? Pamphlet? #speaker-Player
+    Yeah yeah, whatever. #speaker-Opponent
+    I'll take your stupid pamphlet.
+    Awesome! #speaker-Player
+    
+    - You know... This doesn't sound too bad... #speaker-Opponent
+    You said you provided free food right?
+    Plenty. #speaker-Player
+    
+    - Alright, alright. I'll think about it. #speaker-Opponent
+    That's all I need! #speaker-Player
+    
+    - You really should go. Just visit tomorrow! #speaker-Player
+    I'll go if I have time. #speaker-Opponent
+    You won't regret it! #speaker-Player
+    
+    - Come on, we're hosting a big dinner tomorrow! #speaker-Player
+    The higher beings will be there too! 
+    I am too tired to cook... #speaker-Opponent
+}
 ->END
 
 ===Lose===
@@ -310,6 +332,12 @@ This is coded to be impossible.
 
 ===Ending===
 You're back. #speaker-Opponent
+Have fun talking to people?
+*[Yes!]
+Best experience of my life!
+*[Yes!]
+Nothing has been more fun than this!
+- Wonderful.
 How many followers have you recruited?
 {score}!
 {score > lastScore: 
