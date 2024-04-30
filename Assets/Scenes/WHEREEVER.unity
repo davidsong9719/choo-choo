@@ -1083,6 +1083,7 @@ MonoBehaviour:
   cardTimeMultiplier: 4
   speedProgressSFX: {fileID: 8300000, guid: ca8595a1829053349ac72760c7b29997, type: 3}
   cardPlaySFX: {fileID: 8300000, guid: 8a77272871c6e7244ab4b46c373064f4, type: 3}
+  cardInteractSFX: {fileID: 8300000, guid: 88f49c5c317b6094d8d98db45d7001ae, type: 3}
   opponentCards: []
   isPlayerCursed: 0
   isOpponentCursed: 0
