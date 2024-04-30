@@ -73,29 +73,65 @@
 
 = Effect
 {shuffle:
-- i call chuthulu upon you
+- I've snuck a pamphlet in your pocket already.
     {shuffle:
-        - what
-        - yum takoyaki
+        - a
+        - a
     }
-- \*puppy dog eyes*
+- The higher ones expect your attendance tomorrow.
     {shuffle:
-        - aaa i cant say no
-        - i kick puppies
+        - a
+        - a
     }
-- \*cover their eyes* see the truth
+- Please, you look so nutritious!
     {shuffle:
-        - i cant see
-        - im a pathological liar
+        - Nutritious? What's that supposed to mean?
+        - a
+    }
+- Have a carrot, good for the eyes.
+    {shuffle:
+        - Why would I want your carrot?
+        - My eyes are fine.
+    }
+- Do you want free food by the way?
+    {shuffle:
+        - a
+        - a
+    }
+- Out of curiousity, would you say you have good vision?
+    {shuffle:
+        - What does my eyesight have to do with anything?
+        - a
+    }
+- Here, have a snack!
+    {shuffle:
+        - a
+        - a
+    }
+- Those above admire your eyesight.
+    {shuffle:
+        - a
+        - a
+    }
+- I've already put you on the men- the attendance.
+    {shuffle:
+        - a
+        - a
+    }
+- If you show up tomorrow, you get a free welcome dinner!
+    {shuffle:
+        - a
+        - a
     }
 }
 -> END
 
 = Defend
 {shuffle:
-- im giving u a pamphlet anyway
-- i signed u up already
-- what u yapping about
+- I'm not lying, you're lying!
+- Please? The higher beings are giving you puppy dog eyes from above!
+- Fine, we don't want you anyway! I lied, we do, please change your mind.
+- We have free food available for new recruits!
 }
 -> END
 
@@ -207,15 +243,56 @@
         - a
         - a
     }
+- Something's telling me you're lying to me.
+    {shuffle:
+        - a
+        - a
+    }
+- Why are there tentacles coming out from your bag?
+    {shuffle:
+        - a
+        - a
+    }
+- What's with it with you and food?
+    {shuffle:
+        - a
+        - a
+    }
+- I have a terrible gut feeling about this.
+    {shuffle:
+        - You must be hungry then! Have some snacks.
+        - a
+    }
+- I don't think I should trust you.
+    {shuffle:
+        - a
+        - a
+    }
+- Does your cult consist of sacrifices?
+    {shuffle:
+        - a
+        - a
+    }
+- I feel like I'd be stepping right into danger.
+    {shuffle:
+        - a
+        - a
+    }
 }
 -> END
 
 = Defend
 {shuffle:
-- lalalala not listening
-- AAAAAAA police! this is harrassment
-- bro like stfu
+- Dude, shut up.
 - Quit talking to me, I can't hear myself think.
+- The more you insist, the less I want to join.
+- If your cult is as awesome as you say, why isn't it more popular?
+- Look, it's not that I don't want to join... well, it is.
+- I'm not listening to a word you're saying right now.
+- What if I report you to the cops right now?
+- Leave me alone, this is harrassment.
+- a
+- a
 }
 -> END
 
