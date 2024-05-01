@@ -156,6 +156,11 @@ public class subwayUI : MonoBehaviour
         lineMenuParent.SetActive(false);
         Time.timeScale = 1;
 
+        if (DialogueManager.GetInstance().tutorialStage != 5 && gameManager.instance.playerHealth == 0)
+        {
+            setGuideTextPerm("Regain Willpower in station");
+        }
+
         state = "closed";
     }
 

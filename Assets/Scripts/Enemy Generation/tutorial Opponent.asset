@@ -16,5 +16,5 @@ MonoBehaviour:
   speed: 5
   defense: 1
   attack: 4
-  aggression: 0.3
+  aggression: 0.1
   difficulty: 0

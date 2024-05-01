@@ -34450,7 +34450,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 964048017}
           m_TargetAssemblyTypeName: stationManager, Assembly-CSharp
-          m_MethodName: chooseLine
+          m_MethodName: highlightLine
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 1478339579}

@@ -29,6 +29,7 @@ public class TransitionManager : MonoBehaviour
         swipe.SetTrigger("end");
         yield return new WaitForSecondsRealtime(0.6f);
         function();
+        subwayUI.instance.setGuideTextToPerm();
         swipe.SetTrigger("start");
         yield return new WaitForSecondsRealtime(1f);
         playingTransition = false;
