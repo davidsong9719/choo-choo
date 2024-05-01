@@ -66,7 +66,7 @@ public class subwayManager : MonoBehaviour
 
     public void restart()
     {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void startScreen()

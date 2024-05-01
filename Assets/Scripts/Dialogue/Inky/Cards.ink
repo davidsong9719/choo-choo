@@ -40,14 +40,14 @@
         - I don't like to read.
         - You guys need to fire your graphic designer, it harms my eyes.
     }
-- We have a 5 star review on yelp.
+- We have a 5 star review on Yelp.
     {shuffle:
         - I'll rate you 1 star if you keep talking to me.
-        - How are you even on yelp?
+        - How are you even on Yelp?
         - I just looked, you only have 1 review from your mom.
         - I bet you used bots.
     }
-- We can promise you immortality.. in the afterlife.
+- We can promise you immortality... in the afterlife.
     {shuffle:
         - That doesn't count.
         - So do most other religions.
