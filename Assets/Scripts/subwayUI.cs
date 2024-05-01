@@ -26,6 +26,7 @@ public class subwayUI : MonoBehaviour
     [SerializeField] List<TextMeshProUGUI> creditTexts;
     [SerializeField] float creditsDisplayTime;
     [SerializeField] GameObject creditsCanvas;
+    [SerializeField] List<Image> creditImages;
 
     private void Awake()
     {
@@ -423,6 +424,20 @@ public class subwayUI : MonoBehaviour
                 timeCounter += Time.unscaledDeltaTime;
 
                 creditTexts[i].color = new Color(1, 1, 1, timeCounter/creditsDisplayTime);
+
+                yield return null;
+            }
+        }
+
+        for (int i = 0; i < creditImages.Count; i++)
+        {
+            float timeCounter = -Time.unscaledDeltaTime;
+
+            while (timeCounter < creditsDisplayTime)
+            {
+                timeCounter += Time.unscaledDeltaTime;
+
+                creditImages[i].color = new Color(1, 1, 1, timeCounter / creditsDisplayTime);
 
                 yield return null;
             }
