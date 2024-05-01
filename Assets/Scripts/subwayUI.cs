@@ -423,25 +423,21 @@ public class subwayUI : MonoBehaviour
             {
                 timeCounter += Time.unscaledDeltaTime;
 
+                if (i == 0)
+                {
+                    for (int j = 0; j < creditImages.Count; j++)
+                    {
+                            creditImages[j].color = new Color(1, 1, 1, timeCounter / creditsDisplayTime);
+                        
+                    }
+                }
                 creditTexts[i].color = new Color(1, 1, 1, timeCounter/creditsDisplayTime);
 
                 yield return null;
             }
         }
 
-        for (int i = 0; i < creditImages.Count; i++)
-        {
-            float timeCounter = -Time.unscaledDeltaTime;
 
-            while (timeCounter < creditsDisplayTime)
-            {
-                timeCounter += Time.unscaledDeltaTime;
-
-                creditImages[i].color = new Color(1, 1, 1, timeCounter / creditsDisplayTime);
-
-                yield return null;
-            }
-        }
 
         while (true)
         {
