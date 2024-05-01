@@ -572,14 +572,10 @@ public class combatManager : MonoBehaviour
         uiScript.updateHealthUI(1, 1, 1, playerHealth, playerMaxHealth, tempPlayerHealth);
         if (state == "loss")
         {
-            npcManagerScript.removeAll();
             subwayUI.instance.refreshUI(cardsPlayed * cardTimeMultiplier, 2);
 
             subwayUI.instance.setGuideTextPerm("Regain Willpower in station");
             DialogueManager.GetInstance().result = "lose";
-
-            nodeManager.instance.progressStation();
-            npcManagerScript.updateCar();
 
             startCombat();
 

@@ -131,7 +131,7 @@ public class DialogueManager : MonoBehaviour
         dialogueVariables = new DialogueVariables(inkFile);
         currentStory = new Story(inkFile.text);
         narrationIsPlaying = true;
-        
+
 
         if (tutorialStage == 1)
         {
@@ -142,7 +142,7 @@ public class DialogueManager : MonoBehaviour
             if (result == "")
             {
                 currentStory.ChoosePathString("Tutorial2");
-            } 
+            }
         }
         else if (tutorialStage == 3)
         {
@@ -153,7 +153,7 @@ public class DialogueManager : MonoBehaviour
             ((IntValue)GetVariableState("score")).value = gameManager.instance.followerAmount;
             Debug.Log("score is " + ((IntValue)GetVariableState("score")).value);
 
-            if(PlayerPrefs.GetInt("lastScore") != 0)
+            if (PlayerPrefs.GetInt("lastScore") != 0)
             {
                 ((IntValue)GetVariableState("lastScore")).value = PlayerPrefs.GetInt("lastScore");
                 Debug.Log("last score is " + ((IntValue)GetVariableState("lastScore")).value);
@@ -170,9 +170,9 @@ public class DialogueManager : MonoBehaviour
         {
             currentStory.ChoosePathString("Talk");
         }
-        
 
-        if(result == "win")
+
+        if (result == "win")
         {
             if (tutorialStage > 3)
             {
@@ -182,9 +182,9 @@ public class DialogueManager : MonoBehaviour
             {
                 currentStory.ChoosePathString("TutorialWin");
             }
-            
+
         }
-        if(result == "lose")
+        if (result == "lose")
         {
             if (tutorialStage > 3)
             {
@@ -221,6 +221,8 @@ public class DialogueManager : MonoBehaviour
         else if (result == "lose")
         {
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToMovement));
+            StartCoroutine(lossCarUpdate());
+            
             result = "";
             //ClearAll();
         }
@@ -232,6 +234,7 @@ public class DialogueManager : MonoBehaviour
                 combatManager.instance.fight();
             }
         }
+
 
 
         if (tutorialStage == 1)
@@ -351,8 +354,8 @@ public class DialogueManager : MonoBehaviour
         } else
         {
             bubbleImage.color = bubbleColor;
-        }   
-        
+        }
+
         //hide choices while typing
         HideChoices();
 
@@ -372,7 +375,7 @@ public class DialogueManager : MonoBehaviour
             {
                 GetComponent<dialogueAudio>().makeNoise(1);
             }
-            
+
             yield return new WaitForSeconds(typingSpeed);
 
         }
@@ -487,7 +490,7 @@ public class DialogueManager : MonoBehaviour
         {
             TextMovement.GetInstance().moveBoxes();
         }
-        
+
         currentStory = new Story(inkFile.text);
         if (tutorialStage == 2)
         {
@@ -621,6 +624,14 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Ink variables was found to be null: " + variableName);
         }
         return variableValue;
+    }
+
+    IEnumerator lossCarUpdate()
+    {
+        yield return new WaitForSecondsRealtime(0.6f); 
+        nodeManager.instance.progressStation();
+        combatManager.instance.npcManagerScript.updateCar();
+        combatManager.instance.npcManagerScript.removeAll();
     }
 
 }
