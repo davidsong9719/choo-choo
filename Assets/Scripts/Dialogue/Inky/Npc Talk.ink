@@ -191,7 +191,7 @@ But it's okay! #speaker-Player
     
     - Come on, we're hosting a big dinner tomorrow! #speaker-Player
     The higher beings will be there too! 
-    I am too tired to cook... #speaker-Opponent
+    I suppose I am a bit tired of cooking... #speaker-Opponent
 }
 ->END
 
@@ -281,8 +281,8 @@ Did you get a chance to explore?
 You picked your tactics, good job. #speaker-Opponent
 And look at that, you've gained me as a follower. 
 You can check your follower count up in the top right corner.
-You can check where you are on your map on the top left.
-You can check which station you're on and where to switch lines.
+You can also check where you are on your map on the top left.
+There, you'll see which station you're on and where to switch lines.
 The Pulse Line contains a lot of angry people, you'll learn plenty of agressive tactics there.
 The Gallium Line has more defensive people, they'd be helpful with protective tactics.
 The Pilgrim Line is filled with other clever souls. Great for wildcards tactics.

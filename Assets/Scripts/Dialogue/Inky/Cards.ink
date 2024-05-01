@@ -421,7 +421,7 @@
 - Look, this is an argument, see the Willpower decrease?
     {shuffle:
         - Nooo, bring it back!
-        - Oh no, I do!
+        - Oh no, I did!
     }
 - Take this argument!
     {shuffle:
