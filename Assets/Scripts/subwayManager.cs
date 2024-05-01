@@ -31,7 +31,7 @@ public class subwayManager : MonoBehaviour
     [SerializeField] Camera carCamera, stationCamera, startCamera;
 
     //Tutorial
-    [HideInInspector] public opponentStats tutorialStats;
+    public opponentStats tutorialStats;
 
     //Start
     [SerializeField] List<Image> startHiddenImages;
