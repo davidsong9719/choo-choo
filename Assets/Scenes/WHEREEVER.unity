@@ -988,7 +988,7 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 0.3
+            m_FloatArgument: 0.15
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -2065,6 +2065,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   hasUsedHeal: 0
+  healSFX: {fileID: 8300000, guid: 80aea342bbe300a40a44d2486f7e6e52, type: 3}
 --- !u!114 &137847593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2437,53 +2438,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerClips:
-  - {fileID: 8300000, guid: 069b36c0428844342a3a8243d3322ef7, type: 3}
-  - {fileID: 8300000, guid: 8a4db94cdec22f14abb5e10c2266693c, type: 3}
-  - {fileID: 8300000, guid: d8c076ba14070d64ab99310f4dfca09e, type: 3}
-  - {fileID: 8300000, guid: be481ddaa2ca1d04f81eac8b8b2dcbf3, type: 3}
-  - {fileID: 8300000, guid: 5d3fdcb6cc0209742adf6e052608d436, type: 3}
-  - {fileID: 8300000, guid: bce04a3d858a3514dacf484f87fffd91, type: 3}
-  - {fileID: 8300000, guid: 96b72d301a4a41f4ab56b5a7a81d4267, type: 3}
-  - {fileID: 8300000, guid: 08ca322ef51dc894ba4df46897080c34, type: 3}
-  - {fileID: 8300000, guid: 5bbc133685fa3ad4da14ae58c0ceb8fc, type: 3}
-  - {fileID: 8300000, guid: 5ae743af21b4398409b0cc903d808fcb, type: 3}
-  - {fileID: 8300000, guid: 578307f1cb48b9348b19981f6866b91e, type: 3}
+  - {fileID: 8300000, guid: ab6e69da9407f8949b2fce8091a24701, type: 3}
+  - {fileID: 8300000, guid: 340c8c8348c4a9343aa0f01c2df7d2b9, type: 3}
+  - {fileID: 8300000, guid: 6fc9bdece63b20b46b59560ff422aada, type: 3}
+  - {fileID: 8300000, guid: 8daf9b596aae73e449f2df7ad3311e62, type: 3}
+  - {fileID: 8300000, guid: dc9735c87cccf3240ab57d6cb7dcc07d, type: 3}
+  - {fileID: 8300000, guid: 536ac8e1e1cdb3d498621ab34cd6c622, type: 3}
+  - {fileID: 8300000, guid: 3f1361f4a9fa8f74f98084c1aeeae230, type: 3}
+  - {fileID: 8300000, guid: 755ab4780d3dc0149b24e8c0ce85021a, type: 3}
+  - {fileID: 8300000, guid: 7bf9d58d69930ae4dbdf59bf05f87083, type: 3}
+  - {fileID: 8300000, guid: 5d24df7e9303a8b4c868ab1cd331f8c4, type: 3}
+  - {fileID: 8300000, guid: b1b26d6841fbdaf4d955353e9c2985b9, type: 3}
+  - {fileID: 8300000, guid: 5273907f00d407c4cb0930605596ae5e, type: 3}
   opponentClips:
-  - {fileID: 8300000, guid: f3c92a6bbc10aa142bf13ed418b2c9dc, type: 3}
-  - {fileID: 8300000, guid: 50e7fae1faf2aec4183e91e3543ddd6f, type: 3}
-  - {fileID: 8300000, guid: 4c85db1a0d404a8458f82ee7aef42ce3, type: 3}
-  - {fileID: 8300000, guid: d993ddb968f0518408537c0963554cdd, type: 3}
-  - {fileID: 8300000, guid: 0f2c58c8b62e14942bd7ada22afc9a6c, type: 3}
-  - {fileID: 8300000, guid: 5b44b75d38e5d44418b6cc6805ae1c3c, type: 3}
-  - {fileID: 8300000, guid: 28b8397f23650ed4380328ae9a87f54e, type: 3}
-  - {fileID: 8300000, guid: d161a074410e6d747af6e3991264abd4, type: 3}
-  - {fileID: 8300000, guid: 9235cc91f6fde5e45a26aa99abafa8d7, type: 3}
-  - {fileID: 8300000, guid: e7680919bbf747d4f8d02854417b6360, type: 3}
-  - {fileID: 8300000, guid: d9c249d63bed2b849a4d435bd7d8a0e0, type: 3}
+  - {fileID: 8300000, guid: 7d0c87831fa627a4098f89f64497b292, type: 3}
+  - {fileID: 8300000, guid: b4f60fc33abbbb14a966cf4eaf6a71fc, type: 3}
+  - {fileID: 8300000, guid: a31e401bb712b1c4c935dd6226de176a, type: 3}
+  - {fileID: 8300000, guid: 5ef02c8aba68be549bbd0d6a2062e391, type: 3}
+  - {fileID: 8300000, guid: 8b956c4822514334d81a1a88b29d928f, type: 3}
+  - {fileID: 8300000, guid: 5ce0c3d4114016e42869d07058d33325, type: 3}
+  - {fileID: 8300000, guid: 4c2eb71ed3e231645b51f68238376adc, type: 3}
+  - {fileID: 8300000, guid: 7a2dbee153c640946ad740ebeb2a5c70, type: 3}
+  - {fileID: 8300000, guid: 45a4acefb280ec046ba0a06ce26477ce, type: 3}
+  - {fileID: 8300000, guid: 4e93631e411cad0419e31cf6ee67b728, type: 3}
+  - {fileID: 8300000, guid: 9bf516bc4f202db4db95a9102d3473ed, type: 3}
+  - {fileID: 8300000, guid: 61cbbfcc0d70fa14898266176b69e3fa, type: 3}
   playerVolumes:
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
   opponentVolumes:
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
+  - 0.45
 --- !u!1 &189355220
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,6 +2733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 211080138}
   - component: {fileID: 211080137}
+  - component: {fileID: 211080139}
   m_Layer: 0
   m_Name: Transitions
   m_TagString: Untagged
@@ -2766,6 +2771,102 @@ Transform:
   - {fileID: 220479608}
   m_Father: {fileID: 1696168085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &211080139
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211080136}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fb34dacecd214474484882569db457d1, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.305
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &220479604
 GameObject:
   m_ObjectHideFlags: 0
@@ -4995,7 +5096,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8108ae1603e600a459a1ca554af40375, type: 2}
   - {fileID: 11400000, guid: 2abbeeb0ae321b84890323d8df956343, type: 2}
   playerMaxHealth: 50
-  playerHealth: 50
+  playerHealth: 3
   playerSpeed: 3
   playerAttack: 9
   playerCash: 0
@@ -12455,16 +12556,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947793856}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.0061085457, w: 0.99998134}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1696168085}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.7}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 255.1, y: -356.6}
+  m_AnchoredPosition: {x: 241.8, y: -412.6}
   m_SizeDelta: {x: 1000, y: 403}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &947793858
@@ -12504,7 +12605,7 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 0.3
+            m_FloatArgument: 0.15
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -15572,13 +15673,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175670651}
-  m_LocalRotation: {x: 0, y: 0, z: 0.065403156, w: 0.99785894}
+  m_LocalRotation: {x: 0, y: 0, z: 0.048849784, w: 0.9988062}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 0.39999998}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1696168085}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 7.5}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5.6}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -174.5, y: -289.3}
@@ -15621,7 +15722,7 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 0.3
+            m_FloatArgument: 0.15
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2

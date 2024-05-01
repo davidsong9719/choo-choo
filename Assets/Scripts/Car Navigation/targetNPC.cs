@@ -31,7 +31,7 @@ public class targetNPC : MonoBehaviour
     private Image imageComponent;
     private GameObject lastInteractable;
     [HideInInspector] public bool hasUsedHeal = false;
-
+    [SerializeField] AudioClip healSFX;
     private void Awake()
     {
         imageComponent = targetDisplay.GetComponent<Image>();
@@ -248,6 +248,8 @@ public class targetNPC : MonoBehaviour
         {
             if (hasUsedHeal) return;
 
+            gameManager.instance.setVolume(0.1f);
+            gameManager.instance.playSFX(healSFX);
             gameManager.instance.playerHealth = gameManager.instance.playerMaxHealth;
             StartCoroutine(healHealth(playerHealthBar,0.3f));
             StartCoroutine(healHealth(tempPlayerHealthBar, 0.3f));
