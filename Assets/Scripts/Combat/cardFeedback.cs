@@ -122,8 +122,8 @@ public class cardFeedback : MonoBehaviour
 
     public void playSFX()
     {
-        gameManager.instance.setVolume(0.4f);
-        gameManager.instance.playSFX(combatManager.instance.cardInteractSFX);
+        gameManager.instance.setVolume(0.43f);
+        gameManager.instance.playSFX(combatManager.instance.cardInteractSFX); 
     }
 
     private void followMouse()

@@ -147,7 +147,7 @@ public class combatManager : MonoBehaviour
 
         while (true)
         {
-            gameManager.instance.setVolume(0.15f);
+            gameManager.instance.setVolume(0.05f);
             gameManager.instance.playSFX(speedProgressSFX);
 
             //increment
@@ -356,7 +356,7 @@ public class combatManager : MonoBehaviour
 
     public void startPlayCard(GameObject playedCard, card cardInfo)
     {
-        gameManager.instance.setVolume(0.2f);
+        gameManager.instance.setVolume(0.1f);
         gameManager.instance.playSFX(cardPlaySFX);
 
         StartCoroutine(playCard(playedCard, cardInfo));

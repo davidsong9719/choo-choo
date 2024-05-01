@@ -39,6 +39,10 @@ public class subwayManager : MonoBehaviour
     [SerializeField] List<Image> startUI;
     public bool hasStarted = false;
 
+    //SFX
+    [SerializeField] AudioClip doorSFX;
+    [SerializeField] AudioSource trainSource, stationSource;
+
 
     [Header("Public Access")]
     public GameObject player;
@@ -46,7 +50,6 @@ public class subwayManager : MonoBehaviour
     public string previousState; //for opening
     public PlayerInputActions playerControls;
     public List<GameObject> doorList;
-    public UnityEvent subwaySFX;
 
 
     private void Awake()
@@ -211,7 +214,6 @@ public class subwayManager : MonoBehaviour
     public void switchToCar()
     {
         subwayUI.instance.closeUI();
-        subwaySFX.Invoke();
 
         npcManagerScript.updateCar();   
 
@@ -238,5 +240,29 @@ public class subwayManager : MonoBehaviour
             stationCamera.enabled = false;
         }
 
+    }
+
+
+    public void startPlayDoorSFX()
+    {
+        StartCoroutine(playDoorSFX());
+    }
+
+    IEnumerator playDoorSFX()
+    {
+        gameManager.instance.setVolume(0.2f);
+        gameManager.instance.playSFX(doorSFX);
+
+        yield return new WaitForSecondsRealtime(0.68f);
+
+        if (instance.state == "station")
+        {
+            trainSource.Pause();
+            stationSource.Play();
+        } else
+        {
+            trainSource.Play();
+            stationSource.Pause();
+        } 
     }
 }

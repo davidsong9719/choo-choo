@@ -229,6 +229,7 @@ public class targetNPC : MonoBehaviour
         if (target.tag == "ExitDoor")
         {
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
+            subwayManager.instance.startPlayDoorSFX();
             canLeaveCar = false;
         }
         else if (target.tag == "NPC")
@@ -256,7 +257,6 @@ public class targetNPC : MonoBehaviour
             stationScript.generateMenu();
         }
     }
-
 
     IEnumerator healHealth(Image bar, float duration)
     {

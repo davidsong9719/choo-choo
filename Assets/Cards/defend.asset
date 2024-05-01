@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: defend
   m_EditorClassIdentifier: 
   type: 1
-  cardStrength: 5
+  cardStrength: 4
   cardName: 
   description: 

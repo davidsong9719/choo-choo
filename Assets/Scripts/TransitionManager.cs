@@ -24,6 +24,7 @@ public class TransitionManager : MonoBehaviour
 
     public IEnumerator Swipe(Action function)
     {
+        GetComponent<AudioSource>().Play();
         playingTransition = true;
         swipe.SetTrigger("end");
         yield return new WaitForSecondsRealtime(0.6f);

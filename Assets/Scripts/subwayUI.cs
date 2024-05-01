@@ -18,6 +18,7 @@ public class subwayUI : MonoBehaviour
     [SerializeField] int fontDefaultSize, fontUpdateSize;
     [SerializeField] Vector3 stationChoiceYSET;
     private Coroutine timeCoroutine, guideCoroutine;
+    [SerializeField] AudioClip swipeSFX;
 
     private string prePauseState, prePausePermText;
 
@@ -182,6 +183,9 @@ public class subwayUI : MonoBehaviour
 
     public void switchToLineMenu()
     {
+        gameManager.instance.setVolume(0.3f);
+        gameManager.instance.playSFX(swipeSFX);
+
         if (state == "line")
         {
             StartCoroutine(lineTransition(lineMenuParent.GetComponent<RectTransform>(), new Vector3(stationChoiceYSET.y, stationChoiceYSET.x, stationChoiceYSET.z), true));

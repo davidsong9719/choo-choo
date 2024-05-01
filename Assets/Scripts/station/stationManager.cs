@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class stationManager : MonoBehaviour
 {
-
     [SerializeField] Transform playerSpawnPosition;
     [SerializeField] List<Transform> menuLines;
     [SerializeField] nodeManager mapManager;
@@ -24,8 +23,6 @@ public class stationManager : MonoBehaviour
     [SerializeField] Sprite pulseSprite;
     [SerializeField] Sprite galliumSprite;
     [SerializeField] Sprite pilgrimHighlight, pulseHighlight, galliumHightlight;
-
-
     private struct lineInfo
     {
         public int direction;
@@ -314,6 +311,7 @@ public class stationManager : MonoBehaviour
     {
         if (DialogueManager.GetInstance().tutorialStage < 3) return;
 
+
         lineInfo chosenLine = new lineInfo();
         if (lineInfoPairs.ContainsKey(callingObject))
         {
@@ -323,11 +321,13 @@ public class stationManager : MonoBehaviour
             return;
         }
 
+
         mapManager.currentLine = chosenLine.line;
         mapManager.currentDirection = chosenLine.direction;
         lineInfoPairs.Clear();
 
-        //CALL MID-TRANSITION
+        subwayManager.instance.startPlayDoorSFX();
+
         subwayUI.instance.refreshUI(chosenLine.time, 0.5f);
         nodeManager.instance.updateCurrentStationVisual();
 
@@ -371,6 +371,5 @@ public class stationManager : MonoBehaviour
         }
 
         return false;
-
     }
 }

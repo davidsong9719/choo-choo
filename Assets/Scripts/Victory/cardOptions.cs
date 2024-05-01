@@ -11,6 +11,8 @@ public class cardOptions : MonoBehaviour
     [SerializeField] Image replaceButton, continueButton, background;
     [SerializeField] Vector3 deckXSET, newCardsXSET; //x axis start, end, and lerp time
     [SerializeField] combatUI combatUIScript;
+    [SerializeField] AudioClip introSFX, outroSFX;
+
     private cardLayout layoutManager;
     private cardFeedback selectedNewCard, selectedDeckCard;
 
@@ -42,6 +44,8 @@ public class cardOptions : MonoBehaviour
             cardScript.newCardManager = this;
         }
 
+        gameManager.instance.setVolume(0.3f);
+        gameManager.instance.playSFX(introSFX);
         StartCoroutine(transition(newCardsParent, newCardsXSET, true));
         StartCoroutine(transition(deckParent, deckXSET, true));
         StartCoroutine(fade(background, 0.5f, true));
@@ -123,6 +127,8 @@ public class cardOptions : MonoBehaviour
             combatManager.instance.npcManagerScript.updateCar();
         }
 
+        gameManager.instance.setVolume(0.3f);
+        gameManager.instance.playSFX(introSFX);
         StartCoroutine(transition(newCardsParent, new Vector3(newCardsXSET.y, newCardsXSET.x, newCardsXSET.z), true));
         StartCoroutine(transition(deckParent, new Vector3(deckXSET.y, deckXSET.x, deckXSET.z), true));
         StartCoroutine(fade(background, 0.5f, false));
