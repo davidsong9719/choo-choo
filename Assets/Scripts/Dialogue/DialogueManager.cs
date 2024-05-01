@@ -212,7 +212,8 @@ public class DialogueManager : MonoBehaviour
 
         if (result == "win")
         {
-            subwayUI.instance.setGuideTextPerm("Replace at least one card!");
+            if (subwayUI.instance.checkGameEnd()) return;
+            subwayUI.instance.setGuideTextPerm("Replace at least one tactic!");
             combatManager.instance.victoryParent.SetActive(true);
             combatManager.instance.victoryCardSpawner.spawnNewCards(combatManager.instance.opponent.aggression);
             result = "";
@@ -220,6 +221,7 @@ public class DialogueManager : MonoBehaviour
         }
         else if (result == "lose")
         {
+            if (subwayUI.instance.checkGameEnd()) return;
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToMovement));
             StartCoroutine(lossCarUpdate());
             

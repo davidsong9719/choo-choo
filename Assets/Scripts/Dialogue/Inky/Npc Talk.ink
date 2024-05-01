@@ -255,7 +255,7 @@ A briefing is highly recommended!
     ~ tutorialStage = 4
         Nope! I'm all caught up and ready to serve! #speaker-Player
         Impressive. Go to the left to find a station and get started then. #speaker-Opponent
-        I'll return at 9:00pm. 
+        I'll return at 8:00pm. 
 - -> END
 
 ===Tutorial2===
@@ -283,11 +283,11 @@ And look at that, you've gained me as a follower.
 You can check your follower count up in the top right corner.
 You can check where you are on your map on the top left.
 You can check which station you're on and where to switch lines.
-The Pulse Line contains a lot of angry people, you'll learn plenty of argument tactics there.
-The Gallium Line has more defensive people, they'd be helpful with retorts.
-The Pilgrim Line is filled with other clever souls. Great for wildcards.
+The Pulse Line contains a lot of angry people, you'll learn plenty of agressive tactics there.
+The Gallium Line has more defensive people, they'd be helpful with protective tactics.
+The Pilgrim Line is filled with other clever souls. Great for wildcards tactics.
 Now, head over to the stairs to the left and wait for a train.
-Recruit as many followers as you can by the end of the day, I'll see you at 9:00 PM.
+Recruit as many followers as you can by the end of the day, I'll see you at 8:00 PM.
 Oh and, before you go, head to the statue to regain your Willpower.
 There's one in every station.
 Good luck, soldier.

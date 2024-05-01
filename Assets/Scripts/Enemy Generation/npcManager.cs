@@ -29,7 +29,6 @@ public class npcManager : MonoBehaviour
     [Header("Density Settings")]
     [SerializeField] AnimationCurve passengerDensityCurve;
     [SerializeField] int maxVariation;
-    [SerializeField] float passengerExchangePercentage;
     private int totalSpots;
 
     [Header("Visual Settings")]
@@ -73,7 +72,7 @@ public class npcManager : MonoBehaviour
             return;
         }
 
-        int passengerExchangeAmount = (int)((float)npcList.Count * passengerExchangePercentage);
+        int passengerExchangeAmount = npcList.Count;
 
         for (int i = 0; i < passengerExchangeAmount; i++)
         {

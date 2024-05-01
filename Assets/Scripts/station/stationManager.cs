@@ -200,10 +200,10 @@ public class stationManager : MonoBehaviour
 
                 if (direction == 0)
                 {
-                    nameTMP.text += "West Station";
+                    nameTMP.text += "Yeller Station";
                 } else
                 {
-                    nameTMP.text += "South Station";
+                    nameTMP.text += "Mito Station";
                 }
                 break;
 
@@ -213,11 +213,11 @@ public class stationManager : MonoBehaviour
 
                 if (direction == 0)
                 {
-                    nameTMP.text += "West Station";
+                    nameTMP.text += "Cedar Station";
                 }
                 else
                 {
-                    nameTMP.text += "East Station";
+                    nameTMP.text += "Barley Station";
                 }
                 break;
 
@@ -227,11 +227,11 @@ public class stationManager : MonoBehaviour
 
                 if (direction == 0)
                 {
-                    nameTMP.text += "South Station";
+                    nameTMP.text += "Milner Station";
                 }
                 else
                 {
-                    nameTMP.text += "North Station";
+                    nameTMP.text += "Allen Station";
                 }
                 break;
 
@@ -329,6 +329,9 @@ public class stationManager : MonoBehaviour
         subwayManager.instance.startPlayDoorSFX();
 
         subwayUI.instance.refreshUI(chosenLine.time, 0.5f);
+
+        if (subwayUI.instance.checkGameEnd()) return;
+
         nodeManager.instance.updateCurrentStationVisual();
 
         if (mapManager.currentLine == "pilgrim")

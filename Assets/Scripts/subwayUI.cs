@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class subwayUI : MonoBehaviour
@@ -20,7 +21,11 @@ public class subwayUI : MonoBehaviour
     private Coroutine timeCoroutine, guideCoroutine;
     [SerializeField] AudioClip swipeSFX;
 
-    private string prePauseState, prePausePermText;
+    private string prePauseState, prePausePermText; 
+    private InputAction interact;
+    [SerializeField] List<TextMeshProUGUI> creditTexts;
+    [SerializeField] float creditsDisplayTime;
+    [SerializeField] GameObject creditsCanvas;
 
     private void Awake()
     {
@@ -36,8 +41,20 @@ public class subwayUI : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        interact = subwayManager.instance.playerControls.Player.Interact;
+        interact.Enable();
+    }
+
+    void OnDisable()
+    {
+        interact.Disable();
+    }
+
     private void Start()
     {
+        creditsCanvas.SetActive(false);
         closeUI();
     }
 
@@ -284,27 +301,22 @@ public class subwayUI : MonoBehaviour
             yield return null;
         }
 
+
+    }
+
+    public bool checkGameEnd()
+    {
         if (gameManager.instance.timeElapsed >= gameManager.instance.stageOneLength + gameManager.instance.stageTwoLength + gameManager.instance.stageThreeLength)
         {
             DialogueManager.GetInstance().tutorialStage = 5;
 
-            while (true)
-            {
-                if (TransitionManager.GetInstance().playingTransition == false)
-                {
-                    break;
-                }
-                else
-                {
-                    yield return null;
-                }
-            }
-            yield return null;
-
             StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
             DialogueManager.GetInstance().result = "";
+
+            return true;
         }
 
+        return false;
     }
 
     public void setGuideTextTemp(string newText)
@@ -392,5 +404,39 @@ public class subwayUI : MonoBehaviour
         {
             healthDisplay.transform.SetParent(uiHealthParent.transform);
         }
+    }
+
+    public IEnumerator rollCredits()
+    {
+        creditsCanvas.SetActive(true);
+        for (int i =0; i < creditTexts.Count; i++)
+        {
+            creditTexts[i].color = new Color(1, 1, 1, 0);
+        }
+
+        for (int i = 0; i < creditTexts.Count; i++)
+        {
+            float timeCounter = -Time.unscaledDeltaTime;
+
+            while(timeCounter < creditsDisplayTime)
+            {
+                timeCounter += Time.unscaledDeltaTime;
+
+                creditTexts[i].color = new Color(1, 1, 1, timeCounter/creditsDisplayTime);
+
+                yield return null;
+            }
+        }
+
+        while (true)
+        {
+            if (interact.ReadValue<float>() > 0)
+            {
+                subwayManager.instance.restart();
+            }
+
+            yield return null;
+        }
+
     }
 }

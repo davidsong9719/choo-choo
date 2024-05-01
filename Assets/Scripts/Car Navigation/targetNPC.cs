@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -17,7 +18,7 @@ public class targetNPC : MonoBehaviour
     [Header("Setup")]
     [SerializeField] GameObject targetDisplay;
     [SerializeField] npcManager npcManagerScript;
-    [SerializeField] Sprite levelOneImage, levelTwoImage, levelThreeImage, doorImage, healImage, stairImage;
+    [SerializeField] Sprite levelOneImage, levelTwoImage, levelThreeImage, doorImage, healImage, stairImage, cultistImage;
     [SerializeField] GameObject statue, stairs, guide;
     [SerializeField] stationManager stationScript;
     [SerializeField] Image playerHealthBar, tempPlayerHealthBar;
@@ -120,6 +121,12 @@ public class targetNPC : MonoBehaviour
             moveTargetDisplay(closestInteractable.transform);
             target = closestInteractable;
 
+            bool isAtEnd = false;
+            if (DialogueManager.GetInstance().tutorialStage == 5)
+            {
+                isAtEnd = true;
+            }
+
             switch (closestInteractable.tag)
             {
                 case "NPC":
@@ -152,7 +159,7 @@ public class targetNPC : MonoBehaviour
                     break;
 
                 case "Statue":
-                    if (hasUsedHeal || gameManager.instance.playerHealth == gameManager.instance.playerMaxHealth)
+                    if (hasUsedHeal || gameManager.instance.playerHealth == gameManager.instance.playerMaxHealth || isAtEnd)
                     {
                         targetDisplay.SetActive(false);
                         target = null;
@@ -163,7 +170,15 @@ public class targetNPC : MonoBehaviour
                     break;
 
                 case "Stairs":
+                    if (isAtEnd || gameManager.instance.playerHealth == 0)
+                    {
+                        targetDisplay.SetActive(false);
+                        target = null;
+                    } else
+                    {
                         imageComponent.sprite = stairImage;
+                    }
+                        
                     break;
 
                 case "Guide":
@@ -174,7 +189,7 @@ public class targetNPC : MonoBehaviour
                     }
                     else
                     {
-                        imageComponent.sprite = levelOneImage;
+                        imageComponent.sprite = cultistImage;
                     }
                     break;
             }
@@ -223,7 +238,6 @@ public class targetNPC : MonoBehaviour
         if (!subwayManager.instance.hasStarted) return;
         if (interact.ReadValue<float>() == 0) return;
         if (subwayUI.instance.state != "closed") return;
-
         if (target == null) return;
 
         if (target.tag == "ExitDoor")

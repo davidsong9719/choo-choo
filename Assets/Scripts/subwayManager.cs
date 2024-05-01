@@ -64,14 +64,6 @@ public class subwayManager : MonoBehaviour
         startScreen();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            restart();
-        }
-    }
-
     public void restart()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
@@ -199,6 +191,7 @@ public class subwayManager : MonoBehaviour
     {
         state = "station";
 
+        subwayUI.instance.closeUI();
         movementScript.enabled = true;
         targetScript.enabled = true;
 
@@ -264,5 +257,19 @@ public class subwayManager : MonoBehaviour
             trainSource.Play();
             stationSource.Pause();
         } 
+    }
+
+    public IEnumerator fadeVolume()
+    {
+        float volumeFadeTime = 4;
+        float stationStartVolume = stationSource.volume;
+        float timeCounter = -Time.unscaledDeltaTime;
+        
+        while(timeCounter < volumeFadeTime)
+        {
+            timeCounter += Time.unscaledDeltaTime;
+            stationSource.volume = Mathf.Lerp(stationStartVolume, 0f, timeCounter/volumeFadeTime);
+            yield return null;
+        }
     }
 }

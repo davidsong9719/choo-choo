@@ -46,7 +46,7 @@ public class TransitionManager : MonoBehaviour
         playingTransition = true;
         swipe.SetTrigger("end");
         yield return new WaitForSecondsRealtime(0.6f);
-        //function();
+        StartCoroutine(subwayUI.instance.rollCredits());
         //yield return new WaitForSecondsRealtime(1f);
         //playingTransition = false;
     }
