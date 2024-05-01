@@ -35,11 +35,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] string playerText;
     [SerializeField] string playerDefense;
 
-    //[HideInInspector] public int tutorialStage;
-    [HideInInspector] public int tutorialStage;
-    [HideInInspector] public string result;
 
-    //[HideInInspector] public string result;
+    public int tutorialStage;
+    public string result;
 
 
     private Story currentStory;
@@ -220,8 +218,16 @@ public class DialogueManager : MonoBehaviour
         }
         else if (result == "lose")
         {
-            StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToMovement));
             result = "";
+            if (tutorialStage == 5)
+            {
+
+                StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
+            }
+            else
+            {
+                StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToMovement));
+            }
             //ClearAll();
         }
         else

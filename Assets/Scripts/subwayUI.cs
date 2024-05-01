@@ -288,21 +288,23 @@ public class subwayUI : MonoBehaviour
         {
             DialogueManager.GetInstance().tutorialStage = 5;
 
-            while (true)
+            if (DialogueManager.GetInstance().result == "")
             {
-                if (TransitionManager.GetInstance().playingTransition == false)
+                while (true)
                 {
-                    break;
+                    if (TransitionManager.GetInstance().playingTransition == false)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        yield return null;
+                    }
                 }
-                else
-                {
-                    yield return null;
-                }
+                yield return null;
+                StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
             }
-            yield return null;
-
-            StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
-            DialogueManager.GetInstance().result = "";
+            //DialogueManager.GetInstance().result = "";
         }
 
     }

@@ -129,23 +129,32 @@ public class cardOptions : MonoBehaviour
 
         gameManager.instance.setVolume(0.3f);
         gameManager.instance.playSFX(introSFX);
-        StartCoroutine(transition(newCardsParent, new Vector3(newCardsXSET.y, newCardsXSET.x, newCardsXSET.z), true));
-        StartCoroutine(transition(deckParent, new Vector3(deckXSET.y, deckXSET.x, deckXSET.z), true));
-        StartCoroutine(fade(background, 0.5f, false));
 
-        yield return new WaitForSeconds(newCardsXSET.z);
-
-        if (DialogueManager.GetInstance().tutorialStage == 3)
+        if (DialogueManager.GetInstance().tutorialStage == 5)
         {
-            
-            combatManager.instance.startCombat();
-            subwayUI.instance.setGuideTextPerm("Board a train by the stairs");
+            StartCoroutine(TransitionManager.GetInstance().Swipe(subwayManager.instance.switchToStation));
         }
         else
         {
-            subwayManager.instance.switchToMovement();
-            subwayUI.instance.setGuideTextPerm("");
+            StartCoroutine(transition(newCardsParent, new Vector3(newCardsXSET.y, newCardsXSET.x, newCardsXSET.z), true));
+            StartCoroutine(transition(deckParent, new Vector3(deckXSET.y, deckXSET.x, deckXSET.z), true));
+            StartCoroutine(fade(background, 0.5f, false));
+
+            yield return new WaitForSeconds(newCardsXSET.z);
+
+            if (DialogueManager.GetInstance().tutorialStage == 3)
+            {
+
+                combatManager.instance.startCombat();
+                subwayUI.instance.setGuideTextPerm("Board a train by the stairs");
+            }
+            else
+            {
+                subwayManager.instance.switchToMovement();
+                subwayUI.instance.setGuideTextPerm("");
+            }
         }
+        
     }
         
     IEnumerator transition(RectTransform movedObject, Vector3 startEndTime, bool isMovingX)
