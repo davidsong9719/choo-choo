@@ -115,13 +115,12 @@ Would you like one of these pamplets? #speaker-Player
 -> pathetic.continue
 
 = option3
-But it's okay!
+But it's okay! #speaker-Player
     * Look at it positively! #speaker-Player
         We are here now. #speaker-Player
         And we see the way to fulfilling your true potential. #speaker-Player
     * We all started like you. #speaker-Player
         They helped us see the truth. #speaker-Player
-        Join us, and you can see too. #speaker-Player
 - -> pathetic.continue
 
 = continue
@@ -230,26 +229,6 @@ But it's okay!
 
 
 ===Tutorial===
-THIS IS THE START OF THE TEST #speaker-Opponent
-ER #speaker-Player
-uh #speaker-Opponent
-ER #speaker-Player
-uh #speaker-Opponent
-ER #speaker-Player
-uh #speaker-Opponent
-ER #speaker-Player
-uh #speaker-Opponent
-o #speaker-Player
-a #speaker-Opponent
-o #speaker-Player
-a #speaker-Opponent
-o #speaker-Player
-a #speaker-Opponent
-o #speaker-Player
-a #speaker-Opponent
-o #speaker-Player
-a #speaker-Opponent
-THIS IS THE END OF THE TEST #speaker-Player
 Ah our newest member. You know about clicking [E] to continue, yes? #speaker-Opponent
 Yep! #speaker-Player
 Wonderful, do you need me to go over your assignment? #speaker-Opponent
@@ -332,12 +311,12 @@ This is coded to be impossible.
 
 ===Ending===
 You're back. #speaker-Opponent
-Have fun talking to people?
+Have fun talking to people? 
 *[Yes!]
-Best experience of my life!
+Best experience of my life! #speaker-Player
 *[Yes!]
-Nothing has been more fun than this!
-- Wonderful.
+Nothing has been more fun than this! #speaker-Player
+- Wonderful. #speaker-Opponent
 How many followers have you recruited?
 {score}!
 {score > lastScore: 
