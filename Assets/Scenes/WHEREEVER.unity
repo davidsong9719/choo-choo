@@ -2055,15 +2055,6 @@ MonoBehaviour:
   statueHeight: 4.2
   stairsHeight: 2.42
   guideHeight: 3.7
-  interact:
-    m_Name: Interact
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b88b92df-b645-4c75-b26a-76d616efd2f5
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   hasUsedHeal: 0
   healSFX: {fileID: 8300000, guid: 80aea342bbe300a40a44d2486f7e6e52, type: 3}
 --- !u!114 &137847593
@@ -2464,6 +2455,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9bf516bc4f202db4db95a9102d3473ed, type: 3}
   - {fileID: 8300000, guid: 61cbbfcc0d70fa14898266176b69e3fa, type: 3}
   playerVolumes:
+  - 0.45
   - 0.45
   - 0.45
   - 0.45
@@ -5096,7 +5088,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8108ae1603e600a459a1ca554af40375, type: 2}
   - {fileID: 11400000, guid: 2abbeeb0ae321b84890323d8df956343, type: 2}
   playerMaxHealth: 50
-  playerHealth: 3
+  playerHealth: 50
   playerSpeed: 3
   playerAttack: 9
   playerCash: 0
