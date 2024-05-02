@@ -74,10 +74,19 @@ public class npcManager : MonoBehaviour
 
         int passengerExchangeAmount = npcList.Count;
 
-        for (int i = 0; i < passengerExchangeAmount; i++)
+        while (npcList.Count > 0)
         {
-            removeRandomOpponent();
-            spawnOpponent();
+            GameObject removedNPC = npcList[0];
+
+            openSpots.Add(removedNPC.GetComponent<opponentInfo>().transformParent);
+            npcList.Remove(removedNPC);
+
+            if (talkableNPC.Contains(removedNPC))
+            {
+                talkableNPC.Remove(removedNPC);
+            }
+
+            Destroy(removedNPC);
         }
 
         float stageProgress = 0;
