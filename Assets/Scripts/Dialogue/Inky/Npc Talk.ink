@@ -285,7 +285,7 @@ You can also check where you are on your map on the top left.
 There, you'll see which station you're on and where to switch lines.
 The Pulse Line contains a lot of angry people, you'll learn plenty of aggressive tactics there.
 The Gallium Line has more defensive people, they'd be helpful with protective tactics.
-The Pilgrim Line is filled with other clever souls. Great for wildcards tactics.
+The Pilgrim Line is filled with other clever souls. Great for wildcard tactics.
 Now, head over to the stairs to the left and wait for a train.
 Recruit as many followers as you can by the end of the day, I'll see you at 8:00 PM.
 Oh and, before you go, head to the statue to regain your Willpower.
@@ -318,9 +318,9 @@ Best experience of my life! #speaker-Player
 Nothing has been more fun than this! #speaker-Player
 - Wonderful. #speaker-Opponent
 How many followers have you recruited?
-{score}!
+{score}!#speaker-Player
 {score > lastScore: 
-    Impressive. 
+    Impressive. #speaker-Opponent
     {score > highScore: 
         Incredibly impressive, actually.
         I think thats the highest amount of followers I've ever heard recruited in day.
@@ -332,7 +332,7 @@ How many followers have you recruited?
         I only got {lastScore}.
     }
 - else:
-	Good job, you're learning quick.
+	Good job, you're learning quick. #speaker-Opponent
 	Maybe you'll even beat me soon.
 	I got {lastScore}{score == lastScore: too}.
 }
