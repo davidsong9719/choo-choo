@@ -62,7 +62,7 @@
         - What about my potential elsewhere?
         - Aw, thank you.
     }
-- The higher beings offer you a seat next to them. You'd be a fool not to take it.
+- The Higher Beings offer you a seat next to them. You'd be a fool not to take it.
     {shuffle:
         - I must be a fool then.
         - I'd rather stand.
@@ -79,7 +79,7 @@
         - I don't have pockets though.
         - And I sneaked it back in your backpack already.
     }
-- The higher ones expect your attendance tomorrow.
+- The Higher Ones expect your attendance tomorrow.
     {shuffle:
         - Tell them I'm not going!
         - I'm afraid they'll be disappointed.
@@ -141,7 +141,7 @@
 = Defend
 {shuffle:
 - I'm not lying, you're lying!
-- Please? The higher beings are giving you puppy dog eyes from above!
+- Please? The Higher Beings are giving you puppy dog eyes from above!
 - Fine, we don't want you anyway! I lied, we do, please change your mind.
 - We have free food available for new recruits!
 - Our church is cooler than anything you could even think of!
@@ -187,7 +187,7 @@
         - I eat kids.
         - This isn't a cult!
         - They'd think you're pretty cool.
-        - They'd thank you for all the gifts the higher beings provide.
+        - They'd thank you for all the gifts the Higher Beings provide.
         - You could get your kids to join too!
     }
 - I'm already part of another cult.
@@ -207,14 +207,14 @@
 - Maybe you're the one who can't see the truth.
     {shuffle:
         - Hey, I have 21/20 vision!
-        - The perceptive ones above would beg to differ.
+        - The Perceptive Ones above would beg to differ.
         - I've seen the fifth dimension, don't tell me what I can't see!
     }
 - Can you promise anything tangible?
     {shuffle:
         - We offer free food sometimes.
         - Our rewards will be very tangible! ...in your next life.
-        - I can promise that you'll physically meet the higher ones if you join us.
+        - I can promise that you'll physically meet the Higher Ones if you join us.
         - You might be able to make some friends! You need some of those, right?
     }
 - Why should I believe you over everyone else?
@@ -236,7 +236,7 @@
         - Everything in life can be considered subjective, except this. This is a fact.
         - And if our truth is the true truth? Why take the risk?
     }
-- If these "perceptive ones" were so perceptive, they'd see that I'm not joining you.
+- If these "Perceptive Ones" were so perceptive, they'd see that I'm not joining you.
     {shuffle:
         - They see that you'd change your mind!
         - They see much further than your immediate reaction. You'll return sooner or later.
@@ -307,7 +307,7 @@
     {shuffle:
         - Sometimes you need a leap of faith.
         - Not at all! I only seek what's best for us. And you, of course.
-        - Put your trust in the perceptive ones. You're in safe arms.
+        - Put your trust in the Perceptive Ones. You're in safe arms.
     }
 }
 -> END

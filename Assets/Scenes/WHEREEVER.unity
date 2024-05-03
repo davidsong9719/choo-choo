@@ -26071,7 +26071,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Erica Chen
+  m_text: '@mystriodis.art'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 944a9c259058ff54b99b6f63818d94ed, type: 2}
   m_sharedMaterial: {fileID: 2571434013361788490, guid: 944a9c259058ff54b99b6f63818d94ed,
@@ -28342,7 +28342,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: David Song
+  m_text: '@l3ad.planet'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 944a9c259058ff54b99b6f63818d94ed, type: 2}
   m_sharedMaterial: {fileID: 2571434013361788490, guid: 944a9c259058ff54b99b6f63818d94ed,

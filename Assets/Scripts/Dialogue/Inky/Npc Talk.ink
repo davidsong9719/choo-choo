@@ -190,7 +190,7 @@ But it's okay! #speaker-Player
     You won't regret it! #speaker-Player
     
     - Come on, we're hosting a big dinner tomorrow! #speaker-Player
-    The higher beings will be there too! 
+    The Higher Beings will be there too! 
     I suppose I am a bit tired of cooking... #speaker-Opponent
 }
 ->END
@@ -237,13 +237,13 @@ A briefing is highly recommended!
         ~ tutorialStage = 2
         Yes, please! What are my tasks? #speaker-Player
         Eager, are you? Those above would be proud. #speaker-Opponent
-        The higher beings have been growing hungry as of late.
+        The Higher Beings have been growing hungry as of late.
         And we've run low on sacrifices.
         I think I see where this is going! #speaker-Player
-        Good. It is our job as mere servants to feed the perceptive ones. #speaker-Opponent
+        Good. It is our job as mere servants to feed the Perceptive Ones. #speaker-Opponent
         Thank them for watching over us below.
         You've been assigned to the subway tunnels.
-        Go talk to people there and recruit them as loyal followers of the higher.
+        Go talk to people there and recruit them as loyal followers of the Higher.
         Remember not to tell them about the feeding.
         Mortals are not as... open to such things as we. 
         They don't see what we do.
@@ -283,7 +283,7 @@ And look at that, you've gained me as a follower.
 You can check your follower count up in the top right corner.
 You can also check where you are on your map on the top left.
 There, you'll see which station you're on and where to switch lines.
-The Pulse Line contains a lot of angry people, you'll learn plenty of agressive tactics there.
+The Pulse Line contains a lot of angry people, you'll learn plenty of aggressive tactics there.
 The Gallium Line has more defensive people, they'd be helpful with protective tactics.
 The Pilgrim Line is filled with other clever souls. Great for wildcards tactics.
 Now, head over to the stairs to the left and wait for a train.
