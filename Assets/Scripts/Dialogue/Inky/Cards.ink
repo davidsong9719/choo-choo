@@ -453,6 +453,6 @@
 {shuffle:
 - I'm retorting! I can only recover as much Willpower as your last argue.
 - Retort! This won't do anything if you haven't argued though.
-- I'll retort! This brings back some of my Willpower.
+- I'll retort! This only recovers as much as the last turn's argue.
 }
 -> END

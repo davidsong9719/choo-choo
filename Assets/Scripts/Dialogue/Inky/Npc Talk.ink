@@ -3,7 +3,7 @@ VAR highScore = 20
 VAR score = 0
 VAR tutorialStage = 1
 
-->Ending
+->Tutorial
 ===Talk===
 {shuffle:
     - Hello! #speaker-Player
@@ -229,7 +229,7 @@ But it's okay! #speaker-Player
 
 
 ===Tutorial===
-Ah our newest member. You know about clicking [E] to continue, yes? #speaker-Opponent
+Ah our newest member. You know about <b> clicking [E] to continue</b>, yes? #speaker-Opponent
 Yep! #speaker-Player
 Wonderful, do you need me to go over your assignment? #speaker-Opponent
 A briefing is highly recommended!
@@ -296,9 +296,15 @@ Good luck, soldier.
 ===TutorialWin===
 Did I do it? #speaker-Player
 You've worn down my Willpower, congratulations. You learn fast. #speaker-Opponent
-After every recruitment you'll have the opportunity to learn new tactics.
+As a quick rundown, arguments will deplete your opponent's Willpower.
+Retorts will recover your own.
+But keep in mind that you can only retort your opponent's last argue.
+Retorting any other time won't aid you.
+There are various other actions you can take called "effects".
+You can learn these when you learn new tactics.
+You'll have the opportunity to learn new tactics after every successful recruitment.
 You can learn up to three and a minimum of one.
-Keep in mind sometimes you forget what you learned.
+Keep in mind sometimes you forget what you used to know.
 Just click on the tactic you want to learn and the one to replace and confirm.
 ->END
 ===TutorialLose===
