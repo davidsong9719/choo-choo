@@ -367,6 +367,11 @@
         - I can't think of a counter. Just kidding, I can.
         - Not that airtight.
     }
+- Bet you can't retort this!
+    {shuffle:
+        - Don't get overconfident.
+        - I can easily.
+    }
 - Am I arguing right now?
     {shuffle:
         - You are! You've decreased my Willpower!

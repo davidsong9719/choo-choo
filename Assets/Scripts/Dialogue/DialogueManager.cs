@@ -365,35 +365,12 @@ public class DialogueManager : MonoBehaviour
         canContinueToNextLine = false;
         submit.Disable();
 
-        //check if text tags are being added
-        bool isAddingRichTextTag = false;
 
         //display each letter one at a time
         foreach (char letter in line.ToCharArray())
         {
-            //check for text tag, dont show (wait for characters) if <>
-            //textBox.maxVisibleCharacters++;
+            textBox.maxVisibleCharacters++;
 
-            //check for text tag, dont show (wait for characters) if <>
-            if (letter == '<' || isAddingRichTextTag)
-            {
-                isAddingRichTextTag = true;
-                //add letter without waiting
-                //dialogueText.text += letter;
-
-                //disable if tag closed
-                if (letter == '>')
-                {
-                    isAddingRichTextTag = false;
-                }
-            }
-            //continue as normal
-            else
-            {
-                //dialogueText.text += letter;
-                textBox.maxVisibleCharacters++;
-                yield return new WaitForSeconds(typingSpeed);
-            }
 
             if (isPlayer)
             {

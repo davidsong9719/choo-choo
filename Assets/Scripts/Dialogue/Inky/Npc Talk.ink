@@ -1,5 +1,5 @@
-VAR lastScore = 15
-VAR highScore = 20
+VAR lastScore = 5
+VAR highScore = 5
 VAR score = 0
 VAR tutorialStage = 1
 
@@ -243,19 +243,19 @@ A briefing is highly recommended!
         Good. It is our job as mere servants to feed the Perceptive Ones. #speaker-Opponent
         Thank them for watching over us below.
         You've been assigned to the subway tunnels.
-        Go talk to people there and recruit them as loyal followers of the Higher.
+        Go talk to people there and <b>recruit them as loyal followers</b> of the Higher.
         Remember not to tell them about the feeding.
         Mortals are not as... open to such things as we. 
         They don't see what we do.
         Of course! Silly creatures. #speaker-Player
-        You can use [E] to interact with people. You can do the same to objects. #speaker-Opponent
+        You can use <b>[E] to interact</b> with people. You can do the same to objects. #speaker-Opponent
         Come back and interact with me when you are ready for the practice recruitment.
         
     *[No (skip tutorial)]
     ~ tutorialStage = 4
         Nope! I'm all caught up and ready to serve! #speaker-Player
         Impressive. Go to the left to find a station and get started then. #speaker-Opponent
-        I'll return at 8:00pm. 
+        I'll return at <b>8:00 PM</b>. 
 - -> END
 
 ===Tutorial2===
@@ -268,27 +268,28 @@ Did you get a chance to explore?
     Worry not, there will be more chances. #speaker-Opponent
 - Now, let us begin. #speaker-Opponent
   In a few moments, we'll have a mock recruitment.
-  You see the bar underneath me? That's my Willpower.
+  You see the bar underneath me? That's my <b>Willpower</b>.
   Yours is up there, on the top left.
-  You need to lower the lost souls's Willpower enough to get them to join our cu-
-  Our church.
-  The little bar on the side is for speed, this determines our talking order.
-  To use a card, pull it up until its eyes open.
+  You need to <b>lower the lost souls's Willpower</b> enough to get them to join our cu-
+  Our <i>church</i>.
+  The little bar on the side is for <b>speed</b>, this determines our talking order.
+  When you reach the bottom of the bar, it's your turn.
+  To use a card, <b>pull it up until its eyes open</b>.
   Let's give it a try.
 -> END
 
 ===Tutorial3===
 You picked your tactics, good job. #speaker-Opponent
-And look at that, you've gained me as a follower. 
-You can check your follower count up in the top right corner.
-You can also check where you are on your map on the top left.
+And look at that, you've <b>gained me as a follower</b>. 
+You can check your <b>follower count</b> up in the top right corner.
+You can also check where you are on your <b>map</b> on the top left.
 There, you'll see which station you're on and where to switch lines.
-The Pulse Line contains a lot of angry people, you'll learn plenty of aggressive tactics there.
-The Gallium Line has more defensive people, they'd be helpful with protective tactics.
-The Pilgrim Line is filled with other clever souls. Great for wildcard tactics.
-Now, head over to the stairs to the left and wait for a train.
-Recruit as many followers as you can by the end of the day, I'll see you at 8:00 PM.
-Oh and, before you go, head to the statue to regain your Willpower.
+The <b><color=\#8929A2>Pulse Line</color></b> contains a lot of angry people, you'll learn plenty of aggressive tactics there.
+The <b><color=\#3C51C3>Gallium Line</color></b> has more defensive people, they'd be helpful with protective tactics.
+The <b><color=\#218A86>Pilgrim Line</color></b> is filled with other clever souls. Great for wildcard tactics.
+Now, head over to the <b>stairs to the left</b> and wait for a train.
+Recruit as many followers as you can by the end of the day, I'll see you at <b>8:00 PM</b>.
+Oh and, before you go, <b>head to the statue to regain your Willpower</b>.
 There's one in every station.
 Good luck, soldier.
 -> END
@@ -296,14 +297,14 @@ Good luck, soldier.
 ===TutorialWin===
 Did I do it? #speaker-Player
 You've worn down my Willpower, congratulations. You learn fast. #speaker-Opponent
-As a quick rundown, arguments will deplete your opponent's Willpower.
-Retorts will recover your own.
-But keep in mind that you can only retort your opponent's last argue.
+As a quick rundown, <b>arguments will deplete your opponent's Willpower</b>.
+<b>Retorts will recover your own</b>.
+But keep in mind that <b>you can only retort your opponent's last argue</b>.
 Retorting any other time won't aid you.
-There are various other actions you can take called "effects".
+There are various other actions you can take called "<b>effects</b>".
 You can learn these when you learn new tactics.
 You'll have the opportunity to learn new tactics after every successful recruitment.
-You can learn up to three and a minimum of one.
+You can learn <b>up to three</b> and a minimum of one.
 Keep in mind sometimes you forget what you used to know.
 Just click on the tactic you want to learn and the one to replace and confirm.
 ->END
