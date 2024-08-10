@@ -64,6 +64,13 @@ public class subwayManager : MonoBehaviour
         startScreen();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            restart();
+        }
+    }
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

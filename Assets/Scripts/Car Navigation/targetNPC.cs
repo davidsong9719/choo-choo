@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -59,6 +58,11 @@ public class targetNPC : MonoBehaviour
             selectTarget();
         }
         
+    }
+
+    public void forceReferesh()
+    {
+        findClosestInteractable();
     }
 
     private void findClosestInteractable()

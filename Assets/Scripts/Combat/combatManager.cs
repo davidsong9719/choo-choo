@@ -76,11 +76,11 @@ public class combatManager : MonoBehaviour
 
         combatParent.SetActive(true);
         victoryParent.SetActive(false);
-
         setStats();
-        
+
         if (DialogueManager.GetInstance().result == "")
         {
+            uiScript.resetOpponentHealth();
             TextMovement.GetInstance().ResetPos();
             DialogueManager.GetInstance().ClearAll();
             uiScript.resetUIs();
@@ -356,7 +356,7 @@ public class combatManager : MonoBehaviour
 
     public void startPlayCard(GameObject playedCard, card cardInfo)
     {
-        gameManager.instance.setVolume(0.1f);
+        gameManager.instance.setVolume(0.2f);
         gameManager.instance.playSFX(cardPlaySFX);
 
         StartCoroutine(playCard(playedCard, cardInfo));
@@ -541,6 +541,29 @@ public class combatManager : MonoBehaviour
         }
     }
 
+    public void leechHeal(int target, int amount)
+    {
+        if (target == 0)
+        {
+            tempPlayerHealth += amount;
+
+            if (tempPlayerHealth > playerMaxHealth)
+            {
+                tempPlayerHealth = playerMaxHealth;
+            }
+            playerHealth = tempPlayerHealth;
+        } else if (target == 1)
+        {
+            tempOpponentHealth += amount;
+
+            if (tempOpponentHealth > opponentMaxHealth)
+            {
+                tempOpponentHealth = opponentMaxHealth;
+            }
+            opponentHealth = tempOpponentHealth;
+        }
+    }
+
     private bool checkCombatEnd()
     {
         if (playerHealth <= 0)
@@ -569,7 +592,7 @@ public class combatManager : MonoBehaviour
 
         combatParent.SetActive(false);
 
-        uiScript.updateHealthUI(1, 1, 1, playerHealth, playerMaxHealth, tempPlayerHealth);
+        
         if (state == "loss")
         {
             subwayUI.instance.refreshUI(cardsPlayed * cardTimeMultiplier, 2);

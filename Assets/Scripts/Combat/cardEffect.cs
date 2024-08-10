@@ -69,11 +69,11 @@ public class cardEffect : MonoBehaviour
                 if (cardPlayer == 0)
                 {
                     manager.inflictSimpleDamage(1, cardInfo.cardStrength);
-                    manager.heal(0, cardInfo.cardStrength);
+                    manager.leechHeal(0, cardInfo.cardStrength);
                 } else
                 {
                     manager.inflictSimpleDamage(0, cardInfo.cardStrength);
-                    manager.heal(1, cardInfo.cardStrength);
+                    manager.leechHeal(1, cardInfo.cardStrength);
                 }
                 subwayUI.instance.setGuideTextPerm("Drained " + cardInfo.cardStrength + " Willpower");
                 break;
