@@ -17,6 +17,7 @@ public class cardGenerator : MonoBehaviour
     [TextArea]
     public string Notes = "";
 
+    private int pityCounter = 0;
 
     public card generateNewCard(float difficulty) 
     {
@@ -24,6 +25,25 @@ public class cardGenerator : MonoBehaviour
         int randomNum = Mathf.RoundToInt(cardTypeDistribution.Evaluate(Random.Range(0f, 1f)));
         float curveValue = 0;
 
+        //pity mechanic
+        pityCounter++;
+        if (randomNum != 2)
+        {
+            pityCounter++;
+
+            if (pityCounter >= 5)
+            {
+                Debug.LogWarning("pity techinique, activate");
+                pityCounter = 0;
+                randomNum = 2;
+            }
+        }
+        else
+        {
+            pityCounter = 0;
+        }
+
+        //card assignment
         switch (randomNum)
         {
             case 0:
